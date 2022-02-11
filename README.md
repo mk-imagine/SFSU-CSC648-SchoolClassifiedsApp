@@ -15,7 +15,7 @@
 
 | Student Name | Student Email | GitHub Username |
 |    :---:     |     :---:     |     :---:       |
-member1:Ernesto Diaz ediaz8@mail.sfsu.edu  ernestod1998       
+member1:Ernesto Diaz| ediaz8@mail.sfsu.edu | ernestod1998 |      
 | member2      |               |                 |
 | member3      |               |                 |
 | member4      |               |                 |
