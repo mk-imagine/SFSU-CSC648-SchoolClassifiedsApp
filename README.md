@@ -21,5 +21,6 @@
 |Vivian Kuang  |vkuang1@mail.sfsu.edu|tdwlop     |
 | member5      |               |                 |
 | member6      |               |                 |
+| member7      |               |                 |
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
