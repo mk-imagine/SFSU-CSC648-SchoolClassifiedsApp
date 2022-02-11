@@ -16,8 +16,8 @@
 | Student Name | Student Email | GitHub Username |
 |    :---:     |     :---:     |     :---:       |
 |Ernesto Diaz| ediaz8@mail.sfsu.edu | ernestod1998 |      
-|Cody Huang    |whuang17@mail.sfsu.edu|wenhuang415 |
-| member3      |               |                 |
+|Cody Huang    |whuang17@mail.sfsu.edu| wenhuang415 |
+| Mark Kim      |mkim22@mail.sfsu.edu| mkim797  |
 | member4      |               |                 |
 | member5      |               |                 |
 | member6      |               |                 |
