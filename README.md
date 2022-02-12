@@ -21,6 +21,6 @@
 | Vivian Kuang      | vkuang1@mail.sfsu.edu  | tdwlop          |
 | Khushboo Gandhi   | kgandhi1@mail.sfsu.edu | khushboo1028    |
 | Jiasheng Li       | jli29@mail.sfsu.edu    | jiasheng-li     |
-| member7           |                        |                 |
+| Jesus Cervantes Fajardo | jcervantesfajardo@mail.sfsu.edu | Jesus-415 |
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
