@@ -7,7 +7,7 @@
 
 # Below is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
 
-1. Server URL or IP - 54.234.172.151
+1. Server URL or IP - 54.90.37.137
 2. SSH username - ubuntu
 3. SSH password or key. - ssh -i "team8key.pem" ubuntu@ec2-54-234-172-151.compute-1.amazonaws.com
     <br> If a ssh key is used please upload the key to the credentials folder.
