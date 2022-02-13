@@ -1,0 +1,102 @@
+.image {
+  width: 20rem;
+  height: auto;
+  text-align: center;
+  margin-top: 5rem;
+}
+
+@media only screen and (max-width: 888px) {
+  .image {
+    margin-top: 2rem;
+    width: 20rem;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .image {
+    margin-left: 2.25rem;
+  }
+}
+
+.centerDiv {
+  display: inline-block;
+  text-align: left;
+  margin-top: 8rem;
+}
+
+@media only screen and (max-width: 888px) {
+  .centerDiv {
+    margin-top: 8rem;
+  }
+}
+
+@media only screen and (max-width: 793px) {
+  .centerDiv {
+    margin-top: 8rem;
+    margin-left: 2rem;
+  }
+}
+
+.title {
+  font-family: StencilStd;
+  font-size: 3.5rem;
+  color: #272343;
+}
+
+@media only screen and (max-width: 760px) {
+  .centerDiv {
+    margin-top: 1rem;
+  }
+}
+
+.subtitle {
+  font-family: "STIXGeneral";
+  font-size: 2rem;
+  color: #272343;
+}
+
+@media only screen and (max-width: 642px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .image {
+    width: 12rem;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .image {
+    width: 18rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  .image {
+    width: 15rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
+
+.para {
+  font-size: 1.5rem;
+  color: #272343;
+}

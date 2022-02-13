@@ -1,0 +1,20 @@
+.ColCenter {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.image {
+  width: 70%;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+.styled-node {
+  padding: 5px;
+  border-radius: 8px;
+  display: inline-block;
+  border: 1px solid red;
+}
