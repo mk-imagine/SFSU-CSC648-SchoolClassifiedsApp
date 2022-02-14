@@ -1,5 +1,5 @@
 import React from "react";
-import pic from "../../../images/team.png";
+import pic from "../../../images/anonPic.png";
 import styles from "./index.module.css";
 import { Row, Col } from "react-bootstrap";
 
@@ -15,11 +15,11 @@ const Vivian = () => {
               </Row>
               {/* name Here */}
               <Row>
-                <h1 className={styles.title}>Name here.</h1>
+                <h1 className={styles.title}>Vivian.</h1>
               </Row>
               {/* Fun Line here */}
               <Row>
-                <p className={styles.para}>Fun Line here</p>
+                <p className={styles.para}>I like walking, listening to music, and watching cat videos.</p>
               </Row>
             </div>
           </Col>
