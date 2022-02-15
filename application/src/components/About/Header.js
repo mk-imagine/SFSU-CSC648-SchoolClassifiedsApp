@@ -11,7 +11,7 @@ const Header = () => {
         <Col></Col>
         <Col className={styles.ColCenter}>
           Software Engineering Class <br></br> SFSU Spring 2022 Section 01
-          <br></br> Team N
+          <br></br> Team 08
         </Col>
         <Col></Col>
       </Row>
