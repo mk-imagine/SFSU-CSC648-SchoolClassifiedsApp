@@ -1,5 +1,5 @@
 import React from "react";
-import pic from "../../../images/mark_cartoon.png";
+import pic from "../../../images/mark.png";
 import styles from "./index.module.css";
 import { Row, Col } from "react-bootstrap";
 
