@@ -49,7 +49,7 @@ const TeamTree = () => {
               <StyledNode
                 style={{ background: "#10ac84", color: "#fff" }}
                 onClick={() => {
-                  navigate("/about/Jiasheg");
+                  navigate("/about/Jiasheng");
                 }}
               >
                 Jiasheng Li
