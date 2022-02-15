@@ -15,11 +15,12 @@ const Jesus = () => {
               </Row>
               {/* name Here */}
               <Row>
-                <h1 className={styles.title}>Name here.</h1>
+                <h1 className={styles.title}>Jesus Cervantes Fajardo.</h1>
               </Row>
               {/* Fun Line here */}
               <Row>
-                <p className={styles.para}>Fun Line here</p>
+                <p className={styles.para}>Hello everyone, I am a part of Team 8's back end developers! 
+                Some things I enjoy are video games, music, and fishing.</p>
               </Row>
             </div>
           </Col>
