@@ -1,5 +1,5 @@
 import React from "react";
-import pic from "../../../images/team.png";
+import pic from "../../../images/ernesto.JPG";
 import styles from "./index.module.css";
 import { Row, Col } from "react-bootstrap";
 
@@ -11,15 +11,15 @@ const Ernesto = () => {
           <Col style={{ textAlign: "center" }}>
             <div className={styles.centerDiv}>
               <Row>
-                <h3 className={styles.subtitle}>Hello, it's me</h3>
+                <h3 className={styles.subtitle}>Hello, I am a part of Team 8 Frontend Team!</h3>
               </Row>
-              {/* name Here */}
+            
               <Row>
-                <h1 className={styles.title}>Name here.</h1>
+                <h1 className={styles.title}>Ernesto Diaz</h1>
               </Row>
-              {/* Fun Line here */}
+
               <Row>
-                <p className={styles.para}>Fun Line here</p>
+                <p className={styles.para}>On my free time I love to play video games, go to San Francisco, and listen to music.</p>
               </Row>
             </div>
           </Col>
@@ -31,7 +31,11 @@ const Ernesto = () => {
                 transform: "translateY(-50%)",
               }}
             >
-              <img className={styles.image} src={pic} alt="happy coding pic" />
+             <img
+              className={styles.image}
+              src={pic}
+              alt="pic"
+              />
             </div>
           </Col>
         </Row>
