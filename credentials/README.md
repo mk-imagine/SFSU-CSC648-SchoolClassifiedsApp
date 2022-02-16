@@ -9,7 +9,7 @@
 
 1. Server URL or IP - 54.90.37.137
 2. SSH username - ubuntu
-3. SSH password or key. - ssh -i "team8key.pem" ubuntu@ec2-54-90-37-137.compute-1.amazonaws.com
+3. SSH password or key: ssh -i "team8key.pem" ubuntu@54.90.37.137
     <br> If a ssh key is used please upload the key to the credentials folder.
 4. Database URL or IP and port used.
     <br><strong> NOTE THIS DOES NOT MEAN YOUR DATABASE NEEDS A PUBLIC FACING PORT.</strong> But knowing the IP and port number will help with SSH tunneling into the database. The default port is more than sufficient for this class.
