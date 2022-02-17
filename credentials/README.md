@@ -9,11 +9,7 @@
 
 1. Server URL or IP - 54.90.37.137
 2. SSH username - ubuntu
-<<<<<<< HEAD
-3. SSH password or key. - ssh -i "team8key.pem" ubuntu@54.90.37.137
-=======
-3. SSH password or key: ssh -i "team8key.pem" ubuntu@54.90.37.137
->>>>>>> 33b19818865bd6f0bea621d2cb57440209cc01ef
+3. SSH key - team8key.pem
     <br> If a ssh key is used please upload the key to the credentials folder.
 4. Database URL or IP and port used.
     <br><strong> NOTE THIS DOES NOT MEAN YOUR DATABASE NEEDS A PUBLIC FACING PORT.</strong> But knowing the IP and port number will help with SSH tunneling into the database. The default port is more than sufficient for this class.
@@ -21,6 +17,11 @@
 6. Database password - csc648team8
 7. Database name (basically the name that contains all your tables)
 8. Instructions on how to use the above information.
+
+To SSH onto the server, use the following command when in the credentials folder:
+ssh -i "team8key.pem" ubuntu@54.90.37.137
+
+MySQL is installed but a database has not been initialized.
 
 # Most important things to Remember
 ## These values need to kept update to date throughout the semester. <br>
