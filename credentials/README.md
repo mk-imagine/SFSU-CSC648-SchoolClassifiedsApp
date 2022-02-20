@@ -7,11 +7,6 @@
 
 # Below is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
 
-<<<<<<< HEAD
-1. Server URL or IP
-2. SSH username
-3. SSH password or key.
-=======
 1. Server URL or IP - 54.90.37.137
 www.codycs.com
 
@@ -19,7 +14,6 @@ www.codycs.com
 ec2-user
 
 3. SSH key - team8key.pem
->>>>>>> devM0
     <br> If a ssh key is used please upload the key to the credentials folder.
 4. Database URL or IP and port used.
 localhost:3306
