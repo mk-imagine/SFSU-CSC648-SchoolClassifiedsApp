@@ -1,0 +1,29 @@
+
+server {
+    listen 80;
+    server_name www.codycs.com;
+    server_tokens off;
+
+    location / {
+        root   /var/www/html;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name www.codycs.com;
+    server_tokens off;
+    
+    sslCertificateFile: "/etc/letsencrypt/live/www.codycs.com/fullchain.pem";
+    sslCertificateKeyFile: "/etc/letsencrypt/live/www.codycs.com/privkey.pem";
+
+    client_max_body_size 20M;
+
+    location / {
+        root   /var/www/html;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+} 

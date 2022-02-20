@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    restart: unless-stopped
+    image: web
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - certbot_certs:/etc/letsencrypt
+      - certbot_lib:/var/lib/letsencrypt
+
+  certbot:
+    image: certbot/dns-route53
+    command: certonly -n -d www.codycs.com --dns-route53 --dns-route53-propagation-seconds 90 --agree-tos --email whuang17@mail.sfsu.edu
+    environment:
+      AWS_ACCESS_KEY_ID: "AKIA2JSQG5HHVYWXJO75"
+      AWS_SECRET_ACCESS_KEY: "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"
+    volumes:
+      - certbot_certs:/etc/letsencrypt
+      - certbot_lib:/var/lib/letsencrypt
+
+volumes:
+  certbot_certs: {}
+  certbot_lib: {}
