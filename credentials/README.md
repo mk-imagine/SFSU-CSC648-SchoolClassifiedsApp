@@ -13,21 +13,44 @@
 3. SSH password or key.
 =======
 1. Server URL or IP - 54.90.37.137
+www.codycs.com
+
 2. SSH username - ubuntu
+ec2-user
+
 3. SSH key - team8key.pem
 >>>>>>> devM0
     <br> If a ssh key is used please upload the key to the credentials folder.
 4. Database URL or IP and port used.
+localhost:3306
     <br><strong> NOTE THIS DOES NOT MEAN YOUR DATABASE NEEDS A PUBLIC FACING PORT.</strong> But knowing the IP and port number will help with SSH tunneling into the database. The default port is more than sufficient for this class.
 5. Database username
 6. Database password
 7. Database name (basically the name that contains all your tables)
+cs
+
 8. Instructions on how to use the above information.
 
 To SSH onto the server, use the following command when in the credentials folder:
-ssh -i "team8key.pem" ubuntu@54.90.37.137
+ssh -i "team8key.pem" ec2-user@www.codycs.com
 
-MySQL is installed but a database has not been initialized.
+server/ - contains the express server boilerplate
+web/ - contains the react frontend app
+docker-compose.yml - contains the specification to run the app
+s/run - contains helper scripts to build and deploy
+s/run build - will build the server and web
+s/run deploy - will deploy
+s/run mysql - will access the mysql database
+docker container ls - will show running containers
+docker-compose up - will start the app stack
+docker-compose stop - will stop the app stack
+docker-compose down - will stop the app stack and remove the containers
+
+To view the site:
+https://www.codycs.com
+
+If the IP changes in the EC2 instance, you must update route53 and get a new SSL certificate - the certbot container should do this automatically when you deploy as long as the route53 is setup properly.
+
 
 # Most important things to Remember
 ## These values need to kept update to date throughout the semester. <br>
