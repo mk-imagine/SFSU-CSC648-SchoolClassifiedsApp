@@ -10,7 +10,7 @@
 1. Server URL or IP - 54.90.37.137
 www.codycs.com
 
-2. SSH username - ubuntu
+2. SSH username - 
 ec2-user
 
 3. SSH key - team8key.pem
