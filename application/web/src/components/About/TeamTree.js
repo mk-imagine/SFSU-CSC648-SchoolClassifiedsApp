@@ -45,31 +45,27 @@ const TeamTree = () => {
       >
         <TreeNode
           label={
-            <StyledNode>
-              <StyledNode
-                style={{ background: "#10ac84", color: "#fff" }}
-                onClick={() => {
-                  navigate("/about/Jiasheng");
-                }}
-              >
-                Jiasheng Li
-              </StyledNode>
+            <StyledNode
+              style={{ background: "#10ac84", color: "#fff" }}
+              onClick={() => {
+                navigate("/about/Jiasheng");
+              }}
+            >
+              Jiasheng Li
             </StyledNode>
           }
         />
       </TreeNode>
       <TreeNode
         label={
-          <StyledNode>
-            <StyledNode
-              style={{ background: "#341f97", color: "#fff" }}
-              onClick={() => {
-                navigate("/about/Cody");
-              }}
-            >
-              <h6>Back End Lead</h6>
-              Cody Huang
-            </StyledNode>
+          <StyledNode
+            style={{ background: "#341f97", color: "#fff" }}
+            onClick={() => {
+              navigate("/about/Cody");
+            }}
+          >
+            <h6>Back End Lead</h6>
+            Cody Huang
           </StyledNode>
         }
       >
@@ -100,16 +96,14 @@ const TeamTree = () => {
       </TreeNode>
       <TreeNode
         label={
-          <StyledNode>
-            <StyledNode
-              style={{ background: "#341f97", color: "#fff" }}
-              onClick={() => {
-                navigate("/about/Ernesto");
-              }}
-            >
-              <h6>GitHub Lead</h6>
-              Ernesto Diaz
-            </StyledNode>
+          <StyledNode
+            style={{ background: "#341f97", color: "#fff" }}
+            onClick={() => {
+              navigate("/about/Ernesto");
+            }}
+          >
+            <h6>GitHub Lead</h6>
+            Ernesto Diaz
           </StyledNode>
         }
       ></TreeNode>
