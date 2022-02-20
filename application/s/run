@@ -1,7 +1,8 @@
 #!/bin/bash
 
 export REPO_ROOT=`git rev-parse --show-toplevel`
-cd $REPO_ROOT
+export APPLICATION=$REPO_ROOT/application
+cd $APPLICATION
 CMD=$1
 shift
 ARGS=$@
@@ -15,11 +16,12 @@ case $CMD in
 	docker build -t server server
 	;;
     'deploy') # Deploy the app
-	cd $REPO_ROOT
+	cd $APPLICATION
 	docker-compose down
 	docker build -t web web
 	docker build -t server server
-	docker-compose up -d		 
+	docker-compose up -d
+	;;
 	*)
         echo "Available commands:"
         column -t -s : <<EOF
