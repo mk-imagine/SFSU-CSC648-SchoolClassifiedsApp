@@ -1,4 +1,4 @@
-USE CSC648;
+USE csc648;
 
 INSERT INTO category (category_name)
 VALUES
