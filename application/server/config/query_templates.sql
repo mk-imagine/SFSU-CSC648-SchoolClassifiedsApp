@@ -17,3 +17,9 @@ FROM item item
 JOIN category cat ON cat.category_id = item.item_category
 WHERE cat.category_id = 3;
 ***/
+
+/***
+This query will return a list of categories
+
+SELECT * FROM category;
+***/
