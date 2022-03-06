@@ -28,6 +28,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user` ;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(255) NULL,
+  `last_name` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
+  PRIMARY KEY (`user_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `item`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `item` ;
@@ -39,13 +53,20 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_price` DECIMAL(7,2) NOT NULL,
   `item_pic` BLOB NULL,
   `item_category` INT UNSIGNED NULL,
+  `seller_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`item_id`),
   INDEX `category_fk_idx` (`item_category` ASC) VISIBLE,
+  INDEX `seller_fk_idx` (`seller_id` ASC) VISIBLE,
   CONSTRAINT `category_fk`
     FOREIGN KEY (`item_category`)
     REFERENCES `category` (`category_id`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE,
+  CONSTRAINT `seller_fk`
+    FOREIGN KEY (`seller_id`)
+    REFERENCES `user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

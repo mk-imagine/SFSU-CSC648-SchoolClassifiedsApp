@@ -21,3 +21,13 @@ VALUES
 ("A white lamp", "So you can stay up late, studying.  It's boring so it won't distract you.", 50.00, LOAD_FILE('../static/pics/lamp.jpeg'), 2),
 ("Snowboard", "Jump on this popsicle stick and barrel down the mountain! WHEEE!", 200.00, LOAD_FILE('../static/pics/snowboard.jpeg'), 5),
 ("Stapler", "Channel your inner Office Space", 10.00, LOAD_FILE('../static/pics/stapler.jpeg'), 7);
+
+INSERT INTO user (first_name, last_name, email)
+VALUES
+("Mark", "Kim", "mkim22@mail.sfsu.edu"),
+("Joe", "Schmoe", "noone@nowhere.com"),
+("Mike", "Nugent", "noone@nowhere.com"),
+("Linda", "Zelensky", "noone@nowhere.com"),
+("Jessica", "Putin", "noone@nowhere.com"),
+("Mary", "Petkovic", "noone@nowhere.com"),
+("Jordan", "Lupin", "noone@nowhere.com");
