@@ -1,52 +1,19 @@
 \section{Main Data Items and Entities}
 
-\begin{enumerate}
+\begin{description}[font=\bfseries\itshape]
 
-\item \textbf{user}
-\begin{description}[font=\normalfont\itshape]
-	\item[first\_name:] First name of user
-	\item[last\_name:] Last name of user
-	\item[email:] Email of user
-\end{description}
+\item[user:] The users are the people expected to use the web application. This entity will contain all the pertinent information that describes our user like their name, email address, and other identifying information.
 	
-\item \textbf{item}
-\begin{description}[font=\normalfont\itshape]
-	\item[item\_name:] Name of item
-	\item[item\_description:] Item description
-	\item[item\_price:] Item price
-	\item[item\_category:] Item category
-\end{description}
+\item[item:] This entity are the items that are being bought, sold, or provided.  This entity contains all the information that helps users find what they want.  For example, this entity will have a name, a description, price, a category that it belongs to, and photos so that they can see what the item looks like.
 	
-\item \textbf{category}
-\begin{description}[font=\normalfont\itshape]
-	\item[cat\_name:] Category name
-\end{description}
+\item[category:] This is the category a particular item will belong to.  For example, items may be furniture, books, electronics, etc.  We want this data item to be easily changed or expanded if necessary in case our users find categories that they want.
 
-\item \textbf{account}
-\begin{description}[font=\normalfont\itshape]
-	\item[acct\_type:] Account type (e.g. admin, registered\_user, etc)
-	\item[acct\_privileges:] Account privileges
-\end{description}
-	
-\item \textbf{location}
-\begin{description}[font=\normalfont\itshape]
-	\item[loc\_name:] Location name
-	\item[loc\_description:] Location description
-	\item[loc\_coords:] Coordinates for location
-\end{description}
-	
-\item \textbf{message}
-\begin{description}[font=\normalfont\itshape]
-	\item[message\_sender:] Message sender
-	\item[message\_recipient:] Message recipient
-	\item[message\_contents:] Contents of message
-\end{description}
-	
-\item \textbf{review}
-\begin{description}[font=\normalfont\itshape]
-	\item[reviewed:] User being reviewed
-	\item[reviewer:] User reviewing
-	\item[review\_details:] Contents of review
-\end{description}
+\item[account:] This will contain all the account information of our users as well as describe their permissions.  This entity will contain the user's account password, the account type (e.g. Admin, Registered User, etc), and the permissions that are associated with the account type.
 
-\end{enumerate}
+\item[location:] This will contain different locations that can be used on-campus where transactions can be completed.  This is meant to provide an easy way for buyers and sellers to coordinate a meeting to complete a transaction.
+	
+\item[message:] This entity exists to contain all the messages that are sent from one user to another.  This will contain not only the message, but also the sender, recipient, and a time stamp of when the message was sent and received/read.
+	
+\item[review:] This data item contains the reviews for all users.  This entity will contain the review itself, the recipient of the review as well as the person who wrote the review, the time stamp of the review, and also the associated transaction/item that goes with the review.
+
+\end{description}
