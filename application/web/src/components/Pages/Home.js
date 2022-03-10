@@ -1,11 +1,11 @@
 import React from "react";
+import Search from "../Search/SearchBar";
 
 const Home = () => {
   return (
-    <div style={{ padding: "1rem" }}>
-      This page is under construction! Why don't you click the about tab!
-    </div>
-  );
+
+  <Search />
+  )
 };
 
 export default Home;
