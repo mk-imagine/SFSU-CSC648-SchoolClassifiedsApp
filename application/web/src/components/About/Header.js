@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import styles from "./index.module.css";
 import teamsPic from "../../images/team.png";
 import TeamTree from "./TeamTree";
