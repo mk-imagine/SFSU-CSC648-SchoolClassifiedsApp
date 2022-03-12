@@ -1,11 +1,14 @@
 import React from "react";
-import Search from "../Search/SearchBar";
+import { HomeMain } from "../HomeMain";
+import Search from "../Search/";
 
 const Home = () => {
   return (
-
-  <Search />
-  )
+    <div style={{ padding: "1rem" }}>
+      <Search />
+      <HomeMain />
+    </div>
+  );
 };
 
 export default Home;
