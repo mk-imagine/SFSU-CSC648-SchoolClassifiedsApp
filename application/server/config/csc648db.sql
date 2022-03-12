@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
   `first_name` VARCHAR(255) NULL,
   `last_name` VARCHAR(255) NULL,
   `email` VARCHAR(255) NULL,
@@ -51,12 +51,13 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_name` VARCHAR(45) NOT NULL,
   `item_desc` VARCHAR(255) NULL,
   `item_price` DECIMAL(7,2) NOT NULL,
-  `item_pic` BLOB NULL,
+  `item_pic` VARCHAR(255) NULL,
   `item_category` INT UNSIGNED NULL,
   `seller_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`item_id`),
   INDEX `category_fk_idx` (`item_category` ASC) VISIBLE,
   INDEX `seller_fk_idx` (`seller_id` ASC) VISIBLE,
+  UNIQUE INDEX `item_pic_UNIQUE` (`item_pic` ASC) VISIBLE,
   CONSTRAINT `category_fk`
     FOREIGN KEY (`item_category`)
     REFERENCES `category` (`category_id`)
