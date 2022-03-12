@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` INT UNSIGNED NOT NULL,
+  `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NULL,
   `last_name` VARCHAR(255) NULL,
   `email` VARCHAR(255) NULL,
