@@ -13,7 +13,7 @@ const pool = createPool({
 
 /*__________________________________________________________________________________________________*/
 
-//gets the array of categories
+//returns an array of all categories
 function getCategories() {
     pool.query('select category_name from csc648.category', (err, res) => {
         let arrayOfCategories = [];
@@ -21,6 +21,7 @@ function getCategories() {
             let sData = Object.values(data);
             arrayOfCategories.push(sData[0]);
         })
+        console.log("_________________getCategories: Getting the array of categories_________________");
         console.log(arrayOfCategories);
         return arrayOfCategories;
     });
@@ -28,62 +29,87 @@ function getCategories() {
 
 /*__________________________________________________________________________________________________*/
 
-//gets the array of all items
+//returns an array of all items
 function getAllItems() {
     pool.query('select * from csc648.item', (err, res) => {
-        let arrayOfItems = [];
-        res.map((data) => {
-            for (key in data) {
-                if (key == "item_pic") {
-                    let val = data[key];
-                    let url = getPicURL(val);
-                    if(url != -1){
-                        data[key] = url;
-                    }                    
-                }
-            }
-            let sData = JSON.parse(JSON.stringify(data));
-            arrayOfItems.push(sData);
-        })
-        console.log(arrayOfItems);
-        return arrayOfItems;
+        let resArray = processRes(res);
+        console.log("_________________getAllItems: Getting the array of all items_________________");
+        console.log(resArray);
+        return resArray;
     });
 }
 
 /*__________________________________________________________________________________________________*/
 
-//Use a parameter to find item with that word
-function getItem(searchWord) {
+//Takes in a searchword and a category and returns an array with items in that category and searchword 
+//matching in its name or description.
+function getItemWCat(searchWord, categoryWord) {
+    let searchw = "%" + searchWord + "%";
+    let baseSQL = 'select * from csc648.item left join csc648.category on item.item_category = category.category_id where (item.item_name like ? or item.item_desc like ?) and category.category_name = ?;';
+    pool.query(baseSQL, [searchw, searchw, categoryWord], (err, res) => {
+        let resArray = processRes(res);
+        console.log("_________________getItemWCat: Getting the array of searched item with a category_________________");
+        console.log(resArray);
+        return resArray;
+    });
+}
+
+/*__________________________________________________________________________________________________*/
+
+//Takes in a category and returns an array with all items from that category.
+function getItemWCatO(searchCategory) {
+    let baseSQL = 'select * from csc648.item left join csc648.category on item.item_category = category.category_id where category.category_name = ?;';
+    pool.query(baseSQL, [searchCategory], (err, res) => {
+        let resArray = processRes(res);
+        console.log("_________________getItemWCatO: Getting the array of item with a category_________________");
+        console.log(resArray);
+        return resArray;
+    });
+}
+
+/*__________________________________________________________________________________________________*/
+
+//Takes in a searchword and returns an array with the items with that searchword in its name or description.
+function getItemWOCat(searchWord) {
     let searchw = "%" + searchWord + "%";
     let baseSQL = 'select * from csc648.item where item_name like ? or item_desc like ?;';
     pool.query(baseSQL, [searchw, searchw], (err, res) => {
-        let arrayOfItems = [];
-        if (res == undefined) {
-            //have to send something?
-
-            return -1;
-        }
-        res.map((data) => {
-            for (key in data) {
-                if (key == "item_pic") {
-                    let val = data[key];
-                    let url = getPicURL(val);
-                    if(url != -1){
-                        data[key] = url;
-                    }                    
-                }
-            }
-            let sData = JSON.parse(JSON.stringify(data));
-            arrayOfItems.push(sData);
-        })
-        console.log(arrayOfItems);
-        return arrayOfItems;
+        let resArray = processRes(res);
+        console.log("_________________getItemsWOCat: Getting the array of searched item without a category_________________");
+        console.log(resArray);
+        return resArray;
     });
 }
 
 /*__________________________________________________________________________________________________*/
 
-//Getting the URL of the image
+//For processing the results of the mySQL query. The other functions call on this to get the array of items.
+//It takes in the mySQL query results and returns an array of objects, image url included.
+function processRes(res){
+    if(res == undefined){
+        return [];
+    }
+    let arrayOfItems = [];
+    res.map((data) => {
+        for (key in data) {
+            if (key == "item_pic") {
+                let val = data[key];
+                let url = getPicURL(val);
+                if(url != -1){
+                    data[key] = url;
+                }                    
+            }
+        }
+        let sData = JSON.parse(JSON.stringify(data));
+        arrayOfItems.push(sData);
+    })
+    return arrayOfItems;
+}
+
+/*__________________________________________________________________________________________________*/
+
+//Getting the URL of the image. The other functions call on this function for url.
+//It takes in the value of item_pic from the item table and gets the image from the s3 bucket.
 function getPicURL(name) {
     try {
         aws.config.setPromisesDependency();
@@ -105,3 +131,10 @@ function getPicURL(name) {
         return -1;
     }
 }
+
+//////////////////////////////////////TESTING///////////////////////////////
+getCategories();
+getAllItems();
+getItemWCat("art","art");
+getItemWCatO("books");
+getItemWOCat("down");
