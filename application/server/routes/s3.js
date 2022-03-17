@@ -27,7 +27,6 @@ function getFileStream(fileKey) {
         Key: fileKey,
         Bucket: "csc648-t8-user-uploaded-images"
     }
-
     return s3.getObject(downloadParams).createReadStream()
 }
 exports.getFileStream = getFileStream
