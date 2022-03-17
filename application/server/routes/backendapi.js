@@ -123,7 +123,8 @@ function getPicURL(name) {
             Bucket: 'csc648-t8-user-uploaded-images',
             Key: name
         }
-        var url = s3.getSignedUrl('getObject', params);
+        //var url = s3.getSignedUrl('getObject', params);
+        var url = s3.getObject(params);
         //console.log(url);
         return url;
     } catch (e) {

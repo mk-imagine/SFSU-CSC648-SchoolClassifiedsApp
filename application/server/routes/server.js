@@ -1,9 +1,8 @@
-const { S3 } = require('aws-sdk')
 const express = require('express')
 
 const fs = require('fs')
-const utils = require('fs')
-const unlinkFile = utils.promisify(fs.unlink)
+const util = require('fs')
+const unlinkFile = utilx.promisify(fs.unlink)
 
 var multer = require('multer')
 var upload = multer({dest: 'uploads/'})
@@ -34,7 +33,7 @@ app.post('/images', upload.single('image'), async (req, res) => {
     const result = await uploadFile(file)
     await unlinkFile(file.path)
     console.log(result)
-    //const description = req.body.description
+    const description = req.body.description
     res.send({imagePath: `/images/${result.key}`})
 })
 
