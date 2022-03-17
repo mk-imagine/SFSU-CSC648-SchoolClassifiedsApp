@@ -11,7 +11,7 @@ const app = express()
 
 const {uploadFile,getFileStream} = require('./s3')
 
-
+//Make sure to install the multer library: npm install --save multer
 app.get('/images/:key', (req, res) => {
     const key = req.params.key
     const readStream = getFileStream(key)
