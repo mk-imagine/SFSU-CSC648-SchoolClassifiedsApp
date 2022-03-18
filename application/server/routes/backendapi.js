@@ -111,26 +111,28 @@ function processRes(res){
 //Getting the URL of the image. The other functions call on this function for url.
 //It takes in the value of item_pic from the item table and gets the image from the s3 bucket.
 function getPicURL(name) {
-    try {
-        aws.config.setPromisesDependency();
-        aws.config.update({
-            accessKeyId: 'AKIA2JSQG5HH76ZUX4PE',
-            secretAccessKey: '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',
-            region: 'us-east-1'
-        });
-        const s3 = new aws.S3();
-        var params = {
-            Bucket: 'csc648-t8-user-uploaded-images',
-            Key: name
-        }
-        //var url = s3.getSignedUrl('getObject', params);
-        var url = s3.getObject(params);
-        //console.log(url);
-        return url;
-    } catch (e) {
-        console.log('AWS error response', e);
-        return -1;
-    }
+    const url = "https://csc648-t8-user-uploaded-images.s3.amazonaws.com/";
+    return url.concat(name);
+    // try {
+    //     aws.config.setPromisesDependency();
+    //     aws.config.update({
+    //         accessKeyId: 'AKIA2JSQG5HH76ZUX4PE',
+    //         secretAccessKey: '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',
+    //         region: 'us-east-1'
+    //     });
+    //     const s3 = new aws.S3();
+    //     var params = {
+    //         Bucket: 'csc648-t8-user-uploaded-images',
+    //         Key: name
+    //     }
+    //     //var url = s3.getSignedUrl('getObject', params);
+    //     var url = s3.getObject(params);
+    //     //console.log(url);
+    //     return url;
+    // } catch (e) {
+    //     console.log('AWS error response', e);
+    //     return -1;
+    // }
 }
 
 //////////////////////////////////////TESTING///////////////////////////////
