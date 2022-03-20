@@ -70,8 +70,12 @@
 // 	});
 
 const express = require("express");
-const app = express();
 const mysql = require("mysql");
+const cors = require("cors");
+
+const app = express();
+app.use(express.json());
+app.use(cors());
 
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
@@ -96,13 +100,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/categories", (req, res) => {
-  con.query("SELECT category_name from csc648.category", (err, rows) => {
-    if (err) {
-      res.send(err);
+  con.query(
+    "SELECT category_name, category_id from csc648.category",
+    (err, rows) => {
+      if (err) {
+        res.send(err);
+      }
+      console.log("Data received from Db:");
+      res.send(rows);
     }
-    console.log("Data received from Db:");
-    res.send(rows);
-  });
+  );
 });
 
 app.get("/items", (req, res) => {
@@ -164,4 +171,4 @@ app.get("/getpic/:name", (req, res) => {
   res.send({ url: url });
 });
 
-app.listen(8080, () => console.log("App is listening on port 3000!"));
+app.listen(8080, () => console.log("App is listening on port 8080!"));

@@ -1,44 +1,105 @@
 import React, { useState, useEffect } from "react";
-import { Dropdown } from "react-bootstrap";
-// import styles from "./index.module.css"
+import { Dropdown, Row, Col, Button } from "react-bootstrap";
+import axios from "axios";
+import { ViewItems } from "../ViewItems";
 
 const Categories = () => {
-  // The API url for fetching all catergories from API
-  const [catergories, setCategories] = useState([
-    "All",
-    "Book",
-    "Tech",
-    "Books"
-  ]);
-  const [currentCategory, setCurrentCategory] = useState("All");
+  const [catergories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategoryId, setSelectedCategoryId] = useState(1);
+  const [searchInput, setSearchInput] = useState("");
 
-  // const url = "https://5e9623dc5b19f10016b5e31f.mockapi.io/api/v1/products/3";
-  // button - store current-search category
+  const base_url = process.env.REACT_APP_BACKEND_URL;
 
-  // fetching the json object from the API
-  // useEffect(() => {
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((data) => setCategory(array)); // setCategory(data.categories)
-  // }, [url]);
+  useEffect(() => {
+    fetchCategories();
+  });
 
-  // useEffect(() => {
+  const fetchCategories = () => {
+    axios.get(`${base_url}/categories`).then((res) => {
+      setCategories(res.data);
+    });
+  };
 
-  // });
+  const dropDownChange = (e) => {
+    console.log("selected category: ", e);
+    setSelectedCategoryId(e);
+  };
+
+  const searchHandleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+    console.log();
+  };
+
+  const onSubmit = () => {
+    setSearchInput(searchInput);
+    console.log("selectedCategory: ", selectedCategory);
+    console.log("Search term: ", searchInput);
+  };
 
   return (
     <div>
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Choose Category
-        </Dropdown.Toggle>
+      <div>
+        {/* This is the cateegories and search bar */}
+        <Row style={{ textAlign: "center" }}>
+          {/* Second Col */}
+          <Col md={12}>
+            <Dropdown onSelect={dropDownChange} value={selectedCategory}>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                {selectedCategory}
+              </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-          {catergories.map((e) => {
-            return <Dropdown.Item href="#/action-2">{e}</Dropdown.Item>;
-          })}
-        </Dropdown.Menu>
-      </Dropdown>
+              <Dropdown.Menu>
+                {catergories.map((e) => {
+                  return (
+                    <Dropdown.Item
+                      eventKey={e.category_id}
+                      onClick={() => {
+                        setSelectedCategory(e.category_name);
+                      }}
+                    >
+                      {e.category_name}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+          <Col>
+            <Col>
+              <div className="form-group">
+                <input
+                  style={{ width: "22rem" }}
+                  type="text"
+                  className="form-control"
+                  placeholder={"Search Here"}
+                  onChange={searchHandleChange}
+                  value={searchInput}
+                />
+              </div>
+            </Col>
+          </Col>
+
+          <Col>
+            {/* Third Col */}
+            <Row>
+              <Col>
+                <Button variant="primary" onClick={onSubmit}>
+                  Search
+                </Button>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
+
+      {/* View items here */}
+      <ViewItems
+        category_id={selectedCategoryId}
+        category_name={selectedCategory}
+        searchTerm={searchInput}
+      />
     </div>
   );
 };
