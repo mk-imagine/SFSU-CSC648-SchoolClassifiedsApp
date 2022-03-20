@@ -1,14 +1,19 @@
 \ProvidesPackage{csc648milestones}
 
-\usepackage{titlesec, geometry, setspace, enumitem, longtable, pdfpages, hyperref, import, setspace, tocloft, multicol, xcolor, tabto}
+\usepackage{titlesec, geometry, setspace, enumitem, longtable, pdfpages, hyperref, import, setspace, tocloft, multicol, xcolor, tabto, graphicx}
 
+\usepackage[format=plain,
+			labelfont=it, 
+			textfont=it]{caption}
+
+\graphicspath{ {./images/} }
 
 \hypersetup{
     colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
+    citecolor=brown,
+    filecolor=brown,
+    linkcolor=brown,
+    urlcolor=brown
 }
 
 \doublespacing
@@ -27,17 +32,25 @@ textheight=9in
 \setlength{\cftsubsecindent}{2.75em}
 
 \renewcommand{\thesection}{\Roman{section}}
-\titleformat
-{\section}
-[hang]
-{\bfseries\Large}
-{Section \thesection:} % label
-{0.5em}{}
-
+%\titleformat
+%{\section}
+%[hang]
+%{\bfseries\Large}
+%{\thesection} % label
+%{0.5em}{}
+%
 \renewcommand\thesubsection{\Alph{subsection}}
-\titleformat{\subsection}
+%\titleformat{\subsection}
+%[hang]
+%{\large\bfseries}
+%{\thesubsection}
+%{-1.1em}{}
+%
+%\renewcommand\thesubsubsection{\arabic{subsubsection}}
+\titleformat{\subsubsection}
 [hang]
-{\large\bfseries}
-{}{-1.1em}{}
-
-\titlespacing{\subsection}{1.5em}{0em}{0em}
+{}
+{\thesubsubsection}
+{1em}{}
+%
+%\titlespacing{\subsection}{0.5em}{0em}{0em}
