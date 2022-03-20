@@ -2,8 +2,13 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import book from "../../images/book.jpg";
 import styles from "./index.module.css";
+import { getCategories } from "../../../../server/routes/backendapi";
 
 export const HomeMain = () => {
+  const test = () => {
+    console.log(getCategories());
+  };
+
   return (
     <div style={{ paddingTop: "3rem" }}>
       <div>
