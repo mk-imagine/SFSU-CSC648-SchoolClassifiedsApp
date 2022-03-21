@@ -9,7 +9,8 @@ export const ViewItems = (props) => {
   const category_id = props.category_id;
   const category_name = props.category_name;
   const searchTerm = props.searchTerm;
-  const base_url = process.env.REACT_APP_BACKEND_URL;
+  const base_url = "http://www.codycs.com:8080";
+  //const base_url = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     // fetchItems();
