@@ -16,7 +16,6 @@ case $CMD in
 	docker build -t server server
 	;;
     'deploy') # Deploy the app
-	cd $APPLICATION
 	docker stop application-web-1
 	docker build -t web web
 	docker build -t server server
