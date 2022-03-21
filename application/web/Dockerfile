@@ -2,7 +2,7 @@ FROM alpine:3.15 as builder
 
 RUN apk add --update --no-cache curl nodejs npm
 
-WORKDIR /app
+WORKDIR /web
 
 COPY package.json .
 RUN npm install
