@@ -1,7 +1,6 @@
 import React from "react";
 import Categories from "../Categories";
 import { HomeMain } from "../ViewItems";
-import Search from "../Search/";
 
 const Home = () => {
   return (

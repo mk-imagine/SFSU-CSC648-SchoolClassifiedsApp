@@ -5,9 +5,10 @@ import { ViewItems } from "../ViewItems";
 
 const Categories = () => {
   const [catergories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedCategoryId, setSelectedCategoryId] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("All Items");
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchInput, setSearchInput] = useState("");
+  const [finalSearchInput, setFinalSearchInput] = useState("");
 
   const base_url = process.env.REACT_APP_BACKEND_URL;
 
@@ -29,22 +30,19 @@ const Categories = () => {
   const searchHandleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    console.log();
   };
 
   const onSubmit = () => {
-    setSearchInput(searchInput);
+    setFinalSearchInput(searchInput);
     console.log("selectedCategory: ", selectedCategory);
     console.log("Search term: ", searchInput);
   };
 
   return (
     <div>
-      <div>
-        {/* This is the cateegories and search bar */}
-        <Row style={{ textAlign: "center" }}>
-          {/* Second Col */}
-          <Col md={12}>
+      <div style={{ margin: "auto", width: "50%" }}>
+        <Row>
+          <Col lg={3}>
             <Dropdown onSelect={dropDownChange} value={selectedCategory}>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 {selectedCategory}
@@ -66,39 +64,30 @@ const Categories = () => {
               </Dropdown.Menu>
             </Dropdown>
           </Col>
-          <Col>
-            <Col>
-              <div className="form-group">
-                <input
-                  style={{ width: "22rem" }}
-                  type="text"
-                  className="form-control"
-                  placeholder={"Search Here"}
-                  onChange={searchHandleChange}
-                  value={searchInput}
-                />
-              </div>
-            </Col>
+          <Col lg={6}>
+            <div className="form-group">
+              <input
+                style={{ width: "20rem" }}
+                type="text"
+                className="form-control"
+                placeholder={"Search Here"}
+                onChange={searchHandleChange}
+                value={searchInput}
+              />
+            </div>
           </Col>
-
-          <Col>
-            {/* Third Col */}
-            <Row>
-              <Col>
-                <Button variant="primary" onClick={onSubmit}>
-                  Search
-                </Button>
-              </Col>
-            </Row>
+          <Col lg={3}>
+            <Button variant="primary" onClick={onSubmit}>
+              Search
+            </Button>
           </Col>
         </Row>
       </div>
-
       {/* View items here */}
       <ViewItems
         category_id={selectedCategoryId}
         category_name={selectedCategory}
-        searchTerm={searchInput}
+        searchTerm={finalSearchInput}
       />
     </div>
   );

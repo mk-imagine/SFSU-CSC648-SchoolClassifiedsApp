@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
-import book from "../../images/book.jpg";
-import styles from "./index.module.css";
 
 //the page where we load the data
 export const ViewItems = (props) => {
@@ -14,30 +12,36 @@ export const ViewItems = (props) => {
   const base_url = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
-    fetchItems();
-  });
+    // fetchItems();
 
-  const fetchItems = () => {
-    // if (category_id == 1 && searchTerm != "") {
-    //   //we return items according to search term
-    // } else if (category_id != 1 && searchTerm == "") {
-    //   //we return items according to category
-    //   axios.get(`${base_url}/items`).get((res) => {
-    //     console.log(res.data);
-    //   });
-    // } else if (category_id != 1 && searchTerm != "") {
-    //   //return items according to category and search term
-    //   axios.get(`${base_url}/searchcategory/${category_name}`);
-    // } else {
-    //   axios.get(`${base_url}/items`).get((res) => {
-    //     console.log(res.data);
-    //   });
-    // }
+    if (category_id === 0 && searchTerm !== "") {
+      // we return items according to search term
+      axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
+        setItems(res.data);
+      });
+    } else if (
+      category_id !== 0 &&
+      searchTerm === "" &&
+      category_name !== "All Items"
+    ) {
+      // we return items according to category
 
-    axios.get(`${base_url}/items`).then((res) => {
-      setItems(res.data);
-    });
-  };
+      axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
+        setItems(res.data);
+      });
+    } else if (category_id !== 0 && searchTerm != "") {
+      //return items according to category and search term
+      axios
+        .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+        .then((res) => {
+          setItems(res.data);
+        });
+    } else {
+      axios.get(`${base_url}/items`).then((res) => {
+        setItems(res.data);
+      });
+    }
+  }, [items]);
 
   return (
     <div style={{ paddingTop: "3rem" }}>
