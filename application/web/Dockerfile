@@ -22,7 +22,7 @@ RUN apt-get install -y bash
 COPY deploy/nginx /etc/nginx/conf.d
 
 # copy built code from build-stage
-COPY --from=builder /app/build /var/www/html
+COPY --from=builder /web/build /var/www/html
 
 RUN rm -rf /usr/share/nginx/html/*
 
