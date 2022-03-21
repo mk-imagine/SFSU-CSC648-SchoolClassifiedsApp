@@ -53,11 +53,12 @@ app.get("/items", (req, res) => {
 
 // localhost:3000/itemwithcategory/searchwordhere/categorywordhere
 app.get("/itemwithcategory/:searchWord/:categoryWord", (req, res) => {
-  const searchWord = "%"+req.params.searchWord+"%";
-  const categoryWord = "%"+req.params.categoryWord+"%";
+  const searchWord = "%" + req.params.searchWord + "%";
+  const categoryWord = "%" + req.params.categoryWord + "%";
   console.log("Hello = " + req.params.searchWord);
-  const query = 'select * from csc648.item left join csc648.category on item.item_category = category.category_id where (item.item_name like ? or item.item_desc like ?) and category.category_name like ?;';
-  con.query(query,[searchWord, searchWord, categoryWord], (err, rows) => {
+  const query =
+    "select * from csc648.item left join csc648.category on item.item_category = category.category_id where (item.item_name like ? or item.item_desc like ?) and category.category_name like ?;";
+  con.query(query, [searchWord, searchWord, categoryWord], (err, rows) => {
     if (err) {
       res.send(err);
     }
@@ -68,10 +69,11 @@ app.get("/itemwithcategory/:searchWord/:categoryWord", (req, res) => {
 //Takes in a category and returns an array with all items from that category.
 // localhost:3000/searchcategory/searchcategorywordhere
 app.get("/searchcategory/:searchCategory", (req, res) => {
-  const searchCategory = "%"+req.params.searchCategory+"%";
+  const searchCategory = "%" + req.params.searchCategory + "%";
   console.log(searchCategory);
-  const query = 'select * from csc648.item left join csc648.category on item.item_category = category.category_id where category.category_name like ?;';
-  con.query(query,[searchCategory], (err, rows) => {
+  const query =
+    "select * from csc648.item left join csc648.category on item.item_category = category.category_id where category.category_name like ?;";
+  con.query(query, [searchCategory], (err, rows) => {
     if (err) {
       res.send(err);
     }
@@ -79,12 +81,14 @@ app.get("/searchcategory/:searchCategory", (req, res) => {
   });
 });
 
+//done
 //Takes in a searchword and returns an array with the items with that searchword in its name or description.
 // localhost:3000/searchitems/searchwordhere
 app.get("/searchitems/:searchWord", (req, res) => {
   const searchWord = "%" + req.params.searchWord + "%";
-  const query = 'select * from csc648.item where item_name like ? or item_desc like ?;';
-  con.query(query, [searchWord,searchWord],(err, rows) => {
+  const query =
+    "select * from csc648.item where item_name like ? or item_desc like ?;";
+  con.query(query, [searchWord, searchWord], (err, rows) => {
     if (err) {
       res.send(err);
     }
@@ -101,4 +105,5 @@ app.get("/getpic/:name", (req, res) => {
   res.send({ url: url });
 });
 
-app.listen(8080, () => console.log("App is listening on port 8080!"));
+const port = 8080;
+app.listen(port, () => console.log("App is listening on port ", port));

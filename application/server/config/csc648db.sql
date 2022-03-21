@@ -21,7 +21,7 @@ USE `csc648` ;
 DROP TABLE IF EXISTS `category` ;
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `category_id` INT UNSIGNED NOT NULL,
   `category_name` VARCHAR(45) NULL,
   PRIMARY KEY (`category_id`))
 ENGINE = InnoDB;
