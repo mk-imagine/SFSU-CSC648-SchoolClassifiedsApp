@@ -36,6 +36,7 @@ export const ViewItems = (props) => {
         .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
         .then((res) => {
           setItems(res.data);
+          console.log(items);
         });
     } else {
       axios.get(`${base_url}/items`).then((res) => {
