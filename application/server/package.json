@@ -15,7 +15,7 @@
   "dependencies": {
     "aws-sdk": "^2.1092.0",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.0",//need this
     "connect-session-sequelize": "^7.0.1",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
@@ -28,5 +28,6 @@
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.4",
     "validator": "^13.1.1"
+    //multer
   }
 }
