@@ -17,10 +17,10 @@ case $CMD in
 	;;
     'deploy') # Deploy the app
 	cd $APPLICATION
-	docker-compose down
+	docker stop application-web-1
 	docker build -t web web
 	docker build -t server server
-	docker-compose up -d
+	docker-compose up
 	;;
 	*)
         echo "Available commands:"
