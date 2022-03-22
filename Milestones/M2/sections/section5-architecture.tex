@@ -65,7 +65,7 @@
 \end{enumerate}%
 
 \subsection{Media Storage}
-Images will be kept in AWS S3 storage buckets.
+User uploaded images will be stored in an AWS S3 bucket. The S3 bucket will give read-only access to the public. We want users who haven’t created accounts yet to be able to view some posts with their respective images while securing write permissions to registered users only. We will use the S3 AWS SDK API for certified users who created accounts to upload images to the S3 bucket when creating a post.
 
 \subsection{Search/filter architecture and implementation}
 \begin{enumerate}
