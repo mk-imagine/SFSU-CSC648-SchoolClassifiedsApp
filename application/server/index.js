@@ -114,7 +114,7 @@ app.get("/getpic/:name", (req, res) => {
 });
 
 const port = 8080;
-// app.listen(port, () => console.log("App is listening on port ", port));
-const server = https.createServer(options, app).listen(port, () => {
-  console.log("Express server listening on port " + port);
-})
+app.listen(port, () => console.log("App is listening on port ", port));
+// const server = https.createServer(options, app).listen(port, () => {
+//   console.log("Express server listening on port " + port);
+// })
