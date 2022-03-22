@@ -1,10 +1,10 @@
 const express = require("express");
 const mysql = require("mysql");
-//const cors = require("cors");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
-//app.use(cors());
+app.use(cors());
 
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
@@ -35,7 +35,7 @@ app.get("/categories", (req, res) => {
       if (err) {
         res.send(err);
       }
-      console.log("Data received from Db:");
+      //console.log("Data received from Db:");
       res.send(rows);
     }
   );
@@ -46,7 +46,7 @@ app.get("/items", (req, res) => {
     if (err) {
       res.send(err);
     }
-    console.log("Data received from Db:");
+    //console.log("Data received from Db:");
     res.send(rows);
   });
 });
