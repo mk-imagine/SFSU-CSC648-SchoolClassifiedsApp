@@ -32,6 +32,9 @@ services:
     depends_on:
         mysql:
             condition: service_healthy
+    volumes:
+      - certbot_certs:/etc/letsencrypt
+      - certbot_lib:/var/lib/letsencrypt
 
   certbot:
     image: certbot/dns-route53
