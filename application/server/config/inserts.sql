@@ -2,7 +2,7 @@ USE csc648;
 
 INSERT INTO category (category_id, category_name)
 VALUES
-(0, "All"),
+(0, "All Items"),
 (1, "Art"),
 (2, "Books"),
 (3, "Course Material"),
