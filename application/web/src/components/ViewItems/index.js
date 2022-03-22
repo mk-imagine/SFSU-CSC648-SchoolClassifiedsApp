@@ -9,7 +9,7 @@ export const ViewItems = (props) => {
   const category_id = props.category_id;
   const category_name = props.category_name;
   const searchTerm = props.searchTerm;
-  const base_url = "http://www.codycs.com:8080";
+  const base_url = "https://www.codycs.com:8080";
   //const base_url = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export const ViewItems = (props) => {
 
     if (category_id === 0 && searchTerm !== "") {
       // we return items according to search term
-      axios.get(`http://www.codycs.com:8080/searchitems/${searchTerm}`).then((res) => {
+      axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
         setItems(res.data);
       });
     } else if (
@@ -27,19 +27,19 @@ export const ViewItems = (props) => {
     ) {
       // we return items according to category
 
-      axios.get(`http://www.codycs.com:8080/searchcategory/${category_name}`).then((res) => {
+      axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
         setItems(res.data);
       });
     } else if (category_id !== 0 && searchTerm != "") {
       //return items according to category and search term
       axios
-        .get(`http://www.codycs.com:8080/itemwithcategory/${searchTerm}/${category_name}`)
+        .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
         .then((res) => {
           setItems(res.data);
           console.log(items);
         });
     } else {
-      axios.get(`http://www.codycs.com:8080/items`).then((res) => {
+      axios.get(`${base_url}/items`).then((res) => {
         setItems(res.data);
       });
     }
