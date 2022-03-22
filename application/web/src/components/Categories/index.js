@@ -9,7 +9,7 @@ const Categories = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchInput, setSearchInput] = useState("");
   const [finalSearchInput, setFinalSearchInput] = useState("");
-  const base_url = "http://localhost:8080";
+  const base_url = "http://54.90.37.137:8080";
   //const base_url = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
