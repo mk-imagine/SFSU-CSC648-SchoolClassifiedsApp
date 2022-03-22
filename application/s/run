@@ -13,12 +13,10 @@ case $CMD in
         ;;
     'build') #build the app
 	docker build -t web web
-	docker build -t server server
 	;;
     'deploy') # Deploy the app
 	docker stop application-web-1
 	docker build -t web web
-	docker build -t server server
 	docker-compose up
 	;;
 	*)
