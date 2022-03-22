@@ -17,7 +17,7 @@ case $CMD in
     'deploy') # Deploy the app
 	docker stop application-web-1
 	docker build -t web web
-	docker-compose up
+	docker-compose up -d
 	;;
 	*)
         echo "Available commands:"
