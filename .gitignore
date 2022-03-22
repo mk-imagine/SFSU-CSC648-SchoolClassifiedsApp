@@ -27,4 +27,4 @@ package-lock.json
 
 .env
 
-web/build
+application/web/build/
