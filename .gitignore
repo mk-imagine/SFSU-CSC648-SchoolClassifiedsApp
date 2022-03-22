@@ -22,16 +22,11 @@ application/web/build/
 # yarn-error.log*
 
 # LaTeX files
-*.tex
-Milestones/**/sections/**
-Milestones/**/images/**
 Milestones/**/*.log
 Milestones/**/*.toc
 Milestones/**/*.out
 Milestones/**/*.aux
 Milestones/**/*.gz
-Milestones/**/*.tex
-Milestones/**/*.sty
 Milestones/**/*.bak
 
 package-lock.json

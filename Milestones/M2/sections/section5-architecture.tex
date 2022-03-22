@@ -1,0 +1,85 @@
+\section{Architecture}
+
+\subsection{DB Organization}
+
+{\large user table}
+\begin{enumerate}
+\item user\_id: unique user identification
+\item user\_fname: user's first name
+\item user\_lname: user's last name
+\item user\_email: user's email
+\item user\_type: user type (e.g. admin, staff, faculty, student)
+\item user\_password: user's password
+\end{enumerate}%
+%
+{\large session}
+\begin{enumerate}
+\item session\_id: unique session identification
+\item session\_user: user associated with session
+\item session\_expires: session expiration time
+\item session\_data: session data
+\end{enumerate}%
+%
+{\large review}
+\begin{enumerate}
+\item review\_id: unique review identification
+\item review\_item: item associated with review
+\item review\_recipient: user id of recipient of review
+\item review\_contributor: user id of the contributor the review
+\item review\_rating: rating of review recipient
+\item review\_body: body of review
+\item review\_timestamp: time of review
+\end{enumerate}%
+%
+{\large message}
+\begin{enumerate}
+\item msg\_id: unique message identification
+\item msg\_sender: sender of message
+\item msg\_recipient: recipient of message
+\item msg\_item: item associated with message
+\item msg\_meet\_time: proposed meeting time
+\item msg\_location: proposed meeting location
+\item msg\_contactinfo: contact information of sender
+\item msg\_body: body of message
+\end{enumerate}%
+%
+{\large item}
+\begin{enumerate}
+\item item\_id: unique item identification
+\item item\_created: time that posting was created
+\item item\_category: item's category
+\item item\_seller\_id: user id of seller
+\item item\_price: price of item
+\item item\_name: name of item
+\item item\_desc: description of item
+\item item\_pic: picture of item (path)
+\item item\_course: course associated with item
+\item item\_golive\_time: time of approval 
+\end{enumerate}%
+%
+{\large category}
+\begin{enumerate}
+\item category\_id: unique category identification
+\item category\_name: name of category
+\end{enumerate}
+
+\subsection{Media Storage}
+Images will be kept in AWS S3 storage buckets.
+
+\subsection{Search/filter architecture and implementation}
+\begin{enumerate}
+\item Database queries shall be utilized for all search items for the user.
+\item Item names and descriptions shall be utilized for keyword searches.
+\item Item categories shall be browsable and searchable.
+\item Course materials shall be searchable by course name.
+\item Search results shall be sortable by price, post age, category, item name, or seller username.
+\end{enumerate}
+
+\subsection{Team 8 APIs}
+None
+
+\subsection{Algorithms or Processing}
+None
+
+\subsection{SW Tool and Framework Changes}
+S3 storage for image storage. (seeking approval)
