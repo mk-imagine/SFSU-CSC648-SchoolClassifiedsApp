@@ -20,10 +20,6 @@ services:
     image: web
     ports:
       - 80:80
-      - 443:443
-    volumes:
-      - certbot_certs:/etc/letsencrypt
-      - certbot_lib:/var/lib/letsencrypt
 
   server:
     image: server
