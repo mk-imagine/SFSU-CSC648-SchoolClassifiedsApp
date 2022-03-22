@@ -17,7 +17,7 @@ const Categories = () => {
   });
 
   const fetchCategories = () => {
-    axios.get(`${base_url}/categories`).then((res) => {
+    axios.get(`http://www.codycs.com:8080/categories`).then((res) => {
       setCategories(res.data);
     });
   };
