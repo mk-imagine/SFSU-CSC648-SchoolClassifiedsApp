@@ -9,7 +9,8 @@ node_modules
 */coverage
 
 # production
-*/build
+application/web/build/
+*/build/
 
 # misc
 .DS_Store
@@ -26,5 +27,3 @@ package-lock.json
 *.log
 
 .env
-
-application/web/build/
