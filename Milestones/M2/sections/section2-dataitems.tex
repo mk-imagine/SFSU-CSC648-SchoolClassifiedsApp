@@ -4,67 +4,64 @@
 
 \item[user:] The users are the people expected to use the web application. This entity will contain all the pertinent information that describes our user like their name, email address, and other identifying information.
 \begin{enumerate}
-\item user\_id: Primary key user identification
-\item user\_first\_name: First name of user
-\item user\_last\_name: Last name of user
-\item user\_email: User's email
+\item user\_id: unique user identification
+\item user\_fname: user's first name
+\item user\_lname: user's last name
+\item user\_email: user's email
+\item user\_type: user type (e.g. admin, staff, faculty, student)
+\item user\_password: user's password
 \end{enumerate}
 	
 \item[item:] This entity are the items that are being bought, sold, or provided.  This entity contains all the information that helps users find what they want.  For example, this entity will have a name, a description, price, a category that it belongs to, and photos so that they can see what the item looks like.
 \begin{enumerate}
-\item itfm\_id: Primary key item identification
-\item item\_name: Name of item
-\item item\_desc: Description of item
-\item item\_price: Asking price for item
-\item item\_pic: Picture of item
-\item item\_category: Category of item (e.g. furniture, books, etc)
-\item item\_seller\_id: Id of the seller of the item
+\item item\_id: unique item identification
+\item item\_created: time that posting was created
+\item item\_category: item's category
+\item item\_seller\_id: user id of seller
+\item item\_price: price of item
+\item item\_name: name of item
+\item item\_desc: description of item
+\item item\_pic: picture of item (path)
+\item item\_course: course associated with item
+\item item\_golive\_time: time of approval 
 \end{enumerate}
 	
 \item[category:] This is the category a particular item will belong to.  For example, items may be furniture, books, electronics, etc.  We want this data item to be easily changed or expanded if necessary in case our users find categories that they want.
 \begin{enumerate}
-\item cat\_id: Primary key for category
-\item cat\_name: Name of the category (e.g. furniture, books, etc)
+\item category\_id: unique category identification
+\item category\_name: name of category (e.g. furniture, books, etc).
 \end{enumerate}
 
-\item[account:] This will contain all the account information of our users as well as describe their permissions.  This entity will contain the user's account password, the account type (e.g. Admin, Registered User, etc), and the permissions that are associated with the account type.
+\item[session:] This will contain session information for users that are on our web application.
 \begin{enumerate}
-\item act\_id: Primary key account identification
-\item act\_user\_id: User that this account is associated with
-\item act\_username: Username for account
-\item act\_pass: Password for this account
-\item act\_role: Role associated with this account (e.g. admin, registered user, etc)
-\end{enumerate}
-
-\item[location:] This will contain different locations that can be used on-campus where transactions can be completed.  This is meant to provide an easy way for buyers and sellers to coordinate a meeting to complete a transaction.
-\begin{enumerate}
-\item loc\_id: Primary key location identifier
-\item loc\_name: Name of location
-\item loc\_coord: Coordinates of location
+\item session\_id: unique session identification
+\item session\_user: user associated with session
+\item session\_expires: session expiration time
+\item session\_data: session data
 \end{enumerate}
 	
 \item[message:] This entity exists to contain all the messages that are sent from one user to another.  This will contain not only the message, but also the sender, recipient, and a time stamp of when the message was sent and received/read.
 \begin{enumerate}
-\item msg\_id: Primary key message identifier
-\item msg\_item\_id: Item that the message is associated with
-\item msg\_sender\_id: Account ID for sender
-\item msg\_rec\_id: Account ID for recipient
-\item msg\_body: Message body
-\item msg\_meet\_loc\_id: Proposed location for meeting
-\item msg\_meet\_date: Proposed meeting date
-\item msg\_meet\_time: Proposed meeting time
-\item msg\_time: Timestamp of message
+\item msg\_id: unique message identification
+\item msg\_sender: sender of message
+\item msg\_recipient: recipient of message
+\item msg\_item: item associated with message
+\item msg\_meet\_time: proposed meeting time
+\item msg\_location: proposed meeting location
+\item msg\_contactinfo: contact information of sender
+\item msg\_body: body of message
+\item msg\_timestamp: timestamp of message
 \end{enumerate}
 	
 \item[review:] This data item contains the reviews for all users.  This entity will contain the review itself, the recipient of the review as well as the person who wrote the review, the time stamp of the review, and also the associated transaction/item that goes with the review.
 \begin{enumerate}
-\item rev\_id: Primary key review identifier
-\item rev\_item\_id: Item that the review is associated with
-\item rev\_reviewer\_id: Account ID for reviewer
-\item rev\_reviewed\_id: Account ID for user being reviewed
-\item rev\_time: Timestamp of review
-\item rev\_rating: Rating given to user being reviewed (out of 5)
-\item rev\_body: Review text body
+\item review\_id: unique review identification
+\item review\_item: item associated with review
+\item review\_recipient: user id of recipient of review
+\item review\_contributor: user id of the contributor the review
+\item review\_rating: rating of review recipient
+\item review\_body: body of review
+\item review\_timestamp: time of review
 \end{enumerate}
 
 \end{description}
