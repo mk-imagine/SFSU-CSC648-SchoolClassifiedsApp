@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
+import ItemCard from "../ItemCard";
 
 //the page where we load the data
 export const ViewItems = (props) => {
@@ -36,7 +37,6 @@ export const ViewItems = (props) => {
         .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
         .then((res) => {
           setItems(res.data);
-          console.log(items);
         });
     } else {
       axios.get(`${base_url}/items`).then((res) => {
@@ -51,9 +51,6 @@ export const ViewItems = (props) => {
         return (
           <div>
             <Row>
-              {/* <Col>
-            <img className={styles.thumbnail} src={book} alt="book" />
-          </Col> */}
               <Col style={{ paddingTop: "3rem" }}>
                 <Row>
                   <h3>{e.item_name}</h3>
@@ -68,6 +65,7 @@ export const ViewItems = (props) => {
               <Col></Col>
               <Col></Col>
             </Row>
+
             <hr></hr>
           </div>
         );
