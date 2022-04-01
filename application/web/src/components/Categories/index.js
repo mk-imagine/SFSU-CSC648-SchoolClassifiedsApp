@@ -10,6 +10,7 @@ const Categories = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchInput, setSearchInput] = useState("");
   const [finalSearchInput, setFinalSearchInput] = useState("");
+  const [isSearchView, setSearchView] = useState(false);
   const base_url = "https://csc648-website.herokuapp.com";
   //const base_url = process.env.REACT_APP_BACKEND_URL;
 
@@ -37,6 +38,14 @@ const Categories = () => {
     setFinalSearchInput(searchInput);
     console.log("selectedCategory: ", selectedCategory);
     console.log("Search term: ", searchInput);
+
+    return (
+      <ViewItems
+        category_id={selectedCategoryId}
+        category_name={selectedCategory}
+        searchTerm={finalSearchInput}
+      />
+    );
   };
 
   return (
@@ -127,6 +136,7 @@ const Categories = () => {
         </Row>
       </div>
       {/* View items here */}
+
       <ViewItems
         category_id={selectedCategoryId}
         category_name={selectedCategory}

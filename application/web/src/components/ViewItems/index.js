@@ -26,8 +26,7 @@ export const ViewItems = (props) => {
       searchTerm === "" &&
       category_name !== "All Items"
     ) {
-      // we return items according to category
-
+      // we return items according to categorys
       axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
         setItems(res.data);
       });
@@ -47,7 +46,7 @@ export const ViewItems = (props) => {
   }, []);
 
   return (
-    <div style={{ paddingTop: "3rem" }}>
+    <div style={{ paddingTop: "2rem" }}>
       {items.map((e) => {
         return (
           <div>
@@ -66,7 +65,6 @@ export const ViewItems = (props) => {
               <Col></Col>
               <Col></Col>
             </Row>
-
             <hr></hr>
           </div>
         );
