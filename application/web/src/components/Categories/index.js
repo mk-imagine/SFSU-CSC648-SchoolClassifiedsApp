@@ -9,13 +9,17 @@ const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Items");
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchInput, setSearchInput] = useState("");
-  const [finalSearchInput, setFinalSearchInput] = useState("");
-  const [isSearchView, setSearchView] = useState(false);
+
+  const [items, setItems] = useState([]);
   const base_url = "https://csc648-website.herokuapp.com";
   //const base_url = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetchCategories();
+
+    axios.get(`${base_url}/items`).then((res) => {
+      setItems(res.data);
+    });
   }, []);
 
   const fetchCategories = () => {
@@ -35,17 +39,46 @@ const Categories = () => {
   };
 
   const onSubmit = () => {
-    setFinalSearchInput(searchInput);
-    console.log("selectedCategory: ", selectedCategory);
-    console.log("Search term: ", searchInput);
+    console.log("On submit");
 
-    return (
-      <ViewItems
-        category_id={selectedCategoryId}
-        category_name={selectedCategory}
-        searchTerm={finalSearchInput}
-      />
-    );
+    const searchTerm = searchInput;
+    const category_id = selectedCategoryId;
+    const category_name = selectedCategory;
+
+    console.log("category id ", category_id);
+    console.log("search term ", searchTerm);
+
+    if (category_id === 0 && searchTerm !== "") {
+      // we return items according to search term
+      console.log("In one");
+      axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
+        setItems(res.data);
+      });
+    } else if (
+      category_id !== 0 &&
+      searchTerm === "" &&
+      category_name !== "All Items"
+    ) {
+      // we return items according to categorys
+      console.log("In two");
+      axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
+        setItems(res.data);
+      });
+    } else if (category_id !== 0 && searchTerm !== "") {
+      //return items according to category and search term
+      console.log("In three");
+      axios
+        .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+        .then((res) => {
+          setItems(res.data);
+        });
+    } else {
+      console.log("In four");
+      axios.get(`${base_url}/items`).then((res) => {
+        setItems(res.data);
+      });
+    }
+    setSearchInput("");
   };
 
   return (
@@ -137,11 +170,7 @@ const Categories = () => {
       </div>
       {/* View items here */}
 
-      <ViewItems
-        category_id={selectedCategoryId}
-        category_name={selectedCategory}
-        searchTerm={finalSearchInput}
-      />
+      <ViewItems items={items} />
     </div>
   );
 };

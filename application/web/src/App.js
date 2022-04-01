@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import About from "./Pages/About";
 import Home from "./Pages/Home";
-import Navbar from "../src/components/Navbar";
+// import Navbar from "../src/components/Navbar";
 import Khushboo from "../src/components/About/People/Khushboo";
 import Cody from "../src/components/About/People/Cody";
 import Ernesto from "../src/components/About/People/Ernesto";
@@ -25,7 +25,7 @@ import Mark from "../src/components/About/People/Mark";
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/about" exact element={<About />} />
