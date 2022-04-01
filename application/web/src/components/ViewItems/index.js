@@ -42,8 +42,9 @@ export const ViewItems = (props) => {
       axios.get(`${base_url}/items`).then((res) => {
         setItems(res.data);
       });
+      console.log("in view items");
     }
-  }, [items]);
+  }, []);
 
   return (
     <div style={{ paddingTop: "3rem" }}>

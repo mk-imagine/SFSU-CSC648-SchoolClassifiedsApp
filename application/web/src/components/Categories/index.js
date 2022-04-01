@@ -15,7 +15,7 @@ const Categories = () => {
 
   useEffect(() => {
     fetchCategories();
-  });
+  }, []);
 
   const fetchCategories = () => {
     axios.get(`${base_url}/categories`).then((res) => {
