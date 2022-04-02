@@ -4,22 +4,26 @@ import axios from "axios";
 import { ViewItems } from "../ViewItems";
 import styles from "./index.module.css";
 import TopCategoryItems from "../TopcategoryItems";
+import { ItemTopCategoryCard } from "../ItemCard";
 
 const Categories = () => {
   const [catergories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Items");
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [searchInput, setSearchInput] = useState("");
+  const [isToggle, setToggle] = useState(false);
 
   const [items, setItems] = useState([]);
+  const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
+  const [numberOfItems, setNumberOfItems] = useState(0);
   const base_url = "https://csc648-website.herokuapp.com";
   //const base_url = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetchCategories();
-
     axios.get(`${base_url}/items`).then((res) => {
       setItems(res.data);
+      setNumberOfTotalItems(res.data.length);
     });
   }, []);
 
@@ -51,9 +55,11 @@ const Categories = () => {
 
     if (category_id === 0 && searchTerm !== "") {
       // we return items according to search term
+      setToggle(true);
       console.log("In one");
       axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
         setItems(res.data);
+        setNumberOfItems(res.data.length);
       });
     } else if (
       category_id !== 0 &&
@@ -62,21 +68,27 @@ const Categories = () => {
     ) {
       // we return items according to categorys
       console.log("In two");
+      setToggle(true);
       axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
         setItems(res.data);
+        setNumberOfItems(res.data.length);
       });
     } else if (category_id !== 0 && searchTerm !== "") {
       //return items according to category and search term
       console.log("In three");
+      setToggle(true);
       axios
         .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
         .then((res) => {
           setItems(res.data);
+          setNumberOfItems(res.data.length);
         });
     } else {
       console.log("In four");
+      setToggle(false);
       axios.get(`${base_url}/items`).then((res) => {
         setItems(res.data);
+        setNumberOfItems(res.data.length);
       });
     }
     setSearchInput("");
@@ -171,10 +183,15 @@ const Categories = () => {
       </div>
       {/* View items here */}
 
+      <Row>
+        <Col lg={9}></Col>
+        <Col></Col>
+      </Row>
+
       <div className={styles.heading}>Welcome to PurpleMarket</div>
       <div className={styles.subheading}>
         A market place that connects people only associated with SFSU to sell or
-        purchase items
+        purchase items.
       </div>
       <div
         style={{
@@ -184,8 +201,33 @@ const Categories = () => {
         }}
       >
         <div style={{ marginBottom: "2rem" }}>
-          <TopCategoryItems />
-          <div className={styles.titleCategories}>Latest Items</div>
+          {!isToggle ? <TopCategoryItems /> : null}
+          <Row>
+            <Col lg={9}>
+              <div className={styles.titleCategories}>
+                {isToggle
+                  ? `${numberOfItems} of ${numberOfTotalItems} results `
+                  : "Latest Items"}
+              </div>
+            </Col>
+            <Col lg={3}>
+              <Dropdown
+                onSelect={dropDownChange}
+                value="Sort By"
+                style={{ marginLeft: "8rem", marginTop: "0.5rem" }}
+              >
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  Sort By Date
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="" onClick="">
+                    Sort By Alphabets
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </Row>
           <ViewItems items={items} />
         </div>
       </div>
