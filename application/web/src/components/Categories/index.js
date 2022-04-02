@@ -3,6 +3,7 @@ import { Dropdown, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
 import { ViewItems } from "../ViewItems";
 import styles from "./index.module.css";
+import TopCategoryItems from "../TopcategoryItems";
 
 const Categories = () => {
   const [catergories, setCategories] = useState([]);
@@ -124,7 +125,7 @@ const Categories = () => {
 
                   <div className="form-group">
                     <input
-                      style={{ width: "36rem" }}
+                      style={{ width: "35rem" }}
                       type="text"
                       className="form-control rounded-0"
                       placeholder={"Search Here"}
@@ -170,7 +171,24 @@ const Categories = () => {
       </div>
       {/* View items here */}
 
-      <ViewItems items={items} />
+      <div className={styles.heading}>Welcome to PurpleMarket</div>
+      <div className={styles.subheading}>
+        A market place that connects people only associated with SFSU to sell or
+        purchase items
+      </div>
+      <div
+        style={{
+          borderStyle: "solid",
+          borderColor: "#000",
+          marginTop: "1rem"
+        }}
+      >
+        <div style={{ marginBottom: "2rem" }}>
+          <TopCategoryItems />
+          <div className={styles.titleCategories}>Latest Items</div>
+          <ViewItems items={items} />
+        </div>
+      </div>
     </div>
   );
 };

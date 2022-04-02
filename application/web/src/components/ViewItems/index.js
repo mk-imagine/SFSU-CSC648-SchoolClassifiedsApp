@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import axios from "axios";
+import { Row, Col, Container } from "react-bootstrap";
 import ItemCard from "../ItemCard";
+import anonPic from "../../images/anonPic.png";
 
 //the page where we load the data
 export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
+  const columnsPerRow = 3;
 
   useEffect(() => {
     setItems(props.items);
@@ -13,29 +14,25 @@ export const ViewItems = (props) => {
   });
 
   return (
-    <div style={{ paddingTop: "2rem" }}>
-      {items.map((e) => {
-        return (
-          <div>
-            <Row>
-              <Col style={{ paddingTop: "3rem" }}>
-                <Row>
-                  <h3>{e.item_name}</h3>
-                </Row>
-                <Row>
-                  <p>{e.item_desc}</p>
-                </Row>
-                <Row>
-                  <p style={{ fontWeight: "bold" }}>{e.item_price}</p>
-                </Row>
-              </Col>
-              <Col></Col>
-              <Col></Col>
-            </Row>
-            <hr></hr>
-          </div>
-        );
-      })}
+    <div style={{ marginTop: "2rem", width: "100%", margin: "auto" }}>
+      <Container>
+        <Row xs={1} md={columnsPerRow}>
+          {items.map((e) => {
+            return (
+              <div>
+                <div style={{ marginTop: "2rem" }}></div>
+                <ItemCard
+                  style={{ marginBottom: "4rem" }}
+                  title={e.item_name}
+                  description={e.item_desc}
+                  price={e.item_price}
+                  image={anonPic}
+                ></ItemCard>
+              </div>
+            );
+          })}
+        </Row>
+      </Container>
     </div>
   );
 };

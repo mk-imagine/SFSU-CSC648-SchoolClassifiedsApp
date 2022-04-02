@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-
+import styles from "./index.module.css";
 const ItemCard = (props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -26,6 +26,22 @@ const ItemCard = (props) => {
           </Typography>
         </CardContent>
       </CardActionArea>
+    </Card>
+  );
+};
+
+export const ItemTopCategoryCard = (props) => {
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardContent>
+        <div className={styles.title}>{props.title}</div>
+      </CardContent>
+      <CardMedia
+        component="img"
+        alt="images"
+        height="160"
+        image={props.image}
+      />
     </Card>
   );
 };
