@@ -22,6 +22,7 @@ services:
       - dbdata:/var/lib/mysql
 
   backend:
+    container_name: backend
     build: server
     volumes:
       - /usr/src/server/node_modules
@@ -34,6 +35,7 @@ services:
     command: ["node", "index.js"]
 
   frontend:
+    container_name: frontend
     build: 
       context: ./web
     volumes:
