@@ -1,40 +1,48 @@
 version: '3'
 
 services:
-  mysql:
+  database:
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password
+    hostname: database
+    container_name: database
     restart: always
     environment:
-      MYSQL_DATABASE: "cs"
-      MYSQL_ROOT_PASSWORD: "csc648team8"
+      MYSQL_DATABASE: cs
+      MYSQL_USER: test
+      MYSQL_PASSWORD: csc648team8
+      MYSQL_ROOT_PASSWORD: csc648team8
     ports:
       - 3306:3306
     healthcheck:
         test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
         timeout: 3s
         retries: 20
-  
-  web:
-    restart: unless-stopped
-    image: web
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      dbdata:/var/lib/mysql
+
+  backend:
+    build: server
+    volumes:
+      - /usr/src/server/node_modules
+    ports:
+      - 3000:3000
+    depends_on: 
+      - database
+    links:
+      - database
+    command: ["node", "index.js"]
+
+  frontend:
+    build: 
+      context: ./web
+    volumes:
+      - /usr/src/client/node_modules
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - certbot_certs:/etc/letsencrypt
-      - certbot_lib:/var/lib/letsencrypt
-
-  certbot:
-    image: certbot/dns-route53
-    command: certonly -n -d www.codycs.com --dns-route53 --dns-route53-propagation-seconds 90 --agree-tos --email whuang17@mail.sfsu.edu
-    environment:
-      AWS_ACCESS_KEY_ID: "AKIA2JSQG5HHVYWXJO75"
-      AWS_SECRET_ACCESS_KEY: "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"
-    volumes:
-      - certbot_certs:/etc/letsencrypt
-      - certbot_lib:/var/lib/letsencrypt
+    depends_on: 
+      - backend
 
 volumes:
-  certbot_certs: {}
-  certbot_lib: {}
+  dbdata:
