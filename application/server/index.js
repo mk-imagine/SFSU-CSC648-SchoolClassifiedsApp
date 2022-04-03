@@ -1,14 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
-const fs = require('fs'),
-      //http = require('http'),
-      https = require('https');
 // const cors = require("cors");
-
-const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/www.codycs.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/www.codycs.com/fullchain.pem'),
-};
 
 const app = express();
 app.use(express.json());

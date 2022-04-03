@@ -1,31 +1,22 @@
-FROM alpine:3.15 as builder
-
-RUN apk add --update --no-cache curl nodejs npm
+FROM node:lts-alpine
 
 WORKDIR /web
 
-COPY package.json .
+COPY package*.json .
+
 RUN npm install
 
-# Copy source code
 COPY . .
 
-# Build
 RUN npm run build
 
 
-FROM nginx
+FROM nginx:stable-alpine
 
-# install bash so we can run the mustache template script
-RUN apt-get install -y bash
+COPY --from=0 ./web/nginx.conf /etc/nginx/conf.d
 
-COPY deploy/nginx /etc/nginx/conf.d
+COPY --from=0 ./web/build /usr/share/nginx/html
 
-# copy built code from build-stage
-COPY --from=builder /web/build /var/www/html
-
-RUN rm -rf /usr/share/nginx/html/*
-
-EXPOSE 80 443
+EXPOSE 80 
 
 CMD ["nginx", "-g", "daemon off;"]
