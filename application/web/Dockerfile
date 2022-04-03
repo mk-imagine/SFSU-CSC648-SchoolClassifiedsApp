@@ -1,8 +1,8 @@
-FROM node:14
+FROM node:lts-alpine
 
 WORKDIR /web
 
-COPY package*.json .
+COPY package.json .
 
 RUN npm install
 
