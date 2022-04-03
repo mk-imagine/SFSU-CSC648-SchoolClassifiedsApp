@@ -14,7 +14,7 @@ services:
     ports:
       - 3306:3306
     healthcheck:
-        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        test: out=$$(mysqladmin ping -h localhost -P 3306 -u foo --password=bar 2>&1); echo $$out | grep 'mysqld is alive' || { echo $$out; exit 1; }
         timeout: 3s
         retries: 20
     command: --default-authentication-plugin=mysql_native_password
