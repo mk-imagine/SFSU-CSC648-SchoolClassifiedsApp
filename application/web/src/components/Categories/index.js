@@ -16,7 +16,7 @@ const Categories = () => {
   const [items, setItems] = useState([]);
   const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
   const [numberOfItems, setNumberOfItems] = useState(0);
-  const base_url = "https://csc648-website.herokuapp.com";
+  const base_url = "/api";
   //const base_url = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {

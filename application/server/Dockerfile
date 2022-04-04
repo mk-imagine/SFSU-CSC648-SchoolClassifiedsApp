@@ -1,8 +1,7 @@
-FROM node:17.7.1
-
+FROM node:lts-alpine
 WORKDIR /server
 COPY package.json .
 RUN npm install
 COPY . .
-EXPOSE 8080
+EXPOSE 3100
 CMD [ "node", "index.js" ]

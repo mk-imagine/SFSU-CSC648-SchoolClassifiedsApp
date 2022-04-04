@@ -7,8 +7,8 @@ services:
     container_name: database
     restart: always
     environment:
-      MYSQL_DATABASE: cs
-      MYSQL_USER: test
+      MYSQL_DATABASE: csc648
+      MYSQL_USER: root
       MYSQL_PASSWORD: csc648team8
       MYSQL_ROOT_PASSWORD: csc648team8
     ports:
@@ -26,25 +26,28 @@ services:
     build: server
     volumes:
       - /usr/src/server/node_modules
-    ports:
-      - 8080:8080
     depends_on: 
       - database
-    links:
-      - database
+    ports:
+      - 3100:3100
     command: ["node", "index.js"]
 
   frontend:
     container_name: frontend
-    build: 
-      context: ./web
+    build: web
     volumes:
-      - /usr/src/client/node_modules
-    ports:
-      - 80:80
-      - 443:443
+      - /usr/src/web/node_modules
     depends_on: 
       - backend
+
+  revproxy:
+    container_name: revproxy
+    build: revproxy
+    ports:
+      - 3080:3080
+    depends_on:
+      - backend
+      - frontend
 
 volumes:
   dbdata:

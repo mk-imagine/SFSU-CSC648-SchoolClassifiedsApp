@@ -1,22 +1,13 @@
-FROM node:lts-alpine
-
+# Stage 1
+FROM node:lts-alpine AS build
 WORKDIR /web
-
 COPY package.json .
-
 RUN npm install
-
 COPY . .
-
 RUN npm run build
 
-
+# Stage 2
 FROM nginx:stable-alpine
-
-COPY --from=0 ./web/nginx.conf /etc/nginx/conf.d
-
 COPY --from=0 ./web/build /usr/share/nginx/html
-
-EXPOSE 80 
-
+EXPOSE 3080
 CMD ["nginx", "-g", "daemon off;"]

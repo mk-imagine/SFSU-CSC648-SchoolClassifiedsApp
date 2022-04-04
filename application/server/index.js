@@ -1,27 +1,23 @@
 const express = require("express");
 const mysql = require("mysql");
-const cors = require("cors");
+// const cors = require("cors");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
 const con = mysql.createConnection({
-  host: "54.90.37.137",
+  host: "localhost",
   port: "3306",
-  database: "cs",
   user: "root",
   password: "csc648team8"
 });
 
 con.connect((err) => {
-  if (err) {
-    console.log("Error connecting to Db");
-    return;
-  }
-  console.log("Connection established");
+  if (err) throw err;
+  console.log("Database connection established");
 });
 
 app.get("/", (req, res) => {
@@ -105,7 +101,7 @@ app.get("/getpic/:name", (req, res) => {
   res.send({ url: url });
 });
 
-const port = 8080;
+const port = 3100;
 app.listen(port, () => console.log("App is listening on port ", port));
 // const server = https.createServer(options, app).listen(port, () => {
 //   console.log("Express server listening on port " + port);
