@@ -7,8 +7,8 @@ node_modules
 */coverage
 
 # production
-application/web/build/
-*/build/
+# application/web/build/
+# */build/
 
 # misc
 .DS_Store

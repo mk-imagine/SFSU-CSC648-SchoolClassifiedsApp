@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bd69f249.chunk.css",
+    "main.js": "/static/js/main.d37c616b.chunk.js",
+    "main.js.map": "/static/js/main.d37c616b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8d76e995.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8d76e995.js.map",
+    "static/js/2.6adf0ee2.chunk.js": "/static/js/2.6adf0ee2.chunk.js",
+    "static/js/2.6adf0ee2.chunk.js.map": "/static/js/2.6adf0ee2.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.bd69f249.chunk.css.map": "/static/css/main.bd69f249.chunk.css.map",
+    "static/js/2.6adf0ee2.chunk.js.LICENSE.txt": "/static/js/2.6adf0ee2.chunk.js.LICENSE.txt",
+    "static/media/Jesus.9971adbf.png": "/static/media/Jesus.9971adbf.png",
+    "static/media/JiashengLi.e68fc625.JPG": "/static/media/JiashengLi.e68fc625.JPG",
+    "static/media/apparalCategoryTitle.66e9399e.jpg": "/static/media/apparalCategoryTitle.66e9399e.jpg",
+    "static/media/bookCategoryTitle.e59a879c.jpg": "/static/media/bookCategoryTitle.e59a879c.jpg",
+    "static/media/cody.9f8e4b8c.png": "/static/media/cody.9f8e4b8c.png",
+    "static/media/electronicsCategoryTitle.abae94d4.jpg": "/static/media/electronicsCategoryTitle.abae94d4.jpg",
+    "static/media/ernesto.0192deab.JPG": "/static/media/ernesto.0192deab.JPG",
+    "static/media/furnitureCategoryTitle.a68476cf.jpg": "/static/media/furnitureCategoryTitle.a68476cf.jpg",
+    "static/media/khushboo.884df876.png": "/static/media/khushboo.884df876.png",
+    "static/media/mark.2bc54f1e.png": "/static/media/mark.2bc54f1e.png",
+    "static/media/team.94b5c949.png": "/static/media/team.94b5c949.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8d76e995.js",
+    "static/js/2.6adf0ee2.chunk.js",
+    "static/css/main.bd69f249.chunk.css",
+    "static/js/main.d37c616b.chunk.js"
+  ]
+}
