@@ -7,7 +7,7 @@ import anonPic from "../images/anonPic.png";
 const Home = () => {
   return (
     <div style={{ padding: "1rem" }}>
-      Hello
+      <Categories />
     </div>
   );
 };
