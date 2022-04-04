@@ -21,12 +21,16 @@ build
 .env.production.local
 
 # LaTeX files
+*.tex
+*.sty
 Milestones/**/*.log
 Milestones/**/*.toc
 Milestones/**/*.out
 Milestones/**/*.aux
 Milestones/**/*.gz
 Milestones/**/*.bak
+Milestones/**/images
+Milestones/**/sections
 
 # logs
 *.log
