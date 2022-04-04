@@ -1,0 +1,34 @@
+\contentsline {section}{\numberline {I}Executive Summary}{3}{section.1}%
+\contentsline {section}{\numberline {II}Main Data Items and Entities}{3}{section.2}%
+\contentsline {section}{\numberline {III}Functional Requirements - Prioritized}{5}{section.3}%
+\contentsline {subsection}{\numberline {A}Priority 1}{5}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {A.1}Unregistered Users}{5}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {A.2}Registered Users}{6}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {A.3}Administrators}{6}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {B}Priority 2}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {B.1}Unregistered Users}{6}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {B.2}Registered Users}{6}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {B.3}Administrators}{6}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {C}Priority 3}{7}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {C.1}Registered Users}{7}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {C.2}Administrators}{7}{subsubsection.3.3.2}%
+\contentsline {section}{\numberline {IV}User Interface Storyboards}{7}{section.4}%
+\contentsline {subsection}{\numberline {A}Administrative Functions: Kobe}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {B}Purchase SFSU Apparel: Claire}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {C}Request Items: Anna}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {D}Browsing for Items: Curry}{15}{subsection.4.4}%
+\contentsline {subsection}{\numberline {E}Selling Furniture: Anna}{18}{subsection.4.5}%
+\contentsline {section}{\numberline {V}Architecture}{21}{section.5}%
+\contentsline {subsection}{\numberline {A}DB Organization}{21}{subsection.5.1}%
+\contentsline {subsection}{\numberline {B}Media Storage}{22}{subsection.5.2}%
+\contentsline {subsection}{\numberline {C}Search/filter architecture and implementation}{22}{subsection.5.3}%
+\contentsline {subsection}{\numberline {D}Team 8 APIs}{22}{subsection.5.4}%
+\contentsline {subsection}{\numberline {E}Algorithms or Processing}{23}{subsection.5.5}%
+\contentsline {subsection}{\numberline {F}SW Tool and Framework Changes}{23}{subsection.5.6}%
+\contentsline {section}{\numberline {VI}Key Risks}{23}{section.6}%
+\contentsline {subsection}{\numberline {A}Skills}{23}{subsection.6.1}%
+\contentsline {subsection}{\numberline {B}Schedule}{23}{subsection.6.2}%
+\contentsline {subsection}{\numberline {C}Technical}{24}{subsection.6.3}%
+\contentsline {subsection}{\numberline {D}Teamwork}{24}{subsection.6.4}%
+\contentsline {subsection}{\numberline {E}Legal/Content}{24}{subsection.6.5}%
+\contentsline {section}{\numberline {VII}Project Management}{24}{section.7}%
