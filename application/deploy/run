@@ -1,0 +1,33 @@
+#!/bin/bash
+
+export REPO_ROOT=`git rev-parse --show-toplevel`
+export APPLICATION=$REPO_ROOT/application
+cd $APPLICATION
+CMD=$1
+shift
+ARGS=$@
+
+case $CMD in
+    'mysql') # Run psql prompt
+        mysql -u root --password=csc648team8 -h localhost --port=3306 --protocol=TCP
+        ;;
+    'build') #build the app
+	docker build -t web web
+    docker build -t server server
+	;;
+    'deploy') # Deploy the app
+	docker-compose down
+	docker build -t web web
+    docker build -t server server
+	docker-compose up -d
+	;;
+	*)
+        echo "Available commands:"
+        column -t -s : <<EOF
+build: build the app
+deploy: deploy the app
+mysql: mysql prompt
+EOF
+        ;;
+esac
+

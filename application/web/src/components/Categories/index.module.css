@@ -1,0 +1,65 @@
+.title {
+  font-family: roboto;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 2rem;
+  color: #5f27cd;
+}
+
+.container {
+  margin: auto;
+}
+
+/* this is for search bar */
+.top {
+  margin-top: 0.2rem !important;
+}
+
+.topButton {
+  margin-top: 0.15rem !important;
+  margin-left: 0.2rem !important;
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+
+.squaredCorners {
+  border-radius: 0 !important;
+  -webkit-appearance: none;
+}
+
+/* logim, register, postitems button group */
+.buttonGroup {
+  margin-left: 4rem;
+}
+
+#dropdownMenu {
+  background-color: #002037 !important;
+  color: #e2dec0 !important;
+}
+
+.heading {
+  color: #000;
+  margin: auto;
+  width: 92%;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 1rem;
+}
+
+.subheading {
+  color: #000;
+  margin: auto;
+  width: 92%;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+.titleCategories {
+  color: #5f27cd;
+  margin: auto;
+  width: 92%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
