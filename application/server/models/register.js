@@ -5,11 +5,11 @@ var bcrypt = require("bcrypt");
 const RegisterModel = {};
 
 //execute sql to create account
-RegisterModel.createAccount = (username, password, email) => {
+RegisterModel.createAccount = (firstname, lastname, username, password, email) => {
     return bcrypt.hash(password,3)
     .then((hashedPassword) => {
-        let baseSQL = "insert into cscs648.user (username, ";//no username, password in table
-        return db.execute(baseSQL, [username, email, hashedPassword]);
+        let baseSQL = "INSERT INTO cscs648.user (first_name, last_name, username, password, email) VALUES (?,?,?,?,?);";
+        return db.execute(baseSQL, [firstname, lastname, username, hashedPassword, email]);
 
     }).then(([results, fields]) => {
         if(results && results.affectedRows){

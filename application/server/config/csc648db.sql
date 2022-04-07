@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NULL,
   `last_name` VARCHAR(255) NULL,
+  `username` VARCHAR(255) NULL,
+  `password` VARCHAR(255) NULL,
   `email` VARCHAR(255) NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
