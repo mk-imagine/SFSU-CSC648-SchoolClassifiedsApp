@@ -12,7 +12,7 @@ LoginModel.authenticate = (username, password) => {
     return db.execute(baseSQL, [username])
     .then(([results, fields]) => {
         if(results && results.length == 1){
-            userId = results[0].id;
+            userId = results[0].user_id;
             return bcrypt.compare(password, results[0].password);
         }else{
             return Promise.reject(-1);
