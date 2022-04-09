@@ -34,12 +34,15 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(255) NULL,
-  `last_name` VARCHAR(255) NULL,
-  `username` VARCHAR(255) NULL,
-  `password` VARCHAR(255) NULL,
-  `email` VARCHAR(255) NULL,
-  PRIMARY KEY (`user_id`))
+  `user_username` VARCHAR(64) NULL,
+  `user_fname` VARCHAR(64) NULL,
+  `user_lname` VARCHAR(64) NULL,
+  `user_email` VARCHAR(128) NULL,
+  `user_registrationrecord` VARCHAR(16) NULL,
+  `user_password` VARCHAR(45) NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `user_username_UNIQUE` (`user_username` ASC) VISIBLE,
+  UNIQUE INDEX `user_email_UNIQUE` (`user_email` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -50,26 +53,138 @@ DROP TABLE IF EXISTS `item` ;
 
 CREATE TABLE IF NOT EXISTS `item` (
   `item_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `item_name` VARCHAR(45) NOT NULL,
-  `item_desc` VARCHAR(255) NULL,
+  `item_seller_id` INT UNSIGNED NOT NULL,
+  `item_category` INT UNSIGNED NOT NULL,
+  `item_name` VARCHAR(64) NOT NULL,
+  `item_desc` VARCHAR(2048) NULL,
   `item_price` DECIMAL(7,2) NOT NULL,
-  `item_pic` VARCHAR(255) NULL,
-  `item_category` INT UNSIGNED NULL,
-  `seller_id` INT UNSIGNED NOT NULL,
+  `item_pic` VARCHAR(45) NOT NULL,
+  `item_thumbnail` VARCHAR(45) NOT NULL,
+  `item_created` DATETIME NOT NULL DEFAULT NOW(),
+  `item_golive_time` DATETIME NULL,
+  `item_course` VARCHAR(45) NULL,
+  `item_postexpires` DATETIME NULL,
   PRIMARY KEY (`item_id`),
   INDEX `category_fk_idx` (`item_category` ASC) VISIBLE,
-  INDEX `seller_fk_idx` (`seller_id` ASC) VISIBLE,
-  UNIQUE INDEX `item_pic_UNIQUE` (`item_pic` ASC) VISIBLE,
-  CONSTRAINT `category_fk`
+  INDEX `seller_fk_idx` (`item_seller_id` ASC) VISIBLE,
+  CONSTRAINT `item_category_fk`
     FOREIGN KEY (`item_category`)
     REFERENCES `category` (`category_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `seller_fk`
-    FOREIGN KEY (`seller_id`)
+  CONSTRAINT `item_seller_fk`
+    FOREIGN KEY (`item_seller_id`)
+    REFERENCES `user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `session`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `session` ;
+
+CREATE TABLE IF NOT EXISTS `session` (
+  `session_id` VARCHAR(64) NOT NULL,
+  `session_user` INT UNSIGNED NULL,
+  `session_expires` DATETIME NULL,
+  `session_data` VARCHAR(45) NULL,
+  PRIMARY KEY (`session_id`),
+  INDEX `user_FK_idx` (`session_user` ASC) VISIBLE,
+  CONSTRAINT `session_user_FK`
+    FOREIGN KEY (`session_user`)
+    REFERENCES `user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `message`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `message` ;
+
+CREATE TABLE IF NOT EXISTS `message` (
+  `msg_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `msg_sender` INT UNSIGNED NULL,
+  `msg_recipient` INT UNSIGNED NULL,
+  `msg_meet_time` DATETIME NULL,
+  `msg_location` VARCHAR(64) NULL,
+  `msg_contactinfo` VARCHAR(45) NULL,
+  `msg_body` VARCHAR(512) NULL,
+  `msg_timestamp` DATETIME NULL DEFAULT NOW(),
+  PRIMARY KEY (`msg_id`),
+  INDEX `sender_FK_idx` (`msg_sender` ASC) VISIBLE,
+  INDEX `recipient_FK_idx` (`msg_recipient` ASC) VISIBLE,
+  CONSTRAINT `msg_sender_FK`
+    FOREIGN KEY (`msg_sender`)
+    REFERENCES `user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `msg_recipient_FK`
+    FOREIGN KEY (`msg_recipient`)
+    REFERENCES `user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `review`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `review` ;
+
+CREATE TABLE IF NOT EXISTS `review` (
+  `review_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `review_item` INT UNSIGNED NOT NULL,
+  `review_recipient` INT UNSIGNED NOT NULL,
+  `review_contributor` INT UNSIGNED NOT NULL,
+  `review_rating` SMALLINT(1) NOT NULL,
+  `review_body` VARCHAR(45) NULL,
+  `review_timestamp` TIMESTAMP NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`review_id`),
+  INDEX `review_item_FK_idx` (`review_item` ASC) VISIBLE,
+  INDEX `review_recipient_FK_idx` (`review_recipient` ASC) VISIBLE,
+  INDEX `review_contributor_FK_idx` (`review_contributor` ASC) VISIBLE,
+  CONSTRAINT `review_item_FK`
+    FOREIGN KEY (`review_item`)
+    REFERENCES `item` (`item_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `review_recipient_FK`
+    FOREIGN KEY (`review_recipient`)
+    REFERENCES `user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `review_contributor_FK`
+    FOREIGN KEY (`review_contributor`)
     REFERENCES `user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `itemmsgs`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `itemmsgs` ;
+
+CREATE TABLE IF NOT EXISTS `itemmsgs` (
+  `im_item` INT UNSIGNED NOT NULL,
+  `im_msg` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`im_item`, `im_msg`),
+  INDEX `im_msg_FK_idx` (`im_msg` ASC) VISIBLE,
+  CONSTRAINT `im_item_FK`
+    FOREIGN KEY (`im_item`)
+    REFERENCES `item` (`item_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `im_msg_FK`
+    FOREIGN KEY (`im_msg`)
+    REFERENCES `message` (`msg_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
