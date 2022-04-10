@@ -27,7 +27,10 @@ router.post('/login', (req,res) => {
         }
     }).then((loggedUser) => {
         if(loggedUser > 0){
-            //do session stuff here?
+            //create a session on successful login
+            req.session.username = username;
+            req.session.userId = loggedUser;
+            res.locals.logged = true;
         }else{
             throw new UserError("Invalid login", "/login", 200);
         }

@@ -7,7 +7,6 @@ const LoginModel = {};
 LoginModel.authenticate = (username, password) => {
 
     let userId;
-    //no username, password in table will we change the table? or combine the first and last name into one?
     let baseSQL = `select user_id, user_username, user_password
                     from csc648.user
                     where user_username = ?;`;
