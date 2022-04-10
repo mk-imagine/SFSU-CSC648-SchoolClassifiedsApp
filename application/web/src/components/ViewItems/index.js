@@ -10,7 +10,6 @@ export const ViewItems = (props) => {
 
   useEffect(() => {
     setItems(props.items);
-    console.log("in view items use effect", items);
   });
 
   return (

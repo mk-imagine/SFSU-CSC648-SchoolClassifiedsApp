@@ -16,8 +16,8 @@ const Categories = () => {
   const [items, setItems] = useState([]);
   const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
   const [numberOfItems, setNumberOfItems] = useState(0);
-  const base_url = "/api";
-  //const base_url = process.env.REACT_APP_BACKEND_URL;
+  // const base_url = "/api";
+  const base_url = "http://localhost:3100";
 
   useEffect(() => {
     fetchCategories();
@@ -50,13 +50,22 @@ const Categories = () => {
     const category_id = selectedCategoryId;
     const category_name = selectedCategory;
 
-    console.log("category id ", category_id);
-    console.log("search term ", searchTerm);
+    // console.log("category id ", category_id);
+    // console.log("search term ", searchTerm);
 
-    if (category_id === 0 && searchTerm !== "") {
+    if (
+      parseInt(category_id) === 0 &&
+      searchTerm !== "" &&
+      category_name === "All Items"
+    ) {
       // we return items according to search term
       setToggle(true);
-      console.log("In one");
+      console.log(
+        "In one: category id: ",
+        category_id,
+        " search term: ",
+        searchTerm
+      );
       axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
         setItems(res.data);
         setNumberOfItems(res.data.length);
@@ -73,9 +82,13 @@ const Categories = () => {
         setItems(res.data);
         setNumberOfItems(res.data.length);
       });
-    } else if (category_id !== 0 && searchTerm !== "") {
+    } else if (
+      category_id !== 0 &&
+      searchTerm !== "" &&
+      category_name != "All Items"
+    ) {
       //return items according to category and search term
-      console.log("In three");
+      console.log("In three and category id is ", category_id);
       setToggle(true);
       axios
         .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
@@ -84,7 +97,14 @@ const Categories = () => {
           setNumberOfItems(res.data.length);
         });
     } else {
-      console.log("In four");
+      console.log(
+        "In four: category id: ",
+        category_id,
+        " search term: ",
+        searchTerm,
+        "category name: ",
+        category_name
+      );
       setToggle(false);
       axios.get(`${base_url}/items`).then((res) => {
         setItems(res.data);
