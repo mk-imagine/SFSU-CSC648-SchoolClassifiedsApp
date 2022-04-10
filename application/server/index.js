@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
-var dbrouter = require("./routes/dbrouter");
+var dbrouter = require("./routes/database");
 const imagerouter = require("./routes/image");
 
 const app = express();
