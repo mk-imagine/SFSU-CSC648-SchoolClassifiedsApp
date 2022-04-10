@@ -8,7 +8,9 @@ LoginModel.authenticate = (username, password) => {
 
     let userId;
     //no username, password in table will we change the table? or combine the first and last name into one?
-    let baseSQL = "select id, username, password from csc648.user where username = ?;";
+    let baseSQL = `select user_id, user_username, user_password
+                    from csc648.user
+                    where user_username = ?;`;
     return db.execute(baseSQL, [username])
     .then(([results, fields]) => {
         if(results && results.length == 1){

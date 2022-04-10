@@ -8,7 +8,9 @@ const RegisterModel = {};
 RegisterModel.createAccount = (firstname, lastname, username, password, email) => {
     return bcrypt.hash(password,3)
     .then((hashedPassword) => {
-        let baseSQL = "INSERT INTO cscs648.user (first_name, last_name, username, password, email) VALUES (?,?,?,?,?);";
+        let baseSQL = `INSERT INTO cscs648.user (user_fname, user_lname, user_username, 
+                            user_password, user_email)
+                        VALUES (?,?,?,?,?);`;
         return db.execute(baseSQL, [firstname, lastname, username, hashedPassword, email]);
 
     }).then(([results, fields]) => {
@@ -24,7 +26,7 @@ RegisterModel.createAccount = (firstname, lastname, username, password, email) =
 //no username in table
 RegisterModel.usernameExist = (username) => {
     //no username in table
-    return db.execute('select * from cscs648.user where username = ?',[username])
+    return db.execute('select * from cscs648.user where user_username = ?',[username])
     .then(([results, fields]) => {
         return Promise.resolve(!(results && results.length == 0));
     }).catch((err) => Promise.reject(err));
@@ -32,7 +34,7 @@ RegisterModel.usernameExist = (username) => {
 
 //execute sql to see if there is already someone with that email
 RegisterModel.emailExist = (email) => {
-    return db.execute('select * from csc648.user where email = ?',[email])
+    return db.execute('select * from csc648.user where user_email = ?',[email])
     .then(([results, fields]) => {
         return Promise.resolve(!(results && results.length == 0));
     }).catch((err) => Promise.reject(err));
