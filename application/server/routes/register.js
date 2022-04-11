@@ -1,10 +1,14 @@
 const express = require("express");
-const router = express();
+const router = express.Router();
 const Validator = require('../validator/loginValidation');
 var UserError = require("../error/userError");
 const UserModel = require("../models/register");
 const errorPrinter = require("../error/debugprinters");
 
+
+router.get("/", (req, res) => {
+    res.send("Successful Register route response");
+});
 //will we be changing the user table so that it will have password and username instead of first name, last name?
 router.post('/register', (req, res) => {
     //

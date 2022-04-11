@@ -2,6 +2,9 @@ const express = require("express");
 const mysql = require("mysql");
 var dbrouter = require("./routes/database");
 const imagerouter = require("./routes/image");
+const postingrouter = require('./routes/posting');
+const loginrouter = require('./routes/login');
+const registerrouter = require('./routes/register');
 // var sessions = require('express-session');
 // var mysqlSession = require('express-mysql-session')(sessions);
 
@@ -10,6 +13,11 @@ app.use('/api', dbrouter);
 
 app.use('/images', imagerouter);
 
+app.use('/login',loginrouter);
+app.use('/post', postingrouter);
+app.use('/register', registerrouter);
+
+//app.use('/createpost', postingrouter);
 // //configure sessions
 // var mysqlSessionStore = new mysqlSession(
 //     {

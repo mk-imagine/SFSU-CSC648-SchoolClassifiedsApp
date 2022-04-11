@@ -6,8 +6,16 @@ const UserModel = require("../models/login");
 /* var usernameValid = require('../validator/loginValidation').usernameValid;
 var emailValid = require('../validator/loginValidation').emailValid;
 var passwordValid = require('../validator/loginValidation').passwordValid; */
+
+router.get('/', (req, res) => {
+    res.send("Successful Login route response")
+})
+
 //will we be changing the user table so that it will have password and username instead of first name, last name?
 //to login
+
+
+
 router.post('/login', (req,res) => {
     let username = req.body;//not sure what the id is right now
     let password = req.body;//not sure what the id is right now

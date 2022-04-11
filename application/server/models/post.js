@@ -1,5 +1,7 @@
-var db = require("../config/database");
 
+var config = require("../config/database");
+const mysql = require("mysql");
+var db = mysql.createConnection(config.databaseOptions);
 const PostModel = {};
 
 PostModel.createPost = (category, seller, price, name, des, pic, thumb, course) => {

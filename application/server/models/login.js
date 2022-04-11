@@ -1,5 +1,7 @@
 //will we be changing the user table so that it will have password and username instead of first name, last name?
-var db = require("../config/database");
+var config = require("../config/database");
+const mysql = require("mysql");
+var db = mysql.createConnection(config.databaseOptions);
 var bcrypt = require('bcrypt');
 
 const LoginModel = {};
