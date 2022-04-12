@@ -1,26 +1,35 @@
 //will we be changing the user table so that it will have password and username instead of first name, last name?
-var config = require("../config/database");
+//var db = require("../config/database");
 const mysql = require("mysql");
-var db = mysql.createConnection(config.databaseOptions);
+//const db = mysql.createConnection(config.databaseOptions);
 var bcrypt = require('bcrypt');
+const configdb = require('../config/database');
+const db = new configdb();
 
 const LoginModel = {};
 
 LoginModel.authenticate = (username, password) => {
-
+    
     let userId;
     let baseSQL = `select user_id, user_username, user_password
                     from csc648.user
                     where user_username = ?;`;
-    return db.execute(baseSQL, [username])
+    
+    return db.query(baseSQL,[username])
     .then(([results, fields]) => {
-        if(results && results.length == 1){
-            userId = results[0].user_id;
-            return bcrypt.compare(password, results[0].password);
+        console.log(results);
+        console.log(results.length);
+        
+        if(results && !results[0]){
+            userId = results.user_id;
+           
+            //return bcrypt.compare(password, results.password);
+            return (password && results.user_password);
         }else{
             return Promise.reject(-1);
         }
     }).then((passwordMatch) => {
+        console.log('does password match?: '+passwordMatch);
         if(passwordMatch){
             return Promise.resolve(userId);
         }else{
