@@ -70,6 +70,11 @@ const Login = () => {
                           />
                           
                       </div>
+                      <Row>
+                            <span className='form-input-login'>
+                             Forgot Password 
+                            </span>
+                        </Row>
                   </Row>
 
 
@@ -81,14 +86,21 @@ const Login = () => {
                               Log In
                           </button>
                       </Col>
-
+                    
                       <Col></Col>
-                  </Row>
-
+                        </Row>
+                        <Row>
+                            <span className='form-input-login'>
+                             Need An Account? Register <a href='#'>Here</a>
+                             Forgot Password? Click <a href ='#'>Here</a>
+                            </span>
+                        </Row>
               </form>
+              
 
           </Col>
           <Col></Col>
+         
       </Row>
 
   </Container>
