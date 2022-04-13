@@ -1,5 +1,5 @@
 import React from "react";
-import Categories from "../components/Categories";
+import Categories from "../components/HomeMain";
 import ItemCard from "../components/ItemCard";
 import { HomeMain } from "../components/ViewItems";
 import anonPic from "../images/anonPic.png";
