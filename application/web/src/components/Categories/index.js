@@ -5,9 +5,7 @@ import { ViewItems } from "../ViewItems";
 import styles from "./index.module.css";
 import TopCategoryItems from "../TopcategoryItems";
 import { ItemTopCategoryCard } from "../ItemCard";
-import { useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const [catergories, setCategories] = useState([]);
@@ -21,25 +19,22 @@ const Categories = () => {
   const [numberOfItems, setNumberOfItems] = useState(0);
 
   const navigate = useNavigate();
-  // const base_url = "/api";
+  const base_url = "/api";
   //const base_url = "http://localhost:3100";
-  
 
   useEffect(() => {
-    // fetchCategories();
-    
-    // axios.get(`${base_url}/items`).then((res) => {
-    //   setItems(res.data);
-      
-    //   setNumberOfTotalItems(res.data.length);
-    // });
+    fetchCategories();
+    axios.get(`${base_url}/items`).then((res) => {
+      setItems(res.data);
+      setNumberOfTotalItems(res.data.length);
+    });
   }, []);
 
-  //const fetchCategories = () => {
-  //  // axios.get(`${base_url}/categories`).then((res) => {
-  //     setCategories(res.data);
-  //   });
-  // };
+  const fetchCategories = () => {
+    axios.get(`${base_url}/categories`).then((res) => {
+      setCategories(res.data);
+    });
+  };
 
   const dropDownChange = (e) => {
     console.log("selected category: ", e);
@@ -74,11 +69,10 @@ const Categories = () => {
         " search term: ",
         searchTerm
       );
-      // axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
-      //   setItems(res.data);
-      //   setNumberOfItems(res.data.length);
-      // });
-
+      axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
+        setItems(res.data);
+        setNumberOfItems(res.data.length);
+      });
     } else if (
       category_id !== 0 &&
       searchTerm === "" &&
@@ -86,12 +80,11 @@ const Categories = () => {
     ) {
       // we return items according to categorys
       console.log("In two");
-      // setToggle(true);
-      // axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
-      //   setItems(res.data);
-      //   setNumberOfItems(res.data.length);
-      // });
-
+      setToggle(true);
+      axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
+        setItems(res.data);
+        setNumberOfItems(res.data.length);
+      });
     } else if (
       category_id !== 0 &&
       searchTerm !== "" &&
@@ -100,12 +93,12 @@ const Categories = () => {
       //return items according to category and search term
       console.log("In three and category id is ", category_id);
       setToggle(true);
-      // axios
-      //   .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
-      //   .then((res) => {
-      //     setItems(res.data);
-      //     setNumberOfItems(res.data.length);
-      //   });
+      axios
+        .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+        .then((res) => {
+          setItems(res.data);
+          setNumberOfItems(res.data.length);
+        });
     } else {
       console.log(
         "In four: category id: ",
@@ -116,20 +109,17 @@ const Categories = () => {
         category_name
       );
       setToggle(false);
-      // axios.get(`${base_url}/items`).then((res) => {
-      //   setItems(res.data);
-      //   setNumberOfItems(res.data.length);
-      // });
+      axios.get(`${base_url}/items`).then((res) => {
+        setItems(res.data);
+        setNumberOfItems(res.data.length);
+      });
     }
     setSearchInput("");
   };
 
-const OnLogin = () => {
-
-navigate('/login')
-
-}
-
+  const OnLogin = () => {
+    navigate("/login");
+  };
 
   return (
     <div>
@@ -137,12 +127,11 @@ navigate('/login')
         <div style={{ textAlign: "center" }}>CSC 648 Spring 2022 Team 08</div>
       </Row>
       <div className={styles.container}>
-       
         <Row>
           <Col lg={2}>
             <div className={styles.title}>Purple Market</div>
           </Col>
-         
+
           <Col lg={7}>
             <Row className={styles.top}>
               <div style={{ marginLeft: "5rem" }}>
@@ -196,7 +185,6 @@ navigate('/login')
                     >
                       Search
                     </Button>
-
                   </span>
                 </div>
               </div>
@@ -204,17 +192,17 @@ navigate('/login')
           </Col>
           <Col>
             <Row>
-             
               <div className={styles.buttonGroup}>
                 <Col>
                   <Button className={styles.topButton} variant="primary">
                     Post Items
                   </Button>
 
-                  <Button className={styles.topButton} 
-                     variant="primary"
-                     onClick={OnLogin}>
-                       
+                  <Button
+                    className={styles.topButton}
+                    variant="primary"
+                    onClick={OnLogin}
+                  >
                     Login
                   </Button>
                   <Button
