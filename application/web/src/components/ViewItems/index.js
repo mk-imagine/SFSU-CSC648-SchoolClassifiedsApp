@@ -10,8 +10,7 @@ export const ViewItems = (props) => {
   const [images, setImages] = useState([]);
   const columnsPerRow = 3;
 
-  const base_url = "/api";
-  //const base_url = "http://localhost:3100";
+  // const base_url = "http://localhost:3100";
   useEffect(() => {
     setItems(props.items);
   });
@@ -21,7 +20,7 @@ export const ViewItems = (props) => {
       <Container>
         <Row xs={1} md={columnsPerRow}>
           {items.map((e) => {
-            let image_url = `${base_url}/images/${e.item_pic}`;
+            let image_url = `/images/${e.item_pic}`;
             //console.log("image_url: ", image_url);
             return (
               <div>
@@ -31,7 +30,7 @@ export const ViewItems = (props) => {
                   title={e.item_name}
                   description={e.item_desc}
                   price={e.item_price}
-                  image={anonPic}
+                  image={image_url}
                 ></ItemCard>
               </div>
             );

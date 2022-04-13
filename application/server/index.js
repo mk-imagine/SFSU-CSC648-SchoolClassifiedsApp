@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 var dbrouter = require("./routes/database");
 const imagerouter = require("./routes/image");
-const cors = require("cors");
+// const cors = require("cors");
 // var sessions = require('express-session');
 // var mysqlSession = require('express-mysql-session')(sessions);
 
@@ -13,7 +13,7 @@ app.use('/images', imagerouter);
 
 app.use(dbrouter);
 
-app.use(cors());
+// app.use(cors());
 // //configure sessions
 // var mysqlSessionStore = new mysqlSession(
 //     {

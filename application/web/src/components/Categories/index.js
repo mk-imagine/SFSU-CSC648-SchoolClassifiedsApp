@@ -20,7 +20,7 @@ const Categories = () => {
 
   const navigate = useNavigate();
   const base_url = "/api";
-  //const base_url = "http://localhost:3100";
+  // const base_url = "http://localhost:3100";
 
   useEffect(() => {
     fetchCategories();
