@@ -21,6 +21,9 @@ app.use('/post', postingrouter);
 app.use('/register', registerrouter);
 
 //app.use('/createpost', postingrouter);
+
+app.use(dbrouter);
+
 // //configure sessions
 // var mysqlSessionStore = new mysqlSession(
 //     {
