@@ -5,6 +5,7 @@ import { ViewItems } from "../ViewItems";
 import styles from "./index.module.css";
 import TopCategoryItems from "../TopcategoryItems";
 import { ItemTopCategoryCard } from "../ItemCard";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const [catergories, setCategories] = useState([]);
@@ -16,6 +17,8 @@ const Categories = () => {
   const [items, setItems] = useState([]);
   const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
   const [numberOfItems, setNumberOfItems] = useState(0);
+
+  const navigate = useNavigate();
   // const base_url = "/api";
   const base_url = "http://localhost:3100";
 
@@ -192,7 +195,13 @@ const Categories = () => {
                   <Button className={styles.topButton} variant="primary">
                     Login
                   </Button>
-                  <Button className={styles.topButton} variant="primary">
+                  <Button
+                    className={styles.topButton}
+                    variant="primary"
+                    onClick={() => {
+                      navigate("/register");
+                    }}
+                  >
                     Register
                   </Button>
                 </Col>

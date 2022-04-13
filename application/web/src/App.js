@@ -10,6 +10,7 @@ import Jiasheng from "../src/components/About/People/Jiasheng";
 import Vivian from "../src/components/About/People/Vivian";
 import Mark from "../src/components/About/People/Mark";
 import About from "./Pages/About";
+import RegisterPage from "./Pages/Register";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/about/Jesus" exact element={<Jesus />} />
         <Route path="/about/Jiasheng" exact element={<Jiasheng />} />
         <Route path="/about/Vivian" exact element={<Vivian />} />
+
+        <Route path="/register" exact element={<RegisterPage />} />
 
         {/* <Route path="*" element={NotFound} /> */}
       </Routes>
