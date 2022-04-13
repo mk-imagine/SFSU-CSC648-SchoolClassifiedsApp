@@ -8,30 +8,39 @@ const sharp = require("sharp");
 const mysql = require("mysql");
 
 
-var upload = multer({dest:'../user_images'});
+var upload = multer({dest:'./user_images'});
 
 router.get("/", (req, res) => {
     res.send("Successful Posting route response");
 });
 
 router.post('/post', upload.single('image'), (req,res) => {
+    console.log(req.body);
     let category = req.body.category;//not sure what the id is right now
-    let sellerId = req.session.user_id;//???
-    //let sellerId = 1;//???
+
+    //let sellerId = req.session.user_id;//???
+    let sellerId = 1;//for testing
 
     let price = req.body.price;//not sure what the id is right now
     let name = req.body.name;//not sure what the id is right now
     let description = req.body.description;//not sure what the id is right now
     
     let course = req.body.course;//not sure what the id is right now
+
+    //I commented this out becuase the database doesn't support the long path name, I think
+    //we should increase it
+    /* let picture = req.file.path;
+    let fileAsThumbNail = `thumb-${req.file.filename}`;
+    let thumbnail = req.file.destination+"/"+fileAsThumbNail; */
+    
     let picture = req.file.path;
-    let fileAsThumbNail = `thumbnail-${req.file.filename}`;
-    let thumbnail = req.file.destination+"/"+fileAsThumbNail;
+    let fileAsThumbNail = `thumb-${req.file.filename}`;
+    let thumbnail = fileAsThumbNail;
     
 
     Validator.postNoNulls(category, sellerId, price, name, description, course, picture)
     .then((notNull) => {
-        console.log("in posting route after postnoNulls ");
+        console.log("in posting route after postnoNulls "+notNull);
         if(notNull){
             return sharp(picture).resize(200).toFile(thumbnail);
         }else{
@@ -49,7 +58,8 @@ router.post('/post', upload.single('image'), (req,res) => {
 
         }
     }).catch((err) => {
-        //do somethng here
+        //do somethng here 
+        console.log(err);
     })
 
 });
