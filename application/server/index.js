@@ -3,6 +3,11 @@ const mysql = require("mysql");
 var dbrouter = require("./routes/database");
 const imagerouter = require("./routes/image");
 // const cors = require("cors");
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    optionSuccessStatus: 200
+}
 // var sessions = require('express-session');
 // var mysqlSession = require('express-mysql-session')(sessions);
 
@@ -13,7 +18,7 @@ app.use('/images', imagerouter);
 
 app.use(dbrouter);
 
-// app.use(cors());
+// app.use(cors(corsOptions));
 // //configure sessions
 // var mysqlSessionStore = new mysqlSession(
 //     {
