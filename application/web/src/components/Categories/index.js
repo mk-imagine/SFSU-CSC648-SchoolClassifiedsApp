@@ -5,9 +5,7 @@ import { ViewItems } from "../ViewItems";
 import styles from "./index.module.css";
 import TopCategoryItems from "../TopcategoryItems";
 import { ItemTopCategoryCard } from "../ItemCard";
-import { useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const [catergories, setCategories] = useState([]);
@@ -23,14 +21,11 @@ const Categories = () => {
   const navigate = useNavigate();
   // const base_url = "/api";
   //const base_url = "http://localhost:3100";
-  
 
   useEffect(() => {
     // fetchCategories();
-    
     // axios.get(`${base_url}/items`).then((res) => {
     //   setItems(res.data);
-      
     //   setNumberOfTotalItems(res.data.length);
     // });
   }, []);
@@ -78,7 +73,6 @@ const Categories = () => {
       //   setItems(res.data);
       //   setNumberOfItems(res.data.length);
       // });
-
     } else if (
       category_id !== 0 &&
       searchTerm === "" &&
@@ -91,7 +85,6 @@ const Categories = () => {
       //   setItems(res.data);
       //   setNumberOfItems(res.data.length);
       // });
-
     } else if (
       category_id !== 0 &&
       searchTerm !== "" &&
@@ -124,12 +117,9 @@ const Categories = () => {
     setSearchInput("");
   };
 
-const OnLogin = () => {
-
-navigate('/login')
-
-}
-
+  const OnLogin = () => {
+    navigate("/login");
+  };
 
   return (
     <div>
@@ -137,12 +127,11 @@ navigate('/login')
         <div style={{ textAlign: "center" }}>CSC 648 Spring 2022 Team 08</div>
       </Row>
       <div className={styles.container}>
-       
         <Row>
           <Col lg={2}>
             <div className={styles.title}>Purple Market</div>
           </Col>
-         
+
           <Col lg={7}>
             <Row className={styles.top}>
               <div style={{ marginLeft: "5rem" }}>
@@ -196,7 +185,6 @@ navigate('/login')
                     >
                       Search
                     </Button>
-
                   </span>
                 </div>
               </div>
@@ -204,17 +192,17 @@ navigate('/login')
           </Col>
           <Col>
             <Row>
-             
               <div className={styles.buttonGroup}>
                 <Col>
                   <Button className={styles.topButton} variant="primary">
                     Post Items
                   </Button>
 
-                  <Button className={styles.topButton} 
-                     variant="primary"
-                     onClick={OnLogin}>
-                       
+                  <Button
+                    className={styles.topButton}
+                    variant="primary"
+                    onClick={OnLogin}
+                  >
                     Login
                   </Button>
                   <Button

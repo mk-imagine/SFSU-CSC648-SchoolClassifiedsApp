@@ -3,12 +3,10 @@ import { Row, Col, Container, Form } from "react-bootstrap";
 import useRegisterForm from "./useRegisterForm";
 import validate from "./validate";
 import "./registerForm.css";
-import { useNavigate } from "react-router-dom";
 
 const FormSignup = () => {
   const { handleChange, handleRegister, values, errors } =
     useRegisterForm(validate);
-  const navigate = useNavigate();
 
   return (
     <Container>
@@ -30,53 +28,38 @@ const FormSignup = () => {
 
       <Row>
         <Col></Col>
-        <Col lg={6}>
+        <Col lg={8}>
           <form className="form" onSubmit={handleRegister}>
-            {/* <h2 classname = 'form-title'>
-                        Sign up for a free account
-                    </h2> */}
-
-            {/* #1 user input for first name  */}
-
-            {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>First Name*:</Form.Label>
-                                <Form.Control type="text"
-                                    name='firstname'
-                                    placeholder="Enter your first name"
-                                    value={values.firstname}
-                                    onChange={handleChange} />
-                                <Form.Text className="text-muted">
-                                    {errors.firstname && <p>{errors.firstname}</p>}
-                                </Form.Text>
-                            </Form.Group> */}
             <Row>
-              <div className="form-inputs">
-                <label className="form-label">First Name*:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  name="firstname"
-                  placeholder="Enter your first name"
-                  value={values.firstname}
-                  onChange={handleChange}
-                />
-                {errors.firstname && <p>{errors.firstname}</p>}
-              </div>
-            </Row>
+              <Col>
+                <div className="form-inputs">
+                  <label className="form-label">First Name*:</label>
+                  <input
+                    className="form-input"
+                    type="text"
+                    name="firstname"
+                    placeholder="Enter your first name"
+                    value={values.firstname}
+                    onChange={handleChange}
+                  />
+                  {errors.firstname && <p>{errors.firstname}</p>}
+                </div>
+              </Col>
 
-            <Row>
-              <div className="form-inputs">
-                <label className="form-label">Last Name*:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  name="lastname"
-                  placeholder="Enter your last name"
-                  value={values.lastname}
-                  onChange={handleChange}
-                />
-                {errors.lastname && <p>{errors.lastname}</p>}
-              </div>
+              <Col>
+                <div className="form-inputs">
+                  <label className="form-label">Last Name*:</label>
+                  <input
+                    className="form-input"
+                    type="text"
+                    name="lastname"
+                    placeholder="Enter your last name"
+                    value={values.lastname}
+                    onChange={handleChange}
+                  />
+                  {errors.lastname && <p>{errors.lastname}</p>}
+                </div>
+              </Col>
             </Row>
 
             <Row>
