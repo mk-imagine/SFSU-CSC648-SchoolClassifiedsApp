@@ -19,22 +19,22 @@ const Categories = () => {
   const [numberOfItems, setNumberOfItems] = useState(0);
 
   const navigate = useNavigate();
-  // const base_url = "/api";
+  const base_url = "/api";
   //const base_url = "http://localhost:3100";
 
   useEffect(() => {
-    // fetchCategories();
-    // axios.get(`${base_url}/items`).then((res) => {
-    //   setItems(res.data);
-    //   setNumberOfTotalItems(res.data.length);
-    // });
+    fetchCategories();
+    axios.get(`${base_url}/items`).then((res) => {
+      setItems(res.data);
+      setNumberOfTotalItems(res.data.length);
+    });
   }, []);
 
-  //const fetchCategories = () => {
-  //  // axios.get(`${base_url}/categories`).then((res) => {
-  //     setCategories(res.data);
-  //   });
-  // };
+  const fetchCategories = () => {
+    axios.get(`${base_url}/categories`).then((res) => {
+      setCategories(res.data);
+    });
+  };
 
   const dropDownChange = (e) => {
     console.log("selected category: ", e);
@@ -69,10 +69,10 @@ const Categories = () => {
         " search term: ",
         searchTerm
       );
-      // axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
-      //   setItems(res.data);
-      //   setNumberOfItems(res.data.length);
-      // });
+      axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
+        setItems(res.data);
+        setNumberOfItems(res.data.length);
+      });
     } else if (
       category_id !== 0 &&
       searchTerm === "" &&
@@ -80,11 +80,11 @@ const Categories = () => {
     ) {
       // we return items according to categorys
       console.log("In two");
-      // setToggle(true);
-      // axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
-      //   setItems(res.data);
-      //   setNumberOfItems(res.data.length);
-      // });
+      setToggle(true);
+      axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
+        setItems(res.data);
+        setNumberOfItems(res.data.length);
+      });
     } else if (
       category_id !== 0 &&
       searchTerm !== "" &&
@@ -93,12 +93,12 @@ const Categories = () => {
       //return items according to category and search term
       console.log("In three and category id is ", category_id);
       setToggle(true);
-      // axios
-      //   .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
-      //   .then((res) => {
-      //     setItems(res.data);
-      //     setNumberOfItems(res.data.length);
-      //   });
+      axios
+        .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+        .then((res) => {
+          setItems(res.data);
+          setNumberOfItems(res.data.length);
+        });
     } else {
       console.log(
         "In four: category id: ",
@@ -109,10 +109,10 @@ const Categories = () => {
         category_name
       );
       setToggle(false);
-      // axios.get(`${base_url}/items`).then((res) => {
-      //   setItems(res.data);
-      //   setNumberOfItems(res.data.length);
-      // });
+      axios.get(`${base_url}/items`).then((res) => {
+        setItems(res.data);
+        setNumberOfItems(res.data.length);
+      });
     }
     setSearchInput("");
   };
