@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Validator = require('../validator/loginValidation');
-var UserError = require("../error/userError");
+const UserError = require("../error/userError");
+const debugPrint = require("../error/debugprinters");
 const UserModel = require("../models/login");
 var bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({extended:true}));
@@ -52,19 +53,33 @@ router.post('/login', (req,res) => {
             req.session.username = username;
             req.session.userId = loggedUser;
             res.locals.logged = true;
+            res.redirect("/");//after login redirect user to this page
         }else{
             throw new UserError("Invalid login", "/login", 200);
         }
     }).catch((err) => {
-        //do something here?
-        console.log(err);
+        debugPrint.errorPrint("failed login");
+        if(err instanceof UserError) {
+            res.status(err.getStatus());
+            res.redirect("/login");
+        } else {
+            next(err);
+        }
     })
-    
 });
 
-//to logout
 router.post('/logout', (req, res) => {
-    //do session stuff here?
+    req.session.destroy((err) => {
+        if (err) {
+          debugPrint.errorPrint('session could not be destroyed.');
+          next(err);
+        } else {
+          debugPrint.successPrint('session was destroyed');
+          res.clearCookie('csid');//must match key in session config in index.js
+          res.json({ status: "OK", message: "user is logged out" });
+          //res.locals.logged = false;
+        }
+      })
 });
 
 module.exports = router;
