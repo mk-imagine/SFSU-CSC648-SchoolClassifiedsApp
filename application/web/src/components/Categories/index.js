@@ -5,6 +5,7 @@ import { ViewItems } from "../ViewItems";
 import styles from "./index.module.css";
 import TopCategoryItems from "../TopcategoryItems";
 import { ItemTopCategoryCard } from "../ItemCard";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const [catergories, setCategories] = useState([]);
@@ -16,8 +17,10 @@ const Categories = () => {
   const [items, setItems] = useState([]);
   const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
   const [numberOfItems, setNumberOfItems] = useState(0);
-  const base_url = "/api";
-  //const base_url = process.env.REACT_APP_BACKEND_URL;
+
+  const navigate = useNavigate();
+  // const base_url = "/api";
+  const base_url = "http://localhost:3100";
 
   useEffect(() => {
     fetchCategories();
@@ -50,13 +53,22 @@ const Categories = () => {
     const category_id = selectedCategoryId;
     const category_name = selectedCategory;
 
-    console.log("category id ", category_id);
-    console.log("search term ", searchTerm);
+    // console.log("category id ", category_id);
+    // console.log("search term ", searchTerm);
 
-    if (category_id === 0 && searchTerm !== "") {
+    if (
+      parseInt(category_id) === 0 &&
+      searchTerm !== "" &&
+      category_name === "All Items"
+    ) {
       // we return items according to search term
       setToggle(true);
-      console.log("In one");
+      console.log(
+        "In one: category id: ",
+        category_id,
+        " search term: ",
+        searchTerm
+      );
       axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
         setItems(res.data);
         setNumberOfItems(res.data.length);
@@ -73,9 +85,13 @@ const Categories = () => {
         setItems(res.data);
         setNumberOfItems(res.data.length);
       });
-    } else if (category_id !== 0 && searchTerm !== "") {
+    } else if (
+      category_id !== 0 &&
+      searchTerm !== "" &&
+      category_name != "All Items"
+    ) {
       //return items according to category and search term
-      console.log("In three");
+      console.log("In three and category id is ", category_id);
       setToggle(true);
       axios
         .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
@@ -84,7 +100,14 @@ const Categories = () => {
           setNumberOfItems(res.data.length);
         });
     } else {
-      console.log("In four");
+      console.log(
+        "In four: category id: ",
+        category_id,
+        " search term: ",
+        searchTerm,
+        "category name: ",
+        category_name
+      );
       setToggle(false);
       axios.get(`${base_url}/items`).then((res) => {
         setItems(res.data);
@@ -92,6 +115,10 @@ const Categories = () => {
       });
     }
     setSearchInput("");
+  };
+
+  const OnLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -104,6 +131,7 @@ const Categories = () => {
           <Col lg={2}>
             <div className={styles.title}>Purple Market</div>
           </Col>
+
           <Col lg={7}>
             <Row className={styles.top}>
               <div style={{ marginLeft: "5rem" }}>
@@ -169,10 +197,21 @@ const Categories = () => {
                   <Button className={styles.topButton} variant="primary">
                     Post Items
                   </Button>
-                  <Button className={styles.topButton} variant="primary">
+
+                  <Button
+                    className={styles.topButton}
+                    variant="primary"
+                    onClick={OnLogin}
+                  >
                     Login
                   </Button>
-                  <Button className={styles.topButton} variant="primary">
+                  <Button
+                    className={styles.topButton}
+                    variant="primary"
+                    onClick={() => {
+                      navigate("/register");
+                    }}
+                  >
                     Register
                   </Button>
                 </Col>

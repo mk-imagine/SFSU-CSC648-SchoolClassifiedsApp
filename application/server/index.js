@@ -47,7 +47,6 @@ app.use('/post', postingrouter);
 app.use('/register', registerrouter);
 
 
-
 app.use(flash());
 
 const port = 3100;
