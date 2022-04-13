@@ -49,10 +49,10 @@ router.post('/login', (req,res) => {
         console.log("what is loggeduser? "+loggedUser);
         if(loggedUser > 0){
             //create a session on successful login
-            console.log(username);
             req.session.username = username;
             req.session.userId = loggedUser;
             res.locals.logged = true;
+            req.flash('success','Login Successful');
             res.redirect("/");//after login redirect user to this page
         }else{
             throw new UserError("Invalid login", "/login", 200);
@@ -60,6 +60,8 @@ router.post('/login', (req,res) => {
     }).catch((err) => {
         debugPrint.errorPrint("failed login");
         if(err instanceof UserError) {
+            debugPrint.errorPrint(err.getMessage());
+            req.flash('error', err.getMessage());
             res.status(err.getStatus());
             res.redirect("/login");
         } else {
@@ -78,6 +80,7 @@ router.post('/logout', (req, res) => {
           res.clearCookie('csid');//must match key in session config in index.js
           res.json({ status: "OK", message: "user is logged out" });
           //res.locals.logged = false;
+          res.f
         }
       })
 });

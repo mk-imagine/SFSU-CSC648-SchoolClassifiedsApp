@@ -72,6 +72,7 @@ console.log(req.body);
             throw new UserError("User could not be created", "/register", 200);
         }else{
             console.log('User successfuly created!');
+            req.flash('success', 'User account has been made');
             res.redirect('/login');
         }
     })

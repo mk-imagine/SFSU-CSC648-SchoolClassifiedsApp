@@ -5,10 +5,13 @@ const imagerouter = require("./routes/image");
 const postingrouter = require('./routes/posting');
 const loginrouter = require('./routes/login');
 const registerrouter = require('./routes/register');
-// var sessions = require('express-session');
-// var mysqlSession = require('express-mysql-session')(sessions);
 
 const app = express();
+
+// var sessions = require('express-session');
+// var mysqlSession = require('express-mysql-session')(sessions);
+const flash = require("express-flash");
+
 app.use('/api', dbrouter);
 
 app.use('/images', imagerouter);
@@ -40,6 +43,8 @@ app.use('/register', registerrouter);
 //     }
 //     next();
 // })
+
+app.use(flash());
 
 const port = 3100;
 app.listen(port, () => console.log("App is listening on port ", port));
