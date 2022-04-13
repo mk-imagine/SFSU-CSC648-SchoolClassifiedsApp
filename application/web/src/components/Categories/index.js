@@ -19,9 +19,11 @@ const Categories = () => {
   const [items, setItems] = useState([]);
   const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
   const [numberOfItems, setNumberOfItems] = useState(0);
+
+  const navigate = useNavigate();
   // const base_url = "/api";
   //const base_url = "http://localhost:3100";
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     // fetchCategories();
@@ -215,7 +217,13 @@ navigate('/login')
                        
                     Login
                   </Button>
-                  <Button className={styles.topButton} variant="primary">
+                  <Button
+                    className={styles.topButton}
+                    variant="primary"
+                    onClick={() => {
+                      navigate("/register");
+                    }}
+                  >
                     Register
                   </Button>
                 </Col>
