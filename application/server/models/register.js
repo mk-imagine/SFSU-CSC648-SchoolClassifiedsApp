@@ -3,9 +3,9 @@
 //const mysql = require("mysql");
 //var db = mysql.createConnection(config.databaseOptions);
 var bcrypt = require("bcrypt");
-const mysql = require("mysql");
-const configdb = require('../config/database');
-const db = new configdb();
+// const mysql = require("mysql");
+// const configdb = require('../config/database');
+const db = require('../config/db2');
 
 const RegisterModel = {};
 
@@ -25,8 +25,8 @@ RegisterModel.createAccount = (firstname, lastname, username, password, email) =
                         VALUES (?,?,?,?,?);`;
   
 
-        db.query(baseSQL, [firstname, lastname, username, password, email])
-        return db.query('select * from csc648.user where user_username = ?',[username])
+        db.execute(baseSQL, [firstname, lastname, username, password, email])
+        return db.execute('select * from csc648.user where user_username = ?',[username])
     //})
     .then(([results, fields]) => {
         
@@ -44,7 +44,7 @@ RegisterModel.createAccount = (firstname, lastname, username, password, email) =
 RegisterModel.usernameExist = (username) => {
     //no username in table
     console.log("in the usernameexist. what is username? :"+username);
-    return db.query('select * from csc648.user where user_username = ?',[username])
+    return db.execute('select * from csc648.user where user_username = ?',[username])
     .then(([results, fields]) => {
         console.log("db has executed. what are the results?: \n"+results);
         return Promise.resolve(results);
@@ -53,7 +53,7 @@ RegisterModel.usernameExist = (username) => {
 
 //execute sql to see if there is already someone with that email
 RegisterModel.emailExist = (email) => {
-    return db.query('select * from csc648.user where user_email = ?',[email])
+    return db.execute('select * from csc648.user where user_email = ?',[email])
     .then(([results, fields]) => {
         console.log("db has executed. what are the results?: \n"+results);
         return Promise.resolve(results);

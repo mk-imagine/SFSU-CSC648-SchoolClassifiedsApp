@@ -3,8 +3,8 @@
 const mysql = require("mysql");
 //const db = mysql.createConnection(config.databaseOptions);
 var bcrypt = require('bcrypt');
-const configdb = require('../config/database');
-const db = new configdb();
+// const configdb = require('../config/database');
+const db = require('../config/db2');
 
 const LoginModel = {};
 
@@ -15,7 +15,7 @@ LoginModel.authenticate = (username, password) => {
                     from csc648.user
                     where user_username = ?;`;
     
-    return db.query(baseSQL,[username])
+    return db.execute(baseSQL,[username])
     .then(([results, fields]) => {
         console.log(results);
         console.log(results.length);
