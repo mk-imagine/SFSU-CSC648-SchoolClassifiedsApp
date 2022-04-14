@@ -1,7 +1,7 @@
 const express = require("express");
 const mysql = require("mysql2");
 // var cookieParser = require('cookie-parser');
-var dbrouter = require("./routes/item");
+var itemapi = require("./routes/item");
 const imagerouter = require("./routes/image");
 const postingrouter = require('./routes/posting');
 const loginrouter = require('./routes/login');
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/api', dbrouter);
+app.use('/api', itemapi);
 
 app.use('/images', imagerouter);
 
