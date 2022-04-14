@@ -11,6 +11,7 @@ import Vivian from "../src/components/About/People/Vivian";
 import Mark from "../src/components/About/People/Mark";
 import RegisterPage from "./Pages/Register";
 import LoginPage from "./Pages/LoginPage";
+import CreatePostPage from "./Pages/CreatePostPage"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
 
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/login" exact element={<LoginPage />} />
+        <Route path="/createpost" exact element={<CreatePostPage />} />
 
         {/* <Route path="*" element={NotFound} /> */}
       </Routes>

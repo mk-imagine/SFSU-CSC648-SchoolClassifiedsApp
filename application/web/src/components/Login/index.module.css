@@ -1,0 +1,32 @@
+/* HEADER:Styling For Log In Page */
+
+.title{
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.subtitle{
+  font-size: 1rem;
+  text-align: right;
+  
+
+}
+.input{
+  width: 100% ;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  
+}
+
+.button{
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #5f27cd !important;
+  border-color: #5f27cd !important ;
+}
+
