@@ -83,13 +83,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `session`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `session` ;
+DROP TABLE IF EXISTS `sessions` ;
 
-CREATE TABLE IF NOT EXISTS `session` (
-  `session_id` VARCHAR(64) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `session_user` INT UNSIGNED NULL,
-  `session_expires` DATETIME NULL,
-  `session_data` VARCHAR(45) NULL,
+  `expires` int unsigned NOT NULL,
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   PRIMARY KEY (`session_id`),
   INDEX `user_FK_idx` (`session_user` ASC) VISIBLE,
   CONSTRAINT `session_user_FK`

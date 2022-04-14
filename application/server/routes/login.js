@@ -48,9 +48,9 @@ router.post('/login', (req,res) => {
     }).then((loggedUser) => {
         console.log("what is loggeduser? "+loggedUser);
         if(loggedUser > 0){
-            //create a session on successful login
-            // req.session.username = username;
-            // req.session.userId = loggedUser;
+            // create a session on successful login
+            req.session.username = username;
+            req.session.userId = loggedUser;
             res.locals.logged = true;
             req.flash('success','Login Successful');
             res.redirect("/");//after login redirect user to this page
@@ -71,18 +71,18 @@ router.post('/login', (req,res) => {
 });
 
 router.post('/logout', (req, res) => {
-    // req.session.destroy((err) => {
-    //     if (err) {
-    //       debugPrint.errorPrint('session could not be destroyed.');
-    //       next(err);
-    //     } else {
-    //       debugPrint.successPrint('session was destroyed');
-    //       res.clearCookie('csid');//must match key in session config in index.js
-    //       res.json({ status: "OK", message: "user is logged out" });
-    //       //res.locals.logged = false;
-    //       res.f
-    //     }
-    //   })
+    req.session.destroy((err) => {
+        if (err) {
+          debugPrint.errorPrint('session could not be destroyed.');
+          next(err);
+        } else {
+          debugPrint.successPrint('session was destroyed');
+          res.clearCookie('csid');//must match key in session config in index.js
+          res.json({ status: "OK", message: "user is logged out" });
+          //res.locals.logged = false;
+          res.f
+        }
+      })
 });
 
 module.exports = router;
