@@ -29,13 +29,13 @@ router.post('/post', upload.single('image'), (req,res) => {
 
     //I commented this out becuase the database doesn't support the long path name, I think
     //we should increase it
-    /* let picture = req.file.path;
-    let fileAsThumbNail = `thumb-${req.file.filename}`;
-    let thumbnail = req.file.destination+"/"+fileAsThumbNail; */
-    
     let picture = req.file.path;
     let fileAsThumbNail = `thumb-${req.file.filename}`;
-    let thumbnail = fileAsThumbNail;
+    let thumbnail = req.file.destination+"/"+fileAsThumbNail;
+    
+    /* let picture = req.file.path;
+    let fileAsThumbNail = `thumb-${req.file.filename}`;
+    let thumbnail = fileAsThumbNail; */
     
 
     Validator.postNoNulls(category, sellerId, price, name, description, course, picture)
@@ -51,7 +51,7 @@ router.post('/post', upload.single('image'), (req,res) => {
         return PostModel.createPost(category, sellerId, price, name, description, picture, thumbnail, course);
     }).then((postLogged) => {
         console.log("is post in database?: "+postLogged);
-        if(postLogged > 0){
+        if(postLogged){
             //redirect somewhere?
         }else{
             throw new PostError('Unable to put post data into db', '/post', 200);

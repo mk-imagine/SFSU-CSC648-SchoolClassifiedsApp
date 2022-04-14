@@ -20,11 +20,12 @@ LoginModel.authenticate = (username, password) => {
         console.log(results);
         console.log(results.length);
         
-        if(results && !results[0]){
-            userId = results.user_id;
-           
-            //return bcrypt.compare(password, results.password);
-            return (password && results.user_password);
+        if(results && !results[1]){
+            userId = results[0].user_id;
+           //var hashed = bcrypt(password,0);
+           console.log("what is password; "+password+" what is results password: "+results[0].user_password);
+            return bcrypt.compare(password, results[0].user_password);
+            //return (hashed && results.user_password);
         }else{
             return Promise.reject(-1);
         }

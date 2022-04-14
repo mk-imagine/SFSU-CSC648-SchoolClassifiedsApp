@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/login', (req,res) => {
+router.post('/login', (req,res,next) => {
     console.log(req.body);
     let username = req.body.username;//not sure what the id is right now
     let password = req.body.password;//not sure what the id is right now
@@ -32,8 +32,8 @@ router.post('/login', (req,res) => {
     .then((usernameOK) => {console.log("Is username ok?"+usernameOK);
         if(usernameOK){
             
-           // return Validator.passwordValid(password);
-           return true;
+            return Validator.passwordValid(password);
+           //return true;
         }else{
             console.log("username not ok");
             throw new UserError("Please enter a valid username", "/login", 200);
@@ -52,7 +52,7 @@ router.post('/login', (req,res) => {
             req.session.username = username;
             req.session.userId = loggedUser;
             res.locals.logged = true;
-            req.flash('success','Login Successful');
+           // req.flash('success','Login Successful');
             res.redirect("/");//after login redirect user to this page
         }else{
             throw new UserError("Invalid login", "/login", 200);
@@ -61,7 +61,7 @@ router.post('/login', (req,res) => {
         debugPrint.errorPrint("failed login");
         if(err instanceof UserError) {
             debugPrint.errorPrint(err.getMessage());
-            req.flash('error', err.getMessage());
+           // req.flash('error', err.getMessage());
             res.status(err.getStatus());
             res.redirect("/login");
         } else {

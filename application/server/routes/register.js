@@ -68,19 +68,22 @@ console.log(req.body);
         }
     }).then((userId) => {
         console.log("what is the userID? "+ userId);
-        if(userId < 0){
-            throw new UserError("User could not be created", "/register", 200);
-        }else{
+        if(userId > 0){
             console.log('User successfuly created!');
-            req.flash('success', 'User account has been made');
+            
             res.redirect('/login');
+        }else{
+            
+           // req.flash('success', 'User account has been made');
+           throw new UserError("User could not be created", "/register", 200);
+            
         }
     })
     .catch((err) => {
         errorPrinter.errorPrint("user could not be made", err);
         if (err instanceof UserError) {
           errorPrinter.errorPrint(err.getMessage());
-          req.flash('error', err.getMessage());//get error message from object
+         // req.flash('error', err.getMessage());//get error message from object
           res.status(err.getStatus());
           res.redirect(err.getRedirectURL());
         } else {
