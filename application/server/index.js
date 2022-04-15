@@ -3,18 +3,12 @@ const mysql = require("mysql2");
 // var cookieParser = require('cookie-parser');
 var itemapi = require("./routes/item");
 const imagerouter = require("./routes/image");
-<<<<<<< Updated upstream
 const postingrouter = require('./routes/posting');
 const loginrouter = require('./routes/login');
 const registerrouter = require('./routes/register');
 
 var sessions = require('express-session');
 var mysqlSession = require('express-mysql-session')(sessions);
-=======
-// const cors = require("cors");
-// var sessions = require('express-session');
-// var mysqlSession = require('express-mysql-session')(sessions);
->>>>>>> Stashed changes
 
 const app = express();
 
@@ -53,40 +47,12 @@ app.use('/api', itemapi);
 
 app.use('/images', imagerouter);
 
-<<<<<<< Updated upstream
 app.use('/login',loginrouter);
 app.use('/post', postingrouter);
 app.use('/register', registerrouter);
 
 
 app.use(flash());
-=======
-app.use(dbrouter);
-
-// app.use(cors());
-// //configure sessions
-// var mysqlSessionStore = new mysqlSession(
-//     {
-//         /*using default options*/
-//     },
-//     require('./routes/database')
-// );
-// app.use(sessions({
-//     key: "csid",//key used for cookie for front end
-//     secret: "csc648",//used to sign cookie
-//     store: mysqlSessionStore,
-//     resave: false,
-//     saveUninitialized: false//don't save sessions that we don't initialize ourselves
-// }));
-// //keep track of login/out state
-// app.use((req, res, next) => {
-//     console.log(req.session);
-//     if(req.session.username) {
-//         res.locals.logged = true;
-//     }
-//     next();
-// })
->>>>>>> Stashed changes
 
 const port = 3100;
 app.listen(port, () => console.log("App is listening on port ", port));
