@@ -20,7 +20,7 @@
 }
 
 .button{
-  width: 100%;
+  width:5rem;
   height: 50px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -28,5 +28,12 @@
   font-size: 1rem;
   background-color: #5f27cd !important;
   border-color: #5f27cd !important ;
+  
 }
 
+.subtitle2{
+
+font-size: 0.8rem;
+color: rgb(20, 19, 19);
+text-align: center;
+}

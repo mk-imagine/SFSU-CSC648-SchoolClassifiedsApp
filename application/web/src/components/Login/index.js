@@ -1,6 +1,6 @@
 // HEADER:Log In Page Code
 import React from "react";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { span, Form, Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./index.module.css";
 const Login = () => {
   return (
@@ -48,16 +48,31 @@ const Login = () => {
                 name="password"
                 placeholder="Enter your password"
               />
+              <Row>
+                <label className={styles.subtitle2}>
+                  Forgot Password? Click <a href="#">Here</a>
+                </label>
+              </Row>
             </Col>
 
             <Row>
               <Col></Col>
 
               <Col>
-                <Button className={styles.button}>Log In</Button>
-              </Col>
+                <Button className={styles.button}>
+                  Log In</Button>
+               </Col>
 
-              <Col></Col>
+               <Col></Col>
+                
+                  <label className={styles.subtitle2}>
+                    Don't have an account? Register<a href="/register">Here</a>
+                  </label>
+                
+                
+              
+            
+             
             </Row>
           </Form>
         </Col>
