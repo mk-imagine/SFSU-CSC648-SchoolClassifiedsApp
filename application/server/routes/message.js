@@ -55,17 +55,17 @@ router.post('/create', (req, res, next) => {
 router.get('/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId; // request userId from front end for search
-        console.log("in route:" + userId);
-        const results = await MessageModel.getAllMessages(userId);
+        console.log("in route: " + userId);
+        let results = await MessageModel.getAllMessages(userId);
         console.log("after model:" + results);
         if (results && results.length) {
             res.send(results);
         } else {
             res.send([]);
         }
-        } catch {
+    } catch (err) {
         next(err);
-        }
+    }
 });
 
 /*
@@ -76,15 +76,15 @@ router.get('/:userId/:msgId', async (req, res, next) => {
     try {
         const userId = req.params.userId;
         const msgId = req.params.msgId;
-        const results = await MessageModel.getMessageDetails(userId, msgId);
+        let results = await MessageModel.getMessageDetails(userId, msgId);
         if (results && results.length) {
           res.send(results);
         } else {
           res.send([]);
         }
-      } catch {
+    } catch (err) {
         next(err);
-      }
+    }
 });
 
 module.exports = router;
