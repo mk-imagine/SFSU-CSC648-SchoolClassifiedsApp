@@ -26,6 +26,7 @@ MessageModel.create = (itemId, senderId, recipientId, meet_time, location, conta
 }
 
 MessageModel.getAllMessages = ( userId ) => {
+    console.log("in model: " + userId);
     let baseSQL = `SELECT it.item_name AS "Item", seller.user_username AS "Seller", sender.user_username AS "Sender", recipient.user_username AS "Recipient", msg.msg_id AS "Message ID", msg.msg_body AS "Message"
                     FROM message msg
                     INNER JOIN itemmsgs im ON msg.msg_id = im.im_msg
@@ -33,7 +34,8 @@ MessageModel.getAllMessages = ( userId ) => {
                     INNER JOIN user seller ON seller.user_id = it.item_seller_id
                     INNER JOIN user sender ON sender.user_id = msg.msg_sender
                     INNER JOIN user recipient ON recipient.user_id = msg.msg_recipient
-                    WHERE msg.msg_sender = ? OR msg.msg_recipient = ?;`;
+                    WHERE sender.user_username = ? OR recipient.user_username = ?;`;
+                    // WHERE msg.msg_sender = ? OR msg.msg_recipient = ?;`;
     return db.execute(baseSQL, [userId, userId])
         .then(([results, fields]) => {
         return Promise.resolve(results && results.affectedRows);

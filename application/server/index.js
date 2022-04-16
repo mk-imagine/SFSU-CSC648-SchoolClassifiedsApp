@@ -6,6 +6,7 @@ const imagerouter = require("./routes/image");
 const postingrouter = require('./routes/posting');
 const loginrouter = require('./routes/login');
 const registerrouter = require('./routes/register');
+const msgrouter = require('./routes/message');
 
 var sessions = require('express-session');
 var mysqlSession = require('express-mysql-session')(sessions);
@@ -50,7 +51,7 @@ app.use('/images', imagerouter);
 app.use('/login',loginrouter);
 app.use('/post', postingrouter);
 app.use('/register', registerrouter);
-
+app.use('/msg', msgrouter);
 
 app.use(flash());
 

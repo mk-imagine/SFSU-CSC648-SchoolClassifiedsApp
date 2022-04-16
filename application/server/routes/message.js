@@ -3,6 +3,10 @@ const router = express.Router();
 const { successPrint, errorPrint } = require("../error/debugprinters");
 const MessageModel = require('../models/message');
 
+router.get('/', (req, res) => {
+    res.send("Message route successful response");
+});
+
 router.post('/create', (req, res, next) => {
     const { itemId, senderId, recipientId, meet_time, location, contactInfo, message } = req.body;
     MessageModel.create(itemId, senderId, recipientId, meet_time, location, contactInfo, message)
@@ -45,61 +49,42 @@ router.post('/create', (req, res, next) => {
 // });
 
 /****************************************************** */
+/*
+*  Get all messages by userId
+*/
+router.get('/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId; // request userId from front end for search
+        console.log("in route:" + userId);
+        const results = await MessageModel.getAllMessages(userId);
+        console.log("after model:" + results);
+        if (results && results.length) {
+            res.send(results);
+        } else {
+            res.send([]);
+        }
+        } catch {
+        next(err);
+        }
+});
 
-// router.get('/userMsgs', (req, res) => {
-//     try {
-//         const msgSender = "%" + req.params.msg_sender + "%";
-//         const results = await messageModel.getMessage(msgSender);
-//         if (results && results.length) {
-//           res.send(results);
-//         } else {
-//           res.send([]);
-//         }
-//       } catch {
-//         next(err);
-//       }
-// });
+/*
+*  Get message details by messageId
+*/
 
-// router.post('/post', (req, res) => {
-//     try {
-//         const msgID = req.body.msg_id;
-//         const msgSender = req.body.msg_sender;
-//         const msgRecipient = req.body.msg_recipient;
-//         const msgMeetTime = req.body.msg_meet_time;
-//         const msgLocation = req.body.msg_location;
-//         const msgContactInfo = req.body.msg_contanctinfo;
-//         const msgBody = req.body.msg_body;
-//         const msgTimeStamp = req.body.msg_timestamp;
-//         const results = await messageModel.postMessage(msgID, msgSender, msgRecipient, msgMeetTime, msgLocation, msgContactInfo, msgBody, msgTimeStamp);
-//         if (results && results.length) {
-//           res.send(results);
-//         } else {
-//           res.send([]);
-//         }
-//       } catch {
-//         next(err);
-//       }
-// });
-
-// router.get('/msgdetails', (req, res) => {
-//     try {
-//         const msgID = req.body.msg_id;
-//         const msgSender = req.body.msg_sender;
-//         const msgRecipient = req.body.msg_recipient;
-//         const msgMeetTime = req.body.msg_meet_time;
-//         const msgLocation = req.body.msg_location;
-//         const msgContactInfo = req.body.msg_contanctinfo;
-//         const msgBody = req.body.msg_body;
-//         const msgTimeStamp = req.body.msg_timestamp;
-//         const results = await messageModel.messageInfo(msgID, msgSender, msgRecipient, msgMeetTime, msgLocation, msgContactInfo, msgBody, msgTimeStamp);
-//         if (results && results.length) {
-//           res.send(results);
-//         } else {
-//           res.send([]);
-//         }
-//       } catch {
-//         next(err);
-//       }
-// });
+router.get('/:userId/:msgId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const msgId = req.params.msgId;
+        const results = await MessageModel.getMessageDetails(userId, msgId);
+        if (results && results.length) {
+          res.send(results);
+        } else {
+          res.send([]);
+        }
+      } catch {
+        next(err);
+      }
+});
 
 module.exports = router;
