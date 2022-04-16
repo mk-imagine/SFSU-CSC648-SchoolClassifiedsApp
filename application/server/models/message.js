@@ -25,9 +25,9 @@ MessageModel.create = (itemId, senderId, recipientId, meet_time, location, conta
         .catch((err) => Promise.reject(err));
 }
 
-MessageModel.getAllMessages = (userId) => {
-    console.log("in model: " + userId);
-    let baseSQL = `SELECT it.item_name AS "Item", seller.user_username AS "Seller", sender.user_username AS "Sender", recipient.user_username AS "Recipient", msg.msg_id AS "Message ID", msg.msg_body AS "Message"
+MessageModel.getAllMessages = ( userId ) => {
+    let baseSQL = `SELECT it.item_name AS "Item", seller.user_username AS "Seller", sender.user_username AS "Sender", 
+                        recipient.user_username AS "Recipient", msg.msg_id AS "Message ID", msg.msg_body AS "Message"
                     FROM message msg
                     INNER JOIN itemmsgs im ON msg.msg_id = im.im_msg
                     INNER JOIN item it ON it.item_id = im.im_item
