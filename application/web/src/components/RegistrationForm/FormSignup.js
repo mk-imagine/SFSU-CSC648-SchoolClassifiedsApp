@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Container, Form } from "react-bootstrap";
 import useRegisterForm from "./useRegisterForm";
 import validate from "./validate";
-import "./registerForm.css";
+import styles from "./registerForm.module.css";
 
 const FormSignup = () => {
   const { handleChange, handleRegister, values, errors } =
@@ -29,13 +29,13 @@ const FormSignup = () => {
       <Row>
         <Col></Col>
         <Col lg={8}>
-          <form className="form" onSubmit={handleRegister}>
+          <form className={styles.form} onSubmit={handleRegister}>
             <Row>
               <Col>
-                <div className="form-inputs">
-                  <label className="form-label">First Name*:</label>
+                <div className={styles.formInputs}>
+                  <label className={styles.formLabel}>First Name*:</label>
                   <input
-                    className="form-input"
+                    className={styles.formInput}
                     type="text"
                     name="firstname"
                     placeholder="Enter your first name"
@@ -47,10 +47,10 @@ const FormSignup = () => {
               </Col>
 
               <Col>
-                <div className="form-inputs">
-                  <label className="form-label">Last Name*:</label>
+                <div className={styles.formInputs}>
+                  <label className={styles.formLabel}>Last Name*:</label>
                   <input
-                    className="form-input"
+                    className={styles.formInput}
                     type="text"
                     name="lastname"
                     placeholder="Enter your last name"
@@ -63,10 +63,10 @@ const FormSignup = () => {
             </Row>
 
             <Row>
-              <div className="form-inputs">
-                <label className="form-label">Email*:</label>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Email*:</label>
                 <input
-                  className="form-input"
+                  className={styles.formInput}
                   type="email"
                   name="email"
                   placeholder="Enter your SFSU email"
@@ -78,10 +78,10 @@ const FormSignup = () => {
             </Row>
 
             <Row>
-              <div className="form-inputs">
-                <label className="form-label">Password*:</label>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Password*:</label>
                 <input
-                  className="form-input"
+                  className={styles.formInput}
                   type="password"
                   name="password"
                   placeholder="Enter your password"
@@ -93,10 +93,10 @@ const FormSignup = () => {
             </Row>
 
             <Row>
-              <div className="form-inputs">
-                <label className="form-label">Confirm Password*:</label>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Confirm Password*:</label>
                 <input
-                  className="form-input"
+                  className={styles.formInput}
                   type="password"
                   name="password2"
                   placeholder="Confirm your password"
@@ -108,7 +108,7 @@ const FormSignup = () => {
             </Row>
 
             <Row>
-              <div class="term-privacy-check">
+              <div class={styles.termPrivacyCheck}>
                 <input
                   // class="form-check-input me-2"
                   type="checkbox"
@@ -132,7 +132,7 @@ const FormSignup = () => {
             <Row>
               <Col></Col>
               <Col>
-                <button className="form-input-btn" type="submit">
+                <button className={styles.formInputBtn} type="submit">
                   Register
                 </button>
               </Col>
@@ -141,7 +141,7 @@ const FormSignup = () => {
             </Row>
 
             <Row>
-              <span className="form-input-login">
+              <span className={styles.formInputLogin}>
                 Already have an account? <a href="/login">Login</a>
               </span>
             </Row>

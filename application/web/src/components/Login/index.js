@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import "./index.login.css";
+import styles from "./index.module.css";
 const Login = () => {
   return (
     <Container>
@@ -23,7 +23,7 @@ const Login = () => {
       <Row>
         <Col></Col>
         <Col lg={4}>
-          <form className="form">
+          <form className={ styles.form }>
             {/* <h2 classname = 'form-title'>
                   Sign up for a free account
               </h2> */}
@@ -42,20 +42,20 @@ const Login = () => {
                           </Form.Text>
                       </Form.Group> */}
             <Row>
-              <div className="form-inputs">
-                <label className="form-label">Email:</label>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Email:</label>
                 <input
-                  className="form-input"
+                  className={styles.formInput}
                   type="email"
                   placeholder="Enter your email"
                 />
               </div>
             </Row>
             <Row>
-              <div className="form-inputs">
-                <label className="form-label">Password:</label>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Password:</label>
                 <input
-                  className="form-input"
+                  className={styles.formInput}
                   type="password"
                   name="password"
                   placeholder="Enter your password"
@@ -66,7 +66,7 @@ const Login = () => {
             <Row>
               <Col></Col>
               <Col>
-                <button className="form-input-btn" type="submit">
+                <button className={styles.formInputBtn} type="submit">
                   Log In
                 </button>
               </Col>
