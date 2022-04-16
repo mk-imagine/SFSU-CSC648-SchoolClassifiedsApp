@@ -38,10 +38,68 @@ router.post('/create', (req, res, next) => {
     // }
 })
 
-router.get('/search', (req, res, next) => {
-    try {
-        const results
-    }
-})
+// router.get('/search', (req, res, next) => {
+//     try {
+//         const results
+//     }
+// });
+
+/****************************************************** */
+
+// router.get('/userMsgs', (req, res) => {
+//     try {
+//         const msgSender = "%" + req.params.msg_sender + "%";
+//         const results = await messageModel.getMessage(msgSender);
+//         if (results && results.length) {
+//           res.send(results);
+//         } else {
+//           res.send([]);
+//         }
+//       } catch {
+//         next(err);
+//       }
+// });
+
+// router.post('/post', (req, res) => {
+//     try {
+//         const msgID = req.body.msg_id;
+//         const msgSender = req.body.msg_sender;
+//         const msgRecipient = req.body.msg_recipient;
+//         const msgMeetTime = req.body.msg_meet_time;
+//         const msgLocation = req.body.msg_location;
+//         const msgContactInfo = req.body.msg_contanctinfo;
+//         const msgBody = req.body.msg_body;
+//         const msgTimeStamp = req.body.msg_timestamp;
+//         const results = await messageModel.postMessage(msgID, msgSender, msgRecipient, msgMeetTime, msgLocation, msgContactInfo, msgBody, msgTimeStamp);
+//         if (results && results.length) {
+//           res.send(results);
+//         } else {
+//           res.send([]);
+//         }
+//       } catch {
+//         next(err);
+//       }
+// });
+
+// router.get('/msgdetails', (req, res) => {
+//     try {
+//         const msgID = req.body.msg_id;
+//         const msgSender = req.body.msg_sender;
+//         const msgRecipient = req.body.msg_recipient;
+//         const msgMeetTime = req.body.msg_meet_time;
+//         const msgLocation = req.body.msg_location;
+//         const msgContactInfo = req.body.msg_contanctinfo;
+//         const msgBody = req.body.msg_body;
+//         const msgTimeStamp = req.body.msg_timestamp;
+//         const results = await messageModel.messageInfo(msgID, msgSender, msgRecipient, msgMeetTime, msgLocation, msgContactInfo, msgBody, msgTimeStamp);
+//         if (results && results.length) {
+//           res.send(results);
+//         } else {
+//           res.send([]);
+//         }
+//       } catch {
+//         next(err);
+//       }
+// });
 
 module.exports = router;
