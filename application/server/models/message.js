@@ -25,7 +25,7 @@ MessageModel.create = (itemId, senderId, recipientId, meet_time, location, conta
         .catch((err) => Promise.reject(err));
 }
 
-MessageModel.getRecievedMessages = ( userId ) => {
+MessageModel.getReceivedMessages = ( userId ) => {
     let baseSQL = `SELECT it.item_id AS "ItemID", it.item_name AS "ItemName", sender.user_username AS "SendUsername", sender.user_fname AS "SendFName", 
                     sender.user_lname AS "SendLName", sender.user_email AS "SendEmail", msg.msg_contactinfo AS "ContactInfo", msg.msg_body AS "Message"
                     FROM message msg

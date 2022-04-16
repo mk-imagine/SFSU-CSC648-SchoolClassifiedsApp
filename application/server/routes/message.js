@@ -45,10 +45,10 @@ router.post('/create', (req, res, next) => {
 /*
 *  Get all recieved messages by userId
 */
-router.get('/:userId/recieved', async (req, res, next) => {
+router.get('/:userId/received', async (req, res, next) => {
     try {
         const userId = req.params.userId;
-        let results = await MessageModel.getRecievedMessages(userId);
+        let results = await MessageModel.getReceivedMessages(userId);
         if (results && results.length) {
             res.send(results);
         } else {
