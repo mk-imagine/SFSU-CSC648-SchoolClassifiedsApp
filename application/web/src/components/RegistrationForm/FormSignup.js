@@ -28,10 +28,11 @@ const FormSignup = () => {
 
       <Row>
         <Col></Col>
-        <Col lg={8}>
+
+        <Col lg={6}>
           <form className="form" onSubmit={handleRegister}>
+
             <Row>
-              <Col>
                 <div className="form-inputs">
                   <label className="form-label">First Name*:</label>
                   <input
@@ -44,10 +45,10 @@ const FormSignup = () => {
                   />
                   {errors.firstname && <p>{errors.firstname}</p>}
                 </div>
-              </Col>
+            </Row>
 
-              <Col>
-                <div className="form-inputs">
+            <Row>
+            <div className="form-inputs">
                   <label className="form-label">Last Name*:</label>
                   <input
                     className="form-input"
@@ -59,7 +60,6 @@ const FormSignup = () => {
                   />
                   {errors.lastname && <p>{errors.lastname}</p>}
                 </div>
-              </Col>
             </Row>
 
             <Row>
