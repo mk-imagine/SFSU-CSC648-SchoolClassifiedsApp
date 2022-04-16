@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ItemsModel = require("../models/items");
+const ItemsModel = require("../models/item");
 
 router.get("/", (req, res) => {
   res.send("Item Route Successful Response.");
