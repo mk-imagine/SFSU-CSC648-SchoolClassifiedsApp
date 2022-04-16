@@ -42,22 +42,30 @@ router.post('/create', (req, res, next) => {
     // }
 })
 
-// router.get('/search', (req, res, next) => {
-//     try {
-//         const results
-//     }
-// });
-
-/****************************************************** */
 /*
-*  Get all messages by userId
+*  Get all recieved messages by userId
 */
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId/recieved', async (req, res, next) => {
     try {
-        const userId = req.params.userId; // request userId from front end for search
-        console.log("in route: " + userId);
-        let results = await MessageModel.getAllMessages(userId);
-        console.log("after model:" + results);
+        const userId = req.params.userId;
+        let results = await MessageModel.getRecievedMessages(userId);
+        if (results && results.length) {
+            res.send(results);
+        } else {
+            res.send([]);
+        }
+    } catch (err) {
+        next(err);
+    }
+});
+
+/*
+*  Get all sent messages by userId
+*/
+router.get('/:userId/sent', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        let results = await MessageModel.getSentMessages(userId);
         if (results && results.length) {
             res.send(results);
         } else {
@@ -71,7 +79,6 @@ router.get('/:userId', async (req, res, next) => {
 /*
 *  Get message details by messageId
 */
-
 router.get('/:userId/:msgId', async (req, res, next) => {
     try {
         const userId = req.params.userId;
