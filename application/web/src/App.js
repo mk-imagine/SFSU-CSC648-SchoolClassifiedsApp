@@ -11,12 +11,9 @@ import Vivian from "../src/components/About/People/Vivian";
 import Mark from "../src/components/About/People/Mark";
 import RegisterPage from "./Pages/Register";
 import LoginPage from "./Pages/LoginPage";
-<<<<<<< HEAD
 import MessagePostPage from "./Pages/MessagePost";
 import ItemDetailPage from "./Pages/ItemDetailPage";
-=======
-import CreatePostPage from "./Pages/CreatePostPage"
->>>>>>> origin/devM3-frontend-itempostandlogin
+import CreatePostPage from "./Pages/CreatePostPage";
 
 function App() {
   return (
@@ -34,12 +31,9 @@ function App() {
 
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/login" exact element={<LoginPage />} />
-<<<<<<< HEAD
         <Route path="/message" exact element={<MessagePostPage />} />
         <Route path="/item" exact element={<ItemDetailPage />} />
-=======
         <Route path="/createpost" exact element={<CreatePostPage />} />
->>>>>>> origin/devM3-frontend-itempostandlogin
 
         {/* <Route path="*" element={NotFound} /> */}
       </Routes>

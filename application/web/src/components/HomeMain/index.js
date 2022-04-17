@@ -194,12 +194,12 @@ const Categories = () => {
             <Row>
               <div className={styles.buttonGroup}>
                 <Col>
-                  <Button className={styles.topButton} 
-                  variant="primary"
-                  onClick={() => {
-                    navigate("/createpost");
-                  }}
-                  
+                  <Button
+                    className={styles.topButton}
+                    variant="primary"
+                    onClick={() => {
+                      navigate("/createpost");
+                    }}
                   >
                     Post Items
                   </Button>
