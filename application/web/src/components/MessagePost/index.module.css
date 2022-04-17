@@ -1,0 +1,127 @@
+/* .title{
+    text-align: center;
+} */
+
+
+.title{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 1rem !important;
+}
+
+.container{
+    margin:auto;
+    text-align: center;   
+}
+
+.form{
+    margin-top: 1rem;
+    background-color: #d3eaf2 !important;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.sellerNameFetch{
+    text-align: left;
+    width: 50%;
+    margin-left: 0.8rem;
+    border-bottom: black solid 1px;
+    
+    
+}
+
+.itemNameFetch{
+    text-align: left;
+    width: 50%;
+    margin-left: 0.8rem;
+    border-bottom: black solid 1px;   
+}
+    
+
+
+.additionalInfo{
+    text-align: left;
+}
+
+
+.image{
+    width: 100% !important;
+    margin-bottom: 1rem;
+    margin-top: 1.3rem !important;
+    margin-left: 2rem !important;
+}
+
+.button{
+    /* margin-bottom: 1rem;
+    width: 10rem !important;
+    padding: 10px !important;
+    font-size: 1.5rem !important;
+    background-color: #5f27cd !important;
+    border-color: #5f27cd !important ; */
+
+    width: 100% !important;
+    height: 50px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    margin-left: 2rem !important;
+    border-radius: 10px !important;
+
+
+    background: linear-gradient(
+        90deg,
+        rgb(1, 167, 250) 50%,
+        rgb(7, 155, 240) 100%
+      ) !important;
+    outline: none !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 1rem !important;   
+}
+
+.button:hover{
+    cursor: pointer !important;
+    background: linear-gradient(
+      90deg,
+      rgb(82, 36, 127) 0%,
+      rgb(193, 126, 219) 100%
+    ) !important;
+    transition: all 0.4s ease-out !important;
+}
+
+
+.subtitle{
+   font-size: 1.2rem;
+   text-align: left;
+   font-weight: bold;
+}
+
+
+
+
+.input{
+    width: 98% ;
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+    
+}
+
+
+.addtionalInfoInput{
+    width: 100% !important;
+    /* height: 10rem !important; */
+    border-radius: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}
+
+
+.dropdown{
+    width: 90% !important;
+    background:  linear-gradient(
+      90deg,
+      rgb(1, 167, 250) 50%,
+      rgb(7, 155, 240) 100%
+      ) !important;
+    
+}
+

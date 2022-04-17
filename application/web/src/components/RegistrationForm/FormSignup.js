@@ -28,38 +28,37 @@ const FormSignup = () => {
 
       <Row>
         <Col></Col>
-        <Col lg={8}>
+
+        <Col lg={6}>
           <form className={styles.form} onSubmit={handleRegister}>
             <Row>
-              <Col>
-                <div className={styles.formInputs}>
-                  <label className={styles.formLabel}>First Name*:</label>
-                  <input
-                    className={styles.formInput}
-                    type="text"
-                    name="firstname"
-                    placeholder="Enter your first name"
-                    value={values.firstname}
-                    onChange={handleChange}
-                  />
-                  {errors.firstname && <p>{errors.firstname}</p>}
-                </div>
-              </Col>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>First Name*:</label>
+                <input
+                  className={styles.formInput}
+                  type="text"
+                  name="firstname"
+                  placeholder="Enter your first name"
+                  value={values.firstname}
+                  onChange={handleChange}
+                />
+                {errors.firstname && <p>{errors.firstname}</p>}
+              </div>
+            </Row>
 
-              <Col>
-                <div className={styles.formInputs}>
-                  <label className={styles.formLabel}>Last Name*:</label>
-                  <input
-                    className={styles.formInput}
-                    type="text"
-                    name="lastname"
-                    placeholder="Enter your last name"
-                    value={values.lastname}
-                    onChange={handleChange}
-                  />
-                  {errors.lastname && <p>{errors.lastname}</p>}
-                </div>
-              </Col>
+            <Row>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Last Name*:</label>
+                <input
+                  className={styles.formInput}
+                  type="text"
+                  name="lastname"
+                  placeholder="Enter your last name"
+                  value={values.lastname}
+                  onChange={handleChange}
+                />
+                {errors.lastname && <p>{errors.lastname}</p>}
+              </div>
             </Row>
 
             <Row>

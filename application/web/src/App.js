@@ -12,6 +12,8 @@ import Mark from "../src/components/About/People/Mark";
 import About from "./Pages/About";
 import RegisterPage from "./Pages/Register";
 import LoginPage from "./Pages/LoginPage";
+import MessagePostPage from "./Pages/MessagePost";
+import ItemDetailPage from "./Pages/ItemDetailPage";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
 
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/login" exact element={<LoginPage />} />
+        <Route path="/message" exact element={<MessagePostPage />} />
+        <Route path="/item" exact element={<ItemDetailPage />} />
 
         {/* <Route path="*" element={NotFound} /> */}
       </Routes>

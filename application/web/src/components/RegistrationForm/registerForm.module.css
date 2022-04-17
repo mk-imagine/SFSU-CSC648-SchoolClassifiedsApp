@@ -52,16 +52,16 @@
   height: 50px;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 10px; */
   background: linear-gradient(
     90deg,
     rgb(82, 36, 127) 0%,
     rgb(193, 126, 219) 100%
   );
-  outline: none;
+  /* outline: none;
   border: none;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1rem; */
 }
 
 .formInputBtn:hover {

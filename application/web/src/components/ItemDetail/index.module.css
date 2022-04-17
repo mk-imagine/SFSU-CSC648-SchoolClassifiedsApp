@@ -1,0 +1,129 @@
+.container{
+    margin:auto;
+    text-align: center;   
+}
+
+
+.pageTitle{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 1rem !important;
+}
+
+.itemInfo{
+    margin-top: 1rem !important;
+    background-color: #d3eaf2 !important;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.button{
+    /* margin-bottom: 1rem;
+    width: 10rem !important;
+    padding: 10px !important;
+    font-size: 1.5rem !important;
+    background-color: #5f27cd !important;
+    border-color: #5f27cd !important ; */
+
+    width: 100% !important;
+    height: 50px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+    font-size: 10rem !important;
+
+    background: linear-gradient(
+        90deg,
+        rgb(1, 167, 250) 50%,
+        rgb(7, 155, 240) 100%
+      ) !important;
+    outline: none !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 1rem !important;   
+}
+
+.button:hover{
+    cursor: pointer !important;
+    background: linear-gradient(
+      90deg,
+      rgb(82, 36, 127) 0%,
+      rgb(193, 126, 219) 100%
+    ) !important;
+    transition: all 0.4s ease-out !important;
+}
+
+.image{
+    width: 100% !important;
+    margin-top: 0.6rem !important;
+    margin-left: -1rem !important;
+}
+
+.itemTitleLabel{
+    font-size: 1.5rem;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+ }
+
+ .itemTitle{
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 100%;
+    margin-left: 0.8rem;
+    border-bottom: black solid 1px;
+ }
+
+
+
+ .itemPriceLabel{
+    font-size: 1.3rem;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+ } 
+ 
+ .itemPrice{
+    text-align: left;
+    font-size: 1.3rem;
+    width: 50%;
+    font-weight: bold;
+    margin-left: 0.8rem;
+    border-bottom: black solid 1px;
+ }
+
+.itemCategoryLabel{
+    font-size: 1.2rem;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.itemCategory{
+    font-size: 1.2rem;
+    text-align: left;
+    width: 50%;
+    font-weight: bold;
+    margin-left: 0.8rem;
+    border-bottom: black solid 1px;
+}
+
+.itemiDescriptionLabel{
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    /* font-weight: bold; */
+}
+
+.itemiDescription{
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    width: 100% !important;
+    height: 12.8rem !important;
+    border: 0.1rem solid black;
+    margin-left: 0.7rem;
+    border-radius: 0.5rem !important;
+
+}
