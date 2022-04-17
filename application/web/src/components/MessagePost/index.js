@@ -39,6 +39,14 @@ const Message = () => {
           
           <Form className = {styles.form}>
           <Row style={{ marginTop: "1rem", marginRight: "1rem" }}>
+
+          <Col>
+              <Row>
+                <img src={image} alt="itemImage" className={styles.image}></img>
+              </Row>
+            </Col>
+
+
             <Col>
               <div style={{ marginTop: "1rem" }}></div>
               <Row className="align-items-center">
@@ -51,7 +59,7 @@ const Message = () => {
                 </Col>
               </Row>
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "2rem" }}></div>
 
               <Row className="align-items-center">
                 <Col lg={3}>
@@ -64,7 +72,7 @@ const Message = () => {
 
               <div style={{ marginTop: "1rem" }}></div>
 
-              <Row className="align-items-center">
+              {/* <Row className="align-items-center">
                 <Col lg={3}>
                   <div className={styles.subtitle}>Meetup Schedule*:</div>
                 </Col>
@@ -100,9 +108,9 @@ const Message = () => {
                     </ButtonGroup>
                   </Row>
                 </Col>
-              </Row>
+              </Row> */}
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "2rem" }}></div>
 
               <Row className="align-items-center">
                 <Col lg={3}>
@@ -118,12 +126,12 @@ const Message = () => {
                 </Col>
               </Row>
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "2rem" }}></div>
 
               <Row className="align-items-center">
                 <Row>
                   <div className={styles.additionalInfo}>
-                    Addtional Information:
+                    Message:
                   </div>
                 </Row>
                 <Row style={{ marginTop: "0.5rem" }}>
@@ -133,18 +141,14 @@ const Message = () => {
                   rows = "6" 
                   maxlength = "300"  
                   wrap="hard"
-                  placeholder="Enter your addtional info....">
+                  placeholder="Enter your message....">
                   </textarea>
                     
                 </Row>
               </Row>
             </Col>
 
-            <Col>
-              <Row>
-                <img src={image} alt="itemImage" className={styles.image}></img>
-              </Row>
-              <Row>
+            <Row>
                 <Col> </Col>
 
                 <Col>
@@ -153,7 +157,8 @@ const Message = () => {
 
                 <Col> </Col>
               </Row>
-            </Col>
+
+
           </Row>
         </Form>
       </Container>

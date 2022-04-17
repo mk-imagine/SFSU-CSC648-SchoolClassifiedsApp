@@ -47,8 +47,8 @@
 .image{
     width: 100% !important;
     margin-bottom: 1rem;
-    margin-top: 1.3rem !important;
-    margin-left: 2rem !important;
+    margin-top: 1.5rem !important;
+    margin-left: -0.5rem !important;
 }
 
 .button{
@@ -59,7 +59,7 @@
     background-color: #5f27cd !important;
     border-color: #5f27cd !important ; */
 
-    width: 100% !important;
+    width: 60% !important;
     height: 50px !important;
     margin-top: 10px !important;
     margin-bottom: 10px !important;
@@ -90,7 +90,7 @@
 
 
 .subtitle{
-   font-size: 1.2rem;
+   font-size: 1.1rem;
    text-align: left;
    font-weight: bold;
 }
@@ -109,7 +109,7 @@
 
 .addtionalInfoInput{
     width: 100% !important;
-    /* height: 10rem !important; */
+    height: 7.8rem !important;
     border-radius: 0.5rem !important;
     margin-left: 0.5rem !important;
 }
