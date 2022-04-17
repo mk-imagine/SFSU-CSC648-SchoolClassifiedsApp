@@ -14,6 +14,7 @@ const SentMessages = () => {
   const getSentMessages = () => {
     axios.get(`${base_url}/msg/${userId}/sent]`).then((res) => {
       setMessages(res.data);
+      console.log(messages);
     });
   };
 
@@ -33,13 +34,14 @@ const SentMessages = () => {
             </thead>
             <tbody>
               {messages.map((e) => {
+                console.log(e);
                 const fullName = e.RecFName + " " + e.RecLName;
                 return (
                   <tr>
-                    <td>{e.ItemName}</td>
-                    <td>{fullName}</td>
+                    <td>{e.Item}</td>
+                    <td>{e.LName}</td>
                     <td>{e.Message}</td>
-                    <td>{e.RecEmail}</td>
+                    <td>sender@gmail.com</td>
                     <td>{e.ContactInfo}</td>
                   </tr>
                 );
