@@ -23,7 +23,8 @@ const Login = () => {
       <Row>
         <Col></Col>
         <Col lg={4}>
-          <form className={ styles.form }>
+          <form className={ styles.form } method="POST" action="/login"
+           encType="application/x-www-form-urlencoded">
             {/* <h2 classname = 'form-title'>
                   Sign up for a free account
               </h2> */}
@@ -46,8 +47,9 @@ const Login = () => {
                 <label className={styles.formLabel}>Email:</label>
                 <input
                   className={styles.formInput}
-                  type="email"
-                  placeholder="Enter your email"
+                  name="username"
+                  required
+                  placeholder="Enter your username"
                 />
               </div>
             </Row>
@@ -58,6 +60,7 @@ const Login = () => {
                   className={styles.formInput}
                   type="password"
                   name="password"
+                  required
                   placeholder="Enter your password"
                 />
               </div>
