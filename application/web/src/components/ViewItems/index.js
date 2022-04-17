@@ -10,7 +10,7 @@ export const ViewItems = (props) => {
   const [images, setImages] = useState([]);
   const columnsPerRow = 3;
 
-  const base_url = "http://localhost:3100";
+  const base_url = "/api";
   useEffect(() => {
     setItems(props.items);
   });

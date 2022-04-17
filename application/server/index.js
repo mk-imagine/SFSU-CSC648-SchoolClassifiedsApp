@@ -14,9 +14,9 @@ const corsOptions = {
 const app = express();
 app.use('/api', dbrouter);
 
-app.use('/images', imagerouter);
+app.use('/api/images', imagerouter);
 
-app.use(dbrouter);
+// app.use(dbrouter);
 
 // app.use(cors(corsOptions));
 // //configure sessions
