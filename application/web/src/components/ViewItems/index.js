@@ -29,6 +29,7 @@ export const ViewItems = (props) => {
                   description={e.item_desc}
                   price={e.item_price}
                   image={image_url}
+                  item_details={e}
                 ></ItemCard>
               </div>
             );

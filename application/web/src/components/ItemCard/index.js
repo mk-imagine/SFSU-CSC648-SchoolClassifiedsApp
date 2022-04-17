@@ -5,7 +5,19 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import styles from "./index.module.css";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 const ItemCard = (props) => {
+  const navigate = useNavigate();
+
+  const goToMessagePage = () => {
+    console.log("message button clicked");
+    console.log(props.item_details);
+    navigate("/message", {
+      state: { item_details: props.item_details, image: props.image }
+    });
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -24,6 +36,7 @@ const ItemCard = (props) => {
             <br></br>
             Description: {props.description}
           </Typography>
+          <Button onClick={goToMessagePage}>Message</Button>
         </CardContent>
       </CardActionArea>
     </Card>

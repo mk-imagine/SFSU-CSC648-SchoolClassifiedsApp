@@ -6,38 +6,25 @@ import {
   Button,
   Dropdown,
   ButtonGroup,
-  Form,
+  Form
 } from "react-bootstrap";
 import styles from "./index.module.css";
-import image from "../../images/image.png";
+import { useLocation } from "react-router-dom";
 
 const Message = () => {
+  const { state } = useLocation();
+  const { item_details, image } = state;
+  console.log("in message page:", item_details);
+  const full_name = item_details.user_fname + " " + item_details.user_lname;
+
   return (
-    // <Container>
-    //     <Row>
-    //     <h2 className= {Styles.title}>Message Page</h2>
-    //     </Row>
-
-    //     <Row>
-    //         <Col>
-    //         <div className="">col1</div>
-    //         </Col>
-
-    //         <Col>
-    //         <div className="">col2</div>
-    //         </Col>
-    //     </Row>
-
-    // </Container>
-
     <div style={{ marginTop: "1rem" }}>
       <Container className={styles.container}>
-        
-          <Row>
-            <div className={styles.title}>Message Page</div>
-          </Row>
-          
-          <Form className = {styles.form}>
+        <Row>
+          <div className={styles.title}>Message Page</div>
+        </Row>
+
+        <Form className={styles.form}>
           <Row style={{ marginTop: "1rem", marginRight: "1rem" }}>
             <Col>
               <div style={{ marginTop: "1rem" }}></div>
@@ -46,8 +33,9 @@ const Message = () => {
                   <div className={styles.subtitle}>Item Name:</div>
                 </Col>
                 <Col>
-                <div className={styles.itemNameFetch}>Rare painting</div>
-
+                  <div className={styles.itemNameFetch}>
+                    {item_details.item_name}
+                  </div>
                 </Col>
               </Row>
 
@@ -58,7 +46,7 @@ const Message = () => {
                   <div className={styles.subtitle}>Seller name:</div>
                 </Col>
                 <Col>
-                  <div className={styles.sellerNameFetch}>Jiasheng Li</div>
+                  <div className={styles.sellerNameFetch}>{full_name} </div>
                 </Col>
               </Row>
 
@@ -127,15 +115,15 @@ const Message = () => {
                   </div>
                 </Row>
                 <Row style={{ marginTop: "0.5rem" }}>
-                  <textarea 
-                  className={styles.addtionalInfoInput} 
-                  name="addtionalInfoInput" type="text" 
-                  rows = "6" 
-                  maxlength = "300"  
-                  wrap="hard"
-                  placeholder="Enter your addtional info....">
-                  </textarea>
-                    
+                  <textarea
+                    className={styles.addtionalInfoInput}
+                    name="addtionalInfoInput"
+                    type="text"
+                    rows="6"
+                    maxlength="300"
+                    wrap="hard"
+                    placeholder="Enter your addtional info...."
+                  ></textarea>
                 </Row>
               </Row>
             </Col>
