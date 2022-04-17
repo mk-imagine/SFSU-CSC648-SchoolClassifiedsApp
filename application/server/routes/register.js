@@ -78,7 +78,7 @@ router.post('/register', (req, res, next) => {
                 console.log('User successfuly created!');
                 res.redirect('/login');
             } else {
-                // req.flash('success', 'User account has been made');
+                req.flash('success', 'User account has been made');
                 throw new UserError("User could not be created", "/register", 200);
             }
         })
@@ -86,7 +86,7 @@ router.post('/register', (req, res, next) => {
             errorPrinter.errorPrint("user could not be made", err);
             if (err instanceof UserError) {
                 errorPrinter.errorPrint(err.getMessage());
-                // req.flash('error', err.getMessage());//get error message from object
+                req.flash('error', err.getMessage());//get error message from object
                 res.status(err.getStatus());
                 res.redirect(err.getRedirectURL());
             } else {

@@ -44,7 +44,7 @@ router.post('/login', (req, res, next) => {
                 req.session.username = username;
                 req.session.userId = loggedUser;
                 res.locals.logged = true;
-                // req.flash('success','Login Successful');
+                req.flash('success','Login Successful');
                 console.log("user is logged");
                 res.redirect("/");//after login redirect user to this page
             } else {
@@ -54,7 +54,7 @@ router.post('/login', (req, res, next) => {
             debugPrint.errorPrint("failed login");
             if (err instanceof UserError) {
                 debugPrint.errorPrint(err.getMessage());
-                // req.flash('error', err.getMessage());
+                req.flash('error', err.getMessage());
                 res.status(err.getStatus());
                 res.redirect("/login");
             } else {
