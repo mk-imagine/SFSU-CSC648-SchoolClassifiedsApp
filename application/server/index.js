@@ -46,12 +46,12 @@ app.use((req, res, next) => {
 
 app.use('/api', itemapi);
 
-app.use('/images', imagerouter);
+app.use('/api/images', imagerouter);
 
-app.use('/login',loginrouter);
-app.use('/post', postingrouter);
-app.use('/register', registerrouter);
-app.use('/msg', msgrouter);
+app.use('/api/login',loginrouter);
+app.use('/api/post', postingrouter);
+app.use('/api/register', registerrouter);
+app.use('/api/msg', msgrouter);
 
 app.use(flash());
 

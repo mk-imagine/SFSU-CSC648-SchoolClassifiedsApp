@@ -126,7 +126,7 @@ const Navbar = (props) => {
   return (
     <div>
       <Row>
-        <div className={styles.subTitle}>CSC 648 Spring 2022 Team 08</div>
+        <div className={styles.subTitle}>SFSU Software Engineering Project CSC 648-848, Spring 2022.  For Demonstration Only</div>
       </Row>
       <div className={styles.container}>
         <Row className="align-items-center">

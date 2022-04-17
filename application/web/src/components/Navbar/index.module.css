@@ -62,6 +62,8 @@
 }
 
 .subTitle {
+  padding-top: 0.5rem;
+  font-style: italic;
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
