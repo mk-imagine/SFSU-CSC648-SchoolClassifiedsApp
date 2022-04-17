@@ -9,11 +9,14 @@ import Jesus from "../src/components/About/People/Jesus";
 import Jiasheng from "../src/components/About/People/Jiasheng";
 import Vivian from "../src/components/About/People/Vivian";
 import Mark from "../src/components/About/People/Mark";
-import About from "./Pages/About";
 import RegisterPage from "./Pages/Register";
 import LoginPage from "./Pages/LoginPage";
+<<<<<<< HEAD
 import MessagePostPage from "./Pages/MessagePost";
 import ItemDetailPage from "./Pages/ItemDetailPage";
+=======
+import CreatePostPage from "./Pages/CreatePostPage"
+>>>>>>> origin/devM3-frontend-itempostandlogin
 
 function App() {
   return (
@@ -21,7 +24,6 @@ function App() {
       {/* <Navbar /> */}
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/about" exact element={<About />} />
         <Route path="/about/Mark" exact element={<Mark />} />
         <Route path="/about/khushboo" exact element={<Khushboo />} />
         <Route path="/about/Cody" exact element={<Cody />} />
@@ -32,8 +34,12 @@ function App() {
 
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/login" exact element={<LoginPage />} />
+<<<<<<< HEAD
         <Route path="/message" exact element={<MessagePostPage />} />
         <Route path="/item" exact element={<ItemDetailPage />} />
+=======
+        <Route path="/createpost" exact element={<CreatePostPage />} />
+>>>>>>> origin/devM3-frontend-itempostandlogin
 
         {/* <Route path="*" element={NotFound} /> */}
       </Routes>

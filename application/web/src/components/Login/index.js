@@ -1,3 +1,4 @@
+// HEADER:Log In Page Code
 import React from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./index.module.css";
@@ -7,7 +8,7 @@ const Login = () => {
       <Row>
         <Col></Col>
         <Col md="auto">
-          <h1 className="greeting">Welcome to PurpleMarket</h1>
+          <div className={styles.title}>Welcome to PurpleMarket</div>
         </Col>
         <Col></Col>
       </Row>
@@ -15,7 +16,7 @@ const Login = () => {
       <Row>
         <Col></Col>
         <Col md="auto">
-          <h2 classname="form-title">Sign In</h2>
+          <div className={styles.title}>Sign In </div>
         </Col>
         <Col></Col>
       </Row>
@@ -23,12 +24,22 @@ const Login = () => {
       <Row>
         <Col></Col>
         <Col lg={4}>
-          <form className={ styles.form }>
-            {/* <h2 classname = 'form-title'>
-                  Sign up for a free account
-              </h2> */}
+          <Form className={styles.form}>
+            <Col>
+              <label className={styles.subtitle}>Email:</label>
+            </Col>
+            <Col>
+              <input
+                className={styles.formInput}
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+              />
+            </Col>
 
-            {/* #1 user input for first name  */}
+            <Col>
+              <label className={styles.subtitle}>Password:</label>
+            </Col>
 
             {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>First Name*:</Form.Label>
@@ -65,6 +76,7 @@ const Login = () => {
 
             <Row>
               <Col></Col>
+
               <Col>
                 <button className={styles.formInputBtn} type="submit">
                   Log In
@@ -72,8 +84,12 @@ const Login = () => {
               </Col>
 
               <Col></Col>
+
+              <label className={styles.subtitle2}>
+                Don't have an account? Register<a href="/register">Here</a>
+              </label>
             </Row>
-          </form>
+          </Form>
         </Col>
         <Col></Col>
       </Row>
