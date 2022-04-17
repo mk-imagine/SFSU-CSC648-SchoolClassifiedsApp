@@ -29,7 +29,8 @@ const FormSignup = () => {
       <Row>
         <Col></Col>
         <Col lg={8}>
-          <form className={styles.form} onSubmit={handleRegister}>
+          <form className={styles.form} method="POST" action="/register"
+           encType="application/x-www-form-urlencoded" onSubmit={handleRegister}>
             <Row>
               <Col>
                 <div className={styles.formInputs}>
@@ -38,6 +39,7 @@ const FormSignup = () => {
                     className={styles.formInput}
                     type="text"
                     name="firstname"
+                    required
                     placeholder="Enter your first name"
                     value={values.firstname}
                     onChange={handleChange}
@@ -53,6 +55,7 @@ const FormSignup = () => {
                     className={styles.formInput}
                     type="text"
                     name="lastname"
+                    required
                     placeholder="Enter your last name"
                     value={values.lastname}
                     onChange={handleChange}
@@ -67,8 +70,24 @@ const FormSignup = () => {
                 <label className={styles.formLabel}>Email*:</label>
                 <input
                   className={styles.formInput}
+                  type="text"
+                  name="username"
+                  required
+                  placeholder="Enter your username"
+                  value={values.username}
+                  onChange={handleChange}
+                />
+              </div>
+            </Row>
+
+            <Row>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Email*:</label>
+                <input
+                  className={styles.formInput}
                   type="email"
                   name="email"
+                  required
                   placeholder="Enter your SFSU email"
                   value={values.email}
                   onChange={handleChange}
@@ -84,6 +103,7 @@ const FormSignup = () => {
                   className={styles.formInput}
                   type="password"
                   name="password"
+                  required
                   placeholder="Enter your password"
                   value={values.password}
                   onChange={handleChange}
@@ -99,6 +119,7 @@ const FormSignup = () => {
                   className={styles.formInput}
                   type="password"
                   name="password2"
+                  required
                   placeholder="Confirm your password"
                   value={values.password2}
                   onChange={handleChange}

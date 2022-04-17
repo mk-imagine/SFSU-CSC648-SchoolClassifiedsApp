@@ -24,9 +24,10 @@ router.post('/register', (req, res, next) => {
     let username = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
-    let confirmPassword = req.body.confirmPassword;
+    let confirmPassword = req.body.password2;
     console.log(req.body);
     
+    //server side validation for registration
     Validator.usernameValid(username)
         .then((usernameOK) => {
             console.log("is usernameok?: " + username);
