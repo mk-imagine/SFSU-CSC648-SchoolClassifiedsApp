@@ -12,7 +12,12 @@ ItemsModel.getCategories = () => {
 }
 
 ItemsModel.getAllItems = () => {
-    let baseSQL = `SELECT * from csc648.item`;
+    let baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
+	                it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
+                    seller.user_fname, seller.user_lname
+                    FROM csc648.item it
+                    INNER JOIN user seller ON seller.user_id = it.item_seller_id
+                    INNER JOIN category cat ON cat.category_id = it.item_category;`;
     return db.execute(baseSQL)
         .then(([results, fields]) => {
             return Promise.resolve(results);
