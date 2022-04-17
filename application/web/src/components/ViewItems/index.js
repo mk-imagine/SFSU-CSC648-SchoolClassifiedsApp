@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
 import ItemCard from "../ItemCard";
+import { useNavigate } from "react-router-dom";
 
 //the page where we load the data
 export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
   const columnsPerRow = 3;
+
+  const navigate = useNavigate();
 
   const base_url = "http://localhost:3100";
   // eslint-disable-next-line

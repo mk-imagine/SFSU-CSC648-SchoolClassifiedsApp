@@ -18,6 +18,13 @@ const ItemCard = (props) => {
       state: { item_details: props.item_details, image: props.image }
     });
   };
+
+  const goToItemDetailPage = () => {
+    navigate("/item", {
+      state: { item_details: props.item_details, image: props.image }
+    });
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -26,6 +33,7 @@ const ItemCard = (props) => {
           height="300"
           image={props.image}
           alt="green iguana"
+          onClick={goToItemDetailPage}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

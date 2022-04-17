@@ -1,11 +1,16 @@
 import React from "react";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import styles from "./index.module.css";
-import image from "../../images/image.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ItemDetail = () => {
   const navigate = useNavigate();
+
+  const { state } = useLocation();
+  const { item_details, image } = state;
+  console.log("in item detail page:", item_details);
+  const full_name = item_details.user_fname + " " + item_details.user_lname;
+
   return (
     <div>
       <Container>
@@ -26,7 +31,7 @@ const ItemDetail = () => {
                 <div className={styles.itemTitleLabel}>Item name:</div>
               </Col>
               <Col>
-                <div className={styles.itemTitle}>Rare Painting</div>
+                <div className={styles.itemTitle}>{item_details.item_name}</div>
               </Col>
             </Row>
 
@@ -35,7 +40,9 @@ const ItemDetail = () => {
                 <div className={styles.itemPriceLabel}>Price:</div>
               </Col>
               <Col>
-                <div className={styles.itemPrice}>$60.00</div>
+                <div className={styles.itemPrice}>
+                  ${item_details.item_price}
+                </div>
               </Col>
             </Row>
 
@@ -44,7 +51,9 @@ const ItemDetail = () => {
                 <div className={styles.itemCategoryLabel}>Category:</div>
               </Col>
               <Col>
-                <div className={styles.itemCategory}>Books</div>
+                <div className={styles.itemCategory}>
+                  {item_details.category_name}
+                </div>
               </Col>
             </Row>
 
@@ -54,7 +63,7 @@ const ItemDetail = () => {
 
             <Row>
               <p className={styles.itemiDescription}>
-                Item Description Fetching from API
+                {item_details.item_desc}
               </p>
             </Row>
           </Col>
