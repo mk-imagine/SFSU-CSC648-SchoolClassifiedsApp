@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Container,
-  Button,
-  Dropdown,
-  ButtonGroup,
-  Form,
-} from "react-bootstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 import styles from "./index.module.css";
 import image from "../../images/image.png";
 import { useNavigate } from "react-router-dom";
