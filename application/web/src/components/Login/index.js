@@ -59,7 +59,7 @@ const Login = () => {
 
             <Row>
               <span className={styles.resetPasswork}>
-                Forgot Your Password? <a href="/login">Reset Password</a>
+                Forgot Your Password? <a href="/recoverpassword">Reset Password</a>
               </span>
             </Row>
           </Form>

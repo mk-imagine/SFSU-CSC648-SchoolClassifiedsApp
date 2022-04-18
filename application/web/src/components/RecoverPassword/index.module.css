@@ -1,0 +1,75 @@
+.Title {
+  text-align: center;
+  margin-top: 1rem !important;
+}
+
+.form {
+  margin-top: 1rem;
+  background-color: #d3eaf2 !important;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.PasswordRequirement{
+    text-align: left;
+    margin-bottom: 1.2rem;
+}
+
+.Contents{
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+.formInputComponent {
+  margin-bottom: 1.2rem;
+}
+
+.formLable {
+  font-size: 1rem;
+  color: rgb(17, 17, 17);
+  text-align: right;
+}
+
+.formInput {
+  display: inline;
+  border-radius: 6px;
+  height: 35px;
+  width: 50%;
+  border-color: rgb(2, 2, 2);
+  text-align: left;
+  float: right;
+}
+
+.formInput::placeholder{
+    font-size: 0.8rem !important;
+}
+
+/* button */
+.formInputBtn {
+    width: 100% !important;
+    height: 70%;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    color: white;
+    border: none !important;
+    background: linear-gradient(
+      90deg,
+      rgb(82, 36, 127) 0%,
+      rgb(193, 126, 219) 100%
+    );
+    /* outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem; */
+  }
+  
+  .formInputBtn:hover {
+    cursor: pointer;
+    background: linear-gradient(
+      90deg,
+      rgb(1, 167, 250) 50%,
+      rgb(7, 155, 240) 100%
+    ) !important;
+    transition: all 0.4s ease-out;
+  }

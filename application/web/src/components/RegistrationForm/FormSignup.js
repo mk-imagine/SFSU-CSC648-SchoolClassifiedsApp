@@ -21,7 +21,7 @@ const FormSignup = () => {
       <Row>
         <Col></Col>
         <Col md="auto">
-          <h2 >Sign up for a free account</h2>
+          <h2>Sign up for a free account</h2>
         </Col>
         <Col></Col>
       </Row>
@@ -78,15 +78,22 @@ const FormSignup = () => {
 
             <Row>
               <div className={styles.formInputComponent}>
-                <label className={styles.formLable}>Password*:</label>
+                <label className={styles.formLable}>Password*():</label>
                 <input
                   className={styles.formInput}
-                  type="password"
+                  type="text"
                   name="password"
                   placeholder="Enter your password"
                   value={values.password}
                   onChange={handleChange}
                 />
+                {/* onClick show / out hidder */}
+                {/* <div>
+                  <p> *One special character</p>
+                  <p> *One number</p>
+                  <p> *One uppercase letter</p>
+                  <p> *At least 8 characters long</p>
+                </div> */}
                 {errors.password && <p>{errors.password}</p>}
               </div>
             </Row>
@@ -133,7 +140,7 @@ const FormSignup = () => {
               <Col>
                 <Row>
                   <Col></Col>
-                  <Col lg={8}> 
+                  <Col lg={8}>
                     <Button className={styles.formInputBtn} type="submit">
                       Register
                     </Button>
