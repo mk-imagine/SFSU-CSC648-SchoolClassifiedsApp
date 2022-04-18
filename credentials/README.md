@@ -35,7 +35,7 @@ csc648
 To SSH onto the server, use the following command when in the credentials folder:
 ssh -i "team8key.pem" ubuntu@csc648.mskim.dev
 
-server/ - contains the express server boilerplate
+server/ - contains the express server boilerplate<br>
 web/ - contains the react frontend app
 
 To view the site:
