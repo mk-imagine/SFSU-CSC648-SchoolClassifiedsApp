@@ -17,20 +17,20 @@ ubuntu
 3. SSH key - team8key.pem
     <br> If a ssh key is used please upload the key to the credentials folder.
     
-4. Database URL or IP and port used.
+4. Database URL or IP and port used - 
 localhost:3306
     <br><strong> NOTE THIS DOES NOT MEAN YOUR DATABASE NEEDS A PUBLIC FACING PORT.</strong> But knowing the IP and port number will help with SSH tunneling into the database. The default port is more than sufficient for this class.
 
-5. Database username
+5. Database username - 
 root
 
-7. Database password
+7. Database password - 
 csc648team8
 
-9. Database name (basically the name that contains all your tables)
+9. Database name (basically the name that contains all your tables) - 
 csc648
 
-8. Instructions on how to use the above information.
+8. Instructions on how to use the above information. - 
 
 To SSH onto the server, use the following command when in the credentials folder:
 ssh -i "team8key.pem" ubuntu@csc648.mskim.dev
