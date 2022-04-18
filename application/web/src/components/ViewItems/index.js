@@ -3,7 +3,11 @@ import { Row, Container } from "react-bootstrap";
 import ItemCard from "../ItemCard";
 import { useNavigate } from "react-router-dom";
 
-//the page where we load the data
+/**
+ * Loads all items in a grid
+ * @param {*} props 
+ * @returns HTML that loads all item data
+ */
 export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
   const columnsPerRow = 3;

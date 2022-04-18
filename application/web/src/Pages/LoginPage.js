@@ -1,6 +1,10 @@
 import React from "react";
 import Login from "../components/Login";
 
+/**
+ * Login Page
+ * @returns Login component
+ */
 const LoginPage = () => {
   return (
     <div>

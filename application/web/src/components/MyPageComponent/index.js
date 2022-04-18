@@ -5,6 +5,10 @@ import MyMessages from "../MyMessages";
 import SentMessages from "../SentMessages";
 import MyAccount from "../MyAccount";
 
+/**
+ * Loads My Page component
+ * @returns HTML of MyPage
+ */
 const MyPageComponent = () => {
   return (
     <div>

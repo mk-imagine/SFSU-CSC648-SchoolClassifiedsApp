@@ -11,6 +11,10 @@ import {
 import styles from "./index.module.css";
 import { useLocation } from "react-router-dom";
 
+/**
+ * Load Message Send component
+ * @returns HTML of Message Send component
+ */
 const Message = () => {
   const { state } = useLocation();
   const { item_details, image } = state;

@@ -1,7 +1,14 @@
 const db = require('../config/db2');
 
+/**
+ * ItemsModel for Category and Item Database Queries
+ */
 const ItemsModel = {};
 
+/**
+ * Retrieves all categories
+ * @returns All Categories
+ */
 ItemsModel.getCategories = () => {
     let baseSQL = "SELECT category_name, category_id from csc648.category";
     return db.execute(baseSQL)
@@ -11,6 +18,10 @@ ItemsModel.getCategories = () => {
         .catch((err) => Promise.reject(err));
 }
 
+/**
+ * Retrieves all items
+ * @returns All Items
+ */
 ItemsModel.getAllItems = () => {
     let baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
 	                it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
@@ -25,6 +36,12 @@ ItemsModel.getAllItems = () => {
         .catch((err) => Promise.reject(err));
 }
 
+/**
+ * Retrieves items matching category and search term
+ * @param {*} category 
+ * @param {*} searchWord 
+ * @returns Items that match category and search term
+ */
 ItemsModel.categoryAndItemSearch = (category, searchWord) => {
     let baseSQL = `select * from csc648.item
                     left join csc648.category on item.item_category = category.category_id
@@ -36,6 +53,11 @@ ItemsModel.categoryAndItemSearch = (category, searchWord) => {
         .catch((err) => Promise.reject(err));
 }
 
+/**
+ * Retrieves items matching category
+ * @param {*} category 
+ * @returns Items that match category
+ */
 ItemsModel.categorySearch = (category) => {
     let baseSQL = `select * from csc648.item
                     left join csc648.category on item.item_category = category.category_id
@@ -47,6 +69,11 @@ ItemsModel.categorySearch = (category) => {
         .catch((err) => Promise.reject(err));
 }
 
+/**
+ * Retrieves items matching search term in all categories
+ * @param {*} searchWord 
+ * @returns Items that match search term
+ */
 ItemsModel.itemSearch = (searchWord) => {
     let baseSQL = `select * from csc648.item
                     where item_name like ? or item_desc like ?;`;

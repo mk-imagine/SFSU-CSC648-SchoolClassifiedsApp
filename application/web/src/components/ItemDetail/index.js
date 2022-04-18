@@ -3,6 +3,10 @@ import { Row, Col, Container, Button } from "react-bootstrap";
 import styles from "./index.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
+/**
+ * Load Item Detail Page Component
+ * @returns HTML of Item Detail Component
+ */
 const ItemDetail = () => {
   const navigate = useNavigate();
 

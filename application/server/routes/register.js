@@ -12,11 +12,16 @@ const errorPrinter = require("../error/debugprinters");
 var bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: true }));
 
-
+/**
+ * Register Route Test
+ */
 router.get("/", (req, res) => {
     res.send("Successful Register route response");
 });
 
+/**
+ * Registration Route
+ */
 router.post('/register', (req, res, next) => {
 
     let firstname = req.body.firstname;
@@ -27,6 +32,7 @@ router.post('/register', (req, res, next) => {
     let confirmPassword = req.body.confirmPassword;
     console.log(req.body);
     
+    // Validator for form
     Validator.usernameValid(username)
         .then((usernameOK) => {
             console.log("is usernameok?: " + username);

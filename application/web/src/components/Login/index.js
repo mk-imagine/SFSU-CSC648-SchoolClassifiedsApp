@@ -2,6 +2,11 @@
 import React from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
+
+/**
+ * Load Login Page Component
+ * @returns HTML of Login component
+ */
 const Login = () => {
   return (
     <Container>

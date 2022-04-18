@@ -1,3 +1,8 @@
+/**
+ * Registration form validation
+ * @param {*} values 
+ * @returns errors, if any
+ */
 export default function validate(values) {
     let errors = {};
 

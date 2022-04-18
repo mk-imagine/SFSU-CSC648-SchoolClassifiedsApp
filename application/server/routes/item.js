@@ -2,10 +2,16 @@ const express = require("express");
 const router = express.Router();
 const ItemsModel = require("../models/item");
 
+/**
+ * Item Route Test
+ */
 router.get("/", (req, res) => {
   res.send("Item Route Successful Response.");
 });
 
+/**
+ * Category Retrieval Router
+ */
 router.get("/categories", async (req, res, next) => {
   try {
     const results = await ItemsModel.getCategories();
@@ -19,6 +25,9 @@ router.get("/categories", async (req, res, next) => {
   }
 });
 
+/**
+ * Item Retrieval Router
+ */
 router.get("/items", async (req, res, next) => {
   try {
     const results = await ItemsModel.getAllItems();
@@ -32,6 +41,9 @@ router.get("/items", async (req, res, next) => {
   }
 });
 
+/**
+ * Keyword and Category Search Router
+ */
 router.get("/itemwithcategory/:searchWord/:categoryWord", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
@@ -47,6 +59,9 @@ router.get("/itemwithcategory/:searchWord/:categoryWord", async (req, res, next)
   }
 });
 
+/**
+ * Category Search Router
+ */
 router.get("/searchcategory/:searchCategory", async (req, res, next) => {
   try {
     const category = "%" + req.params.searchCategory + "%";
@@ -61,6 +76,9 @@ router.get("/searchcategory/:searchCategory", async (req, res, next) => {
   }
 });
 
+/**
+ * Keyword Search Router
+ */
 router.get("/searchitems/:searchWord", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";

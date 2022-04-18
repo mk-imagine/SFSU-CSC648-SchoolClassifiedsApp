@@ -4,6 +4,10 @@ import useRegisterForm from "./useRegisterForm";
 import validate from "./validate";
 import styles from "./registerForm.module.css";
 
+/**
+ * Loads User Registration Form
+ * @returns HTML of Registration Form
+ */
 const FormSignup = () => {
   const { handleChange, handleRegister, values, errors } =
     useRegisterForm(validate);

@@ -6,6 +6,10 @@ import electronicImage from "../../images/electronicsCategoryTitle.jpg";
 import furnitureImage from "../../images/furnitureCategoryTitle.jpg";
 import apparalImage from "../../images/apparalCategoryTitle.jpg";
 
+/**
+ * Loads top categories for browsing
+ * @returns HTML that shows a list of top categories
+ */
 const TopCategoryItems = () => {
   return (
     <div style={{ padding: "2rem" }}>

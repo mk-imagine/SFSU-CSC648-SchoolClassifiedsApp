@@ -12,6 +12,10 @@ import {
 import styles from "./index.module.css";
 import image from "../../images/image.png";
 
+/**
+ * Load Post Item Page Component
+ * @returns HTML of ItemPost Component
+ */
 const ItemPost = () => {
   return (
     <div style={{ marginTop: "1rem" }}>

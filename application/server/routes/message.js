@@ -3,10 +3,16 @@ const router = express.Router();
 const { successPrint, errorPrint } = require("../error/debugprinters");
 const MessageModel = require('../models/message');
 
+/**
+ * Message Router Test
+ */
 router.get('/', (req, res) => {
     res.send("Message route successful response");
 });
 
+/**
+ * Create Message Route
+ */
 router.post('/create', (req, res, next) => {
     const { itemId, senderId, recipientId, meet_time, location, contactInfo, message } = req.body;
     MessageModel.create(itemId, senderId, recipientId, meet_time, location, contactInfo, message)
@@ -42,9 +48,9 @@ router.post('/create', (req, res, next) => {
     // }
 })
 
-/*
-*  Get all recieved messages by userId
-*/
+/**
+ *  Get all recieved messages by userId
+ */
 router.get('/:userId/received', async (req, res, next) => {
     try {
         const userId = req.params.userId;
@@ -59,9 +65,9 @@ router.get('/:userId/received', async (req, res, next) => {
     }
 });
 
-/*
-*  Get all sent messages by userId
-*/
+/**
+ *  Get all sent messages by userId
+ */
 router.get('/:userId/sent', async (req, res, next) => {
     try {
         const userId = req.params.userId;
@@ -76,9 +82,9 @@ router.get('/:userId/sent', async (req, res, next) => {
     }
 });
 
-/*
-*  Get message details by messageId
-*/
+/**
+ *  Get message details by messageId
+ */
 router.get('/:userId/:msgId', async (req, res, next) => {
     try {
         const userId = req.params.userId;
