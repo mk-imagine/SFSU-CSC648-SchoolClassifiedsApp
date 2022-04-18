@@ -1,6 +1,10 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
+/**
+ * Loads user message component
+ * @returns HTML for user messages
+ */
 const MyMessages = () => {
   return (
     <div>

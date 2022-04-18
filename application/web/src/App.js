@@ -16,6 +16,11 @@ import ItemDetailPage from "./Pages/ItemDetailPage";
 import CreatePostPage from "./Pages/CreatePostPage";
 import MyPage from "./Pages/MyPage";
 
+/**
+ * React Navbar Routes
+ * 
+ * @returns React routes for navbar
+ */
 function App() {
   return (
     <Router>

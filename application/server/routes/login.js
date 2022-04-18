@@ -11,17 +11,25 @@ const UserModel = require("../models/login");
 var bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: true }));
 
+/**
+ * Login Route Test
+ */
 router.get('/', (req, res) => {
     res.send("Successful Login route response")
 })
 
+/**
+ * Login Router
+ */
 router.post('/login', (req, res, next) => {
     console.log(req.body);
     let username = req.body.username;
     let password = req.body.password;
     console.log("what is username : " + username + "what is password : " + password);
 
+    // Validator for form data
     Validator.usernameValid(username)
+        // Check username
         .then((usernameOK) => {
             console.log("Is username ok?" + usernameOK);
             if (usernameOK) {
@@ -30,14 +38,18 @@ router.post('/login', (req, res, next) => {
                 console.log("username not ok");
                 throw new UserError("Please enter a valid username", "/login", 200);
             }
-        }).then((passwordOK) => {
+        })
+        // Check password
+        .then((passwordOK) => {
             console.log("is the password ok? " + passwordOK);
             if (passwordOK) {
                 return UserModel.authenticate(username, password);
             } else {
                 throw new UserError("Please enter a valid password", "/login", 200);
             }
-        }).then((loggedUser) => {
+        })
+        // Create session for user
+        .then((loggedUser) => {
             console.log("what is loggeduser? " + loggedUser);
             if (loggedUser > 0) {
                 // create a session on successful login
@@ -63,6 +75,9 @@ router.post('/login', (req, res, next) => {
         })
 });
 
+/**
+ * Logout Router
+ */
 router.post('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {

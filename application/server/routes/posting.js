@@ -14,10 +14,16 @@ const mysql = require("mysql");
 
 var upload = multer({ dest: './user_images' });
 
+/**
+ * Post Router Test
+ */
 router.get("/", (req, res) => {
     res.send("Successful Posting route response");
 });
 
+/**
+ * Create Post Router
+ */
 router.post('/post', upload.single('image'), (req, res) => {
     console.log(req.body);
     let category = req.body.category;
@@ -34,7 +40,9 @@ router.post('/post', upload.single('image'), (req, res) => {
     let fileAsThumbNail = `thumb-${req.file.filename}`;
     let thumbnail = req.file.destination + "/" + fileAsThumbNail;
 
+    // Validator for post form
     Validator.postNoNulls(category, sellerId, price, name, description, course, picture)
+        // Check if any fields are null
         .then((notNull) => {
             console.log("in posting route after postnoNulls " + notNull);
             if (notNull) {
@@ -42,10 +50,14 @@ router.post('/post', upload.single('image'), (req, res) => {
             } else {
                 throw new PostError('Missing a required form input', '/post', 200);
             }
-        }).then(() => {
+        })
+        // Create post via PostModel
+        .then(() => {
             console.log("in posting after resizing the picture");
             return PostModel.createPost(category, sellerId, price, name, description, picture, thumbnail, course);
-        }).then((postLogged) => {
+        })
+        // Redirect to Home Page upon successful post
+        .then((postLogged) => {
             if (postLogged) {
                 //redirect somewhere?
                 console.log("is post in database?: " + postLogged);

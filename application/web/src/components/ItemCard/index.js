@@ -8,6 +8,11 @@ import styles from "./index.module.css";
 // import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Load Item Card Component
+ * @param {*} props 
+ * @returns HTML of Item Card Component
+ */
 const ItemCard = (props) => {
   const navigate = useNavigate();
 
@@ -54,6 +59,11 @@ const ItemCard = (props) => {
   );
 };
 
+/**
+ * Load Category Card Component
+ * @param {*} props 
+ * @returns HTML of Category Card Component
+ */
 export const ItemTopCategoryCard = (props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>

@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 
+/**
+ * Loads table with all sent messages by User ID
+ * @returns HTML table with all sent messages by User ID
+ */
 const SentMessages = () => {
   const [messages, setMessages] = useState([]);
   const base_url = "/api";

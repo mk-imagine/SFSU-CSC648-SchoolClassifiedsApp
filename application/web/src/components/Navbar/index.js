@@ -6,6 +6,12 @@ import styles from "./index.module.css";
 import { useNavigate } from "react-router-dom";
 
 const myContext = React.createContext([]);
+
+/**
+ * Load Navbar component
+ * @param {*} props 
+ * @returns HTML of Navbar
+ */
 const Navbar = (props) => {
   const [catergories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Items");

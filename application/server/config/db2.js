@@ -1,5 +1,8 @@
 const mysql = require('mysql2');
 
+/**
+ * Configure mySQL connection pool
+ */
 const pool = mysql.createPool({
     host: "localhost",
     user:"root",
@@ -9,5 +12,6 @@ const pool = mysql.createPool({
     debug:false
 });
 
+// Create promise pool from connection pool
 const promisePool = pool.promise();
 module.exports = promisePool;

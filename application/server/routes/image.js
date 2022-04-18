@@ -3,6 +3,9 @@ const router = express.Router();
 const fs = require('fs');
 const stream = require('stream');
 
+/**
+ * Item Image Retrieval Router
+ */
 router.get("/:name", (req, res) => {
     // This code below was retrieved from 
     // https://stackoverflow.com/questions/17515699/node-express-sending-image-files-as-api-response

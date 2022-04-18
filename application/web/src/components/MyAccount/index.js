@@ -4,6 +4,10 @@ import useRegisterForm from "../RegistrationForm/useRegisterForm";
 import validate from "../RegistrationForm/validate";
 import styles from "./index.module.css";
 
+/**
+ * Load MyAccount Component
+ * @returns HTML of MyAccount component
+ */
 const MyAccount = () => {
   const { handleChange, handleRegister, values, errors } =
     useRegisterForm(validate);
