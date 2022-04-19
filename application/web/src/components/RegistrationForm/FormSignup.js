@@ -42,7 +42,7 @@ const FormSignup = () => {
                   value={values.firstname}
                   onChange={handleChange}
                 />
-                {errors.firstname && <p>{errors.firstname}</p>}
+                {errors.firstname && (errors.firstname).map((error)=> <p>{error}</p>)}
               </div>
             </Row>
 
@@ -57,7 +57,7 @@ const FormSignup = () => {
                   value={values.lastname}
                   onChange={handleChange}
                 />
-                {errors.lastname && <p>{errors.lastname}</p>}
+                {errors.lastname && (errors.lastname).map((error)=> <p>{error}</p>)}
               </div>
             </Row>
 
@@ -72,7 +72,7 @@ const FormSignup = () => {
                   value={values.email}
                   onChange={handleChange}
                 />
-                {errors.email && <p>{errors.email}</p>}
+                {errors.email && (errors.email).map((error)=> <p>{error}</p>)}
               </div>
             </Row>
 
@@ -94,7 +94,7 @@ const FormSignup = () => {
                   <p> *One uppercase letter</p>
                   <p> *At least 8 characters long</p>
                 </div> */}
-                {errors.password && <p>{errors.password}</p>}
+                {errors.password && (errors.password).map((error)=> <p>{error}</p>)}
               </div>
             </Row>
 
@@ -109,18 +109,16 @@ const FormSignup = () => {
                   value={values.password2}
                   onChange={handleChange}
                 />
-                {errors.password2 && <p>{errors.password2}</p>}
+                {errors.password2 && (errors.password2).map((error)=> <p>{error}</p>)}
               </div>
             </Row>
 
             <Row>
               <div class={styles.termPrivacyCheck}>
                 <input
-                  // class="form-check-input me-2"
                   type="checkbox"
                   value=""
                   required
-                  // id="form2Example3cg"
                 />
                 <label>
                   I acknowledge that I agree to the{" "}

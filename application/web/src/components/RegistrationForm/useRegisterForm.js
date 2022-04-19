@@ -8,9 +8,16 @@ const useForm = validate => {
     password: '',
     password2: ''
   });
-  const [errors, setErrors] = useState({});
-  // const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [errors, setErrors] = useState({
+    firstname: [],
+    lastname: [],
+    email: [],
+    password: [],
+    password2: []
+  });
+
+  
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({
@@ -21,19 +28,8 @@ const useForm = validate => {
 
   const handleRegister = e => {
     e.preventDefault();
-
     setErrors(validate(values));
-    // setIsSubmitting(true);
   };
-
-  // useEffect(
-  //   () => {
-  //     if (Object.keys(errors).length === 0 && isSubmitting) {
-  //       callback();
-  //     }
-  //   },
-  //   [errors]
-  // );
 
   return { handleChange, handleRegister, values, errors };
 };
