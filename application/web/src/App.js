@@ -15,7 +15,9 @@ import LoginPage from "./Pages/LoginPage";
 import MessagePostPage from "./Pages/MessagePost";
 import ItemDetailPage from "./Pages/ItemDetailPage";
 import MyPagePage from "./Pages/MyPagePage";
-import ForgotPasswordPage from "./Pages/ForgotPasswordPage"
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
+import ChangePasswordPage from "./Pages/ChangePasswordPage";
+import ChangeUsernamePage from "./Pages/ChangeUsernamePage";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
         <Route path="/item" exact element={<ItemDetailPage />} />
         <Route path="/mypage" exact element={<MyPagePage />} />
         <Route path="/forgotpassword" exact element={<ForgotPasswordPage />} />
+        <Route path="/changepassword" exact element={<ChangePasswordPage />} />
+        <Route path="/changeusername" exact element={<ChangeUsernamePage />} />
 
         {/* <Route path="*" element={NotFound} /> */}
       </Routes>

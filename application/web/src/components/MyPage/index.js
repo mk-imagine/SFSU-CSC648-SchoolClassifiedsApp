@@ -307,14 +307,14 @@ const MyPage = () => {
                   <Row style={{marginTop:"1rem"}}>
                     <Col>
                       <span>
-                        Reset Username: <a href="">Reset</a>
+                        Reset Username: <a href="/changepassword">Reset</a>
                       </span>
                     </Col>
                   </Row>
                   <Row style={{marginTop:"1rem"}}>
                     <Col>
                       <span>
-                        Reset Password: <a href="">Reset</a>
+                        Reset Password: <a href="/changeusername">Reset</a>
                       </span>
                     </Col>
                   </Row>

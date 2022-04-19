@@ -21,7 +21,7 @@ const RecoverPassword = () => {
             <Row>
               <Row className={styles.PasswordRequirement}>
                 <div>
-                  Enter the SFSU email assoicated with you account and we'll
+                  Enter the SFSU email assoicated with your account and we'll
                   send an email with instruction to reset your password.
                 </div>
               </Row>
