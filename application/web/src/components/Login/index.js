@@ -1,22 +1,57 @@
 // HEADER:Log In Page Code
-import React from "react";
+import axios from "axios";
+import React, { useState, useRef, useEffect } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
+import axios from "axios";
 
 /**
  * Load Login Page Component
  * @returns HTML of Login component
  */
 const Login = () => {
+
+  const [formValue, setformValue] = React.useState({
+    username: '',
+    password: ''
+  });
+
+  const handleSubmit = async (event) => {
+
+    const formData = new FormData();
+    formData.append('username',formValue.username);
+    formData.append('password',formValue.password);
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: "/api/login/login",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data"},
+      });
+    } catch(error) {
+      console.log(error);
+    }
+    event.preventDefault();
+  }
+
+  const handleChange = (event) => {
+    setformValue({
+      ...formValue,
+      [event.target.name]: event.target.value
+    });
+  }
+
+
   return (
     <Container>
       <Row>
         <Col></Col>
         <Col lg={4}>
-          <Form className={styles.form}>
+          <Form className={styles.form} onSubmit={handleSubmit}>
             <Row>
               <div className={styles.formInputs}>
-                <label className={styles.formLabel}>Email:</label>
+                <label className={styles.formLabel}>Username:</label>
                 <input
                   className={styles.formInput}
                   name="username"
