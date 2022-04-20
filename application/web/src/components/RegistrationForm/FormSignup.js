@@ -3,6 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import useRegisterForm from "./useRegisterForm";
 import validate from "./validate";
 import styles from "./registerForm.module.css";
+import axios from "axios";
 
 /**
  * Loads User Registration Form
@@ -11,6 +12,44 @@ import styles from "./registerForm.module.css";
 const FormSignup = () => {
   const { handleChange, handleRegister, values, errors } =
     useRegisterForm(validate);
+
+  const [formValue, setformValue] = React.useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    username: '',
+    password: '',
+    password2: ''
+  });
+
+  handleRegister = async (event) => {
+    const formData = new FormData();
+    formData.append('firstname',formValue.firstname);
+    formData.append('lastname',formValue.lastname);
+    formData.append('username',formValue.username);
+    formData.append('email',formValue.email);
+    formData.append('password',formValue.password);
+    formData.append('password2',formValue.password2);
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: "api/register/register",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data"},
+      });
+    } catch(error) {
+      console.log(error);
+    }
+    event.preventDefault();
+  }
+
+  handleChange = (event) => {
+    setformValue({
+      ...formValue,
+      [event.target.name]: event.target.value
+    });
+  }
 
   return (
     <Container>

@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { useState, useRef, useEffect } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
-import axios from "axios";
 
 /**
  * Load Login Page Component
@@ -17,7 +16,6 @@ const Login = () => {
   });
 
   const handleSubmit = async (event) => {
-
     const formData = new FormData();
     formData.append('username',formValue.username);
     formData.append('password',formValue.password);
@@ -57,6 +55,7 @@ const Login = () => {
                   name="username"
                   required
                   placeholder="Enter your username"
+                  onChange={handleChange}
                 />
               </div>
             </Row>
@@ -69,6 +68,7 @@ const Login = () => {
                   name="password"
                   required
                   placeholder="Enter your password"
+                  onChange={handleChange}
                 />
               </div>
             </Row>
