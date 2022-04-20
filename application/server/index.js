@@ -15,13 +15,20 @@ const app = express();
 
 
 const flash = require("express-flash");
-//configure sessions
+
+/**
+ * Configure mysqlSession
+ */
 var mysqlSessionStore = new mysqlSession(
     {
         /*using default options*/
     },
     require('./config/db2')
 );
+
+/**
+ * Use Sessions
+ */
 app.use(sessions({
     key: "csid",//key used for cookie for front end
     secret: "csc648",//used to sign cookie
@@ -30,12 +37,16 @@ app.use(sessions({
     saveUninitialized: false//don't save sessions that we don't initialize ourselves
 }));
 
-
+/**
+ * Use express.json for json parsing for incoming requests
+ */
 app.use(express.json());
 // app.use(cookieParser());
 //app.use('/createpost', postingrouter);
 
-//keep track of login/out state
+/**
+ * Track login state in sessions
+ */
 app.use((req, res, next) => {
     console.log(req.session);
     if(req.session.username) {
@@ -44,15 +55,19 @@ app.use((req, res, next) => {
     next();
 })
 
+/**
+ * Routes
+ */
 app.use('/api', itemapi);
+app.use('/api/images', imagerouter);
+app.use('/api/login',loginrouter);
+app.use('/api/post', postingrouter);
+app.use('/api/register', registerrouter);
+app.use('/api/msg', msgrouter);
 
-app.use('/images', imagerouter);
-
-app.use('/login',loginrouter);
-app.use('/post', postingrouter);
-app.use('/register', registerrouter);
-app.use('/msg', msgrouter);
-
+/**
+ * Load flash messages middleware
+ */
 app.use(flash());
 
 const port = 3100;

@@ -1,0 +1,45 @@
+/* HEADER:Log In Page Styling  */
+.title{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+.container{
+    /* margin:auto;
+    width: 50%; */
+    text-align: center;
+    border: 1px;
+    border-style: solid;
+   
+    
+}
+.image{
+    width: auto;
+    height: 20rem;
+    margin-bottom: 1rem;
+  
+}
+.button{
+    margin-bottom: 1rem;
+    width: 10rem !important;
+    padding: 10px !important;
+    font-size: 1.5rem !important;
+    background-color: #5f27cd !important;
+    border-color: #5f27cd !important ;
+    
+}
+.subtitle{
+   font-size: 1rem;
+   text-align: right;
+   
+
+}
+.input{
+    width: 100% ;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    
+}
+.dropdown{
+    width: 100% !important;
+}

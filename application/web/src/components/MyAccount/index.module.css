@@ -27,21 +27,19 @@
 
 .formInput {
   display: inline;
-  /* padding-left: 10px; */
-  /* outline: none; */
   border-radius: 6px;
   height: 35px;
   width: 100%;
-  border-color: rgb(2, 2, 2);
+  border-color: #dfe6e9 !important;
   text-align: left;
   float: right;
 }
 
 /* .form-input::placeholder {
-    color: #595959;
-    font-size: 12px;
-  }
-   */
+      color: #595959;
+      font-size: 12px;
+    }
+     */
 
 .termPrivacyCheck {
   text-align: center;
@@ -58,10 +56,11 @@
     rgb(82, 36, 127) 0%,
     rgb(193, 126, 219) 100%
   );
-  /* outline: none;
-  border: none;
   color: #fff;
-  font-size: 1rem; */
+  /* outline: none;
+    border: none;
+
+    font-size: 1rem; */
 }
 
 .formInputBtn:hover {
@@ -84,4 +83,9 @@
   text-decoration: none;
   color: #27cdff;
   font-weight: 600;
+}
+
+::placeholder {
+  color: black;
+  opacity: 1;
 }

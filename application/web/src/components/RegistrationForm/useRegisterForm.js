@@ -1,17 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState } from "react";
 
-const useForm = validate => {
+/**
+ * Form usage handler
+ * @param {*} validate 
+ * @returns change handler, registration hadler, values, and errors
+ */
+const useForm = (validate) => {
   const [values, setValues] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    password: '',
-    password2: ''
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    password2: ""
   });
   const [errors, setErrors] = useState({});
   // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = e => {
+  /**
+   * Handles changes in form
+   * @param {*} e 
+   */
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -19,7 +28,11 @@ const useForm = validate => {
     });
   };
 
-  const handleRegister = e => {
+  /**
+   * Handles errors on registration
+   * @param {*} e 
+   */
+  const handleRegister = (e) => {
     e.preventDefault();
 
     setErrors(validate(values));
@@ -39,4 +52,3 @@ const useForm = validate => {
 };
 
 export default useForm;
-

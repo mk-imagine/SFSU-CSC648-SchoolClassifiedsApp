@@ -1,47 +1,19 @@
+// HEADER:Log In Page Code
 import React from "react";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
+
+/**
+ * Load Login Page Component
+ * @returns HTML of Login component
+ */
 const Login = () => {
   return (
     <Container>
       <Row>
         <Col></Col>
-        <Col md="auto">
-          <h1 className="greeting">Welcome to PurpleMarket</h1>
-        </Col>
-        <Col></Col>
-      </Row>
-
-      <Row>
-        <Col></Col>
-        <Col md="auto">
-          <h2 classname="form-title">Sign In</h2>
-        </Col>
-        <Col></Col>
-      </Row>
-
-      <Row>
-        <Col></Col>
         <Col lg={4}>
-          <form className={ styles.form } method="POST" action="/login"
-           encType="application/x-www-form-urlencoded">
-            {/* <h2 classname = 'form-title'>
-                  Sign up for a free account
-              </h2> */}
-
-            {/* #1 user input for first name  */}
-
-            {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label>First Name*:</Form.Label>
-                          <Form.Control type="text"
-                              name='firstname'
-                              placeholder="Enter your first name"
-                              value={values.firstname}
-                              onChange={handleChange} />
-                          <Form.Text className="text-muted">
-                              {errors.firstname && <p>{errors.firstname}</p>}
-                          </Form.Text>
-                      </Form.Group> */}
+          <Form className={styles.form}>
             <Row>
               <div className={styles.formInputs}>
                 <label className={styles.formLabel}>Email:</label>
@@ -68,6 +40,7 @@ const Login = () => {
 
             <Row>
               <Col></Col>
+
               <Col>
                 <button className={styles.formInputBtn} type="submit">
                   Log In
@@ -75,8 +48,12 @@ const Login = () => {
               </Col>
 
               <Col></Col>
+
+              <label className={styles.subtitle2}>
+                Don't have an account? Register <a href="/register">Here</a>
+              </label>
             </Row>
-          </form>
+          </Form>
         </Col>
         <Col></Col>
       </Row>

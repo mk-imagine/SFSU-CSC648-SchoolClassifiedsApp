@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import ItemCard from "../ItemCard";
-import anonPic from "../../images/anonPic.png";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-//the page where we load the data
+/**
+ * Loads all items in a grid
+ * @param {*} props 
+ * @returns HTML that loads all item data
+ */
 export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
-  const [images, setImages] = useState([]);
   const columnsPerRow = 3;
 
-  const base_url = "http://localhost:3100";
+  const navigate = useNavigate();
+  // const base_url = "/api";
+  const base_url = "http://localhost:3100/api";
+  // eslint-disable-next-line
   useEffect(() => {
     setItems(props.items);
   });
@@ -31,6 +36,7 @@ export const ViewItems = (props) => {
                   description={e.item_desc}
                   price={e.item_price}
                   image={image_url}
+                  item_details={e}
                 ></ItemCard>
               </div>
             );

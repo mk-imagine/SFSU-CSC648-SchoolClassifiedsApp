@@ -1,9 +1,13 @@
 import React from "react";
-import { Row, Col, Container, Form } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import useRegisterForm from "./useRegisterForm";
 import validate from "./validate";
 import styles from "./registerForm.module.css";
 
+/**
+ * Loads User Registration Form
+ * @returns HTML of Registration Form
+ */
 const FormSignup = () => {
   const { handleChange, handleRegister, values, errors } =
     useRegisterForm(validate);
@@ -12,57 +16,37 @@ const FormSignup = () => {
     <Container>
       <Row>
         <Col></Col>
-        <Col md="auto">
-          <h1 className="greeting">Welcome to PurpleMarket</h1>
-        </Col>
-        <Col></Col>
-      </Row>
 
-      <Row>
-        <Col></Col>
-        <Col md="auto">
-          <h2 className="form-title">Sign up for a free account</h2>
-        </Col>
-        <Col></Col>
-      </Row>
-
-      <Row>
-        <Col></Col>
-        <Col lg={8}>
-          <form className={styles.form} method="POST" action="/register"
-           encType="application/x-www-form-urlencoded" onSubmit={handleRegister}>
+        <Col lg={7}>
+          <form className={styles.form} onSubmit={handleRegister}>
             <Row>
-              <Col>
-                <div className={styles.formInputs}>
-                  <label className={styles.formLabel}>First Name*:</label>
-                  <input
-                    className={styles.formInput}
-                    type="text"
-                    name="firstname"
-                    required
-                    placeholder="Enter your first name"
-                    value={values.firstname}
-                    onChange={handleChange}
-                  />
-                  {errors.firstname && <p>{errors.firstname}</p>}
-                </div>
-              </Col>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>First Name*:</label>
+                <input
+                  className={styles.formInput}
+                  type="text"
+                  name="firstname"
+                  placeholder="Enter your first name"
+                  value={values.firstname}
+                  onChange={handleChange}
+                />
+                {errors.firstname && <p>{errors.firstname}</p>}
+              </div>
+            </Row>
 
-              <Col>
-                <div className={styles.formInputs}>
-                  <label className={styles.formLabel}>Last Name*:</label>
-                  <input
-                    className={styles.formInput}
-                    type="text"
-                    name="lastname"
-                    required
-                    placeholder="Enter your last name"
-                    value={values.lastname}
-                    onChange={handleChange}
-                  />
-                  {errors.lastname && <p>{errors.lastname}</p>}
-                </div>
-              </Col>
+            <Row>
+              <div className={styles.formInputs}>
+                <label className={styles.formLabel}>Last Name*:</label>
+                <input
+                  className={styles.formInput}
+                  type="text"
+                  name="lastname"
+                  placeholder="Enter your last name"
+                  value={values.lastname}
+                  onChange={handleChange}
+                />
+                {errors.lastname && <p>{errors.lastname}</p>}
+              </div>
             </Row>
 
             <Row>
@@ -130,14 +114,8 @@ const FormSignup = () => {
 
             <Row>
               <div class={styles.termPrivacyCheck}>
-                <input
-                  // class="form-check-input me-2"
-                  type="checkbox"
-                  value=""
-                  required
-                  // id="form2Example3cg"
-                />
-                <label>
+                <input type="checkbox" value="" required />
+                <label style={{ marginLeft: "0.5rem" }}>
                   I acknowledge that I agree to the{" "}
                   <a href="#!" class="text-body">
                     <u>Term of Use</u>

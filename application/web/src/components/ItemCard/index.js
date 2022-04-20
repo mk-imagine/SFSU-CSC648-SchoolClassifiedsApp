@@ -3,18 +3,44 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 import styles from "./index.module.css";
+// import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
+/**
+ * Load Item Card Component
+ * @param {*} props 
+ * @returns HTML of Item Card Component
+ */
 const ItemCard = (props) => {
+  const navigate = useNavigate();
+
+  const goToMessagePage = () => {
+    console.log("message button clicked");
+    console.log(props.item_details);
+    navigate("/message", {
+      state: { item_details: props.item_details, image: props.image }
+    });
+  };
+
+  const goToItemDetailPage = () => {
+    navigate("/item", {
+      state: { item_details: props.item_details, image: props.image }
+    });
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea onClick={goToItemDetailPage}>
+        <div style={{display: "flex", alignItem: "center", justifyContent: "center"}}>
         <CardMedia
           component="img"
-          height="300"
+          height = "400"
           image={props.image}
           alt="green iguana"
         />
+        </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {props.title}
@@ -26,10 +52,18 @@ const ItemCard = (props) => {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <CardActions>
+        <Button onClick={goToMessagePage}>Message Seller</Button>
+      </CardActions>
     </Card>
   );
 };
 
+/**
+ * Load Category Card Component
+ * @param {*} props 
+ * @returns HTML of Category Card Component
+ */
 export const ItemTopCategoryCard = (props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
