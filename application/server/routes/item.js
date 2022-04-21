@@ -6,9 +6,11 @@ router.get("/", (req, res) => {
   res.send("Item Route Successful Response.");
 });
 
-router.get("/categories", async (req, res, next) => {
+router.get("/categories/:sortBy/:direction", async (req, res, next) => {
   try {
-    const results = await ItemsModel.getCategories();
+    const sortBy = req.params.sortBy;
+    const direction = req.params.direction;
+    const results = await ItemsModel.getCategories(sortBy, direction);
     if (results && results.length) {
       res.send(results);
     } else {
@@ -19,9 +21,11 @@ router.get("/categories", async (req, res, next) => {
   }
 });
 
-router.get("/items", async (req, res, next) => {
+router.get("/items/:sortBy/:direction", async (req, res, next) => {
   try {
-    const results = await ItemsModel.getAllItems();
+    const sortBy = req.params.sortBy;
+    const direction = req.params.direction;
+    const results = await ItemsModel.getAllItems(sortBy, direction);
     if (results && results.length) {
       res.send(results);
     } else {
@@ -32,11 +36,13 @@ router.get("/items", async (req, res, next) => {
   }
 });
 
-router.get("/itemwithcategory/:searchWord/:categoryWord", async (req, res, next) => {
+router.get("/itemwithcategory/:searchWord/:categoryWord/:sortBy/:direction", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
     const category = "%" + req.params.categoryWord + "%";
-    const results = await ItemsModel.categoryAndItemSearch(category, searchWord);
+    const sortBy = req.params.sortBy;
+    const direction = req.params.direction;
+    const results = await ItemsModel.categoryAndItemSearch(category, searchWord, sortBy, direction);
     if (results && results.length) {
       res.send(results);
     } else {
@@ -47,10 +53,12 @@ router.get("/itemwithcategory/:searchWord/:categoryWord", async (req, res, next)
   }
 });
 
-router.get("/searchcategory/:searchCategory", async (req, res, next) => {
+router.get("/searchcategory/:searchCategory/:sortBy/:direction", async (req, res, next) => {
   try {
     const category = "%" + req.params.searchCategory + "%";
-    const results = await ItemsModel.categorySearch(category);
+    const sortBy = req.params.sortBy;
+    const direction = req.params.direction;
+    const results = await ItemsModel.categorySearch(category, sortBy, direction);
     if (results && results.length) {
       res.send(results);
     } else {
@@ -61,10 +69,12 @@ router.get("/searchcategory/:searchCategory", async (req, res, next) => {
   }
 });
 
-router.get("/searchitems/:searchWord", async (req, res, next) => {
+router.get("/searchitems/:searchWord/:sortBy/:direction", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
-    const results = await ItemsModel.itemSearch(searchWord);
+    const sortBy = req.params.sortBy;
+    const direction = req.params.direction;
+    const results = await ItemsModel.itemSearch(searchWord, sortBy, direction);
     if (results && results.length) {
       res.send(results);
     } else {
