@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
  * Registration Route
  */
 router.post('/register', (req, res, next) => {
-
+    console.log("inside register route");
     let firstname = req.body.firstname;
     let lastname = req.body.lastname;
     let username = req.body.username;

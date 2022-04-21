@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import useRegisterForm from "./useRegisterForm";
 import validate from "./validate";
@@ -10,19 +11,20 @@ import axios from "axios";
  * @returns HTML of Registration Form
  */
 const FormSignup = () => {
-  const { handleChange, handleRegister, values, errors } =
-    useRegisterForm(validate);
-
-  const [formValue, setformValue] = React.useState({
+  // const { handleChange, values, errors } =
+  //   useRegisterForm(validate);
+  const [errors, setErrors] = useState({});
+  const [formValue, setformValue] = useState({
     firstname: '',
     lastname: '',
-    email: '',
     username: '',
+    email: '',
     password: '',
     password2: ''
   });
 
-  handleRegister = async (event) => {
+ const handleRegister = (event) => {
+    console.log("handleRegister called");
     const formData = new FormData();
     formData.append('firstname',formValue.firstname);
     formData.append('lastname',formValue.lastname);
@@ -32,22 +34,24 @@ const FormSignup = () => {
     formData.append('password2',formValue.password2);
 
     try {
-      const response = await axios({
+      const response = axios({
         method: "post",
-        url: "api/register/register",
+        url: "http://localhost:3100/api/register/register/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data"},
       });
+      console.log(formData.get('username'));
+      console.log(formData.get('email'));
     } catch(error) {
       console.log(error);
     }
     event.preventDefault();
   }
 
-  handleChange = (event) => {
+  const handleChange = (e) => {
     setformValue({
       ...formValue,
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     });
   }
 
@@ -66,7 +70,7 @@ const FormSignup = () => {
                   type="text"
                   name="firstname"
                   placeholder="Enter your first name"
-                  value={values.firstname}
+                  value={formValue.firstname}
                   onChange={handleChange}
                 />
                 {errors.firstname && <p>{errors.firstname}</p>}
@@ -81,7 +85,7 @@ const FormSignup = () => {
                   type="text"
                   name="lastname"
                   placeholder="Enter your last name"
-                  value={values.lastname}
+                  value={formValue.lastname}
                   onChange={handleChange}
                 />
                 {errors.lastname && <p>{errors.lastname}</p>}
@@ -90,14 +94,14 @@ const FormSignup = () => {
 
             <Row>
               <div className={styles.formInputs}>
-                <label className={styles.formLabel}>Email*:</label>
+                <label className={styles.formLabel}>Username*:</label>
                 <input
                   className={styles.formInput}
                   type="text"
                   name="username"
                   required
                   placeholder="Enter your username"
-                  value={values.username}
+                  value={formValue.username}
                   onChange={handleChange}
                 />
               </div>
@@ -112,7 +116,7 @@ const FormSignup = () => {
                   name="email"
                   required
                   placeholder="Enter your SFSU email"
-                  value={values.email}
+                  value={formValue.email}
                   onChange={handleChange}
                 />
                 {errors.email && <p>{errors.email}</p>}
@@ -128,7 +132,7 @@ const FormSignup = () => {
                   name="password"
                   required
                   placeholder="Enter your password"
-                  value={values.password}
+                  value={formValue.password}
                   onChange={handleChange}
                 />
                 {errors.password && <p>{errors.password}</p>}
@@ -144,7 +148,7 @@ const FormSignup = () => {
                   name="password2"
                   required
                   placeholder="Confirm your password"
-                  value={values.password2}
+                  value={formValue.password2}
                   onChange={handleChange}
                 />
                 {errors.password2 && <p>{errors.password2}</p>}
