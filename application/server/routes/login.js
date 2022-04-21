@@ -22,7 +22,11 @@ router.get('/', (req, res) => {
  * Login Router
  */
 router.post('/login', (req, res, next) => {
+    console.log(req);
+    console.log("what is req.body");
     console.log(req.body);
+    console.log("what is req.data");
+    console.log(req.data);
     let username = req.body.username;
     let password = req.body.password;
     console.log("what is username : " + username + "what is password : " + password);

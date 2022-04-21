@@ -48,7 +48,7 @@ app.use(express.json());
  * Track login state in sessions
  */
 app.use((req, res, next) => {
-    console.log(req.session);
+    //console.log(req.session);
     if(req.session.username) {
         res.locals.logged = true;
     }

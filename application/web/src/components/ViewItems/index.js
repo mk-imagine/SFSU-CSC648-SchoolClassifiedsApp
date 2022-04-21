@@ -12,7 +12,7 @@ export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
   const columnsPerRow = 3;
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   // const base_url = "/api";
   const base_url = "http://localhost:3100/api";
   // eslint-disable-next-line

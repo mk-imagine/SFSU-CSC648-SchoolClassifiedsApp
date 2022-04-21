@@ -1,16 +1,54 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import useRegisterForm from "./useRegisterForm";
-import validate from "./validate";
+//import useRegisterForm from "./useRegisterForm";
+//import validate from "./validate";
 import styles from "./registerForm.module.css";
-
+import axios from "axios";
 /**
  * Loads User Registration Form
  * @returns HTML of Registration Form
  */
 const FormSignup = () => {
-  const { handleChange, handleRegister, values, errors } =
-    useRegisterForm(validate);
+  //const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [firstname, setFirstname] = React.useState('');
+  const [lastname, setLastname] = React.useState('');
+  const [password2, setPassword2] = React.useState('');
+  const [email, setSemail] = React.useState('');
+  const username = firstname+lastname;
+const handleSubmit = () => {
+  console.log(username);
+  console.log(password);
+   var data1 = {
+  'username': username,
+  'password': password,
+  'firstname': firstname,
+  'lastname' : lastname,
+  'confirmPassword': password2,
+  'email': email
+};
+var data2 = JSON.stringify(data1);
+console.log(data1); 
+console.log(data2);
+  var config = {
+    method: 'post',
+    url: 'http://localhost:3100/api/register/register',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data: data2
+  };
+  
+  axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+}
+
+
 
   return (
     <Container>
@@ -18,7 +56,7 @@ const FormSignup = () => {
         <Col></Col>
 
         <Col lg={7}>
-          <form className={styles.form} onSubmit={handleRegister}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <Row>
               <div className={styles.formInputs}>
                 <label className={styles.formLabel}>First Name*:</label>
@@ -27,10 +65,10 @@ const FormSignup = () => {
                   type="text"
                   name="firstname"
                   placeholder="Enter your first name"
-                  value={values.firstname}
-                  onChange={handleChange}
+                  value={firstname}
+                  onChange={e=>setFirstname(e.target.value)}
                 />
-                {errors.firstname && <p>{errors.firstname}</p>}
+                
               </div>
             </Row>
 
@@ -42,10 +80,10 @@ const FormSignup = () => {
                   type="text"
                   name="lastname"
                   placeholder="Enter your last name"
-                  value={values.lastname}
-                  onChange={handleChange}
+                  value={lastname}
+                  onChange={e=>setLastname(e.target.value)}
                 />
-                {errors.lastname && <p>{errors.lastname}</p>}
+                
               </div>
             </Row>
 
@@ -57,10 +95,10 @@ const FormSignup = () => {
                   type="email"
                   name="email"
                   placeholder="Enter your SFSU email"
-                  value={values.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={e=>setSemail(e.target.value)}
                 />
-                {errors.email && <p>{errors.email}</p>}
+                
               </div>
             </Row>
 
@@ -72,10 +110,10 @@ const FormSignup = () => {
                   type="password"
                   name="password"
                   placeholder="Enter your password"
-                  value={values.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={e=>setPassword(e.target.value)}
                 />
-                {errors.password && <p>{errors.password}</p>}
+                
               </div>
             </Row>
 
@@ -87,10 +125,10 @@ const FormSignup = () => {
                   type="password"
                   name="password2"
                   placeholder="Confirm your password"
-                  value={values.password2}
-                  onChange={handleChange}
+                  value={password2}
+                  onChange={e=>setPassword2(e.target.value)}
                 />
-                {errors.password2 && <p>{errors.password2}</p>}
+                
               </div>
             </Row>
 
@@ -113,7 +151,7 @@ const FormSignup = () => {
             <Row>
               <Col></Col>
               <Col>
-                <button className={styles.formInputBtn} type="submit">
+                <button className={styles.formInputBtn} onClick={handleSubmit} type="button">
                   Register
                 </button>
               </Col>

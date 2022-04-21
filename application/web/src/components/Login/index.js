@@ -2,12 +2,63 @@
 import React from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
+import axios from "axios";
 
 /**
  * Load Login Page Component
  * @returns HTML of Login component
  */
 const Login = () => {
+
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+const handleSubmit = () => {
+  console.log(username);
+  console.log(password);
+   var data1 = {
+  'username': username,
+  'password': password
+};
+var data2 = JSON.stringify(data1);
+console.log(data1); 
+console.log(data2);
+  var config = {
+    method: 'post',
+    url: 'http://localhost:3100/api/login/login',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data: data2
+  };
+  
+  axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+}
+
+
+
+/*   const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  
+  const handleSubmit = (event) => {
+    try{
+      const response = axios({
+        method: "post",
+        url: "http://localhost:3100/api/login/login",
+        data: {username:username, password:password},
+        headers: {"Content-Type" : "multipart/form-data"}
+      });
+    }catch(error){
+      console.log(error);
+    }
+  } */
+
   return (
     <Container>
       <Row>
@@ -19,8 +70,10 @@ const Login = () => {
                 <label className={styles.formLabel}>Email:</label>
                 <input
                   className={styles.formInput}
-                  type="email"
+                  type="text"
                   placeholder="Enter your email"
+                  value={username}
+                  onChange={e=>setUsername(e.target.value)}
                 />
               </div>
             </Row>
@@ -32,6 +85,8 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="Enter your password"
+                  value={password}
+                  onChange={e=>setPassword(e.target.value)}
                 />
               </div>
             </Row>
@@ -40,7 +95,7 @@ const Login = () => {
               <Col></Col>
 
               <Col>
-                <button className={styles.formInputBtn} type="submit">
+                <button className={styles.formInputBtn} onClick={handleSubmit} type="button">
                   Log In
                 </button>
               </Col>
