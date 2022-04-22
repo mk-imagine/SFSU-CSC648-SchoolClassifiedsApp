@@ -62,7 +62,8 @@ router.post('/login', (req, res, next) => {
                 res.locals.logged = true;
                 // req.flash('success','Login Successful');
                 console.log("user is logged");
-                res.redirect("/");//after login redirect user to this page
+                //res.redirect("http://localhost:3000/");//after login redirect user to this page
+                res.send("http://localhost:3000/");
             } else {
                 throw new UserError("Invalid login", "/login", 200);
             }

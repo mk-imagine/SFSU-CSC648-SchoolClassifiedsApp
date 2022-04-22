@@ -40,6 +40,7 @@ router.post('/register', (req, res, next) => {
             if (usernameOK) {
                 return Validator.emailValid(email);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR USERNAMEOK");
                 throw new UserError("Enter a valid username", "/register", 200);
             }
         }).then((emailOK) => {
@@ -47,6 +48,7 @@ router.post('/register', (req, res, next) => {
             if (emailOK) {
                 return Validator.passwordValid(password);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR EMAILOK");
                 throw new UserError("Enter a valid SFSU email", "/register", 200);
             }
         }).then((passwordOK) => {
@@ -54,6 +56,7 @@ router.post('/register', (req, res, next) => {
             if (passwordOK) {
                 return Validator.cpasswordValid(password, confirmPassword);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR PASSWORDOK");
                 throw new UserError("Enter a valid password", "/register", 200);
             }
         }).then((bothPasswordsOK) => {
@@ -61,11 +64,13 @@ router.post('/register', (req, res, next) => {
             if (bothPasswordsOK) {
                 return UserModel.usernameExist(username);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR BOTHPASSWORDOK");
                 throw new UserError("Your passwords don't match", "/register", 200);
             }
         }).then((usernameExists) => {
             console.log("does theusername exist? " + usernameExists);
             if (usernameExists) {
+                console.log("ERROR GOING INTO THE IF FOR USERNAMeEXISTS");
                 throw new UserError("This username already exists", "/register", 200);
             } else {
                 return UserModel.emailExist(email);
@@ -73,6 +78,7 @@ router.post('/register', (req, res, next) => {
         }).then((emailExists) => {
             console.log("does the email exist? " + emailExists);
             if (emailExists) {
+                console.log("ERROR GOING INTO THE IF FOR EMAILEXISTS");
                 throw new UserError("This email already exists", "/register", 200);
             } else {
                 console.log("what is password? " + password);
@@ -82,10 +88,13 @@ router.post('/register', (req, res, next) => {
             console.log("what is the userID? " + userId);
             if (userId > 0) {
                 console.log('User successfuly created!');
-                res.redirect('/login');
+                //res.redirect('http://localhost:3000/login');
+                //window.location.href = "/login";
+                res.send("http://localhost:3000/login");
             } else {
                 // req.flash('success', 'User account has been made');
-                throw new UserError("User could not be created", "/register", 200);
+                console.log("ERROR GOING INTO THE ELSE FOR USERID");
+                throw new UserError("User could not be created", "/api/register/register", 200);
             }
         })
         .catch((err) => {
@@ -94,7 +103,7 @@ router.post('/register', (req, res, next) => {
                 errorPrinter.errorPrint(err.getMessage());
                 // req.flash('error', err.getMessage());//get error message from object
                 res.status(err.getStatus());
-                res.redirect(err.getRedirectURL());
+                res.redirect(err.getRedirectURL('/api/register/register'));
             } else {
                 next(err);
             }

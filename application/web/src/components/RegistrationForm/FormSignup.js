@@ -40,10 +40,11 @@ console.log(data2);
   };
   
   axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
+.then((response) => {
+  window.location.href = response.data;
+  //console.log(JSON.stringify(response.data));
 })
-.catch(function (error) {
+.catch( (error) => {
   console.log(error);
 });
 }

@@ -11,12 +11,56 @@ import {
 } from "react-bootstrap";
 import styles from "./index.module.css";
 import image from "../../images/image.png";
+import axios from "axios";
+
 
 /**
  * Load Post Item Page Component
  * @returns HTML of ItemPost Component
  */
 const ItemPost = () => {
+  const [itemname, setItemname] = React.useState('');
+  const [price, setPrice] = React.useState('');
+  const [category, setCategory] = React.useState('');
+  const [course, setCourse] = React.useState('');
+  const [description, setDescription] = React.useState('');
+
+  const handleSubmit = () => {
+   
+     var data1 = {
+    'name': itemname,
+    'price': price,
+    'descrition': description,
+    'course' : course,
+    'category': category, //not sure how to set category on the form
+    //not sure about images
+
+  };
+  var data2 = JSON.stringify(data1);
+  console.log(data1); 
+  console.log(data2);
+    var config = {
+      method: 'post',
+      url: 'http://localhost:3100/api/post/post',
+      headers: { 
+        'Content-Type': 'application/json' //can't be application/json
+      },
+      data: data2
+    };
+    
+    axios(config)
+  .then((response) => {
+    window.location.href = response.data;
+    //console.log(JSON.stringify(response.data));
+  })
+  .catch( (error) => {
+    console.log(error);
+  });
+  }
+  
+  
+  
+
   return (
     <div style={{ marginTop: "1rem" }}>
       <Container className={styles.container}>
@@ -40,6 +84,8 @@ const ItemPost = () => {
                   type="text"
                   name="itemname"
                   placeholder="e.g. Macbook"
+                  value={itemname}
+                  onChange={e=>setItemname(e.target.value)}
                 />
               </Col>
             </Row>
@@ -55,6 +101,8 @@ const ItemPost = () => {
                   type="number"
                   name="pricename"
                   placeholder="e.g.$25"
+                  value={price}
+                  onChange={e=>setPrice(e.target.value)}
                 />
               </Col>
             </Row>
@@ -89,6 +137,8 @@ const ItemPost = () => {
                   type="number"
                   name="coursenumber"
                   placeholder="e.g.CSC648"
+                  value={course}
+                  onChange={e=>setCourse(e.target.value)}
                 />
               </Col>
 
@@ -113,6 +163,8 @@ const ItemPost = () => {
                   type="textarea"
                   name="textareaname"
                   placeholder="e.g. This product has so many features"
+                  value={description}
+                  onChange={e=>setDescription(e.target.value)}
                 />
               </Col>
             </Row>
@@ -128,7 +180,7 @@ const ItemPost = () => {
               <Col> </Col>
 
               <Col>
-                <Button className={styles.button}>Post Image</Button>
+                <Button className={styles.button} onClick={handleSubmit}>Post Image</Button>
               </Col>
 
               <Col> </Col>

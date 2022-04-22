@@ -61,7 +61,8 @@ router.post('/post', upload.single('image'), (req, res) => {
             if (postLogged) {
                 //redirect somewhere?
                 console.log("is post in database?: " + postLogged);
-                res.redirect('/');
+                //res.redirect('/');
+                res.send("http://localhost:3000/");
             } else {
                 throw new PostError('Unable to put post data into db', '/post', 200);
             }

@@ -33,11 +33,13 @@ console.log(data2);
   };
   
   axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
+.then((response) => {
+  console.log("What is the response?: "+response.data);
+  window.location.href = response.data;
+  //console.log(JSON.stringify(response.data));
 })
-.catch(function (error) {
-  console.log(error);
+.catch((error) => {
+  console.log("what is the error?: "+error);
 });
 }
 
