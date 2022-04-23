@@ -4,8 +4,8 @@ const MessageModel = {};
 
 MessageModel.create = (itemId, senderId, recipientId, meet_time, location, contactInfo, message) => {
     let baseSQL = `BEGIN;
-                    INSERT INTO message (msg_sender, msg_recipient, msg_meet_time, msg_location, msg_contactinfo, msg_body)
-                    VALUES (?, ?, ?, ?, ?, ?);
+                    INSERT INTO message (msg_sender, msg_recipient, msg_meet_time, msg_location, msg_contactinfo, msg_body, msg_timestamp)
+                    VALUES (?, ?, ?, ?, ?, ?, ?);
                     SELECT LAST_INSERT_ID() INTO @msgid;
                     INSERT INTO itemmsgs (im_item, im_msg)
                     VALUES (?, @msgid);
@@ -17,7 +17,8 @@ MessageModel.create = (itemId, senderId, recipientId, meet_time, location, conta
         location, 
         contactInfo, 
         message, 
-        itemId
+        itemId,
+        timestamp
     ])
         .then(([results, fields]) => {
         return Promise.resolve(results);
@@ -27,7 +28,7 @@ MessageModel.create = (itemId, senderId, recipientId, meet_time, location, conta
 
 MessageModel.getAllMessages = (userId) => {
     console.log("in model: " + userId);
-    let baseSQL = `SELECT it.item_name AS "Item", seller.user_username AS "Seller", sender.user_username AS "Sender", recipient.user_username AS "Recipient", msg.msg_id AS "Message ID", msg.msg_body AS "Message"
+    let baseSQL = `SELECT it.item_name AS "Item", seller.user_username AS "Seller", sender.user_username AS "Sender", recipient.user_username AS "Recipient", msg.msg_id AS "Message ID", msg.msg_body AS "Message", timestamp.msg_timestamp AS "Time Stamp"
                     FROM message msg
                     INNER JOIN itemmsgs im ON msg.msg_id = im.im_msg
                     INNER JOIN item it ON it.item_id = im.im_item
