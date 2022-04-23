@@ -13,13 +13,13 @@ const MessageModel = {};
  * @param {*} meet_time 
  * @param {*} location 
  * @param {*} contactInfo 
- * @param {*} message 
+ * @param {*} message
  * @returns True if insert successful
  */
 MessageModel.create = (itemId, senderId, recipientId, meet_time, location, contactInfo, message) => {
     let baseSQL = `BEGIN;
                     INSERT INTO message (msg_sender, msg_recipient, msg_meet_time, msg_location, msg_contactinfo, msg_body)
-                    VALUES (?, ?, ?, ?, ?, ?);
+                    VALUES (?, ?, ?, ?, ?, ?, NOW());
                     SELECT LAST_INSERT_ID() INTO @msgid;
                     INSERT INTO itemmsgs (im_item, im_msg)
                     VALUES (?, @msgid);
@@ -46,7 +46,8 @@ MessageModel.create = (itemId, senderId, recipientId, meet_time, location, conta
  */
 MessageModel.getReceivedMessages = ( userId ) => {
     let baseSQL = `SELECT it.item_id AS "ItemID", it.item_name AS "ItemName", sender.user_username AS "SendUsername", sender.user_fname AS "SendFName", 
-                    sender.user_lname AS "SendLName", sender.user_email AS "SendEmail", msg.msg_contactinfo AS "ContactInfo", msg.msg_body AS "Message"
+                    sender.user_lname AS "SendLName", sender.user_email AS "SendEmail", msg.msg_contactinfo AS "ContactInfo", msg.msg_body AS "Message",
+                    timestamp.msg_timestamp AS "Time Stamp"
                     FROM message msg
                     INNER JOIN itemmsgs im ON msg.msg_id = im.im_msg
                     INNER JOIN item it ON it.item_id = im.im_item
