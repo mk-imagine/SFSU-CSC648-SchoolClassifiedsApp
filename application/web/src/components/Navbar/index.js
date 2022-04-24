@@ -9,7 +9,7 @@ const myContext = React.createContext([]);
 
 /**
  * Load Navbar component
- * @param {*} props 
+ * @param {*} props
  * @returns HTML of Navbar
  */
 const Navbar = (props) => {
@@ -34,11 +34,16 @@ const Navbar = (props) => {
 
   useEffect(() => {
     fetchCategories();
+    getAllItems();
+   
+  }, []);
+
+  const getAllItems =() =>{
     axios.get(`${base_url}/items`).then((res) => {
       setItems(res.data);
       setNumberOfTotalItems(res.data.length);
     });
-  }, []);
+  }
 
   const fetchCategories = () => {
     axios.get(`${base_url}/categories`).then((res) => {
@@ -55,6 +60,12 @@ const Navbar = (props) => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
+
+  const handleKeyDown = (event)=>{
+    if (event.key === 'Enter') {
+      onSubmit();
+    }
+  }
 
   const onSubmit = () => {
     console.log("On submit");
@@ -122,7 +133,7 @@ const Navbar = (props) => {
         setNumberOfItems(res.data.length);
       });
     }
-    setSearchInput("");
+    
   };
 
   const OnLogin = () => {
@@ -132,12 +143,23 @@ const Navbar = (props) => {
   return (
     <div>
       <Row>
-        <div className={styles.subTitle}>SFSU Software Engineering Project CSC 648-848, Spring 2022.  For Demonstration Only</div>
+        <div className={styles.subTitle}>
+          SFSU Software Engineering Project CSC 648-848, Spring 2022. For
+          Demonstration Only
+        </div>
       </Row>
       <div className={styles.container}>
         <Row className="align-items-center">
           <Col lg={2}>
-            <div className={styles.title}>Purple Market</div>
+            <div
+              className={styles.title}
+              onClick={() => {
+                getAllItems();
+                navigate("/");
+              }}
+            >
+              Purple Market
+            </div>
           </Col>
 
           <Col lg={6}>
@@ -173,12 +195,14 @@ const Navbar = (props) => {
 
                   <div className="form-group">
                     <input
-                      style={{ width: "30rem" }}
+                      style={{ width: "20rem" }}
                       type="text"
                       className="form-control rounded-0"
                       placeholder={"Search Here"}
                       onChange={searchHandleChange}
                       value={searchInput}
+                      maxLength = "40"
+                      onKeyDown={handleKeyDown}
                     />
                   </div>
 

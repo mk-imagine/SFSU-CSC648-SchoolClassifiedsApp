@@ -3,6 +3,10 @@
   /* width: 80%; */
 }
 
+.title {
+  font-size: 2rem;
+}
+
 .formInputs p {
   font-size: 1rem;
   color: #f10c0c;
@@ -53,11 +57,9 @@
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 0%,
-    rgb(193, 126, 219) 100%
-  );
+  background: #5f27cd;
+  color: white;
+
   /* outline: none;
   border: none;
   color: #fff;
@@ -66,11 +68,6 @@
 
 .formInputBtn:hover {
   cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 50%,
-    rgb(255, 207, 1) 100%
-  );
   transition: all 0.4s ease-out;
 }
 

@@ -21,6 +21,17 @@ const Message = () => {
   console.log("in message page:", item_details);
   const full_name = item_details.user_fname + " " + item_details.user_lname;
 
+  //New Modification for clearing inputs after clicking Cancle button 
+  const [contact, setContact] = React.useState("");
+  const [message, setMessage] = React.useState("");
+
+  
+  const clearFields = () =>{
+    setContact("");
+    setMessage("");
+    console.log("Cancel Button Clik");
+  }
+
   return (
     <div style={{ marginTop: "1rem" }}>
       <Container className={styles.container}>
@@ -106,6 +117,8 @@ const Message = () => {
                     type="text"
                     name="contactInfo"
                     placeholder="email or phone number"
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
                   />
                 </Col>
               </Row>
@@ -115,7 +128,7 @@ const Message = () => {
               <Row className="align-items-center">
                 <Row>
                   <div className={styles.additionalInfo}>
-                    Addtional Information:
+                    Message:
                   </div>
                 </Row>
                 <Row style={{ marginTop: "0.5rem" }}>
@@ -127,6 +140,8 @@ const Message = () => {
                     maxlength="300"
                     wrap="hard"
                     placeholder="Enter your addtional info...."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                   ></textarea>
                 </Row>
               </Row>
@@ -136,7 +151,7 @@ const Message = () => {
               <Row>
                 <img src={image} alt="itemImage" className={styles.image}></img>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col> </Col>
 
                 <Col>
@@ -144,7 +159,19 @@ const Message = () => {
                 </Col>
 
                 <Col> </Col>
-              </Row>
+              </Row> */}
+                <Row style={{marginTop:"1rem", marginLeft:"4rem"}}>
+                  <Col>
+                    <Button className={styles.sendButton}>
+                      Send
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button className={styles.cancelButton} onClick={clearFields}>
+                      Cancel
+                    </Button>
+                  </Col>
+                </Row>
             </Col>
           </Row>
         </Form>

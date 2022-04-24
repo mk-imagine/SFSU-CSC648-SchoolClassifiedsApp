@@ -3,9 +3,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import {CardActionArea, CardActions } from "@mui/material";
 import styles from "./index.module.css";
-// import { Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -48,13 +48,15 @@ const ItemCard = (props) => {
           <Typography variant="body2" color="text.secondary">
             Price: {props.price}
             <br></br>
-            Description: {props.description}
+            <p className={styles.itemDescription}>Description: {props.description}</p>
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button onClick={goToMessagePage}>Message Seller</Button>
-      </CardActions>
+      <div className={styles.buttonWrap}>
+         <Button className = {styles.messageButton} onClick={goToMessagePage}>Message Seller</Button>
+      </div>
+       
+      
     </Card>
   );
 };

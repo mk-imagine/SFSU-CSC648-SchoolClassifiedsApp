@@ -13,53 +13,56 @@ import styles from "./index.module.css";
 import image from "../../images/image.png";
 import axios from "axios";
 
-
 /**
  * Load Post Item Page Component
  * @returns HTML of ItemPost Component
  */
 const ItemPost = () => {
-  const [itemname, setItemname] = React.useState('');
-  const [price, setPrice] = React.useState('');
-  const [category, setCategory] = React.useState('');
-  const [course, setCourse] = React.useState('');
-  const [description, setDescription] = React.useState('');
+  const [itemname, setItemname] = React.useState("");
+  const [price, setPrice] = React.useState("");
+  const [category, setCategory] = React.useState("");
+  const [course, setCourse] = React.useState("");
+  const [description, setDescription] = React.useState("");
 
   const handleSubmit = () => {
-   
-     var data1 = {
-    'name': itemname,
-    'price': price,
-    'descrition': description,
-    'course' : course,
-    'category': category, //not sure how to set category on the form
-    //not sure about images
-
-  };
-  var data2 = JSON.stringify(data1);
-  console.log(data1); 
-  console.log(data2);
-    var config = {
-      method: 'post',
-      url: 'http://localhost:3100/api/post/post',
-      headers: { 
-        'Content-Type': 'application/json' //can't be application/json
-      },
-      data: data2
+    var data1 = {
+      name: itemname,
+      price: price,
+      descrition: description,
+      course: course,
+      category: category, //not sure how to set category on the form
+      //not sure about images
     };
-    
+    var data2 = JSON.stringify(data1);
+    console.log(data1);
+    console.log(data2);
+    var config = {
+      method: "post",
+      url: "http://localhost:3100/api/post/post",
+      headers: {
+        "Content-Type": "application/json", //can't be application/json
+      },
+      data: data2,
+    };
+
     axios(config)
-  .then((response) => {
-    window.location.href = response.data;
-    //console.log(JSON.stringify(response.data));
-  })
-  .catch( (error) => {
-    console.log(error);
-  });
+      .then((response) => {
+        window.location.href = response.data;
+        //console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const clearFields = () =>{
+    setItemname("");
+    setPrice("");
+    setCategory("");
+    setCourse("");
+    setDescription("");
+    console.log("Cancel Button Clik");
   }
-  
-  
-  
 
   return (
     <div style={{ marginTop: "1rem" }}>
@@ -67,12 +70,10 @@ const ItemPost = () => {
         <Row>
           <div className={styles.title}>Item Post Page</div>
         </Row>
+        <div className={styles.form}>
         <Row style={{ marginTop: "1rem", marginRight: "1rem" }}>
           <Col>
-            <Row>
-              <div>Post Your Items</div>
-            </Row>
-            <div style={{ marginTop: "1rem" }}></div>
+            {/* <div style={{ marginTop: "1rem" }}></div> */}
 
             <Row className="align-items-center">
               <Col lg={3}>
@@ -85,12 +86,12 @@ const ItemPost = () => {
                   name="itemname"
                   placeholder="e.g. Macbook"
                   value={itemname}
-                  onChange={e=>setItemname(e.target.value)}
+                  onChange={(e) => setItemname(e.target.value)}
                 />
               </Col>
             </Row>
-            
-            <div style={{ marginTop: "1rem" }}></div>
+
+            <div style={{ marginTop: "1.5rem" }}></div>
             <Row className="align-items-center">
               <Col lg={3}>
                 <div className={styles.subtitle}>Price:*</div>
@@ -98,15 +99,15 @@ const ItemPost = () => {
               <Col>
                 <input
                   className={styles.input}
-                  type="number"
+                  type="text"
                   name="pricename"
                   placeholder="e.g.$25"
                   value={price}
-                  onChange={e=>setPrice(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </Col>
             </Row>
-            <div style={{ marginTop: "1rem" }}></div>
+            <div style={{ marginTop: "1.5rem" }}></div>
             <Row className="align-items-center">
               <Col lg={3}>
                 <div className={styles.subtitle}>Category:*</div>
@@ -126,7 +127,7 @@ const ItemPost = () => {
                   </ButtonGroup>
                 </Row>
               </Col>
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "1.5rem" }}></div>
               <Row className="align-items-center"></Row>
               <Col lg={3}>
                 <div className={styles.subtitle}>Course Number:*</div>
@@ -134,26 +135,25 @@ const ItemPost = () => {
               <Col>
                 <input
                   className={styles.input}
-                  type="number"
+                  type="text"
                   name="coursenumber"
                   placeholder="e.g.CSC648"
                   value={course}
-                  onChange={e=>setCourse(e.target.value)}
+                  onChange={(e) => setCourse(e.target.value)}
                 />
               </Col>
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "1.5rem" }}></div>
               <Row className="align-items-center"></Row>
               <Col lg={3}>
-              
-                    <Form.Label>Upload Image:*</Form.Label>
-             </Col>  
-             <Col>
-             <Form.Control type="file" />
-             </Col>
-                    
-             <div style={{ marginTop: "1rem" }}></div>
-            <Row className="align-items-center">
+                <Form.Label>Upload Image:*</Form.Label>
+              </Col>
+              <Col>
+                <Form.Control type="file" />
+              </Col>
+
+              <div style={{ marginTop: "1.5rem" }}></div>
+              <Row className="align-items-center"></Row>
               <Col lg={3}>
                 <div className={styles.subtitle}>Description:*</div>
               </Col>
@@ -164,32 +164,50 @@ const ItemPost = () => {
                   name="textareaname"
                   placeholder="e.g. This product has so many features"
                   value={description}
-                  onChange={e=>setDescription(e.target.value)}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </Col>
-            </Row>
-
             </Row>
           </Col>
 
           <Col>
             <Row>
+              <Col lg={8}>
+                <Row>
+                  <Col lg={5}>
+                    <p>* - mandatory fields</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <p>May take up to 24 hours for item post to be approved.</p>
+                </Row>
+              </Col>
+            </Row>
+
+            <Row>
               <img src={image} alt="postimage" className={styles.image}></img>
             </Row>
             <Row>
-              <Col> </Col>
-
               <Col>
-                <Button className={styles.button} onClick={handleSubmit}>Post Image</Button>
+                <Row>
+                  <Col>
+                    <Button className={styles.Postbutton} onClick={handleSubmit}>
+                      Post Image
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button className={styles.CancelButton} onClick={clearFields}>
+                      Cancel
+                    </Button>
+                  </Col>
+                </Row>
               </Col>
-
-              <Col> </Col>
             </Row>
           </Col>
         </Row>
+        </div>
       </Container>
     </div>
   );
 };
-
 export default ItemPost;
