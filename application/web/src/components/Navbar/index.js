@@ -61,6 +61,12 @@ const Navbar = (props) => {
     setSearchInput(e.target.value);
   };
 
+  const handleKeyDown = (event)=>{
+    if (event.key === 'Enter') {
+      onSubmit();
+    }
+  }
+
   const onSubmit = () => {
     console.log("On submit");
     navigate("/");
@@ -196,6 +202,7 @@ const Navbar = (props) => {
                       onChange={searchHandleChange}
                       value={searchInput}
                       maxLength = "40"
+                      onKeyDown={handleKeyDown}
                     />
                   </div>
 

@@ -55,18 +55,25 @@ const ItemPost = () => {
       });
   };
 
+  const clearFields = () =>{
+    setItemname("");
+    setPrice("");
+    setCategory("");
+    setCourse("");
+    setDescription("");
+    console.log("Cancel Button Clik");
+  }
+
   return (
     <div style={{ marginTop: "1rem" }}>
       <Container className={styles.container}>
         <Row>
           <div className={styles.title}>Item Post Page</div>
         </Row>
+        <div className={styles.form}>
         <Row style={{ marginTop: "1rem", marginRight: "1rem" }}>
           <Col>
-            <Row>
-              <div>Post Your Items</div>
-            </Row>
-            <div style={{ marginTop: "1rem" }}></div>
+            {/* <div style={{ marginTop: "1rem" }}></div> */}
 
             <Row className="align-items-center">
               <Col lg={3}>
@@ -84,7 +91,7 @@ const ItemPost = () => {
               </Col>
             </Row>
 
-            <div style={{ marginTop: "1rem" }}></div>
+            <div style={{ marginTop: "1.5rem" }}></div>
             <Row className="align-items-center">
               <Col lg={3}>
                 <div className={styles.subtitle}>Price:*</div>
@@ -92,7 +99,7 @@ const ItemPost = () => {
               <Col>
                 <input
                   className={styles.input}
-                  type="number"
+                  type="text"
                   name="pricename"
                   placeholder="e.g.$25"
                   value={price}
@@ -100,7 +107,7 @@ const ItemPost = () => {
                 />
               </Col>
             </Row>
-            <div style={{ marginTop: "1rem" }}></div>
+            <div style={{ marginTop: "1.5rem" }}></div>
             <Row className="align-items-center">
               <Col lg={3}>
                 <div className={styles.subtitle}>Category:*</div>
@@ -120,7 +127,7 @@ const ItemPost = () => {
                   </ButtonGroup>
                 </Row>
               </Col>
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "1.5rem" }}></div>
               <Row className="align-items-center"></Row>
               <Col lg={3}>
                 <div className={styles.subtitle}>Course Number:*</div>
@@ -128,7 +135,7 @@ const ItemPost = () => {
               <Col>
                 <input
                   className={styles.input}
-                  type="number"
+                  type="text"
                   name="coursenumber"
                   placeholder="e.g.CSC648"
                   value={course}
@@ -136,7 +143,7 @@ const ItemPost = () => {
                 />
               </Col>
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "1.5rem" }}></div>
               <Row className="align-items-center"></Row>
               <Col lg={3}>
                 <Form.Label>Upload Image:*</Form.Label>
@@ -145,33 +152,35 @@ const ItemPost = () => {
                 <Form.Control type="file" />
               </Col>
 
-              <div style={{ marginTop: "1rem" }}></div>
-              <Row className="align-items-center">
-                <Col lg={3}>
-                  <div className={styles.subtitle}>Description:*</div>
-                </Col>
-                <Col>
-                  <input
-                    className={styles.input}
-                    type="textarea"
-                    name="textareaname"
-                    placeholder="e.g. This product has so many features"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </Col>
-              </Row>
+              <div style={{ marginTop: "1.5rem" }}></div>
+              <Row className="align-items-center"></Row>
+              <Col lg={3}>
+                <div className={styles.subtitle}>Description:*</div>
+              </Col>
+              <Col>
+                <input
+                  className={styles.input}
+                  type="textarea"
+                  name="textareaname"
+                  placeholder="e.g. This product has so many features"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </Col>
             </Row>
           </Col>
 
           <Col>
-
             <Row>
               <Col lg={8}>
                 <Row>
-                <Col lg={5}><p>* - mandatory fields</p></Col>
+                  <Col lg={5}>
+                    <p>* - mandatory fields</p>
+                  </Col>
                 </Row>
-                <Row><p>May take up to 24 hours for item post to be approved.</p></Row>
+                <Row>
+                  <p>May take up to 24 hours for item post to be approved.</p>
+                </Row>
               </Col>
             </Row>
 
@@ -179,21 +188,26 @@ const ItemPost = () => {
               <img src={image} alt="postimage" className={styles.image}></img>
             </Row>
             <Row>
-              <Col> </Col>
-
               <Col>
-                <Button className={styles.button} onClick={handleSubmit}>
-                  Post Image
-                </Button>
+                <Row>
+                  <Col>
+                    <Button className={styles.Postbutton} onClick={handleSubmit}>
+                      Post Image
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button className={styles.CancelButton} onClick={clearFields}>
+                      Cancel
+                    </Button>
+                  </Col>
+                </Row>
               </Col>
-
-              <Col> </Col>
             </Row>
           </Col>
         </Row>
+        </div>
       </Container>
     </div>
   );
 };
-
 export default ItemPost;
