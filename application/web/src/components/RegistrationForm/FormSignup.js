@@ -36,7 +36,7 @@ const FormSignup = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      data: data2,
+      data: data1,
     };
 
     axios(config)
