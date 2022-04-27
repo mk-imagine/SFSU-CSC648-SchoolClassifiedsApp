@@ -1,0 +1,70 @@
+.title {
+  font-family: roboto;
+  font-weight: 1000;
+  font-style: oblique;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.container {
+  margin: auto;
+  padding: 1rem;
+  background: #5f27cd;
+}
+
+/* this is for search bar */
+.top {
+  margin-top: 0.2rem !important;
+}
+
+.topButton {
+  margin-top: 0.5rem !important;
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  margin-left: 0.5rem !important;
+}
+
+.squaredCorners {
+  border-radius: 0 !important;
+  -webkit-appearance: none;
+}
+
+#dropdownMenu {
+  background-color: #5f27cd !important;
+  color: #e2dec0 !important;
+}
+
+.heading {
+  color: #000;
+  margin: auto;
+  width: 92%;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 1rem;
+}
+
+.subheading {
+  color: #000;
+  margin: auto;
+  width: 92%;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+.titleCategories {
+  color: #5f27cd;
+  margin: auto;
+  width: 92%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.subTitle {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  background: #5f27cd;
+  color: white;
+}
