@@ -117,7 +117,7 @@ const Login = () => {
               </label>
               <Row>
                 <label className={styles.subtitle2}>
-                  Forgot Password? Click <a href="#">Here</a>
+                  Forgot Password? Click <a href="/forgotpassword">Here</a>
                 </label>
               </Row>
             </Row>

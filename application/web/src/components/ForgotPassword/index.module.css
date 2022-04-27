@@ -53,6 +53,7 @@
 
 /* button */
 .formInputBtn {
+  cursor: pointer;
   width: 100% !important;
   height: 70%;
   margin-top: 1rem !important;
@@ -60,18 +61,10 @@
   border-radius: 5px;
   color: white;
   border: none !important;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 0%,
-    rgb(193, 126, 219) 100%
-  );
-  /* outline: none;
-      border: none;
-      color: #fff;
-      font-size: 1rem; */
+  background: #5f27cd !important;
 }
 
-.formInputBtn:hover {
+/* .formInputBtn:hover {
   cursor: pointer;
   background: linear-gradient(
     90deg,
@@ -79,4 +72,4 @@
     rgb(7, 155, 240) 100%
   ) !important;
   transition: all 0.4s ease-out;
-}
+} */
