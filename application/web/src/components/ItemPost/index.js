@@ -190,14 +190,15 @@ const ItemPost = () => {
             <Row>
               <Col>
                 <Row>
-                  <Col>
-                    <Button className={styles.Postbutton} onClick={handleSubmit}>
-                      Post Image
-                    </Button>
-                  </Col>
+
                   <Col>
                     <Button className={styles.CancelButton} onClick={clearFields}>
                       Cancel
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button className={styles.Postbutton} onClick={handleSubmit}>
+                      Post Image
                     </Button>
                   </Col>
                 </Row>
