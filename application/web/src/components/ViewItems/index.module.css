@@ -1,3 +1,9 @@
 .thumbnail {
   width: 10rem;
 }
+
+.heading{
+  font-size: 1.7rem;
+  margin-left: 7.5rem;
+  margin-top: 1rem;
+}

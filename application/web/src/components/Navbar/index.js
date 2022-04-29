@@ -75,68 +75,80 @@ const Navbar = (props) => {
     const category_id = selectedCategoryId;
     const category_name = selectedCategory;
 
-    if (
-      parseInt(category_id) === 0 &&
-      searchTerm !== "" &&
-      category_name === "All Items"
-    ) {
-      // we return items according to search term
-      setToggle(true);
-      console.log(
-        "In one: category id: ",
-        category_id,
-        " search term: ",
-        searchTerm
-      );
-      axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
-        setItems(res.data);
-        setNumberOfItems(res.data.length);
-      });
-    } else if (
-      category_id !== 0 &&
-      searchTerm === "" &&
-      category_name !== "All Items"
-    ) {
-      // we return items according to categorys
-      console.log("In two");
-      setToggle(true);
-      axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
-        setItems(res.data);
-        setNumberOfItems(res.data.length);
-      });
-    } else if (
-      category_id !== 0 &&
-      searchTerm !== "" &&
-      category_name !== "All Items"
-    ) {
-      //return items according to category and search term
-      console.log("In three and category id is ", category_id);
-      setToggle(true);
-      axios
-        .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
-        .then((res) => {
+    if (checkInputLength()) {
+      alert("Search length can't be more 40 characters!");
+    } else {
+      if (
+        parseInt(category_id) === 0 &&
+        searchTerm !== "" &&
+        category_name === "All Items"
+      ) {
+        // we return items according to search term
+        setToggle(true);
+        console.log(
+          "In one: category id: ",
+          category_id,
+          " search term: ",
+          searchTerm
+        );
+        axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
           setItems(res.data);
           setNumberOfItems(res.data.length);
         });
-    } else {
-      console.log(
-        "In four: category id: ",
-        category_id,
-        " search term: ",
-        searchTerm,
-        "category name: ",
-        category_name
-      );
-      setToggle(false);
-      axios.get(`${base_url}/items`).then((res) => {
-        setItems(res.data);
-        setNumberOfItems(res.data.length);
-      });
+      } else if (
+        category_id !== 0 &&
+        searchTerm === "" &&
+        category_name !== "All Items"
+      ) {
+        // we return items according to categorys
+        console.log("In two");
+        setToggle(true);
+        axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
+          setItems(res.data);
+          setNumberOfItems(res.data.length);
+        });
+      } else if (
+        category_id !== 0 &&
+        searchTerm !== "" &&
+        category_name !== "All Items"
+      ) {
+        //return items according to category and search term
+        console.log("In three and category id is ", category_id);
+        setToggle(true);
+        axios
+          .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
+      } else {
+        console.log(
+          "In four: category id: ",
+          category_id,
+          " search term: ",
+          searchTerm,
+          "category name: ",
+          category_name
+        );
+        setToggle(false);
+        axios.get(`${base_url}/items`).then((res) => {
+          setItems(res.data);
+          setNumberOfItems(res.data.length);
+        });
+      }
     }
   };
 
   const OnLogin = () => {
     navigate("/login");
+  };
+
+  const checkInputLength = () => {
+    if (searchInput.length >= 40) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -204,7 +216,6 @@ const Navbar = (props) => {
                           placeholder={"Search Here"}
                           onChange={searchHandleChange}
                           value={searchInput}
-                          maxLength="40"
                           onKeyDown={handleKeyDown}
                         />
                       </div>
@@ -275,7 +286,13 @@ const Navbar = (props) => {
 
       <div>
         <div style={{ marginBottom: "2rem" }}>
-          <myContext.Provider value={items}>
+          <myContext.Provider
+            value={{
+              value: items,
+              value2: numberOfItems,
+              value3: numberOfTotalItems,
+            }}
+          >
             {props.children}
           </myContext.Provider>
         </div>
