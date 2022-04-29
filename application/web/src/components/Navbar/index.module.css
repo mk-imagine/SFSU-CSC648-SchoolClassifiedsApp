@@ -1,9 +1,11 @@
+/* HEDER:STYLES FOR THE NAVBAR(SERACHBAR AND BUTTON) */
 .title {
   font-family: roboto;
   font-weight: 1000;
   font-style: oblique;
   font-size: 2rem;
   color: #fff;
+  cursor: pointer;
 }
 
 .container {
@@ -69,4 +71,439 @@
   font-weight: 500;
   background: #5f27cd;
   color: white;
+}
+
+.centerNav {
+  margin: auto;
+  width: 78%;
+}
+
+.navWidth {
+  width: 18rem;
+}
+
+@media only screen and (max-width: 1338px) {
+  .centerNav {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 1306px) {
+  .centerNav {
+    width: 83%;
+  }
+}
+
+@media only screen and (max-width: 1262px) {
+  .centerNav {
+    width: 86%;
+  }
+}
+
+@media only screen and (max-width: 1226px) {
+  .topButton {
+    width: 5rem;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media only screen and (max-width: 1166px) {
+  .centerNav {
+    width: 93%;
+  }
+}
+
+@media only screen and (max-width: 1070px) {
+  .centerButtons {
+    margin: auto;
+    width: 108%;
+  }
+}
+
+@media only screen and (max-width: 1008px) {
+  .centerNav {
+    width: 100%;
+  }
+  .topButton {
+    width: 4.2rem;
+    font-size: 0.8rem !important;
+    text-align: center !important;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .centerMobileNav {
+    width: 50%;
+    margin: auto;
+  }
+  .title {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .topButton {
+    width: 6rem;
+  }
+
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 968px) {
+  .centerMobileNav {
+    width: 55%;
+    margin: auto;
+  }
+  .title {
+    text-align: center;
+  }
+
+  .topButton {
+    width: 6rem;
+  }
+
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 882px) {
+  .centerMobileNav {
+    margin: auto;
+    width: 100%;
+  }
+
+  .top {
+    margin: auto;
+    width: 80% !important;
+  }
+  .title {
+    text-align: center;
+  }
+
+  .topButton {
+    width: 6rem;
+  }
+
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 14rem;
+  }
+
+  .centerNav {
+    width: 90%;
+    margin: auto;
+    margin-left: 12rem;
+  }
+}
+
+@media only screen and (max-width: 882px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 12rem;
+  }
+
+  .centerNav {
+    width: 90%;
+    margin: auto;
+    margin-left: 10rem;
+  }
+
+  .subTitle {
+    font-size: 0.7rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 716px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 9rem;
+  }
+
+  .centerNav {
+    width: 90%;
+    margin: auto;
+    margin-left: 7rem;
+  }
+
+  .subTitle {
+    font-size: 0.7rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 706px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 9rem;
+  }
+
+  .centerNav {
+    width: 100%;
+    margin: auto;
+    margin-left: 7rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 7rem;
+  }
+
+  .centerNav {
+    width: 100%;
+    margin: auto;
+    margin-left: 5rem;
+  }
+}
+
+@media only screen and (max-width: 636px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 6rem;
+  }
+
+  .centerNav {
+    width: 110%;
+    margin: auto;
+    margin-left: 5rem;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 4rem;
+  }
+
+  .centerNav {
+    width: 120%;
+    margin: auto;
+    margin-left: 3rem;
+  }
+}
+
+@media only screen and (max-width: 544px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 2rem;
+  }
+
+  .centerNav {
+    width: 130%;
+    margin: auto;
+    margin-left: 1rem;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .centerButtons {
+    margin: auto;
+    width: 90%;
+    margin-left: 2rem;
+  }
+
+  .centerNav {
+    width: 130%;
+    margin: auto;
+    margin-left: 5rem;
+  }
+
+  .searchBtnStyle {
+    width: 15rem !important;
+    margin-top: 0.7rem;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 493px) {
+  .centerButtons {
+    margin: auto;
+    width: 100%;
+    margin-left: 2rem;
+  }
+}
+
+@media only screen and (max-width: 443px) {
+  .centerButtons {
+    margin: auto;
+    width: 110%;
+    margin-left: 0rem;
+  }
+
+  .centerNav {
+    width: 130%;
+    margin: auto;
+    margin-left: 2rem;
+  }
+
+  .searchBtnStyle {
+    width: 15rem !important;
+    margin-top: 0.7rem;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .centerButtons {
+    margin: auto;
+    width: 110%;
+    margin-left: 2rem;
+  }
+
+  .centerNav {
+    width: 130%;
+    margin: auto;
+    margin-left: 2rem;
+  }
+
+  .searchBtnStyle {
+    width: 15rem !important;
+    margin-top: 0.7rem;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 50%;
+  }
+  .topButton {
+    width: 5rem;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .centerButtons {
+    margin: auto;
+    width: 100%;
+    margin-left: 0rem;
+  }
+
+  .centerNav {
+    width: 150%;
+    margin: auto;
+    margin-left: 0rem;
+  }
+
+  .searchBtnStyle {
+    width: 15rem !important;
+    margin-top: 0.7rem;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 50%;
+  }
+
+  .topButton {
+    width: 5rem;
+  }
+}
+
+@media only screen and (max-width: 385px) {
+  .centerButtons {
+    margin: auto;
+    width: 110%;
+    margin-left: 0rem;
+  }
+
+  .centerNav {
+    width: 160%;
+    margin: auto;
+    margin-left: 0rem;
+  }
+
+  .searchBtnStyle {
+    width: 15rem !important;
+    margin-top: 0.7rem;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 50%;
+  }
+
+  .topButton {
+    width: 5rem;
+  }
+}
+
+@media only screen and (max-width: 343px) {
+  .centerButtons {
+    margin: auto;
+    width: 110%;
+    margin-left: 0rem;
+  }
+
+  .centerNav {
+    width: 155%;
+    margin: auto;
+    margin-left: -1rem;
+  }
+
+  .searchBtnStyle {
+    width: 15rem !important;
+    margin-top: 0.7rem;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 50%;
+  }
+
+  .topButton {
+    width: 4.2rem;
+  }
+}
+
+@media only screen and (max-width: 323px) {
+  .centerButtons {
+    margin: auto;
+    width: 110%;
+    margin-left: 0rem;
+  }
+
+  .centerNav {
+    width: 155%;
+    margin: auto;
+    margin-left: -1rem;
+  }
+
+  .searchBtnStyle {
+    width: 15rem !important;
+    margin-top: 0.7rem;
+  }
+
+  .searchContainer {
+    margin: auto;
+    width: 50%;
+  }
+
+  .topButton {
+    width: 4.2rem;
+  }
 }

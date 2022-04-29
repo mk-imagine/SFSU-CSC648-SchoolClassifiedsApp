@@ -1,3 +1,4 @@
+//HEADER:CODE FOR THE THE NAVBAR(SEARCHBAR AND BUTTONS)
 import React, { useState, useEffect } from "react";
 import { Dropdown, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
@@ -9,7 +10,7 @@ const myContext = React.createContext([]);
 
 /**
  * Load Navbar component
- * @param {*} props 
+ * @param {*} props
  * @returns HTML of Navbar
  */
 const Navbar = (props) => {
@@ -34,11 +35,15 @@ const Navbar = (props) => {
 
   useEffect(() => {
     fetchCategories();
+    getAllItems();
+  }, []);
+
+  const getAllItems = () => {
     axios.get(`${base_url}/items`).then((res) => {
       setItems(res.data);
       setNumberOfTotalItems(res.data.length);
     });
-  }, []);
+  };
 
   const fetchCategories = () => {
     axios.get(`${base_url}/categories`).then((res) => {
@@ -54,6 +59,12 @@ const Navbar = (props) => {
   const searchHandleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      onSubmit();
+    }
   };
 
   const onSubmit = () => {
@@ -122,7 +133,6 @@ const Navbar = (props) => {
         setNumberOfItems(res.data.length);
       });
     }
-    setSearchInput("");
   };
 
   const OnLogin = () => {
@@ -132,110 +142,135 @@ const Navbar = (props) => {
   return (
     <div>
       <Row>
-        <div className={styles.subTitle}>SFSU Software Engineering Project CSC 648-848, Spring 2022.  For Demonstration Only</div>
+        <div className={styles.subTitle}>
+          SFSU Software Engineering Project CSC 648-848, Spring 2022. For
+          Demonstration Only
+        </div>
       </Row>
       <div className={styles.container}>
-        <Row className="align-items-center">
-          <Col lg={2}>
-            <div className={styles.title}>Purple Market</div>
-          </Col>
-
-          <Col lg={6}>
-            <Row className={styles.top}>
-              <div>
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <Dropdown
-                      onSelect={dropDownChange}
-                      value={selectedCategory}
-                      id={styles.dropdownMenu}
-                    >
-                      <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        {selectedCategory}
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        {catergories.map((e) => {
-                          return (
-                            <Dropdown.Item
-                              eventKey={e.category_id}
-                              onClick={() => {
-                                setSelectedCategory(e.category_name);
-                              }}
-                            >
-                              {e.category_name}
-                            </Dropdown.Item>
-                          );
-                        })}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </span>
-
-                  <div className="form-group">
-                    <input
-                      style={{ width: "30rem" }}
-                      type="text"
-                      className="form-control rounded-0"
-                      placeholder={"Search Here"}
-                      onChange={searchHandleChange}
-                      value={searchInput}
-                    />
-                  </div>
-
-                  <span class="input-group-addon">
-                    <Button variant="success rounded-0" onClick={onSubmit}>
-                      Search
-                    </Button>
-                  </span>
-                </div>
+        <div className={styles.centerMobileNav}>
+          <Row className="align-items-center">
+            <Col lg={2} md={12} sm={12}>
+              <div
+                className={styles.title}
+                onClick={() => {
+                  getAllItems();
+                  navigate("/");
+                }}
+              >
+                Purple Market
               </div>
-            </Row>
-          </Col>
-          <Col>
-            <Row>
-              <Col>
-                <div>
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={() => {
-                      navigate("/createpost");
-                    }}
-                  >
-                    Post Items
-                  </Button>
+            </Col>
 
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={() => {
-                      navigate("/myPage");
-                    }}
-                  >
-                    My Page
-                  </Button>
+            <Col lg={6} md={12} sm={12}>
+              <div className={styles.centerNav}>
+                <Row className={styles.top}>
+                  <div>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <Dropdown
+                          onSelect={dropDownChange}
+                          value={selectedCategory}
+                          id={styles.dropdownMenu}
+                        >
+                          <Dropdown.Toggle
+                            variant="success"
+                            id="dropdown-basic"
+                          >
+                            {selectedCategory}
+                          </Dropdown.Toggle>
 
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={OnLogin}
-                  >
-                    Login
-                  </Button>
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={() => {
-                      navigate("/register");
-                    }}
-                  >
-                    Register
-                  </Button>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+                          <Dropdown.Menu>
+                            {catergories.map((e) => {
+                              return (
+                                <Dropdown.Item
+                                  eventKey={e.category_id}
+                                  onClick={() => {
+                                    setSelectedCategory(e.category_name);
+                                  }}
+                                >
+                                  {e.category_name}
+                                </Dropdown.Item>
+                              );
+                            })}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control rounded-0 navWidth"
+                          placeholder={"Search Here"}
+                          onChange={searchHandleChange}
+                          value={searchInput}
+                          maxLength="40"
+                          onKeyDown={handleKeyDown}
+                        />
+                      </div>
+
+                      <span class="input-group-addon">
+                        <div className={styles.searchContainer}>
+                          <Button
+                            variant="success rounded-0"
+                            onClick={onSubmit}
+                            className={styles.searchBtnStyle}
+                          >
+                            Search
+                          </Button>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </Row>
+              </div>
+            </Col>
+            <Col md={12} sm={12} lg={4}>
+              <Row>
+                <Col>
+                  <div className={styles.centerButtons}>
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={() => {
+                        navigate("/createpost");
+                      }}
+                    >
+                      Post Items
+                    </Button>
+
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={() => {
+                        navigate("/myPage");
+                      }}
+                    >
+                      My Page
+                    </Button>
+
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={OnLogin}
+                    >
+                      Login
+                    </Button>
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={() => {
+                        navigate("/register");
+                      }}
+                    >
+                      Register
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
       </div>
 
       <div>
