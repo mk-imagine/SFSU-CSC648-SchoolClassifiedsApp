@@ -10,49 +10,54 @@ import axios from "axios";
  */
 const FormSignup = () => {
   //const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [firstname, setFirstname] = React.useState('');
-  const [lastname, setLastname] = React.useState('');
-  const [password2, setPassword2] = React.useState('');
-  const [email, setSemail] = React.useState('');
-  const username = firstname+lastname;
-const handleSubmit = () => {
-  console.log(username);
-  console.log(password);
-   var data1 = {
-  'username': username,
-  'password': password,
-  'firstname': firstname,
-  'lastname' : lastname,
-  'confirmPassword': password2,
-  'email': email
-};
-var data2 = JSON.stringify(data1);
-console.log(data1); 
-console.log(data2);
-  var config = {
-    method: 'post',
-    url: 'http://localhost:3100/api/register/register',
-    headers: { 
-      'Content-Type': 'application/json'
-    },
-    data: data2
+  const [password, setPassword] = React.useState("");
+  const [firstname, setFirstname] = React.useState("");
+  const [lastname, setLastname] = React.useState("");
+  const [password2, setPassword2] = React.useState("");
+  const [email, setSemail] = React.useState("");
+  const username = firstname + lastname;
+  const handleSubmit = () => {
+    console.log(username);
+    console.log(password);
+    var data1 = {
+      username: username,
+      password: password,
+      firstname: firstname,
+      lastname: lastname,
+      confirmPassword: password2,
+      email: email,
+    };
+    var data2 = JSON.stringify(data1);
+    console.log(data1);
+    console.log(data2);
+    var config = {
+      method: "post",
+      url: "http://localhost:3100/api/register/register",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data1,
+    };
+
+    axios(config)
+      .then((response) => {
+        window.location.href = response.data;
+        //console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-  
-  axios(config)
-.then((response) => {
-  window.location.href = response.data;
-  //console.log(JSON.stringify(response.data));
-})
-.catch( (error) => {
-  console.log(error);
-});
-}
-
-
 
   return (
     <Container>
+      <Row>
+        <Col></Col>
+        <Col md="auto">
+          <div className={styles.title}>Register </div>
+        </Col>
+        <Col></Col>
+      </Row>
       <Row>
         <Col></Col>
 
@@ -67,9 +72,8 @@ console.log(data2);
                   name="firstname"
                   placeholder="Enter your first name"
                   value={firstname}
-                  onChange={e=>setFirstname(e.target.value)}
+                  onChange={(e) => setFirstname(e.target.value)}
                 />
-                
               </div>
             </Row>
 
@@ -82,9 +86,8 @@ console.log(data2);
                   name="lastname"
                   placeholder="Enter your last name"
                   value={lastname}
-                  onChange={e=>setLastname(e.target.value)}
+                  onChange={(e) => setLastname(e.target.value)}
                 />
-                
               </div>
             </Row>
 
@@ -97,9 +100,8 @@ console.log(data2);
                   name="email"
                   placeholder="Enter your SFSU email"
                   value={email}
-                  onChange={e=>setSemail(e.target.value)}
+                  onChange={(e) => setSemail(e.target.value)}
                 />
-                
               </div>
             </Row>
 
@@ -112,9 +114,8 @@ console.log(data2);
                   name="password"
                   placeholder="Enter your password"
                   value={password}
-                  onChange={e=>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
-                
               </div>
             </Row>
 
@@ -127,12 +128,17 @@ console.log(data2);
                   name="password2"
                   placeholder="Confirm your password"
                   value={password2}
-                  onChange={e=>setPassword2(e.target.value)}
+                  onChange={(e) => setPassword2(e.target.value)}
                 />
-                
               </div>
             </Row>
-
+            <Col lg={8}>
+              <Row>
+                <Col lg={5}>
+                  <p>* - mandatory fields</p>
+                </Col>
+              </Row>
+            </Col>
             <Row>
               <div class={styles.termPrivacyCheck}>
                 <input type="checkbox" value="" required />
@@ -152,7 +158,11 @@ console.log(data2);
             <Row>
               <Col></Col>
               <Col>
-                <button className={styles.formInputBtn} onClick={handleSubmit} type="button">
+                <button
+                  className={styles.formInputBtn}
+                  onClick={handleSubmit}
+                  type="button"
+                >
                   Register
                 </button>
               </Col>

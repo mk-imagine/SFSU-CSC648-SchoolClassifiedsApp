@@ -3,6 +3,10 @@
   /* width: 80%; */
 }
 
+.title{
+  font-size: 2rem;
+}
+
 .formLabel {
   /* display: inline-block; */
   font-size: 1.3rem;
@@ -44,11 +48,8 @@
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 0%,
-    rgb(193, 126, 219) 100%
-  );
+  background: #5f27cd;
+  color: white;
   outline: none;
   border: none;
   color: #fff;
@@ -57,15 +58,11 @@
 
 .formInputBtn:hover {
   cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 50%,
-    rgb(255, 207, 1) 100%
-  );
   transition: all 0.4s ease-out;
 }
 
 .formInputLogin {
+  cursor: pointer;
   font-size: 0.8rem;
   color: rgb(20, 19, 19);
   text-align: center;
@@ -75,4 +72,8 @@
   text-decoration: none;
   color: #27cdff;
   font-weight: 600;
+}
+
+.subtitle2{
+  text-align: center;
 }

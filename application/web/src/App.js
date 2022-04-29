@@ -15,10 +15,12 @@ import MessagePostPage from "./Pages/MessagePost";
 import ItemDetailPage from "./Pages/ItemDetailPage";
 import CreatePostPage from "./Pages/CreatePostPage";
 import MyPage from "./Pages/MyPage";
-
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
+import ChangePasswordPage from "./Pages/ChangePasswordPage";
+import ChangeUsernamePage from "./Pages/ChangeUsernamePage";
 /**
  * React Navbar Routes
- * 
+ *
  * @returns React routes for navbar
  */
 function App() {
@@ -41,6 +43,21 @@ function App() {
           <Route path="/item" exact element={<ItemDetailPage />} />
           <Route path="/createpost" exact element={<CreatePostPage />} />
           <Route path="/myPage" exact element={<MyPage />} />
+          <Route
+            path="/forgotpassword"
+            exact
+            element={<ForgotPasswordPage />}
+          />
+          <Route
+            path="/changepassword"
+            exact
+            element={<ChangePasswordPage />}
+          />
+          <Route
+            path="/changeusername"
+            exact
+            element={<ChangeUsernamePage />}
+          />
 
           {/* <Route path="*" element={NotFound} /> */}
         </Routes>

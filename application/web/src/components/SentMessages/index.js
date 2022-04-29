@@ -9,7 +9,7 @@ import { Table } from "react-bootstrap";
 const SentMessages = () => {
   const [messages, setMessages] = useState([]);
   // const base_url = "/api";
-  const base_url = "http://localhost:3100/api";
+  const base_url = "http://localhost:3100";
 
   useEffect(() => {
     getSentMessages();
@@ -17,9 +17,9 @@ const SentMessages = () => {
 
   const userId = 1;
   const getSentMessages = () => {
-    axios.get(`${base_url}/msg/${userId}/sent]`).then((res) => {
+    axios.get(`${base_url}/msg/${userId}/sent`).then((res) => {
       setMessages(res.data);
-      console.log(messages);
+      console.log("messages are ", messages);
     });
   };
 

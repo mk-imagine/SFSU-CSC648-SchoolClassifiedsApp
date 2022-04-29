@@ -24,25 +24,21 @@
     background-color: #5f27cd !important;
     border-color: #5f27cd !important ; */
 
-  width: 100% !important;
+  width: 80% !important;
   height: 50px !important;
-  margin-top: 10px !important;
+  margin-top: 20px !important;
   margin-bottom: 10px !important;
   border-radius: 10px !important;
   font-size: 10rem !important;
-
-  background: linear-gradient(
-    90deg,
-    rgb(1, 167, 250) 50%,
-    rgb(7, 155, 240) 100%
-  ) !important;
+  background-color: #5f27cd !important;
+  border-color: #5f27cd !important ;
   outline: none !important;
   border: none !important;
   color: #fff !important;
   font-size: 1rem !important;
 }
 
-.button:hover {
+/* .button:hover {
   cursor: pointer !important;
   background: linear-gradient(
     90deg,
@@ -50,7 +46,7 @@
     rgb(193, 126, 219) 100%
   ) !important;
   transition: all 0.4s ease-out !important;
-}
+} */
 
 .image {
   height: 30rem !important;
@@ -68,7 +64,7 @@
 
 .itemTitle {
   text-align: left;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 1.5rem;
   width: 100%;
   margin-left: 0.8rem;
@@ -86,7 +82,7 @@
   text-align: left;
   font-size: 1.3rem;
   width: 50%;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin-left: 0.8rem;
   border-bottom: black solid 1px;
 }
@@ -102,7 +98,7 @@
   font-size: 1.2rem;
   text-align: left;
   width: 50%;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin-left: 0.8rem;
   border-bottom: black solid 1px;
 }
