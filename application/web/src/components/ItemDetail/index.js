@@ -76,10 +76,9 @@ const ItemDetail = () => {
                 {item_details.item_desc}
               </p>
             </Row>
-          </Col>
-          <Row>
+            <Row>
             <Col></Col>
-            <Col lg={3}>
+            <Col >
               <Button
                 className={styles.button}
                 onClick={() => {
@@ -91,6 +90,7 @@ const ItemDetail = () => {
             </Col>
             <Col> </Col>
           </Row>
+          </Col>
         </Row>
       </Container>
     </div>
