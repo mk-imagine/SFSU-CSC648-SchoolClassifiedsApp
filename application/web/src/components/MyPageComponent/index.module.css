@@ -166,6 +166,7 @@
 
 .CurrentPageTitle {
     font-size: 1.5rem !important;
+    margin-bottom: 2rem !important;
   }
 
 .PostFethcingItemName{
@@ -217,17 +218,17 @@
 }
 
 .DetailButton{
-    margin-left: 1.3rem !important;
+    /* margin-left: 1.4rem !important; */
     margin-top: 0.7rem !important;
     height: 70%;
-    font-size: 0.8rem !important;
+    font-size: 1rem !important;
 }
   
 
 .UsernameLable{
     font-size: 1.2rem !important;
     margin-top: 1rem;
-    text-align: right !important;
+    text-align: left !important;
 }
 
 .UsernameFetch{
@@ -240,7 +241,7 @@
 .EmailLable{
     font-size: 1.2rem !important;
     margin-top: 1rem;
-    text-align: right !important;
+    text-align: left !important;
 }
 
 .EmailFecth{
@@ -252,12 +253,13 @@
 
 .PostHistoryPageDisplayLabel{
     text-align: center;
+    font-weight: bold;
 }
-
 
 
 .MessagePageDisplayLabel{
     text-align: center;
+    font-weight: bold;
 }
 
 .MessageFethcingUsername{
@@ -307,3 +309,5 @@
     border-radius: 10px !important;
     margin-left: 2rem !important;
 }
+
+

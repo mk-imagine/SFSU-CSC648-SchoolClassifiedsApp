@@ -5,7 +5,7 @@
 // import SentMessages from "../SentMessages";
 // import MyAccount from "../MyAccount";
 
-// Jiasheng 
+// Jiasheng
 import React from "react";
 import Tab from "react-bootstrap/Tab";
 import { Col, Container, Row, Button, Dropdown } from "react-bootstrap";
@@ -47,63 +47,66 @@ const MyPageComponent = () => {
     //   </div>
     // </div>
 
-    // Jiasheng 
+    // Jiasheng
     <Container className={styles.Container}>
       <Row>
         <Col lg={2}>
           <div className={styles.PageTitle}>MyPage</div>
         </Col>
 
-        <Col lg={3}>
-          <Row>
-            <Col>
-              <div className={styles.UsernameLable}>Username:</div>
-            </Col>
-            <Col>
-              <div className={styles.UsernameFetch}>Jiasheng Li</div>
-            </Col>
-          </Row>
-        </Col>
-
-        <Col>
-          <Row>
-            <Col lg={4}>
-              <div className={styles.EmailLable}>Email:</div>
-            </Col>
-            <Col>
-              <div className={styles.EmailFecth}>jli29@mail.sfsu.edu</div>
-            </Col>
-          </Row>
-        </Col>
-
         <Col></Col>
       </Row>
 
-      <Row style={{ marginTop: "1rem" }}>
+      <Row style={{ marginTop: "2rem" }}>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
             <Col lg={7}>
               <Row>
                 <Col>
-                  <Nav variant="pills" className="flex-column">
+                  <Nav
+                    variant="pills"
+                    className="flex-column"
+                    style={{ cursor: "pointer" }}
+                  >
                     <Nav.Item>
-                      <Nav.Link eventKey="post-history">Post History</Nav.Link>
+                      <Nav.Link
+                        eventKey="post-history"
+                        style={{ fontSize: "1.3rem" }}
+                      >
+                        Post History
+                      </Nav.Link>
                     </Nav.Item>
                   </Nav>
                 </Col>
 
                 <Col>
-                  <Nav variant="pills" className="flex-column">
+                  <Nav
+                    variant="pills"
+                    className="flex-column"
+                    style={{ cursor: "pointer" }}
+                  >
                     <Nav.Item>
-                      <Nav.Link eventKey="message">Message</Nav.Link>
+                      <Nav.Link
+                        eventKey="message"
+                        style={{ fontSize: "1.3rem" }}
+                      >
+                        Message
+                      </Nav.Link>
                     </Nav.Item>
                   </Nav>
                 </Col>
 
                 <Col>
-                  <Nav variant="pills" className="flex-column">
+                  <Nav
+                    variant="pills"
+                    className="flex-column"
+                    style={{ cursor: "pointer" }}
+                  >
                     <Nav.Item>
-                      <Nav.Link eventKey="acct-detail">
+                      <Nav.Link
+                        eventKey="acct-detail"
+                        style={{ fontSize: "1.3rem" }}
+                      >
                         Account Details
                       </Nav.Link>
                     </Nav.Item>
@@ -129,6 +132,7 @@ const MyPageComponent = () => {
 
                     <Col lg={9}>
                       <Row>
+                        <Col lg={1}></Col>
                         <Col>
                           <Dropdown
                             value="Location"
@@ -226,13 +230,19 @@ const MyPageComponent = () => {
                       </div>
                     </Col>
                     <Col>
-                      <Button className={styles.DetailButton}>Details</Button>
+                    <Row>
+                    <Col></Col>
+                      <Col>
+                        <Button className={styles.DetailButton}>Details</Button>
+                      </Col>
+                      <Col></Col>
+                    </Row>
                     </Col>
                   </Row>
                 </Tab.Pane>
 
                 {/* Message Page  */}
-                <Tab.Pane eventKey="message">
+                <Tab.Pane eventKey="message" style={{ marginLeft: "1rem" }}>
                   <Row>
                     <Col>
                       <div className={styles.CurrentPageTitle}>Messages</div>
@@ -240,7 +250,7 @@ const MyPageComponent = () => {
 
                     <Col lg={9}>
                       <Row>
-                        <Col>
+                        {/* <Col>
                           <Dropdown
                             value="Location"
                             style={{ marginLeft: "18rem", marginTop: "0.5rem" }}
@@ -257,7 +267,10 @@ const MyPageComponent = () => {
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>
-                        </Col>
+                        </Col> */}
+                        <Col></Col>
+                        <Col></Col>
+                        <Col></Col>
                         <Col>
                           <Dropdown
                             value="Sort By"
@@ -295,14 +308,15 @@ const MyPageComponent = () => {
 
                   <Row style={{ marginTop: "2rem" }}>
                     <Col>
+                      <div className={styles.MessagePageDisplayLabel}>Date</div>
+                    </Col>
+                    <Col>
                       <div className={styles.MessagePageDisplayLabel}>
                         Username
                       </div>
                     </Col>
                     <Col>
-                      <div className={styles.MessagePageDisplayLabel}>
-                        Location
-                      </div>
+                      <div className={styles.MessagePageDisplayLabel}>Item</div>
                     </Col>
                     <Col>
                       <div className={styles.MessagePageDisplayLabel}>
@@ -320,11 +334,18 @@ const MyPageComponent = () => {
                   <Row>
                     <Col>
                       <div className={styles.MessageFethcingUsername}>
+                        4/27/2022
+                      </div>
+                    </Col>
+                    <Col>
+                      <div className={styles.MessageFethcingUsername}>
                         Jiasheng Li
                       </div>
                     </Col>
                     <Col>
-                      <div className={styles.MessageFethcingLocation}>HSS</div>
+                      <div className={styles.MessageFethcingLocation}>
+                        Rare Painting
+                      </div>
                     </Col>
                     <Col>
                       <div className={styles.MessageFethcingMessage}>
@@ -340,27 +361,68 @@ const MyPageComponent = () => {
                 </Tab.Pane>
 
                 {/* Account Details Display */}
-                <Tab.Pane eventKey="acct-detail">
+                <Tab.Pane eventKey="acct-detail" style={{ marginLeft: "1rem" }}>
                   <Row>
                     <div className={styles.CurrentPageTitle}>
                       Account Details Page
                     </div>
                   </Row>
-                  <Row style={{marginTop:"1rem"}}>
-                    <Col>
-                      <span>
-                        Reset Username: <a href="/changepassword">Reset</a>
-                      </span>
+
+                  <Row>
+                    <Col lg={2}>
+                      <div className={styles.UsernameLable}>First name:</div>
+                    </Col>
+                    <Col lg={2}>
+                      <div className={styles.UsernameFetch}>Jiasheng</div>
                     </Col>
                   </Row>
-                  <Row style={{marginTop:"1rem"}}>
+                  <Row>
+                    <Col lg={2}>
+                      <div className={styles.UsernameLable}>Last name:</div>
+                    </Col>
+                    <Col lg={2}>
+                      <div className={styles.UsernameFetch}> Li</div>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col lg={2}>
+                      <div className={styles.EmailLable}>Email:</div>
+                    </Col>
+                    <Col lg={2}>
+                      <div className={styles.EmailFecth}>
+                        jli29@mail.sfsu.edu
+                      </div>
+                    </Col>
+                  </Row>
+
+                  <Row style={{ marginTop: "1rem" }}>
                     <Col>
-                      <span>
-                        Reset Password: <a href="/changeusername">Reset</a>
+                      <span style={{ fontSize: "1.2rem" }}>
+                        Reset Password:{" "}
+                        <a
+                          href="/changepassword"
+                          style={{ marginLeft: "4rem" }}
+                        >
+                          Reset
+                        </a>
                       </span>
                     </Col>
                   </Row>
 
+                  <Row style={{ marginTop: "1rem" }}>
+                    <Col>
+                      <span style={{ fontSize: "1.2rem" }}>
+                        Reset Username:{" "}
+                        <a
+                          href="/changeusername"
+                          style={{ marginLeft: "3.5rem" }}
+                        >
+                          Reset
+                        </a>
+                      </span>
+                    </Col>
+                  </Row>
                 </Tab.Pane>
               </Tab.Content>
             </Row>

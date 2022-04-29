@@ -78,7 +78,7 @@ const ChangePassword = () => {
                   className={styles.formInput}
                   type="text"
                   name="comfirmNewPassword"
-                  placeholder="confirm your new password"
+                  placeholder="Confirm your new password"
                   value={values.comfirmNewPassword}
                   onChange={handleChange}
                 />
