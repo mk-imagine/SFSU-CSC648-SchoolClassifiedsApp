@@ -14,7 +14,7 @@ const Login = () => {
 
   const handleLogout = () => {
     axios.post('/logout')
-    .then(() => window.location.href = '/');
+    .then(() => window.location.href = 'http://localhost:3000/');
   }
 
   const handleSubmit = () => {
