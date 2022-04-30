@@ -30,15 +30,22 @@ router.post('/create', (req, res, next) => {
         .catch((err) => next(err));
 
     // FOR SESSIONS - INCOMPLETE
+    if(!req.session.username) {
+        debugPrint.errorPrint("Must be logged in message a user");
+        res.json({
+            code: -1,
+            status: "danger",
+            message: "Must be logged in to create a message"
+        });
+        res.redirect('http://localhost:3000/login');
+    } else {
+        console.log("user is logged in!");
+    }
+
     // if(!req.session.username) {
-    //     debugPrint.errorPrint("Must be logged in to comment");
-    //     res.json({
-    //         code: -1,
-    //         status: "danger",
-    //         message: "Must be logged in to create a message"
-    //     });
+    //     console.log(`user is not logged in: ${req.session.username}`)
     // } else {
-        
+    //     console.log(`user is logged in: ${req.session.username}`)
     // }
 })
 
