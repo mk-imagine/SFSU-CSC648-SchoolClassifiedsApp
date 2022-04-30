@@ -75,7 +75,8 @@
 
 .centerNav {
   margin: auto;
-  width: 78%;
+  width: 70%;
+  margin-left: 10rem;
 }
 
 .navWidth {
@@ -205,7 +206,7 @@
   .centerButtons {
     margin: auto;
     width: 90%;
-    margin-left: 12rem;
+    margin-left: 10rem;
   }
 
   .centerNav {

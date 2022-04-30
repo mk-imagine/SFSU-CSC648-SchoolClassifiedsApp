@@ -290,7 +290,7 @@ const Navbar = (props) => {
             value={{
               value: items,
               value2: numberOfItems,
-              value3: numberOfTotalItems,
+              value3: numberOfTotalItems
             }}
           >
             {props.children}

@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 
 /**
  * Loads all items in a grid
- * @param {*} props 
+ * @param {*} props
  * @returns HTML that loads all item data
  */
 export const ViewItems = (props) => {
@@ -15,26 +15,37 @@ export const ViewItems = (props) => {
   const columnsPerRow = 3;
   const numberOfItems = props.numberOfItems;
   const totolItems = props.totolItems;
+
   //const navigate = useNavigate();
   // const base_url = "/api";
   const base_url = "http://localhost:3100/api";
   // eslint-disable-next-line
   useEffect(() => {
     setItems(props.items);
+    toggleFunction();
   });
 
-const toggleFunction = () =>{
-  if(numberOfItems>0 && numberOfItems < totolItems){
-    setToggle(true);
-  }
-}
-
-
+  const toggleFunction = () => {
+    if (
+      parseInt(numberOfItems) > 0 &&
+      parseInt(numberOfItems) < parseInt(totolItems)
+    ) {
+      setToggle(true);
+    } else {
+      setToggle(false);
+    }
+  };
 
   return (
-    <div style={{ marginTop: "2rem", width: "100%", margin: "auto" }}>
+    <div style={{ marginTop: "2rem", width: "80%", margin: "auto" }}>
       {/* <div className={styles.heading}>Lastest items</div> */}
-      {toggle? <div> 0 of 10 </div> : <div className={styles.heading}>Lastest items</div>}
+      {toggle ? (
+        <div className={styles.heading}>
+          {numberOfItems} of {totolItems} items found
+        </div>
+      ) : (
+        <div className={styles.heading}>Lastest items</div>
+      )}
       <Container>
         <Row xs={1} md={columnsPerRow}>
           {items.map((e) => {
