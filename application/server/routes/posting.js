@@ -29,7 +29,7 @@ router.post('/post', upload.single('image'), (req, res) => {
     let category = req.body.category;
 
     //let sellerId = req.session.user_id;//???
-    let sellerId = req.session.userId;//for testing
+    let sellerId = 1;//for testing
     console.log("what is sellerid : " + sellerId);
     let price = req.body.price;
     let name = req.body.name;
@@ -37,6 +37,7 @@ router.post('/post', upload.single('image'), (req, res) => {
     let course = req.body.course;
 
     let picture = req.file.path;
+    let picture2 = req.file.filename;
     let fileAsThumbNail = `thumb-${req.file.filename}`;
     let thumbnail = req.file.destination + "/" + fileAsThumbNail;
 
@@ -54,7 +55,7 @@ router.post('/post', upload.single('image'), (req, res) => {
         // Create post via PostModel
         .then(() => {
             console.log("in posting after resizing the picture");
-            return PostModel.createPost(category, sellerId, price, name, description, picture, thumbnail, course);
+            return PostModel.createPost(category, sellerId, price, name, description, picture2, thumbnail, course);
         })
         // Redirect to Home Page upon successful post
         .then((postLogged) => {
