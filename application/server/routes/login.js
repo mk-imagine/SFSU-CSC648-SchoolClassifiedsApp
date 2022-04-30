@@ -83,7 +83,8 @@ router.post('/login', (req, res, next) => {
 /**
  * Logout Router
  */
-router.post('/logout', (req, res) => {
+router.post('/logout', (req, res, next) => {
+    console.log('in logout route');
     req.session.destroy((err) => {
         if (err) {
             debugPrint.errorPrint('session could not be destroyed.');
@@ -92,8 +93,8 @@ router.post('/logout', (req, res) => {
             debugPrint.successPrint('session was destroyed');
             res.clearCookie('csid');//must match key in session config in index.js
             res.json({ status: "OK", message: "user is logged out" });
-            //res.locals.logged = false;
-            res.f
+            res.locals.logged = false;
+            //res.f
         }
     })
 });

@@ -12,6 +12,11 @@ const Login = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const handleLogout = () => {
+    axios.post('/logout')
+    .then(() => window.location.href = '/');
+  }
+
   const handleSubmit = () => {
     console.log(username);
     console.log(password);
@@ -107,6 +112,16 @@ const Login = () => {
                   type="button"
                 >
                   Log In
+                </button>
+              </Col>
+
+              <Col>
+                <button
+                  className={styles.formInputBtn}
+                  onClick={handleLogout}
+                  type="button"
+                >
+                  Logout
                 </button>
               </Col>
 
