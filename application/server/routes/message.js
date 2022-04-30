@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { successPrint, errorPrint } = require("../error/debugprinters");
 const MessageModel = require('../models/message');
-
+var bodyParser = require("body-parser");
+router.use(bodyParser.urlencoded({ extended: true }));
 /**
  * Message Router Test
  */
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
  */
 router.post('/create', (req, res, next) => {
     const { itemId, senderId, recipientId, meet_time, location, contactInfo, message } = req.body;
+    console.log(req.body);
     MessageModel.create(itemId, senderId, recipientId, meet_time, location, contactInfo, message)
         .then((wasSuccessful) => {
             if (wasSuccessful != -1) {
