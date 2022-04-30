@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql2");
-// var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var itemapi = require("./routes/item");
 const imagerouter = require("./routes/image");
 const postingrouter = require('./routes/posting');
@@ -41,7 +41,7 @@ app.use(sessions({
  * Use express.json for json parsing for incoming requests
  */
 app.use(express.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 //app.use('/createpost', postingrouter);
 
 /**

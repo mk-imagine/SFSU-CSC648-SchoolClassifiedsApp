@@ -94,6 +94,7 @@ router.post('/logout', (req, res, next) => {
             res.clearCookie('csid');//must match key in session config in index.js
             res.json({ status: "OK", message: "user is logged out" });
             res.locals.logged = false;
+            console.log('SESSION DATA after logout:', req.session);
             //res.f
         }
     })
