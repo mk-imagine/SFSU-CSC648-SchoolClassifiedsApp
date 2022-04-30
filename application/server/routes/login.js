@@ -84,8 +84,9 @@ router.post('/login', (req, res, next) => {
  * Logout Router
  */
 router.post('/logout', (req, res, next) => {
-    console.log('in logout route');
+    //console.log('SESSION DATA before logout:', req.session.username);
     req.session.destroy((err) => {
+        
         if (err) {
             debugPrint.errorPrint('session could not be destroyed.');
             next(err);
@@ -93,8 +94,9 @@ router.post('/logout', (req, res, next) => {
             debugPrint.successPrint('session was destroyed');
             res.clearCookie('csid');//must match key in session config in index.js
             res.json({ status: "OK", message: "user is logged out" });
-            res.locals.logged = false;
-            console.log('SESSION DATA after logout:', req.session);
+            //console.log("What is res.local.logged: "+res.locals.logged);
+            //res.locals.logged = false;
+           // console.log('SESSION DATA after logout:', req.session.username);
             //res.f
         }
     })

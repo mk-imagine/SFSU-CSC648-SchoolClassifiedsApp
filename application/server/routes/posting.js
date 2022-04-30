@@ -29,14 +29,15 @@ router.post('/post', upload.single('image'), (req, res) => {
     let category = req.body.category;
 
     //let sellerId = req.session.user_id;//???
-    let sellerId = req.session.userId;//for testing
+    let sellerId = 1;//for testing
     console.log("what is sellerid : " + sellerId);
     let price = req.body.price;
     let name = req.body.name;
     let description = req.body.description;
     let course = req.body.course;
 
-    let picture = req.file.path;
+    //let picture = req.file.path;
+    let picture = req.file.filename;
     let fileAsThumbNail = `thumb-${req.file.filename}`;
     let thumbnail = req.file.destination + "/" + fileAsThumbNail;
 

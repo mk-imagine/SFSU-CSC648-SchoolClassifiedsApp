@@ -83,21 +83,21 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `session`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sessions` ;
+-- DROP TABLE IF EXISTS `sessions` ;
 
-CREATE TABLE IF NOT EXISTS `sessions` (
-  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `session_user` INT UNSIGNED NULL,
-  `expires` int unsigned NOT NULL,
-  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  PRIMARY KEY (`session_id`),
-  INDEX `user_FK_idx` (`session_user` ASC) VISIBLE,
-  CONSTRAINT `session_user_FK`
-    FOREIGN KEY (`session_user`)
-    REFERENCES `user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+-- CREATE TABLE IF NOT EXISTS `sessions` (
+--   `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+--   `session_user` INT UNSIGNED NULL,
+--   `expires` int unsigned NOT NULL,
+--   `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+--   PRIMARY KEY (`session_id`),
+--   INDEX `user_FK_idx` (`session_user` ASC) VISIBLE,
+--   CONSTRAINT `session_user_FK`
+--     FOREIGN KEY (`session_user`)
+--     REFERENCES `user` (`user_id`)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE)
+-- ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------

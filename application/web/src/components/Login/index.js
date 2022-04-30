@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = React.useState("");
 
   const handleLogout = () => {
-    axios.post('/logout')
+    axios.post('http://localhost:3100/api/login/logout')
     .then(() => window.location.href = 'http://localhost:3000/');
   }
 
