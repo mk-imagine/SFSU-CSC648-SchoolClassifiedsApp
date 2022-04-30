@@ -58,7 +58,6 @@ MessageModel.getReceivedMessages = ( userId ) => {
                     INNER JOIN user sender ON sender.user_id = msg.msg_sender
                     INNER JOIN user recipient ON recipient.user_id = msg.msg_recipient
                     WHERE recipient.user_id = ?;`;
-    results = await db.execute(baseSQL, [userId]);
     return db.execute(baseSQL, [userId])
         .then(([results, fields]) => {
         return Promise.resolve(results);
