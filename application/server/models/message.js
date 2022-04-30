@@ -16,96 +16,30 @@ const MessageModel = {};
  * @param {*} message
  * @returns True if insert successful
  */
- MessageModel.create = async (itemId, senderId, recipientId, meet_time, location, contactInfo, message) => {
-    //console.log("in the messege model, what is message:"+ message);
-    //await db.beginTransaction();
-   // let baseSQL = `BEGIN; INSERT INTO csc648.message (msg_sender, msg_recipient, msg_meet_time, msg_location, msg_contactinfo, msg_body, msg_timestamp) VALUES (?, ?, ?, ?, ?, ?, NOW()); SELECT LAST_INSERT_ID() INTO @msgid; INSERT INTO csc648.itemmsgs (im_item, im_msg) VALUES (?, @msgid); COMMIT;`;
-    //db.execute(`INSERT INTO csc648.message (msg_sender, msg_recipient, msg_meet_time, msg_location, msg_contactinfo, msg_body, msg_timestamp)
-    //VALUES (?, ?, ?, ?, ?, ?, NOW());`, [senderId, recipientId, meet_time,location, contactInfo, message, ]);
-    //db.execute(`SELECT LAST_INSERT_ID() INTO @msgid;`);
-    //db.execute(`INSERT INTO csc648.itemmsgs (im_item, im_msg) VALUES (?, @msgid);`, [itemId]);
-    //db.commit();
-    return  db.getConnection( (err, connection)=> {
-        console.log("DOES IT EVEN MAKE IT IN?");
-            if (err) {
-                console.log("REJECTED IN THE GET CONNECTION");
-                return Promise.reject("Error occurred while getting the connection");
-            }
-            return connection.beginTransaction(err => {
-                console.log("IS IT IN TE TRANSACTION?");
-                if (err) {
-                    connection.release();
-                    return Promise.reject("Error occurred while creating the transaction");
-                }
-                console.log("BEFORE THE FIRST CONNECTION>EXECUTE");
-                return connection.execute(
-                    `INSERT INTO csc648.message (msg_sender, msg_recipient, msg_meet_time, msg_location, msg_contactinfo, msg_body, msg_timestamp)
-                    VALUES (?, ?, ?, ?, ?, ?, NOW());`,[senderId, recipientId, meet_time,location, contactInfo, message], (err) => {
-                        if (err) {
-                            return connection.rollback(() => {
-                                connection.release();
-                                return Promise.reject("Inserting to STUDENT table failed", err)
-                            });
-                        }
-                        console.log("BEFORE THE SECOND CONNECTION>EXECUTE");
-                        return connection.execute(
-                            `SELECT LAST_INSERT_ID() INTO @msgid;`, (err) => {
-                                if (err) {
-                                    return connection.rollback(() => {
-                                        connection.release();
-                                        return Promise.reject("Inserting to ADDRESS table failed");
-                                    });
-                                }
-                                console.log("BEFORE THE Third CONNECTION>EXECUTE");
-                                return connection.execute(
-                                    `INSERT INTO csc648.itemmsgs (im_item, im_msg) VALUES (?, @msgid);`,[itemId], (err) => {
-                                        if (err) {
-                                            return connection.rollback(() => {
-                                                connection.release();
-                                                return Promise.reject("Inserting to ADDRESS table failed");
-                                            });
-                                        }
-                                        return connection.commit((err) => {
-                                            console.log("IN THE CONNECTOIN>COMIT");
-                                            if (err) {
-                                                
-                                                return connection.rollback(() => {
-                                                    connection.release();
-                                                    return Promise.reject("Commit failed");
-                                                });
-                                            }
+MessageModel.create = async (itemId, senderId, recipientId, meet_time, location, contactInfo, message) => {
+    const insertMsgSQL = `INSERT INTO csc648.message (msg_sender, msg_recipient, msg_location, msg_contactinfo, 
+        msg_body, msg_timestamp) VALUES (?, ?, ?, ?, ?, NOW());`;
+    const msgData = [senderId, recipientId, location, contactInfo, message];
+    const insertItemMsgsSQL = `INSERT INTO csc648.itemmsgs (im_item, im_msg) VALUES (?, LAST_INSERT_ID());`
+    const itemMsgsData = [itemId];
 
-                                            connection.release();
-                                        });
-                            })
-
-                    });
-
-            });
-        });
-    
-})
-    //return db.execute('SELECT LAST_INSERT_ID() as itemId');
-   
-
-       /*  let baseSQL = `
-        INSERT INTO csc648.message (msg_sender, msg_recipient, msg_location, msg_contactinfo, msg_body, msg_timestamp) VALUES (?, ?, ?, ?, ?, NOW());
-        SELECT LAST_INSERT_ID() INTO @msgid;
-        INSERT INTO csc648.itemmsgs (im_item, im_msg) VALUES (?, @msgid);
-        COMMIT;`; */
-    /* return db.execute(baseSQL, [
-        senderId, 
-        recipientId, 
-        meet_time,
-        location, 
-        contactInfo, 
-        message, 
-        itemId
-    ]) */
-        .then(() => {
-        return Promise.resolve(true);
-    })
-        .catch((err) => Promise.reject(err));
+    const con = await db.getConnection();
+    try {
+        await con.beginTransaction();
+        await con.execute(insertMsgSQL, msgData);
+        await con.execute(insertItemMsgsSQL, itemMsgsData);
+        await con.commit();
+    } catch (err) {
+        console.log(err);
+        if (con) {
+            await con.rollback();
+            console.log("Inserts unsuccessful")
+        }
+    } finally {
+        if (con) {
+            await con.release();
+        }
+    }
 }
 
 /**
@@ -114,9 +48,9 @@ const MessageModel = {};
  * @returns All recieved messages by userId
  */
 MessageModel.getReceivedMessages = ( userId ) => {
-    let baseSQL = `SELECT it.item_id AS "ItemID", it.item_name AS "ItemName", sender.user_username AS "SendUsername", sender.user_fname AS "SendFName", 
-                    sender.user_lname AS "SendLName", sender.user_email AS "SendEmail", msg.msg_contactinfo AS "ContactInfo", msg.msg_body AS "Message",
-                    msg.msg_timestamp AS "Time Stamp"
+    let baseSQL = `SELECT it.item_id AS "ItemID", it.item_name AS "ItemName", sender.user_username AS "SendUsername", 
+                    sender.user_fname AS "SendFName", sender.user_lname AS "SendLName", sender.user_email AS "SendEmail", 
+                    msg.msg_contactinfo AS "ContactInfo", msg.msg_body AS "Message", msg.msg_timestamp AS "Time Stamp"
                     FROM message msg
                     INNER JOIN itemmsgs im ON msg.msg_id = im.im_msg
                     INNER JOIN item it ON it.item_id = im.im_item
@@ -124,6 +58,7 @@ MessageModel.getReceivedMessages = ( userId ) => {
                     INNER JOIN user sender ON sender.user_id = msg.msg_sender
                     INNER JOIN user recipient ON recipient.user_id = msg.msg_recipient
                     WHERE recipient.user_id = ?;`;
+    results = await db.execute(baseSQL, [userId]);
     return db.execute(baseSQL, [userId])
         .then(([results, fields]) => {
         return Promise.resolve(results);
