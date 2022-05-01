@@ -24,7 +24,7 @@ const Login = () => {
     console.log(data2);
     var config = {
       method: "post",
-      url: "/api/register/register",
+      url: "/api/login/login",
       // url: "http://localhost:3100/api/login/login",
       headers: {
         "Content-Type": "application/json",

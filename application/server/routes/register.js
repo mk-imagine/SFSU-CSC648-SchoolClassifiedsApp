@@ -90,7 +90,8 @@ router.post('/register', (req, res, next) => {
                 console.log('User successfuly created!');
                 //res.redirect('http://localhost:3000/login');
                 //window.location.href = "/login";
-                res.send("http://localhost:3000/login");
+                // res.send("http://localhost:3000/login");
+                res.send("/login");
             } else {
                 // req.flash('success', 'User account has been made');
                 console.log("ERROR GOING INTO THE ELSE FOR USERID");
