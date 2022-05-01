@@ -1,6 +1,4 @@
 const express = require("express");
-const mysql = require("mysql2");
-// var cookieParser = require('cookie-parser');
 var itemapi = require("./routes/item");
 const imagerouter = require("./routes/image");
 const postingrouter = require('./routes/posting');
@@ -12,7 +10,6 @@ var sessions = require('express-session');
 var mysqlSession = require('express-mysql-session')(sessions);
 
 const app = express();
-
 
 const flash = require("express-flash");
 

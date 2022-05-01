@@ -10,7 +10,6 @@ const PostModel = require('../models/post');
 var multer = require('multer');
 var PostError = require('../error/userError');
 const sharp = require("sharp");
-const mysql = require("mysql");
 
 var upload = multer({ dest: './user_images' });
 

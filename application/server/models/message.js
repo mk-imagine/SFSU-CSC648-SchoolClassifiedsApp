@@ -1,4 +1,4 @@
-const db = require('../config/db2');
+const db = require('../config/db');
 
 /**
  * MessageModel for Message Database Queries
