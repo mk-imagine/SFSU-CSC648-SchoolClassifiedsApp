@@ -3,14 +3,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import {CardActionArea, CardActions } from "@mui/material";
+import { CardActionArea } from "@mui/material";
 import styles from "./index.module.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 /**
  * Load Item Card Component
- * @param {*} props 
+ * @param {*} props
  * @returns HTML of Item Card Component
  */
 const ItemCard = (props) => {
@@ -33,13 +33,19 @@ const ItemCard = (props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onClick={goToItemDetailPage}>
-        <div style={{display: "flex", alignItem: "center", justifyContent: "center"}}>
-        <CardMedia
-          component="img"
-          height = "400"
-          image={props.image}
-          alt="green iguana"
-        />
+        <div
+          style={{
+            display: "flex",
+            alignItem: "center",
+            justifyContent: "center"
+          }}
+        >
+          <CardMedia
+            component="img"
+            height="400"
+            image={props.image}
+            alt="green iguana"
+          />
         </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -48,22 +54,24 @@ const ItemCard = (props) => {
           <Typography variant="body2" color="text.secondary">
             Price: {props.price}
             <br></br>
-            <p className={styles.itemDescription}>Description: {props.description}</p>
+            <p className={styles.itemDescription}>
+              Description: {props.description}
+            </p>
           </Typography>
         </CardContent>
       </CardActionArea>
       <div className={styles.buttonWrap}>
-         <Button className = {styles.messageButton} onClick={goToMessagePage}>Message Seller</Button>
+        <Button className={styles.messageButton} onClick={goToMessagePage}>
+          Message Seller
+        </Button>
       </div>
-       
-      
     </Card>
   );
 };
 
 /**
  * Load Category Card Component
- * @param {*} props 
+ * @param {*} props
  * @returns HTML of Category Card Component
  */
 export const ItemTopCategoryCard = (props) => {

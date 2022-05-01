@@ -4,7 +4,7 @@
  */
 const mysql = require("mysql");
 var bcrypt = require('bcrypt');
-const db = require('../config/db2');
+const db = require('../config/db');
 
 const LoginModel = {};
 

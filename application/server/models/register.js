@@ -5,7 +5,7 @@
  * emailExist is to select a user who has a certain email to see if that email is being used
  */
 var bcrypt = require("bcrypt");
-const db = require('../config/db2');
+const db = require('../config/db');
 
 const RegisterModel = {};
 

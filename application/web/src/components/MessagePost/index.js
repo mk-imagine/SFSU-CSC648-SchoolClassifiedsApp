@@ -6,7 +6,7 @@ import {
   Button,
   Dropdown,
   ButtonGroup,
-  Form
+  Form,
 } from "react-bootstrap";
 import styles from "./index.module.css";
 import { useLocation } from "react-router-dom";
@@ -21,16 +21,15 @@ const Message = () => {
   console.log("in message page:", item_details);
   const full_name = item_details.user_fname + " " + item_details.user_lname;
 
-  //New Modification for clearing inputs after clicking Cancle button 
+  //New Modification for clearing inputs after clicking Cancle button
   const [contact, setContact] = React.useState("");
   const [message, setMessage] = React.useState("");
 
-  
-  const clearFields = () =>{
+  const clearFields = () => {
     setContact("");
     setMessage("");
     console.log("Cancel Button Clik");
-  }
+  };
 
   return (
     <div style={{ marginTop: "1rem" }}>
@@ -54,7 +53,7 @@ const Message = () => {
                 </Col>
               </Row>
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "2rem" }}></div>
 
               <Row className="align-items-center">
                 <Col lg={3}>
@@ -65,9 +64,9 @@ const Message = () => {
                 </Col>
               </Row>
 
-              <div style={{ marginTop: "1rem" }}></div>
+              {/* <div style={{ marginTop: "1rem" }}></div> */}
 
-              <Row className="align-items-center">
+              {/* <Row className="align-items-center">
                 <Col lg={3}>
                   <div className={styles.subtitle}>Meetup Schedule*:</div>
                 </Col>
@@ -103,9 +102,9 @@ const Message = () => {
                     </ButtonGroup>
                   </Row>
                 </Col>
-              </Row>
+              </Row> */}
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "2rem" }}></div>
 
               <Row className="align-items-center">
                 <Col lg={3}>
@@ -123,13 +122,11 @@ const Message = () => {
                 </Col>
               </Row>
 
-              <div style={{ marginTop: "1rem" }}></div>
+              <div style={{ marginTop: "2rem" }}></div>
 
               <Row className="align-items-center">
                 <Row>
-                  <div className={styles.additionalInfo}>
-                    Message:
-                  </div>
+                  <div className={styles.additionalInfo}>Message:</div>
                 </Row>
                 <Row style={{ marginTop: "0.5rem" }}>
                   <textarea
@@ -160,18 +157,16 @@ const Message = () => {
 
                 <Col> </Col>
               </Row> */}
-                <Row style={{marginTop:"1rem", marginLeft:"4rem"}}>
-                  <Col>
-                    <Button className={styles.sendButton}>
-                      Send
-                    </Button>
-                  </Col>
-                  <Col>
-                    <Button className={styles.cancelButton} onClick={clearFields}>
-                      Cancel
-                    </Button>
-                  </Col>
-                </Row>
+              <Row style={{ marginTop: "1rem", marginLeft: "4rem" }}>
+                <Col>
+                  <Button className={styles.cancelButton} onClick={clearFields}>
+                    Cancel
+                  </Button>
+                </Col>
+                <Col>
+                  <Button className={styles.sendButton}>Send</Button>
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Form>

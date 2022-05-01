@@ -1,4 +1,4 @@
-const db = require('../config/db2');
+const db = require('../config/db');
 
 /**
  * ItemsModel for Category and Item Database Queries

@@ -3,7 +3,7 @@
  * This createPost function will be executing mysql to insert into the item table in the database as
  * well as selecting back from the item table to check if the post made it into the table
  */
-const db = require('../config/db2');    //for db connection
+const db = require('../config/db');    //for db connection
 const PostModel = {};
 
 PostModel.createPost = (category, seller, price, name, des, pic, thumb, course) => {

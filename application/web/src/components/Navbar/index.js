@@ -1,3 +1,4 @@
+//HEADER:CODE FOR THE THE NAVBAR(SEARCHBAR AND BUTTONS)
 import React, { useState, useEffect } from "react";
 import { Dropdown, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
@@ -35,15 +36,14 @@ const Navbar = (props) => {
   useEffect(() => {
     fetchCategories();
     getAllItems();
-   
   }, []);
 
-  const getAllItems =() =>{
+  const getAllItems = () => {
     axios.get(`${base_url}/items`).then((res) => {
       setItems(res.data);
       setNumberOfTotalItems(res.data.length);
     });
-  }
+  };
 
   const fetchCategories = () => {
     axios.get(`${base_url}/categories`).then((res) => {
@@ -61,11 +61,11 @@ const Navbar = (props) => {
     setSearchInput(e.target.value);
   };
 
-  const handleKeyDown = (event)=>{
-    if (event.key === 'Enter') {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
       onSubmit();
     }
-  }
+  };
 
   const onSubmit = () => {
     console.log("On submit");
@@ -75,69 +75,80 @@ const Navbar = (props) => {
     const category_id = selectedCategoryId;
     const category_name = selectedCategory;
 
-    if (
-      parseInt(category_id) === 0 &&
-      searchTerm !== "" &&
-      category_name === "All Items"
-    ) {
-      // we return items according to search term
-      setToggle(true);
-      console.log(
-        "In one: category id: ",
-        category_id,
-        " search term: ",
-        searchTerm
-      );
-      axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
-        setItems(res.data);
-        setNumberOfItems(res.data.length);
-      });
-    } else if (
-      category_id !== 0 &&
-      searchTerm === "" &&
-      category_name !== "All Items"
-    ) {
-      // we return items according to categorys
-      console.log("In two");
-      setToggle(true);
-      axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
-        setItems(res.data);
-        setNumberOfItems(res.data.length);
-      });
-    } else if (
-      category_id !== 0 &&
-      searchTerm !== "" &&
-      category_name !== "All Items"
-    ) {
-      //return items according to category and search term
-      console.log("In three and category id is ", category_id);
-      setToggle(true);
-      axios
-        .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
-        .then((res) => {
+    if (checkInputLength()) {
+      alert("Search length can't be more 40 characters!");
+    } else {
+      if (
+        parseInt(category_id) === 0 &&
+        searchTerm !== "" &&
+        category_name === "All Items"
+      ) {
+        // we return items according to search term
+        setToggle(true);
+        console.log(
+          "In one: category id: ",
+          category_id,
+          " search term: ",
+          searchTerm
+        );
+        axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
           setItems(res.data);
           setNumberOfItems(res.data.length);
         });
-    } else {
-      console.log(
-        "In four: category id: ",
-        category_id,
-        " search term: ",
-        searchTerm,
-        "category name: ",
-        category_name
-      );
-      setToggle(false);
-      axios.get(`${base_url}/items`).then((res) => {
-        setItems(res.data);
-        setNumberOfItems(res.data.length);
-      });
+      } else if (
+        category_id !== 0 &&
+        searchTerm === "" &&
+        category_name !== "All Items"
+      ) {
+        // we return items according to categorys
+        console.log("In two");
+        setToggle(true);
+        axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
+          setItems(res.data);
+          setNumberOfItems(res.data.length);
+        });
+      } else if (
+        category_id !== 0 &&
+        searchTerm !== "" &&
+        category_name !== "All Items"
+      ) {
+        //return items according to category and search term
+        console.log("In three and category id is ", category_id);
+        setToggle(true);
+        axios
+          .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
+      } else {
+        console.log(
+          "In four: category id: ",
+          category_id,
+          " search term: ",
+          searchTerm,
+          "category name: ",
+          category_name
+        );
+        setToggle(false);
+        axios.get(`${base_url}/items`).then((res) => {
+          setItems(res.data);
+          setNumberOfItems(res.data.length);
+        });
+      }
     }
-    
   };
 
   const OnLogin = () => {
     navigate("/login");
+  };
+
+  const checkInputLength = () => {
+    if (searchInput.length >= 40) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -149,122 +160,139 @@ const Navbar = (props) => {
         </div>
       </Row>
       <div className={styles.container}>
-        <Row className="align-items-center">
-          <Col lg={2}>
-            <div
-              className={styles.title}
-              onClick={() => {
-                getAllItems();
-                navigate("/");
-              }}
-            >
-              Purple Market
-            </div>
-          </Col>
-
-          <Col lg={6}>
-            <Row className={styles.top}>
-              <div>
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <Dropdown
-                      onSelect={dropDownChange}
-                      value={selectedCategory}
-                      id={styles.dropdownMenu}
-                    >
-                      <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        {selectedCategory}
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        {catergories.map((e) => {
-                          return (
-                            <Dropdown.Item
-                              eventKey={e.category_id}
-                              onClick={() => {
-                                setSelectedCategory(e.category_name);
-                              }}
-                            >
-                              {e.category_name}
-                            </Dropdown.Item>
-                          );
-                        })}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </span>
-
-                  <div className="form-group">
-                    <input
-                      style={{ width: "20rem" }}
-                      type="text"
-                      className="form-control rounded-0"
-                      placeholder={"Search Here"}
-                      onChange={searchHandleChange}
-                      value={searchInput}
-                      maxLength = "40"
-                      onKeyDown={handleKeyDown}
-                    />
-                  </div>
-
-                  <span class="input-group-addon">
-                    <Button variant="success rounded-0" onClick={onSubmit}>
-                      Search
-                    </Button>
-                  </span>
-                </div>
+        <div className={styles.centerMobileNav}>
+          <Row className="align-items-center">
+            <Col lg={2} md={12} sm={12}>
+              <div
+                className={styles.title}
+                onClick={() => {
+                  getAllItems();
+                  navigate("/");
+                }}
+              >
+                Purple Market
               </div>
-            </Row>
-          </Col>
-          <Col>
-            <Row>
-              <Col>
-                <div>
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={() => {
-                      navigate("/createpost");
-                    }}
-                  >
-                    Post Items
-                  </Button>
+            </Col>
 
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={() => {
-                      navigate("/myPage");
-                    }}
-                  >
-                    My Page
-                  </Button>
+            <Col lg={6} md={12} sm={12}>
+              <div className={styles.centerNav}>
+                <Row className={styles.top}>
+                  <div>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <Dropdown
+                          onSelect={dropDownChange}
+                          value={selectedCategory}
+                          id={styles.dropdownMenu}
+                        >
+                          <Dropdown.Toggle
+                            variant="success"
+                            id="dropdown-basic"
+                          >
+                            {selectedCategory}
+                          </Dropdown.Toggle>
 
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={OnLogin}
-                  >
-                    Login
-                  </Button>
-                  <Button
-                    className={styles.topButton}
-                    variant="primary"
-                    onClick={() => {
-                      navigate("/register");
-                    }}
-                  >
-                    Register
-                  </Button>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+                          <Dropdown.Menu>
+                            {catergories.map((e) => {
+                              return (
+                                <Dropdown.Item
+                                  eventKey={e.category_id}
+                                  onClick={() => {
+                                    setSelectedCategory(e.category_name);
+                                  }}
+                                >
+                                  {e.category_name}
+                                </Dropdown.Item>
+                              );
+                            })}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control rounded-0 navWidth"
+                          placeholder={"Search Here"}
+                          onChange={searchHandleChange}
+                          value={searchInput}
+                          onKeyDown={handleKeyDown}
+                        />
+                      </div>
+
+                      <span class="input-group-addon">
+                        <div className={styles.searchContainer}>
+                          <Button
+                            variant="success rounded-0"
+                            onClick={onSubmit}
+                            className={styles.searchBtnStyle}
+                          >
+                            Search
+                          </Button>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </Row>
+              </div>
+            </Col>
+            <Col md={12} sm={12} lg={4}>
+              <Row>
+                <Col>
+                  <div className={styles.centerButtons}>
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={() => {
+                        navigate("/createpost");
+                      }}
+                    >
+                      Post Items
+                    </Button>
+
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={() => {
+                        navigate("/myPage");
+                      }}
+                    >
+                      My Page
+                    </Button>
+
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={OnLogin}
+                    >
+                      Login
+                    </Button>
+                    <Button
+                      className={styles.topButton}
+                      variant="primary"
+                      onClick={() => {
+                        navigate("/register");
+                      }}
+                    >
+                      Register
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
       </div>
 
       <div>
         <div style={{ marginBottom: "2rem" }}>
-          <myContext.Provider value={items}>
+          <myContext.Provider
+            value={{
+              value: items,
+              value2: numberOfItems,
+              value3: numberOfTotalItems
+            }}
+          >
             {props.children}
           </myContext.Provider>
         </div>

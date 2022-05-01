@@ -37,8 +37,10 @@ const ItemDetail = () => {
               <Col>
                 <div className={styles.itemTitle}>{item_details.item_name}</div>
               </Col>
+              <Col></Col>
             </Row>
-
+            
+            <div style={{ marginTop: "1.5rem" }}></div>
             <Row>
               <Col>
                 <div className={styles.itemPriceLabel}>Price:</div>
@@ -48,8 +50,10 @@ const ItemDetail = () => {
                   ${item_details.item_price}
                 </div>
               </Col>
+              <Col></Col>
             </Row>
 
+            <div style={{ marginTop: "1.5rem" }}></div>
             <Row>
               <Col>
                 <div className={styles.itemCategoryLabel}>Category:</div>
@@ -59,8 +63,10 @@ const ItemDetail = () => {
                   {item_details.category_name}
                 </div>
               </Col>
+              <Col></Col>
             </Row>
 
+            <div style={{ marginTop: "1.5rem" }}></div>
             <Row>
               <div className={styles.itemiDescriptionLabel}>Description:</div>
             </Row>
@@ -70,10 +76,9 @@ const ItemDetail = () => {
                 {item_details.item_desc}
               </p>
             </Row>
-          </Col>
-          <Row>
+            <Row>
             <Col></Col>
-            <Col lg={3}>
+            <Col >
               <Button
                 className={styles.button}
                 onClick={() => {
@@ -85,6 +90,7 @@ const ItemDetail = () => {
             </Col>
             <Col> </Col>
           </Row>
+          </Col>
         </Row>
       </Container>
     </div>
