@@ -11,9 +11,9 @@ const LoginModel = {};
 LoginModel.authenticate = (username, password) => {
 
     let userId;
-    let baseSQL = `select user_id, user_username, user_password
+    let baseSQL = `select user_id, user_email, user_password
                     from csc648.user
-                    where user_username = ?;`;
+                    where user_email = ?;`;
 
     return db.execute(baseSQL, [username])
         .then(([results, fields]) => {

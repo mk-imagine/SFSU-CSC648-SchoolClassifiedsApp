@@ -27,11 +27,9 @@ const FormSignup = () => {
       confirmPassword: password2,
       email: email,
     };
-    var data2 = JSON.stringify(data1);
-    console.log(data1);
-    console.log(data2);
     var config = {
       method: "post",
+      // url: "/api/register/register",  // FOR DEPLOYMENT
       url: "http://localhost:3100/api/register/register",
       headers: {
         "Content-Type": "application/json",

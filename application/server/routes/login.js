@@ -62,7 +62,7 @@ router.post('/login', (req, res, next) => {
                 res.locals.logged = true;
                 // req.flash('success','Login Successful');
                 console.log("user is logged");
-                //res.redirect("http://localhost:3000/");//after login redirect user to this page
+                //res.send("/"); // FOR DEPLOYMENT
                 res.send("http://localhost:3000/");
             } else {
                 throw new UserError("Invalid login", "/login", 200);
@@ -73,7 +73,7 @@ router.post('/login', (req, res, next) => {
                 debugPrint.errorPrint(err.getMessage());
                 // req.flash('error', err.getMessage());
                 res.status(err.getStatus());
-                res.redirect("/login");
+                res.send("/login");
             } else {
                 next(err);
             }

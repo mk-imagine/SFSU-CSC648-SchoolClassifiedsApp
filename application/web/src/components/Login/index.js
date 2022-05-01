@@ -19,17 +19,14 @@ const Login = () => {
       username: username,
       password: password,
     };
-    var data2 = JSON.stringify(data1);
-    console.log(data1);
-    console.log(data2);
     var config = {
       method: "post",
-      // url: "/api/login/login",
+      // url: "/api/login/login",  // FOR DEPLOYMENT
       url: "http://localhost:3100/api/login/login",
       headers: {
         "Content-Type": "application/json",
       },
-      data: data2,
+      data: data1,
     };
 
     axios(config)

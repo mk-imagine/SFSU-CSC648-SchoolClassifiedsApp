@@ -33,16 +33,14 @@ const ItemPost = () => {
       category: category, //not sure how to set category on the form
       //not sure about images
     };
-    var data2 = JSON.stringify(data1);
-    console.log(data1);
-    console.log(data2);
     var config = {
       method: "post",
+      // url: "/api/post/post", // FOR DEPLOYMENT
       url: "http://localhost:3100/api/post/post",
       headers: {
         "Content-Type": "application/json", //can't be application/json
       },
-      data: data2,
+      data: data1,
     };
 
     axios(config)

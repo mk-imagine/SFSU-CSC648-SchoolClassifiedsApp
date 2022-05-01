@@ -20,7 +20,7 @@ var mysqlSessionStore = new mysqlSession(
     {
         /*using default options*/
     },
-    require('./config/db2')
+    require('./config/db')
 );
 
 /**

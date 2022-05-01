@@ -30,7 +30,7 @@ const Navbar = (props) => {
   //const { Provider, Consumer } = React.createContext({ items: [] });
 
   const navigate = useNavigate();
-  // const base_url = "/api";
+  // const base_url = "/api"; // FOR DEPLOYMENT
   const base_url = "http://localhost:3100/api";
 
   useEffect(() => {

@@ -88,8 +88,7 @@ router.post('/register', (req, res, next) => {
             console.log("what is the userID? " + userId);
             if (userId > 0) {
                 console.log('User successfuly created!');
-                //res.redirect('http://localhost:3000/login');
-                //window.location.href = "/login";
+                //res.send("/login"); // FOR DEPLOYMENT
                 res.send("http://localhost:3000/login");
             } else {
                 // req.flash('success', 'User account has been made');
