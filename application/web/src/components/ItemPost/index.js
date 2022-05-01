@@ -38,7 +38,8 @@ const ItemPost = () => {
     console.log(data2);
     var config = {
       method: "post",
-      url: "http://localhost:3100/api/post/post",
+      url: "/api/register/register",
+      // url: "http://localhost:3100/api/post/post",
       headers: {
         "Content-Type": "application/json", //can't be application/json
       },

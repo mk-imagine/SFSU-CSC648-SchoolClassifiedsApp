@@ -5,18 +5,12 @@ const postingrouter = require('./routes/posting');
 const loginrouter = require('./routes/login');
 const registerrouter = require('./routes/register');
 const msgrouter = require('./routes/message');
-const cors = require('cors');
 
 var sessions = require('express-session');
 var mysqlSession = require('express-mysql-session')(sessions);
 
 const app = express();
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> devM3-backend
 const flash = require("express-flash");
 
 /**
@@ -26,10 +20,9 @@ var mysqlSessionStore = new mysqlSession(
     {
         /*using default options*/
     },
-    require('./config/db2')
+    require('./config/db')
 );
 
-app.use(cors);
 /**
  * Use Sessions
  */

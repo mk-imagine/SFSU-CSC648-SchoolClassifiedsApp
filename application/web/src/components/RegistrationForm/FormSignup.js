@@ -32,7 +32,8 @@ const FormSignup = () => {
     console.log(data2);
     var config = {
       method: "post",
-      url: "http://localhost:3100/api/register/register",
+      url: "/api/register/register",
+      // url: "http://localhost:3100/api/register/register",
       headers: {
         "Content-Type": "application/json",
       },

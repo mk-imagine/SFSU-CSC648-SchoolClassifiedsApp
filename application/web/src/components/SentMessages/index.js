@@ -8,13 +8,8 @@ import { Table } from "react-bootstrap";
  */
 const SentMessages = () => {
   const [messages, setMessages] = useState([]);
-<<<<<<< HEAD
   const base_url = "/api";
   // const base_url = "http://localhost:3100/api";
-=======
-  // const base_url = "/api";
-  const base_url = "http://localhost:3100";
->>>>>>> devM3-backend
 
   useEffect(() => {
     getSentMessages();
