@@ -24,6 +24,8 @@ import MyPage from "./Pages/MyPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 import ChangePasswordPage from "./Pages/ChangePasswordPage";
 import ChangeUsernamePage from "./Pages/ChangeUsernamePage";
+import Footer from "./components/Footer";
+import AboutPage from "./Pages/AboutPage";
 /**
  * React Navbar Routes
  *
@@ -41,6 +43,7 @@ function App() {
           <Route path="/login" exact element={<LoginPage />} />
           <Route path="/register" exact element={<RegisterPage />} />
           <Route path="/myPage" exact element={<MyPage />} />
+          <Route path="/about" exact element={<AboutPage />} />
 
           <Route path="/about/Mark" exact element={<Mark />} />
           <Route path="/about/khushboo" exact element={<Khushboo />} />
@@ -68,7 +71,6 @@ function App() {
             exact
             element={<ChangeUsernamePage />}
           />
-
           <Route path="*" element={<Home />} />
         </Routes>
       </Navbar>

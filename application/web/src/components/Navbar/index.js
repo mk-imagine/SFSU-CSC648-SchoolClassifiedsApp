@@ -188,6 +188,16 @@ const Navbar = (props) => {
           className={styles.topButton}
           variant="primary"
           onClick={() => {
+            navigate("/about");
+          }}
+        >
+          About Us
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
             //TODO: call the post logout request from backend
             navigate("/register");
           }}
