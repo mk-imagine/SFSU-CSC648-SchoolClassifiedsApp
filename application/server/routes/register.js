@@ -23,15 +23,15 @@ router.get("/", (req, res) => {
  * Registration Route
  */
 router.post('/register', (req, res, next) => {
-    console.log(req);
-    console.log(req.body);
+    /* console.log(req);
+    console.log(req.body); */
     let firstname = req.body.firstname;
     let lastname = req.body.lastname;
     let username = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
     let confirmPassword = req.body.confirmPassword;
-    console.log(req.body);
+    //console.log(req.body);
     
     // Validator for form
     Validator.usernameValid(username)
@@ -46,12 +46,12 @@ router.post('/register', (req, res, next) => {
         }).then((emailOK) => {
             console.log("is emailok?: " + emailOK);
             if (emailOK) {
-                return Validator.passwordValid(password);
+                return UserModel.usernameExist(username);
             } else {
                 console.log("ERROR GOING INTO THE ELSE FOR EMAILOK");
                 throw new UserError("Enter a valid SFSU email", "/register", 200);
             }
-        }).then((passwordOK) => {
+        })/* .then((passwordOK) => {
             console.log("is passwordok?: " + passwordOK);
             if (passwordOK) {
                 return Validator.cpasswordValid(password, confirmPassword);
@@ -67,7 +67,7 @@ router.post('/register', (req, res, next) => {
                 console.log("ERROR GOING INTO THE ELSE FOR BOTHPASSWORDOK");
                 throw new UserError("Your passwords don't match", "/register", 200);
             }
-        }).then((usernameExists) => {
+        }) */.then((usernameExists) => {
             console.log("does theusername exist? " + usernameExists);
             if (usernameExists) {
                 console.log("ERROR GOING INTO THE IF FOR USERNAMeEXISTS");
