@@ -13,7 +13,13 @@ const ItemDetail = () => {
   const { state } = useLocation();
   const { item_details, image } = state;
   console.log("in item detail page:", item_details);
-  const full_name = item_details.user_fname + " " + item_details.user_lname;
+
+  const goToMessagePage = () => {
+    console.log("message button clicked");
+    navigate("/message", {
+      state: { item_details: item_details, image: image }
+    });
+  };
 
   return (
     <div>
@@ -39,7 +45,7 @@ const ItemDetail = () => {
               </Col>
               <Col></Col>
             </Row>
-            
+
             <div style={{ marginTop: "1.5rem" }}></div>
             <Row>
               <Col>
@@ -77,19 +83,14 @@ const ItemDetail = () => {
               </p>
             </Row>
             <Row>
-            <Col></Col>
-            <Col >
-              <Button
-                className={styles.button}
-                onClick={() => {
-                  navigate("/message");
-                }}
-              >
-                Message Seller
-              </Button>
-            </Col>
-            <Col> </Col>
-          </Row>
+              <Col></Col>
+              <Col>
+                <Button className={styles.button} onClick={goToMessagePage}>
+                  Message Seller
+                </Button>
+              </Col>
+              <Col> </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

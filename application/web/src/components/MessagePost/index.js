@@ -6,7 +6,7 @@ import {
   Button,
   Dropdown,
   ButtonGroup,
-  Form,
+  Form
 } from "react-bootstrap";
 import styles from "./index.module.css";
 import { useLocation } from "react-router-dom";
@@ -19,6 +19,7 @@ const Message = () => {
   const { state } = useLocation();
   const { item_details, image } = state;
   console.log("in message page:", item_details);
+
   const full_name = item_details.user_fname + " " + item_details.user_lname;
 
   //New Modification for clearing inputs after clicking Cancle button
@@ -29,6 +30,19 @@ const Message = () => {
     setContact("");
     setMessage("");
     console.log("Cancel Button Clik");
+  };
+
+  const sendMessage = () => {
+    const userInformation = localStorage.getItem("user_login_information");
+    console.log("user informatioin in message post", userInformation);
+    console.log("send message btn clicked");
+
+    if (userInformation) {
+      //user is logged in -> send the message
+    } else {
+      alert("Please login to send the message");
+      window.open("/login", "_blank");
+    }
   };
 
   return (
@@ -164,7 +178,9 @@ const Message = () => {
                   </Button>
                 </Col>
                 <Col>
-                  <Button className={styles.sendButton}>Send</Button>
+                  <Button className={styles.sendButton} onClick={sendMessage}>
+                    Send
+                  </Button>
                 </Col>
               </Row>
             </Col>

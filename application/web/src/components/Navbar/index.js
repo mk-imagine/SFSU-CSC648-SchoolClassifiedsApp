@@ -26,6 +26,7 @@ const Navbar = (props) => {
   const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
   // eslint-disable-next-line
   const [numberOfItems, setNumberOfItems] = useState(0);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   //const { Provider, Consumer } = React.createContext({ items: [] });
 
@@ -33,10 +34,23 @@ const Navbar = (props) => {
   // const base_url = "/api"; // FOR DEPLOYMENT
   const base_url = "http://localhost:3100/api";
 
+  const userInformation = localStorage.getItem("user_login_information");
+  console.log("user informatioin in nav bar", userInformation);
+
   useEffect(() => {
     fetchCategories();
     getAllItems();
-  }, []);
+
+    if (userInformation) {
+      //user is logged in
+      console.log("i am in true part");
+      setUserLoggedIn(true);
+    } else {
+      //user is logged out
+      console.log("i am in false part");
+      setUserLoggedIn(false);
+    }
+  }, [userInformation]);
 
   const getAllItems = () => {
     axios.get(`${base_url}/items`).then((res) => {
@@ -139,16 +153,85 @@ const Navbar = (props) => {
     }
   };
 
-  const OnLogin = () => {
-    navigate("/login");
-  };
-
   const checkInputLength = () => {
     if (searchInput.length >= 40) {
       return true;
     } else {
       return false;
     }
+  };
+
+  const buttonsOnLogin = () => {
+    return (
+      <div className={styles.centerButtons}>
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/createpost");
+          }}
+        >
+          Post Items
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/myPage");
+          }}
+        >
+          My Page
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            //TODO: call the post logout request from backend
+            navigate("/register");
+          }}
+        >
+          Logout
+        </Button>
+      </div>
+    );
+  };
+
+  const buttonsOnLogout = () => {
+    return (
+      <div className={styles.centerButtons}>
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/createpost");
+          }}
+        >
+          Post Items
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Login
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Register
+        </Button>
+      </div>
+    );
   };
 
   return (
@@ -239,44 +322,9 @@ const Navbar = (props) => {
             <Col md={12} sm={12} lg={4}>
               <Row>
                 <Col>
-                  <div className={styles.centerButtons}>
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={() => {
-                        navigate("/createpost");
-                      }}
-                    >
-                      Post Items
-                    </Button>
+                  {/* Things to do here wait */}
 
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={() => {
-                        navigate("/myPage");
-                      }}
-                    >
-                      My Page
-                    </Button>
-
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={OnLogin}
-                    >
-                      Login
-                    </Button>
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={() => {
-                        navigate("/register");
-                      }}
-                    >
-                      Register
-                    </Button>
-                  </div>
+                  {userLoggedIn ? buttonsOnLogin() : buttonsOnLogout()}
                 </Col>
               </Row>
             </Col>

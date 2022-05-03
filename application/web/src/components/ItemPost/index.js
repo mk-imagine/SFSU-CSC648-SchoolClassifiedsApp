@@ -7,7 +7,7 @@ import {
   Button,
   Dropdown,
   ButtonGroup,
-  Form,
+  Form
 } from "react-bootstrap";
 import styles from "./index.module.css";
 import image from "../../images/image.png";
@@ -24,43 +24,53 @@ const ItemPost = () => {
   const [course, setCourse] = React.useState("");
   const [description, setDescription] = React.useState("");
 
-  const handleSubmit = () => {
-    var data1 = {
-      name: itemname,
-      price: price,
-      descrition: description,
-      course: course,
-      category: category, //not sure how to set category on the form
-      //not sure about images
-    };
-    var config = {
-      method: "post",
-      // url: "/api/post/post", // FOR DEPLOYMENT
-      url: "http://localhost:3100/api/post/post",
-      headers: {
-        "Content-Type": "application/json", //can't be application/json
-      },
-      data: data1,
-    };
+  const userInformation = localStorage.getItem("user_login_information");
+  console.log("user informatioin in item post bar", userInformation);
 
-    axios(config)
-      .then((response) => {
-        window.location.href = response.data;
-        //console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleSubmit = () => {
+    //checking if user is logged in
+    if (userInformation) {
+      //user is logged in
+      var data1 = {
+        name: itemname,
+        price: price,
+        descrition: description,
+        course: course,
+        category: category //not sure how to set category on the form
+        //not sure about images
+      };
+      var config = {
+        method: "post",
+        // url: "/api/post/post", // FOR DEPLOYMENT
+        url: "http://localhost:3100/api/post/post",
+        headers: {
+          "Content-Type": "application/json" //can't be application/json
+        },
+        data: data1
+      };
+      axios(config)
+        .then((response) => {
+          window.location.href = response.data;
+          //console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      //user is not logged in
+      alert("Please login to publish an item");
+      window.open("/login", "_blank");
+    }
   };
 
-  const clearFields = () =>{
+  const clearFields = () => {
     setItemname("");
     setPrice("");
     setCategory("");
     setCourse("");
     setDescription("");
     console.log("Cancel Button Clik");
-  }
+  };
 
   return (
     <div style={{ marginTop: "1rem" }}>
@@ -69,141 +79,146 @@ const ItemPost = () => {
           <div className={styles.title}>Item Post Page</div>
         </Row>
         <div className={styles.form}>
-        <Row style={{ marginTop: "1rem", marginRight: "1rem" }}>
-          <Col>
-            {/* <div style={{ marginTop: "1rem" }}></div> */}
+          <Row style={{ marginTop: "1rem", marginRight: "1rem" }}>
+            <Col>
+              {/* <div style={{ marginTop: "1rem" }}></div> */}
 
-            <Row className="align-items-center">
-              <Col lg={3}>
-                <div className={styles.subtitle}>Item Name:*</div>
-              </Col>
-              <Col>
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="itemname"
-                  placeholder="e.g. Macbook"
-                  value={itemname}
-                  onChange={(e) => setItemname(e.target.value)}
-                />
-              </Col>
-            </Row>
-
-            <div style={{ marginTop: "1.5rem" }}></div>
-            <Row className="align-items-center">
-              <Col lg={3}>
-                <div className={styles.subtitle}>Price:*</div>
-              </Col>
-              <Col>
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="pricename"
-                  placeholder="e.g.$25"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </Col>
-            </Row>
-            <div style={{ marginTop: "1.5rem" }}></div>
-            <Row className="align-items-center">
-              <Col lg={3}>
-                <div className={styles.subtitle}>Category:*</div>
-              </Col>
-              <Col>
-                <Row className="align-items-center">
-                  <ButtonGroup justified>
-                    <Dropdown className={styles.dropdown}>
-                      <Dropdown.Toggle className={styles.dropdown}>
-                        Category
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu style={{ width: "94%" }}>
-                        <Dropdown.Item> Item1</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </ButtonGroup>
-                </Row>
-              </Col>
-              <div style={{ marginTop: "1.5rem" }}></div>
-              <Row className="align-items-center"></Row>
-              <Col lg={3}>
-                <div className={styles.subtitle}>Course Number:*</div>
-              </Col>
-              <Col>
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="coursenumber"
-                  placeholder="e.g.CSC648"
-                  value={course}
-                  onChange={(e) => setCourse(e.target.value)}
-                />
-              </Col>
+              <Row className="align-items-center">
+                <Col lg={3}>
+                  <div className={styles.subtitle}>Item Name:*</div>
+                </Col>
+                <Col>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    name="itemname"
+                    placeholder="e.g. Macbook"
+                    value={itemname}
+                    onChange={(e) => setItemname(e.target.value)}
+                  />
+                </Col>
+              </Row>
 
               <div style={{ marginTop: "1.5rem" }}></div>
-              <Row className="align-items-center"></Row>
-              <Col lg={3}>
-                <Form.Label>Upload Image:*</Form.Label>
-              </Col>
-              <Col>
-                <Form.Control type="file" />
-              </Col>
-
+              <Row className="align-items-center">
+                <Col lg={3}>
+                  <div className={styles.subtitle}>Price:*</div>
+                </Col>
+                <Col>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    name="pricename"
+                    placeholder="e.g.$25"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </Col>
+              </Row>
               <div style={{ marginTop: "1.5rem" }}></div>
-              <Row className="align-items-center"></Row>
-              <Col lg={3}>
-                <div className={styles.subtitle}>Description:*</div>
-              </Col>
-              <Col>
-                <input
-                  className={styles.input}
-                  type="textarea"
-                  name="textareaname"
-                  placeholder="e.g. This product has so many features"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </Col>
-            </Row>
-          </Col>
+              <Row className="align-items-center">
+                <Col lg={3}>
+                  <div className={styles.subtitle}>Category:*</div>
+                </Col>
+                <Col>
+                  <Row className="align-items-center">
+                    <ButtonGroup justified>
+                      <Dropdown className={styles.dropdown}>
+                        <Dropdown.Toggle className={styles.dropdown}>
+                          Category
+                        </Dropdown.Toggle>
 
-          <Col>
-            <Row>
-              <Col lg={8}>
-                <Row>
-                  <Col lg={5}>
-                    <p>* - mandatory fields</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <p>May take up to 24 hours for item post to be approved.</p>
-                </Row>
-              </Col>
-            </Row>
+                        <Dropdown.Menu style={{ width: "94%" }}>
+                          <Dropdown.Item> Item1</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </ButtonGroup>
+                  </Row>
+                </Col>
+                <div style={{ marginTop: "1.5rem" }}></div>
+                <Row className="align-items-center"></Row>
+                <Col lg={3}>
+                  <div className={styles.subtitle}>Course Number:*</div>
+                </Col>
+                <Col>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    name="coursenumber"
+                    placeholder="e.g.CSC648"
+                    value={course}
+                    onChange={(e) => setCourse(e.target.value)}
+                  />
+                </Col>
 
-            <Row>
-              <img src={image} alt="postimage" className={styles.image}></img>
-            </Row>
-            <Row>
-              <Col>
-                <Row>
+                <div style={{ marginTop: "1.5rem" }}></div>
+                <Row className="align-items-center"></Row>
+                <Col lg={3}>
+                  <Form.Label>Upload Image:*</Form.Label>
+                </Col>
+                <Col>
+                  <Form.Control type="file" />
+                </Col>
 
-                  <Col>
-                    <Button className={styles.CancelButton} onClick={clearFields}>
-                      Cancel
-                    </Button>
-                  </Col>
-                  <Col>
-                    <Button className={styles.Postbutton} onClick={handleSubmit}>
-                      Post Image
-                    </Button>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+                <div style={{ marginTop: "1.5rem" }}></div>
+                <Row className="align-items-center"></Row>
+                <Col lg={3}>
+                  <div className={styles.subtitle}>Description:*</div>
+                </Col>
+                <Col>
+                  <input
+                    className={styles.input}
+                    type="textarea"
+                    name="textareaname"
+                    placeholder="e.g. This product has so many features"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </Col>
+              </Row>
+            </Col>
+
+            <Col>
+              <Row>
+                <Col lg={8}>
+                  <Row>
+                    <Col lg={5}>
+                      <p>* - mandatory fields</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <p>May take up to 24 hours for item post to be approved.</p>
+                  </Row>
+                </Col>
+              </Row>
+
+              <Row>
+                <img src={image} alt="postimage" className={styles.image}></img>
+              </Row>
+              <Row>
+                <Col>
+                  <Row>
+                    <Col>
+                      <Button
+                        className={styles.CancelButton}
+                        onClick={clearFields}
+                      >
+                        Cancel
+                      </Button>
+                    </Col>
+                    <Col>
+                      <Button
+                        className={styles.Postbutton}
+                        onClick={handleSubmit}
+                      >
+                        Post Item
+                      </Button>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         </div>
       </Container>
     </div>

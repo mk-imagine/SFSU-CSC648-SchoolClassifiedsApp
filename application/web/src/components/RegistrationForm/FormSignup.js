@@ -15,7 +15,7 @@ const FormSignup = () => {
   const [lastname, setLastname] = React.useState("");
   const [password2, setPassword2] = React.useState("");
   const [email, setSemail] = React.useState("");
-  const username = firstname + lastname;
+  const username = email;
   const handleSubmit = () => {
     console.log(username);
     console.log(password);
@@ -25,16 +25,16 @@ const FormSignup = () => {
       firstname: firstname,
       lastname: lastname,
       confirmPassword: password2,
-      email: email,
+      email: email
     };
     var config = {
       method: "post",
       // url: "/api/register/register",  // FOR DEPLOYMENT
       url: "http://localhost:3100/api/register/register",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      data: data1,
+      data: data1
     };
 
     axios(config)

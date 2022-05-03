@@ -1,60 +1,55 @@
 // HEADER:Log In Page Code
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Load Login Page Component
  * @returns HTML of Login component
  */
-const Login = () => {
+const Login = ({ setToken }) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     console.log(username);
     console.log(password);
     var data1 = {
       username: username,
-      password: password,
+      password: password
     };
     var config = {
       method: "post",
       // url: "/api/login/login",  // FOR DEPLOYMENT
       url: "http://localhost:3100/api/login/login",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      data: data1,
+      data: data1
     };
 
     axios(config)
       .then((response) => {
-        console.log("What is the response?: " + response.data);
-        window.location.href = response.data;
+        console.log("What is the response?: ", response.data);
+
+        if (response.data.token === "test123") {
+          localStorage.setItem("user_login_information", response.data);
+          navigate("/");
+        } else {
+          alert("Incorrect login information");
+        }
+
         //console.log(JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log("what is the error?: " + error);
       });
   };
-
-  /*   const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  
-  const handleSubmit = (event) => {
-    try{
-      const response = axios({
-        method: "post",
-        url: "http://localhost:3100/api/login/login",
-        data: {username:username, password:password},
-        headers: {"Content-Type" : "multipart/form-data"}
-      });
-    }catch(error){
-      console.log(error);
-    }
-  } */
 
   return (
     <Container>
