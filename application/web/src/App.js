@@ -24,7 +24,7 @@ import MyPage from "./Pages/MyPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 import ChangePasswordPage from "./Pages/ChangePasswordPage";
 import ChangeUsernamePage from "./Pages/ChangeUsernamePage";
-import Footer from "./components/Footer";
+//import Footer from "./components/Footer";
 import AboutPage from "./Pages/AboutPage";
 /**
  * React Navbar Routes

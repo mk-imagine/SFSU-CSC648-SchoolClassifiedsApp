@@ -1,3 +1,4 @@
+/* LOG IN PAGE STYLLYING */
 .formInputs {
   margin-bottom: 1rem;
   /* width: 80%; */
@@ -76,4 +77,17 @@
 
 .subtitle2{
   text-align: center;
+}
+
+@media only screen and (max-width: 1150px) {
+  .centerNav {
+    width: 90%;
+  }
+    .topButton {
+      width: 4.2rem;
+      font-size: 0.8rem !important;
+      text-align: center !important;
+    }
+  
+
 }
