@@ -66,7 +66,11 @@ router.post('/login', (req, res, next) => {
                 //res.send("http://localhost:3000/");
                 
                 //res.json({status: 1, message: "Login successful", redirect_url: "/"}) Use this for deployment
-                res.json({status: 1, message: "Login successful", redirect_url: "http://localhost:3000/"});
+                res.json({
+                    status: 1,
+                    message: "Login successful",
+                    redirect_url: "http://localhost:3000/"
+                });
             } else {
                 throw new UserError("Invalid login", "/login", 200);
             }
@@ -79,7 +83,11 @@ router.post('/login', (req, res, next) => {
                 //res.send("/login");
                 
                 //Will need different redirect fsor deployment?
-                res.json({status: -1, message: "Login unsuccessful", redirect_url: "/login"});
+                res.json({
+                    status: -1,
+                    message: "Login unsuccessful",
+                    redirect_url: "/login"
+                });
             } else {
                 next(err);
             }
@@ -97,7 +105,11 @@ router.post('/logout', (req, res) => {
         } else {
             debugPrint.successPrint('session was destroyed');
             res.clearCookie('csid');//must match key in session config in index.js
-            res.json({ status: 1, message: "User has logged out" });
+            res.json({  
+                status: 1,
+                message: "User has logged out", 
+                redirect_url: "http://localhost:3000/"
+            });
             //res.locals.logged = false;
             res.f
         }
