@@ -93,4 +93,20 @@ router.get("/searchitems/:searchWord", async (req, res, next) => {
   }
 });
 
+/**
+ * Get seller info router
+ */
+ router.get("/getSeller/:itemId", async (req, res, next) => {
+  try {
+    const results = await ItemsModel.getSellerInfo(req.params.itemId);
+    if (results && results.length) {
+      res.send(results);
+    } else {
+      res.send([]);
+    }
+  } catch {
+    next(err);
+  }
+});
+
 module.exports = router;

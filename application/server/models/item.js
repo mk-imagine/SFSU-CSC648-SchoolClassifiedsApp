@@ -84,4 +84,22 @@ ItemsModel.itemSearch = (searchWord) => {
         .catch((err) => Promise.reject(err));
 }
 
+/**
+ * Retrieves seller information matching itemId
+ * @param {*} itemId 
+ * @returns Seller data
+ */
+ItemsModel.getSellerInfo = (itemId) => {
+    let baseSQL = `SELECT it.item_id AS "ItemID", seller.user_id AS "SellerID", seller.user_email AS "SellerEmail", 
+    seller.user_registrationrecord AS "SellerRegistrationType"
+    FROM csc648.item it
+    INNER JOIN csc648.user seller ON seller.user_id = it.item_seller_id
+    WHERE it.item_id = ?;`;
+    return db.execute(baseSQL, [itemId])
+        .then(([results, fields]) => {
+            return Promise.resolve(results);
+        })
+        .catch((err) => Promise.reject(err));
+}
+
 module.exports = ItemsModel;
