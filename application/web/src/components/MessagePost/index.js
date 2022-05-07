@@ -78,46 +78,6 @@ const Message = () => {
                 </Col>
               </Row>
 
-              {/* <div style={{ marginTop: "1rem" }}></div> */}
-
-              {/* <Row className="align-items-center">
-                <Col lg={3}>
-                  <div className={styles.subtitle}>Meetup Schedule*:</div>
-                </Col>
-
-                <Col>
-                  <Row className="align-items-center">
-                    <ButtonGroup justified>
-                      <Dropdown style={{ width: "100%" }}>
-                        <Dropdown.Toggle className={styles.dropdown}>
-                          Date
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu style={{ width: "90%" }}>
-                          <Dropdown.Item> 4/15/2022</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </ButtonGroup>
-                  </Row>
-                </Col>
-
-                <Col>
-                  <Row className="align-items-center">
-                    <ButtonGroup justified>
-                      <Dropdown style={{ width: "100%" }}>
-                        <Dropdown.Toggle className={styles.dropdown}>
-                          Time
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu style={{ width: "90%" }}>
-                          <Dropdown.Item> 10:00 A.M.</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </ButtonGroup>
-                  </Row>
-                </Col>
-              </Row> */}
-
               <div style={{ marginTop: "2rem" }}></div>
 
               <Row className="align-items-center">
@@ -162,16 +122,7 @@ const Message = () => {
               <Row>
                 <img src={image} alt="itemImage" className={styles.image}></img>
               </Row>
-              {/* <Row>
-                <Col> </Col>
-
-                <Col>
-                  <Button className={styles.button}>Send</Button>
-                </Col>
-
-                <Col> </Col>
-              </Row> */}
-              <Row style={{ marginTop: "1rem", marginLeft: "4rem" }}>
+              <Row className= {styles.button} style={{ marginTop: "1rem", marginLeft: "4rem" }}>
                 <Col>
                   <Button className={styles.cancelButton} onClick={clearFields}>
                     Cancel

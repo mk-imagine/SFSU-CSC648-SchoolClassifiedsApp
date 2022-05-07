@@ -17,6 +17,26 @@ import styles from "./index.module.css";
  * @returns HTML of MyPage
  */
 const MyPageComponent = () => {
+  const userInformation = localStorage.getItem("user_login_information");
+  console.log("user informatioin in MyPage bar", userInformation);
+
+  // for (let i = 0; i < localStorage.length; i++) {
+  //   console.log(localStorage.getItem(localStorage.key(i)));
+  // }
+
+  for (let i = 0; i < localStorage.length; i++) {
+    console.log(
+      localStorage.key(i) +
+        "=[" +
+        localStorage.getItem(localStorage.key(i)) +
+        "]"
+    );
+  }
+
+  console.log(JSON.stringify(userInformation));
+
+  const user_email = userInformation.user_email;
+
   return (
     // <div>
     //   <div>
@@ -132,11 +152,10 @@ const MyPageComponent = () => {
 
                     <Col lg={9}>
                       <Row>
-                        <Col lg={1}></Col>
                         <Col>
                           <Dropdown
-                            value="Location"
-                            style={{ marginLeft: "18rem", marginTop: "0.5rem" }}
+                            value="Status"
+                            className={styles.statusDropdown}
                           >
                             <Dropdown.Toggle
                               variant="success"
@@ -151,11 +170,11 @@ const MyPageComponent = () => {
                             </Dropdown.Menu>
                           </Dropdown>
                         </Col>
+
                         <Col>
                           <Dropdown
                             value="Sort By"
                             style={{
-                              marginLeft: "0.5rem",
                               marginTop: "0.5rem",
                             }}
                           >
@@ -172,11 +191,11 @@ const MyPageComponent = () => {
                             </Dropdown.Menu>
                           </Dropdown>
                         </Col>
+
                         <Col>
                           <Button
                             style={{
                               marginTop: "0.5rem",
-                              marginLeft: "0.5rem",
                             }}
                           >
                             Apply
@@ -188,31 +207,53 @@ const MyPageComponent = () => {
 
                   <Row style={{ marginTop: "2rem" }}>
                     <Col>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Item Name
-                      </div>
+                      <Row>
+                        <div className={styles.PostHistoryPageDisplayLabel}>
+                          Item Name
+                        </div>
+                      </Row>
+                      <Row>
+                        <div className={styles.PostFethcingItemName}>
+                          Rare Painting
+                        </div>
+                      </Row>
                     </Col>
-                    <Col>
+                    <Col className={styles.time}>
                       <div className={styles.PostHistoryPageDisplayLabel}>
                         Time
                       </div>
+                      <div className={styles.PostFethcingTime}>4/17/2022</div>
                     </Col>
-                    <Col>
+                    <Col className={styles.status}>
                       <div className={styles.PostHistoryPageDisplayLabel}>
                         Status
                       </div>
+                      <div className={styles.PostFethcingStatus}>Approve</div>
                     </Col>
                     <Col>
                       <div className={styles.PostHistoryPageDisplayLabel}>
                         Explanation
                       </div>
+                      <div className={styles.PostFethcingExplanation}>
+                        Item publicized
+                      </div>
                     </Col>
 
-                    <Col></Col>
+                    <Col>
+                      <Row>
+                        <Col></Col>
+                        <Col>
+                          <Button className={styles.DetailButton}>
+                            Details
+                          </Button>
+                        </Col>
+                        <Col></Col>
+                      </Row>
+                    </Col>
                   </Row>
 
                   {/* Post Info fetching Area */}
-                  <Row>
+                  {/* <Row>
                     <Col>
                       <div className={styles.PostFethcingItemName}>
                         Rare Painting
@@ -230,15 +271,17 @@ const MyPageComponent = () => {
                       </div>
                     </Col>
                     <Col>
-                    <Row>
-                    <Col></Col>
-                      <Col>
-                        <Button className={styles.DetailButton}>Details</Button>
-                      </Col>
-                      <Col></Col>
-                    </Row>
+                      <Row>
+                        <Col></Col>
+                        <Col>
+                          <Button className={styles.DetailButton}>
+                            Details
+                          </Button>
+                        </Col>
+                        <Col></Col>
+                      </Row>
                     </Col>
-                  </Row>
+                  </Row> */}
                 </Tab.Pane>
 
                 {/* Message Page  */}
@@ -390,9 +433,7 @@ const MyPageComponent = () => {
                       <div className={styles.EmailLable}>Email:</div>
                     </Col>
                     <Col lg={2}>
-                      <div className={styles.EmailFecth}>
-                        jli29@mail.sfsu.edu
-                      </div>
+                      <div className={styles.EmailFecth}>{user_email}</div>
                     </Col>
                   </Row>
 
