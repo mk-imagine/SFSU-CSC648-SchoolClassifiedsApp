@@ -7,11 +7,23 @@ const express = require("express");
 const router = express.Router();
 const Validator = require("../validator/loginValidation");
 const PostModel = require("../models/post");
-var multer = require("multer");
-var PostError = require("../error/userError");
+const multer = require("multer");
+const PostError = require("../error/userError");
 const sharp = require("sharp");
+const crypto = require("crypto");
 
-var upload = multer({ dest: "./user_images" });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./user_images");
+  },
+  filename: function (req, file, cb) {
+    let fileExt = file.mimetype.split("/")[1];
+    let randomName = crypto.randomBytes(22).toString("hex");
+    cb(null, `${randomName}.${fileExt}`);
+  }
+});
+
+var upload = multer({ storage: storage });
 
 /**
  * Post Router Test
@@ -79,7 +91,7 @@ router.post("/post", upload.single("image"), (req, res) => {
         //redirect somewhere?
         console.log("is post in database?: " + postLogged);
         //res.send('/'); // FOR DEPLOYMENT
-        res.send("http://localhost:3000/");
+        res.send("Item posted successfully");
       } else {
         throw new PostError("Unable to put post data into db", "/post", 200);
       }

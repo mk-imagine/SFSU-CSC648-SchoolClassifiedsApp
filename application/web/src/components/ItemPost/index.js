@@ -36,42 +36,48 @@ const ItemPost = () => {
   const handleSubmit = () => {
     //checking if user is logged in
     if (userInformation) {
-      //user is logged in
-      var data1 = {
-        name: itemname,
-        price: price,
-        descrition: description,
-        course: course,
-        category: category,
-        image: uploaded_pic
-
-        //not sure about images
-      };
-      var config = {
-        method: "post",
-        // url: "/api/post/post", // FOR DEPLOYMENT
-        url: "http://localhost:3100/api/post/post",
-        headers: {
-          "content-type": "multipart/form-data",
-          accept: "application/json"
-        },
-
-        data: data1
-      };
-      axios(config)
-        .then((response) => {
-          // window.location.href = response.data;
-          //console.log(JSON.stringify(response.data));
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (userInformation !== "loggedOut") {
+        //user is logged in
+        console.log("we upload image and item here");
+        uploadItem();
+      } else {
+        alert("Please login to publish an item");
+        window.open("/login", "_blank");
+      }
     } else {
       //user is not logged in
       alert("Please login to publish an item");
       window.open("/login", "_blank");
     }
+  };
+
+  const uploadItem = () => {
+    const formData = new FormData();
+
+    formData.append("image", uploaded_pic);
+    formData.append("price", price);
+    formData.append("name", itemname);
+    formData.append("description", description);
+    formData.append("course", course);
+    formData.append("category", 1);
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+
+    axios
+      .post("http://localhost:3100/api/post/post", formData, config)
+      .then((response) => {
+        console.log(response.data);
+
+        alert("Succesfully uploaded image");
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
   };
 
   const clearFields = () => {
