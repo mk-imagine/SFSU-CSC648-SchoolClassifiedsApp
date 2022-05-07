@@ -49,6 +49,7 @@ const FormSignup = () => {
 
   return (
     <Container>
+      <div className={styles.registerComponent}>
       <Row>
         <Col></Col>
         <Col md="auto">
@@ -132,14 +133,14 @@ const FormSignup = () => {
             </Row>
             <Col lg={8}>
               <Row>
-                <Col lg={5}>
+                <Col>
                   <p>* - mandatory fields</p>
                 </Col>
               </Row>
             </Col>
             <Row>
               <div class={styles.termPrivacyCheck}>
-                <input type="checkbox" value="" required />
+                
                 <label style={{ marginLeft: "0.5rem" }}>
                   I acknowledge that I agree to the{" "}
                   <a href="#!" class="text-body">
@@ -149,6 +150,7 @@ const FormSignup = () => {
                   <a href="#!" class="text-body">
                     <u>Privacy Policy</u>
                   </a>
+                  <input type="checkbox" style={{marginLeft:"1rem"}}value="" required />
                 </label>
               </div>
             </Row>
@@ -177,6 +179,7 @@ const FormSignup = () => {
         </Col>
         <Col></Col>
       </Row>
+      </div>
     </Container>
   );
 };
