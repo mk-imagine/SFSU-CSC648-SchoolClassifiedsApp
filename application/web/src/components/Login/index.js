@@ -53,6 +53,7 @@ const Login = ({ setToken }) => {
 
   return (
     <Container>
+      <div className={styles.loginForm}>
       <Row>
         <Col></Col>
         <Col md="auto">
@@ -118,6 +119,7 @@ const Login = ({ setToken }) => {
         </Col>
         <Col></Col>
       </Row>
+      </div>
     </Container>
   );
 };
