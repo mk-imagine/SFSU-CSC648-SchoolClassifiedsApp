@@ -52,9 +52,9 @@ export const ViewItems = (props) => {
             let image_url = `${base_url}/images/${e.item_pic}`;
             //console.log("image_url: ", image_url);
             return (
-              <div>
+              <div className ={styles.itemCard}>
                 <div style={{ marginTop: "2rem" }}></div>
-                <ItemCard
+                <ItemCard 
                   style={{ marginBottom: "4rem" }}
                   title={e.item_name}
                   description={e.item_desc}
