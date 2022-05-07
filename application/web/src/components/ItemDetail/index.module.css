@@ -120,3 +120,155 @@
   margin-left: 0.7rem;
   border-radius: 0.5rem !important;
 }
+
+
+@media screen and (max-width: 1400px) {
+  .button{
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .button{
+    width: 110% !important;
+  }
+
+  .image{
+    margin-bottom: 2rem;
+    margin-left: 1rem !important;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .image{
+    margin-left: 0rem !important;
+  }
+  .itemTitle{
+    width: 160%;
+  }
+
+}
+
+@media screen and (max-width: 489px) {
+
+  .button{
+    width: 120% !important;
+  }
+}
+
+@media screen and (max-width: 459px) {
+
+  .button{
+    width: 125% !important;
+  }
+}
+
+@media screen and (max-width: 446px) {
+
+  .button{
+    width: 130% !important;
+  }
+}
+
+@media screen and (max-width: 430px) {
+
+  .button{
+    width: 135% !important;
+    margin-left: -1rem !important;
+  }
+}
+
+@media screen and (max-width: 423px) {
+
+  .itemTitleLabel{
+    width: 150%;
+    font-size: 1.4rem;
+  }
+
+  .itemTitle{
+    width: 160%;
+  }
+
+  .button{
+    width: 140% !important;
+    margin-left: -1rem !important;
+  }
+}
+
+@media screen and (max-width: 413px) {
+
+  .button{
+    width: 150% !important;
+  }
+}
+
+
+@media screen and (max-width: 394px) {
+
+  .button{
+    width: 160% !important;
+  }
+}
+
+
+@media screen and (max-width: 378px) {
+
+  .itemTitleLabel{
+    font-size: 1.2rem;
+    width: 150%;
+  }
+
+  .itemTitle{
+    font-size: 1rem;
+    width: 140%;
+  }
+
+  .itemPriceLabel{
+    font-size: 1.2rem;
+    width: 150%;
+  }
+
+  .itemPrice{
+    font-size: 1rem;
+    width: 140%;
+  }
+
+  .itemCategoryLabel{
+    font-size: 1.2rem;
+    width: 150%;
+  }
+
+  .itemCategory{
+    font-size: 1rem;
+    width: 140%;
+  }
+
+
+  .button{
+    width: 170% !important;
+  }
+}
+
+@media screen and (max-width: 364px){
+  .button{
+    width: 180% !important;
+  }
+}
+
+@media screen and (max-width: 352px){
+  .button{
+    width: 190% !important;
+  }
+}
+
+@media screen and (max-width: 206px){
+  .button{
+    width: 190% !important;
+    font-size: small !important;
+  }
+}
+
+
+
