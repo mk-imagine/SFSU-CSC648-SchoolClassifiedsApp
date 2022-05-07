@@ -11,10 +11,15 @@ const LoginPage = () => {
 
   const userInformation = localStorage.getItem("user_login_information");
   console.log("user information in login page", userInformation);
+  console.log(typeof userInformation);
 
   useEffect(() => {
     if (userInformation) {
-      setLoggedIn(true);
+      if (userInformation != "loggedOut") {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
     } else {
       setLoggedIn(false);
     }

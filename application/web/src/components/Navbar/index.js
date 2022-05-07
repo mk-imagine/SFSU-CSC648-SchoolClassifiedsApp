@@ -27,6 +27,7 @@ const Navbar = (props) => {
   // eslint-disable-next-line
   const [numberOfItems, setNumberOfItems] = useState(0);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  //const [userInformation, setUserInformation] = useState();
 
   //const { Provider, Consumer } = React.createContext({ items: [] });
 
@@ -35,19 +36,21 @@ const Navbar = (props) => {
   const base_url = "http://localhost:3100/api";
 
   const userInformation = localStorage.getItem("user_login_information");
-  console.log("user informatioin in nav bar", userInformation);
+  // let userJSON = JSON.parse(userInformation);
+  // console.log("JSON: ", userJSON);
 
   useEffect(() => {
     fetchCategories();
     getAllItems();
-
     if (userInformation) {
-      //user is logged in
-      console.log("i am in true part");
-      setUserLoggedIn(true);
+      if (userInformation != "loggedOut") {
+        //user is logged in
+        console.log("i am logged in");
+        setUserLoggedIn(true);
+      }
     } else {
       //user is logged out
-      console.log("i am in false part");
+      console.log("i am logged out");
       setUserLoggedIn(false);
     }
   }, [userInformation]);
@@ -161,6 +164,30 @@ const Navbar = (props) => {
     }
   };
 
+  const logout = () => {
+    var config = {
+      method: "post",
+      // url: "/api/login/login",  // FOR DEPLOYMENT
+      url: "http://localhost:3100/api/login/logout",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log("Logout Response", response.data);
+
+        localStorage.setItem("user_login_information", "loggedOut");
+        // setUserInformation("loggedOut");
+        setUserLoggedIn(false);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Error in logout: " + error);
+      });
+  };
+
   const buttonsOnLogin = () => {
     return (
       <div className={styles.centerButtons}>
@@ -194,14 +221,7 @@ const Navbar = (props) => {
           About Us
         </Button>
 
-        <Button
-          className={styles.topButton}
-          variant="primary"
-          onClick={() => {
-            //TODO: call the post logout request from backend
-            navigate("/register");
-          }}
-        >
+        <Button className={styles.topButton} variant="primary" onClick={logout}>
           Logout
         </Button>
       </div>

@@ -1,5 +1,5 @@
 // HEADER:Create A Post Code
-import React from "react";
+import React, { useState } from "react";
 import {
   Row,
   Col,
@@ -23,9 +23,15 @@ const ItemPost = () => {
   const [category, setCategory] = React.useState("");
   const [course, setCourse] = React.useState("");
   const [description, setDescription] = React.useState("");
+  const [uploaded_pic, setUploadedPic] = useState();
 
   const userInformation = localStorage.getItem("user_login_information");
   console.log("user informatioin in item post bar", userInformation);
+
+  const handlePhotoUpload = (event) => {
+    setUploadedPic(event.target.files[0]);
+    console.log(event.target.files[0]);
+  };
 
   const handleSubmit = () => {
     //checking if user is logged in
@@ -36,7 +42,9 @@ const ItemPost = () => {
         price: price,
         descrition: description,
         course: course,
-        category: category //not sure how to set category on the form
+        category: category,
+        image: uploaded_pic
+
         //not sure about images
       };
       var config = {
@@ -44,14 +52,17 @@ const ItemPost = () => {
         // url: "/api/post/post", // FOR DEPLOYMENT
         url: "http://localhost:3100/api/post/post",
         headers: {
-          "Content-Type": "application/json" //can't be application/json
+          "content-type": "multipart/form-data",
+          accept: "application/json"
         },
+
         data: data1
       };
       axios(config)
         .then((response) => {
-          window.location.href = response.data;
+          // window.location.href = response.data;
           //console.log(JSON.stringify(response.data));
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -157,7 +168,11 @@ const ItemPost = () => {
                   <Form.Label>Upload Image:*</Form.Label>
                 </Col>
                 <Col>
-                  <Form.Control type="file" />
+                  <Form.Control
+                    onChange={handlePhotoUpload}
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png"
+                  />
                 </Col>
 
                 <div style={{ marginTop: "1.5rem" }}></div>
