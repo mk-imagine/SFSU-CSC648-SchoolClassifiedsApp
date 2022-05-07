@@ -202,3 +202,16 @@
 
 }
 
+
+@media only screen and (max-width: 170px) {
+  
+  .formInputBtn{
+    width: 600% !important;
+    margin-left: -1.5rem !important;
+  }
+
+}
+
+
+
+
