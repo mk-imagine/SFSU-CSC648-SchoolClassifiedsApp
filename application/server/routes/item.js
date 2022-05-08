@@ -28,9 +28,9 @@ router.get("/categories", async (req, res, next) => {
 /**
  * Item Retrieval Router
  */
-router.get("/items", async (req, res, next) => {
+router.get("/items/:order/:direction", async (req, res, next) => {
   try {
-    const results = await ItemsModel.getAllItems();
+    const results = await ItemsModel.getAllItems(req.params.order,req.params.direction);
     if (results && results.length) {
       res.send(results);
     } else {
@@ -44,11 +44,11 @@ router.get("/items", async (req, res, next) => {
 /**
  * Keyword and Category Search Router
  */
-router.get("/itemwithcategory/:searchWord/:categoryWord", async (req, res, next) => {
+router.get("/itemwithcategory/:searchWord/:categoryWord/:order/:direction", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
     const category = "%" + req.params.categoryWord + "%";
-    const results = await ItemsModel.categoryAndItemSearch(category, searchWord);
+    const results = await ItemsModel.categoryAndItemSearch(category, searchWord,req.params.order, req.params.direction);
     if (results && results.length) {
       res.send(results);
     } else {
