@@ -15,7 +15,7 @@ import {
   Button,
   Dropdown,
   Tag,
-  Tags,
+  Tags
 } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import styles from "./index.module.css";
@@ -176,7 +176,7 @@ const MyPageComponent = () => {
                           <Dropdown
                             value="Sort By"
                             style={{
-                              marginTop: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             <Dropdown.Toggle
@@ -196,7 +196,7 @@ const MyPageComponent = () => {
                         <Col>
                           <Button
                             style={{
-                              marginTop: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             Apply
@@ -258,7 +258,7 @@ const MyPageComponent = () => {
                             value="Sort By"
                             style={{
                               marginLeft: "0.5rem",
-                              marginTop: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             <Dropdown.Toggle
@@ -278,7 +278,7 @@ const MyPageComponent = () => {
                           <Button
                             style={{
                               marginTop: "0.5rem",
-                              marginLeft: "0.5rem",
+                              marginLeft: "0.5rem"
                             }}
                           >
                             Apply

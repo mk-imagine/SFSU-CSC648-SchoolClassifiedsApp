@@ -41,7 +41,6 @@ const SentMessages = () => {
             </thead>
             <tbody>
               {messages.map((e) => {
-                console.log(e);
                 const fullName = e.RecFName + " " + e.RecLName;
                 return (
                   <tr>

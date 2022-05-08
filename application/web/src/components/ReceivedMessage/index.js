@@ -42,8 +42,7 @@ const ReceivedMessages = () => {
             </thead>
             <tbody>
               {messages.map((e) => {
-                console.log(e);
-                const fullName = e.SendFName + " " + e.SendLNamee;
+                const fullName = e.SendFName + " " + e.SendLName;
                 return (
                   <tr>
                     <td>{e.ItemName}</td>
