@@ -89,13 +89,15 @@ ItemsModel.itemSearch = (searchWord) => {
  * @param {*} itemId 
  * @returns Seller data
  */
-ItemsModel.getSellerInfo = (itemId) => {
-    let baseSQL = `SELECT it.item_id AS "ItemID", seller.user_id AS "SellerID", seller.user_email AS "SellerEmail", 
-    seller.user_registrationrecord AS "SellerRegistrationType"
+ItemsModel.getItemsBySellerId = (sellerId) => {
+    let baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
+    it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
+    seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
     FROM csc648.item it
-    INNER JOIN csc648.user seller ON seller.user_id = it.item_seller_id
-    WHERE it.item_id = ?;`;
-    return db.execute(baseSQL, [itemId])
+    INNER JOIN user seller ON seller.user_id = it.item_seller_id
+    INNER JOIN category cat ON cat.category_id = it.item_category
+    WHERE it. = ?;`;
+    return db.execute(baseSQL, [sellerId])
         .then(([results, fields]) => {
             return Promise.resolve(results);
         })
