@@ -3,6 +3,7 @@ import { Row, Container, Col, Dropdown } from "react-bootstrap";
 import ItemCard from "../ItemCard";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
+import axios from "axios";
 
 /**
  * Loads all items in a grid
@@ -12,26 +13,28 @@ import styles from "./index.module.css";
 export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [numberOfItems, setTotalNumberOfItems] = useState("");
   const [dropdownName, setDropdownName] = useState("Sort By:");
 
   const columnsPerRow = 3;
-  const numberOfItems = props.numberOfItems;
+
   const totolItems = props.totolItems;
+  const searchTerm = props.searchTerm;
 
   //const navigate = useNavigate();
   // const base_url = "/api"; // FOR DEPLOYMENT
   const base_url = "http://localhost:3100/api";
-  // eslint-disable-next-line
+
   useEffect(() => {
     setItems(props.items);
+    setTotalNumberOfItems(props.numberOfItems);
     toggleFunction();
-  });
+  }, [props.items, props.numberOfItems]);
 
   const toggleFunction = () => {
-    if (
-      parseInt(numberOfItems) > 0 &&
-      parseInt(numberOfItems) < parseInt(totolItems)
-    ) {
+    console.log("Here");
+    if (items.length > 0 && items.length < parseInt(totolItems)) {
+      console.log("Here");
       setToggle(true);
     } else {
       setToggle(false);
@@ -41,16 +44,42 @@ export const ViewItems = (props) => {
   const getLatestItems = () => {
     //get latest items
     setDropdownName("Latest Items");
+
+    axios
+      .get(`${base_url}/searchItems/${searchTerm}/date/desc`)
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((e) => {
+        console.log("error: ", e);
+      });
   };
 
   const getPriceHighToLow = () => {
     //get price high to low
     setDropdownName("Price: High to Low");
+    axios
+      .get(`${base_url}/searchItems/${searchTerm}/price/desc`)
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((e) => {
+        console.log("error: ", e);
+      });
   };
 
   const getPriceLowToHigh = () => {
     //get low to high
     setDropdownName("Price: High to Low");
+    axios
+      .get(`${base_url}/searchItems/${searchTerm}/price/asc`)
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((e) => {
+        console.log("inside axios");
+        console.log("error: ", e);
+      });
   };
 
   return (
@@ -84,7 +113,7 @@ export const ViewItems = (props) => {
                   Price: High to Low
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="" onClick={getPriceLowToHigh}>
-                  Price: High to Low
+                  Price: Low to High
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

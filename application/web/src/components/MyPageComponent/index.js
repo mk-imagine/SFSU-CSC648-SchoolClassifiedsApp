@@ -246,13 +246,13 @@ const MyPageComponent = () => {
                     {/* Display Sent Message Tags */}
                     <Tab eventKey={1} title="Message Inbox">
                       <div style={{ overflow: "scroll", height: "30rem" }}>
-                        <SentMessages />
+                        <ReceivedMessages />
                       </div>
                     </Tab>
                     {/* Display Received Message Tags */}
                     <Tab eventKey={2} title="Sent Message">
                       <div style={{ overflow: "scroll", height: "30rem" }}>
-                        <ReceivedMessages />
+                        <SentMessages />
                       </div>
                     </Tab>
                   </Tabs>

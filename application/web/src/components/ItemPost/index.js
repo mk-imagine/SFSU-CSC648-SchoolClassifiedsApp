@@ -57,7 +57,7 @@ const ItemPost = () => {
       if (userInformation !== "loggedOut") {
         //user is logged in
         console.log("we upload image and item here");
-        if (checkValidity) {
+        if (checkValidity()) {
           uploadItem();
         }
       } else {
@@ -73,6 +73,7 @@ const ItemPost = () => {
 
   //TODO: Fix this
   const checkValidity = () => {
+    console.log("In validity");
     if (
       uploaded_pic === null ||
       price === "" ||
@@ -80,18 +81,17 @@ const ItemPost = () => {
       description === "" ||
       selectedCategoryId === null
     ) {
-      if (selectedCategoryId === "3" && course === "") {
-        alert("Course cannot be empty.");
-        return false;
-      } else {
-        alert("All fields are mandatory");
-        return false;
-      }
+      console.log("I am here");
+      alert("All fields are mandatory");
 
       return false;
+    } else {
+      if (selectedCategoryId === "3" && course === "") {
+        alert("Course cannot be empty.");
+      } else {
+        return true;
+      }
     }
-
-    return true;
   };
 
   const fetchCategories = () => {
@@ -176,6 +176,7 @@ const ItemPost = () => {
                     type="text"
                     name="itemname"
                     placeholder="e.g. Macbook"
+                    required
                     value={itemname}
                     onChange={(e) => setItemname(e.target.value)}
                   />
@@ -193,6 +194,7 @@ const ItemPost = () => {
                     type="text"
                     pattern="[0-9]*"
                     name="pricename"
+                    required
                     placeholder="e.g.$25"
                     value={price}
                     // onChange={(e) => setPrice(e.target.value)}
@@ -265,6 +267,7 @@ const ItemPost = () => {
                         type="text"
                         name="coursenumber"
                         placeholder="e.g.CSC648"
+                        required
                         value={course}
                         onChange={(e) => setCourse(e.target.value)}
                       />
@@ -295,6 +298,7 @@ const ItemPost = () => {
                     className={styles.input}
                     type="textarea"
                     name="textareaname"
+                    required
                     placeholder="e.g. This product has so many features"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -321,6 +325,7 @@ const ItemPost = () => {
                 <img
                   src={imageToShow}
                   alt="postimage"
+                  required
                   className={styles.image}
                 ></img>
               </Row>
