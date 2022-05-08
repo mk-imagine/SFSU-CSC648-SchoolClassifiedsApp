@@ -11,7 +11,7 @@ const ChangeUsernameComponent = () => {
   return (
     <Container>
       <Row>
-        <h3 className={styles.Title}>Change Username</h3>
+        <h3 className={styles.Title}>Change Display Name</h3>
       </Row>
 
       <Row>

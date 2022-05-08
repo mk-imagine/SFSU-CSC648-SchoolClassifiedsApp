@@ -66,11 +66,7 @@ function App() {
             exact
             element={<ChangePasswordPage />}
           />
-          <Route
-            path="/changeusername"
-            exact
-            element={<ChangeUsernamePage />}
-          />
+
           <Route path="*" element={<Home />} />
         </Routes>
       </Navbar>

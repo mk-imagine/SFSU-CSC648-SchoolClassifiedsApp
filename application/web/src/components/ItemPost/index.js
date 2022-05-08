@@ -52,11 +52,14 @@ const ItemPost = () => {
 
   const handleSubmit = () => {
     //checking if user is logged in
+
     if (userInformation) {
       if (userInformation !== "loggedOut") {
         //user is logged in
         console.log("we upload image and item here");
-        uploadItem();
+        if (checkValidity) {
+          uploadItem();
+        }
       } else {
         alert("Please login to publish an item");
         window.open("/login", "_blank");
@@ -66,6 +69,29 @@ const ItemPost = () => {
       alert("Please login to publish an item");
       window.open("/login", "_blank");
     }
+  };
+
+  //TODO: Fix this
+  const checkValidity = () => {
+    if (
+      uploaded_pic === null ||
+      price === "" ||
+      itemname === "" ||
+      description === "" ||
+      selectedCategoryId === null
+    ) {
+      if (selectedCategoryId === "3" && course === "") {
+        alert("Course cannot be empty.");
+        return false;
+      } else {
+        alert("All fields are mandatory");
+        return false;
+      }
+
+      return false;
+    }
+
+    return true;
   };
 
   const fetchCategories = () => {
@@ -165,10 +191,16 @@ const ItemPost = () => {
                   <input
                     className={styles.input}
                     type="text"
+                    pattern="[0-9]*"
                     name="pricename"
                     placeholder="e.g.$25"
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    // onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) =>
+                      setPrice((v) =>
+                        e.target.validity.valid ? e.target.value : v
+                      )
+                    }
                   />
                 </Col>
               </Row>

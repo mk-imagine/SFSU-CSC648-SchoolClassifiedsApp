@@ -267,10 +267,18 @@ const Navbar = (props) => {
   return (
     <div>
       <Row>
-        <div className={styles.subTitle}>
+        <div className={styles.subTitle} style={{ fontSize: "1rem" }}>
           SFSU Software Engineering Project CSC 648-848, Spring 2022. For
-          Demonstration Only
+          Demonstration Only.
+          <br />
+          <span style={{ fontSize: "1.5rem" }}>
+            A Market place that connects to people only associated with SFSU to
+            sell or purchase items
+          </span>{" "}
         </div>
+      </Row>
+      <Row>
+        <div className={styles.subTitle}></div>
       </Row>
       <div className={styles.container}>
         <div className={styles.centerMobileNav}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Container } from "react-bootstrap";
+import { Row, Container, Col, Dropdown } from "react-bootstrap";
 import ItemCard from "../ItemCard";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
@@ -12,6 +12,8 @@ import styles from "./index.module.css";
 export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [dropdownName, setDropdownName] = useState("Sort By:");
+
   const columnsPerRow = 3;
   const numberOfItems = props.numberOfItems;
   const totolItems = props.totolItems;
@@ -36,25 +38,66 @@ export const ViewItems = (props) => {
     }
   };
 
+  const getLatestItems = () => {
+    //get latest items
+    setDropdownName("Latest Items");
+  };
+
+  const getPriceHighToLow = () => {
+    //get price high to low
+    setDropdownName("Price: High to Low");
+  };
+
+  const getPriceLowToHigh = () => {
+    //get low to high
+    setDropdownName("Price: High to Low");
+  };
+
   return (
-    <div style={{ marginTop: "2rem", width: "80%", margin: "auto" }}>
-      {/* <div className={styles.heading}>Lastest items</div> */}
-      {toggle ? (
-        <div className={styles.heading}>
-          {numberOfItems} of {totolItems} items found
-        </div>
-      ) : (
-        <div className={styles.heading}>Lastest items</div>
-      )}
+    <div>
       <Container>
+        <Row style={{ marginTop: "2rem" }}>
+          <Col>
+            {toggle ? (
+              <div>
+                {numberOfItems} of {totolItems} items found
+              </div>
+            ) : (
+              <div className={styles.heading}>Lastest items</div>
+            )}
+          </Col>
+          <Col></Col>
+          <Col></Col>
+          <Col></Col>
+          <Col></Col>
+
+          <Col>
+            <Dropdown value="Status" className={styles.statusDropdown}>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                {dropdownName}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item eventKey="" onClick={getLatestItems}>
+                  Latest Items
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="" onClick={getPriceHighToLow}>
+                  Price: High to Low
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="" onClick={getPriceLowToHigh}>
+                  Price: High to Low
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+        </Row>
         <Row xs={1} md={columnsPerRow}>
           {items.map((e) => {
             let image_url = `${base_url}/images/${e.item_pic}`;
             //console.log("image_url: ", image_url);
             return (
-              <div className ={styles.itemCard}>
+              <div className={styles.itemCard}>
                 <div style={{ marginTop: "2rem" }}></div>
-                <ItemCard 
+                <ItemCard
                   style={{ marginBottom: "4rem" }}
                   title={e.item_name}
                   description={e.item_desc}

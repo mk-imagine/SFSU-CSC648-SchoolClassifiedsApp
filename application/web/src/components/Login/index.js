@@ -20,7 +20,7 @@ const Login = ({ setToken }) => {
     console.log(username);
     console.log(password);
     var data1 = {
-      username: username,
+      email: username,
       password: password
     };
     var config = {
