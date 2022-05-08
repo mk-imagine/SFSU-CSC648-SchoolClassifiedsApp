@@ -74,11 +74,11 @@ ItemsModel.categorySearch = (category) => {
  * @param {*} searchWord 
  * @returns Items that match search term
  */
-ItemsModel.itemSearch = (searchWord, orderby, ascdesc) => {
+ItemsModel.itemSearch = (searchWord, orderby, direction) => {
     let baseSQL = `select * from csc648.item
                     where item_name like ? or item_desc like ?
                     ORDER BY ? ?;`;
-    return db.execute(baseSQL, [searchWord, searchWord])
+    return db.execute(baseSQL, [searchWord, searchWord, orderby, direction])
         .then(([results, fields]) => {
             return Promise.resolve(results);
         })
