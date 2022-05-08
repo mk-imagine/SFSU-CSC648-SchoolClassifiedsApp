@@ -110,4 +110,17 @@ router.post("/logout", (req, res) => {
   });
 });
 
+router.get("/getUser/:userId", async (req, res, next) => {
+  try {
+    const results = await UserModel.getUser(req.params.userId);
+    if (results && results.length) {
+      res.send(results);
+    } else {
+      res.send([]);
+    }
+  } catch {
+    next(err);
+  }
+});
+
 module.exports = router;

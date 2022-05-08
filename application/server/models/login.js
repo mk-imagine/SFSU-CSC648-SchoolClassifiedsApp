@@ -36,4 +36,15 @@ LoginModel.authenticate = (username, password) => {
         }).catch((err) => Promise.reject(err));
 };
 
+LoginModel.getUser = (userId) => {
+    const baseSQL = `SELECT user_fname, user_lname, user_email
+    FROM csc648.user
+    WHERE user.user_id = ?;`;
+    return db.execute(baseSQL, [userId])
+        .then(([results, fields]) => {
+            return Promise.resolve(results);
+        })
+        .catch((err) => Promise.reject(err));
+}
+
 module.exports = LoginModel;
