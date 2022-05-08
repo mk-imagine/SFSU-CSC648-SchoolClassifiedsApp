@@ -7,8 +7,8 @@ const pool = mysql.createPool({
    // multipleStatements: true,
     host: "localhost",
     user:"root",
-    password:"Kobe5414123",
-    // password:"csc648team8",
+    // password:"Kobe5414123",
+    password:"csc648team8",
     database:"csc648",
     connectionLimit: 50,
     debug:false

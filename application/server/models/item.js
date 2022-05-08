@@ -96,7 +96,7 @@ ItemsModel.getItemsBySellerId = (sellerId) => {
     FROM csc648.item it
     INNER JOIN user seller ON seller.user_id = it.item_seller_id
     INNER JOIN category cat ON cat.category_id = it.item_category
-    WHERE it. = ?;`;
+    WHERE it.item_seller_id = ?;`;
     return db.execute(baseSQL, [sellerId])
         .then(([results, fields]) => {
             return Promise.resolve(results);
