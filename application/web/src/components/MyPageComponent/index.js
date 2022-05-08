@@ -203,7 +203,8 @@ const MyPageComponent = () => {
                             status = "Approved";
                           }
 
-                          let date = Date.parse(e.item_created);
+                          const timestamp = new Date(e.item_created);
+                          const date = timestamp.toLocaleDateString();
 
                           return (
                             <div className={styles.itemCard}>
