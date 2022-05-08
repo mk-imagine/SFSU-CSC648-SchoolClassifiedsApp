@@ -82,7 +82,12 @@ router.get("/searchcategory/:searchCategory", async (req, res, next) => {
 router.get("/searchitems/:searchWord/:filter/:direction", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
+<<<<<<< Updated upstream
     const results = await ItemsModel.itemSearch(searchWord, req.params.filter, req.params.direction); // filter: date, price; direction: asc, desc
+=======
+    console.log(req.params.order, req.params.direction);
+    const results = await ItemsModel.itemSearch(searchWord, req.params.order, req.params.direction); // filter: date, price; direction: asc, desc
+>>>>>>> Stashed changes
     if (results && results.length) {
       res.send(results);
     } else {
