@@ -7,14 +7,22 @@
 
 // Jiasheng
 import React, { useEffect, useState } from "react";
-import Tab from "react-bootstrap/Tab";
-import { Col, Container, Row, Button, Dropdown } from "react-bootstrap";
+import { Tab, Tabs } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Button,
+  Dropdown,
+  Tag,
+  Tags,
+} from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import styles from "./index.module.css";
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import PostItemCard from "../PostHistoryItemCard";
 import axios from "axios";
 import SentMessages from "../SentMessages";
+import ReceivedMessages from "../ReceivedMessage";
 
 // import postHistoryItemCard from "../PostHistoryItemCard";
 
@@ -168,7 +176,7 @@ const MyPageComponent = () => {
                           <Dropdown
                             value="Sort By"
                             style={{
-                              marginTop: "0.5rem"
+                              marginTop: "0.5rem",
                             }}
                           >
                             <Dropdown.Toggle
@@ -188,7 +196,7 @@ const MyPageComponent = () => {
                         <Col>
                           <Button
                             style={{
-                              marginTop: "0.5rem"
+                              marginTop: "0.5rem",
                             }}
                           >
                             Apply
@@ -250,7 +258,7 @@ const MyPageComponent = () => {
                             value="Sort By"
                             style={{
                               marginLeft: "0.5rem",
-                              marginTop: "0.5rem"
+                              marginTop: "0.5rem",
                             }}
                           >
                             <Dropdown.Toggle
@@ -270,7 +278,7 @@ const MyPageComponent = () => {
                           <Button
                             style={{
                               marginTop: "0.5rem",
-                              marginLeft: "0.5rem"
+                              marginLeft: "0.5rem",
                             }}
                           >
                             Apply
@@ -281,14 +289,20 @@ const MyPageComponent = () => {
                   </Row>
 
                   {/* Message Info fetching Area */}
-                  {/* <Row>
-                    <Row style={{ marginTop: "2rem", background: "white" }}>
-                      <div style={{ height: 300, width: "100%" }}>
-                        <DataGrid rows={rows} columns={columns} />
+                  <Tabs defaultActiveKey={1} id="noanim-tab-example">
+                    {/* Display Sent Message Tags */}
+                    <Tab eventKey={1} title="Message Inbox">
+                      <div style={{ overflow: "scroll", height: "30rem" }}>
+                        <SentMessages />
                       </div>
-                    </Row>
-                  </Row> */}
-                  <SentMessages />
+                    </Tab>
+                    {/* Display Received Message Tags */}
+                    <Tab eventKey={2} title="Sent Message">
+                      <div style={{ overflow: "scroll", height: "30rem" }}>
+                        <ReceivedMessages />
+                      </div>
+                    </Tab>
+                  </Tabs>
                 </Tab.Pane>
 
                 {/* Account Details Display */}
