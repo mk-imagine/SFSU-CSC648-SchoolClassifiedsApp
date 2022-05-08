@@ -40,8 +40,8 @@ router.post("/post", upload.single("image"), (req, res) => {
   let category = req.body.category;
 
   //let sellerId = req.session.user_id;//???
-  let sellerId = 1; //for testing
-  console.log("what is sellerid : " + sellerId);
+  let sellerId = req.body.sellerId;
+
   let price = req.body.price;
   let name = req.body.name;
   let description = req.body.description;
@@ -53,14 +53,7 @@ router.post("/post", upload.single("image"), (req, res) => {
   let thumbnail = req.file.destination + "/" + fileAsThumbNail;
 
   // Validator for post form
-  Validator.postNoNulls(
-    category,
-    sellerId,
-    price,
-    name,
-    description,
-    picture
-  )
+  Validator.postNoNulls(category, sellerId, price, name, description, picture)
     // Check if any fields are null
     .then((notNull) => {
       console.log("in posting route after postnoNulls " + notNull);

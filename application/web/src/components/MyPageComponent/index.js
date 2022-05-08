@@ -6,20 +6,14 @@
 // import MyAccount from "../MyAccount";
 
 // Jiasheng
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
-import {
-  Col,
-  Container,
-  Row,
-  Button,
-  Dropdown,
-  Card,
-  ListGroup,
-} from "react-bootstrap";
+import { Col, Container, Row, Button, Dropdown } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import styles from "./index.module.css";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+import PostItemCard from "../PostHistoryItemCard";
+import axios from "axios";
 
 // import postHistoryItemCard from "../PostHistoryItemCard";
 
@@ -28,69 +22,42 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
  * @returns HTML of MyPage
  */
 const MyPageComponent = () => {
+  const [items, setItems] = useState([]);
+  const [userItems, setUserItems] = useState([]);
+
+  const columnsPerRow = 3;
+  const base_url = "http://localhost:3100/api";
+
   const userInformation = localStorage.getItem("user_login_information");
-  console.log("user informatioin in MyPage bar", userInformation);
-
-  // for (let i = 0; i < localStorage.length; i++) {
-  //   console.log(localStorage.getItem(localStorage.key(i)));
-  // }
-
-  for (let i = 0; i < localStorage.length; i++) {
-    console.log(
-      localStorage.key(i) +
-        "=[" +
-        localStorage.getItem(localStorage.key(i)) +
-        "]"
-    );
-  }
-
-  console.log(JSON.stringify(userInformation));
+  const user_in_json = JSON.parse(userInformation);
 
   const user_email = userInformation.user_email;
+
+  useEffect(() => {
+    getUserItems();
+  }, []);
+
+  const getUserItems = () => {
+    axios.get(`${base_url}/sellerItems/${user_in_json.user_id}`).then((res) => {
+      console.log(res.data);
+      setItems(res.data);
+    });
+
+    console.log("user items:", items);
+  };
 
   const rows = [
     { id: 1, col1: "Hello", col2: "World" },
     { id: 2, col1: "DataGridPro", col2: "is Awesome" },
-    { id: 3, col1: "MUI", col2: "is Amazing" },
+    { id: 3, col1: "MUI", col2: "is Amazing" }
   ];
 
   const columns = [
     { field: "col1", headerName: "Column 1", width: 150 },
-    { field: "col2", headerName: "Column 2", width: 150 },
+    { field: "col2", headerName: "Column 2", width: 150 }
   ];
 
   return (
-    // <div>
-    //   <div>
-    //     <div style={{ marginTop: "4rem" }}></div>
-    //     <Row>
-    //       <Col></Col>
-    //       <Col lg={11}>
-    //         <Paper elevation={3} style={{ height: "40rem" }}>
-    //           <Tabs
-    //             defaultActiveKey="profile"
-    //             id="uncontrolled-tab-example"
-    //             className="mb-3"
-    //           >
-    //             <Tab eventKey="messages" title="My Messages">
-    //               <MyMessages />
-    //             </Tab>
-    //             <Tab eventKey="profile" title="Sent Messages">
-    //               <SentMessages />
-    //             </Tab>
-    //             <Tab eventKey="contact" title="My Account">
-    //               <MyAccount />
-    //             </Tab>
-    //           </Tabs>
-    //         </Paper>
-    //       </Col>
-    //       <Col></Col>
-    //     </Row>
-    //   </div>
-    // </div>
-
-    // Jiasheng
-
     <Container className={styles.Container}>
       <Row>
         <Col lg={2}>
@@ -101,7 +68,7 @@ const MyPageComponent = () => {
       </Row>
 
       <Row style={{ marginTop: "2rem" }}>
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container id="left-tabs-example" defaultActiveKey="post-history">
           <Row>
             <Col lg={7}>
               <Row>
@@ -167,11 +134,7 @@ const MyPageComponent = () => {
                 {/* Post History Page  */}
                 <Tab.Pane eventKey="post-history">
                   <Row>
-                    <Col>
-                      <div className={styles.CurrentPageTitle}>
-                        Post History
-                      </div>
-                    </Col>
+                    <Col></Col>
 
                     <Col lg={9}>
                       <Row>
@@ -198,7 +161,7 @@ const MyPageComponent = () => {
                           <Dropdown
                             value="Sort By"
                             style={{
-                              marginTop: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             <Dropdown.Toggle
@@ -218,7 +181,7 @@ const MyPageComponent = () => {
                         <Col>
                           <Button
                             style={{
-                              marginTop: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             Apply
@@ -229,32 +192,37 @@ const MyPageComponent = () => {
                   </Row>
 
                   <Row style={{ marginTop: "2rem" }}>
-                   
-                    <Card
-                      style={{ width: "18rem", heigh: "1rem", margin: "auto" }}
-                    >
-                      <Card.Img
-                        variant="top"
-                        src="holder.js/100px180?text=Image cap"
-                      />
-                      <Card.Body>
-                        <Card.Title>Item Name</Card.Title>
-                        <Card.Text>
-                          Description: Some quick example text to build on the
-                          card title and make up the bulk of the card's content.
-                        </Card.Text>
-                      </Card.Body>
-                      <ListGroup variant="flush">
-                        <ListGroup.Item>Pice:$30</ListGroup.Item>
-                        <ListGroup.Item>Category: Books</ListGroup.Item>
-                        <ListGroup.Item>Course Number: CSC648</ListGroup.Item>
-                        <ListGroup.Item>5/7/2022</ListGroup.Item>
-                        <ListGroup.Item>Approved</ListGroup.Item>
-                        <ListGroup.Item>Item publicized</ListGroup.Item>
-                      </ListGroup>
-                    </Card>
+                    <Container>
+                      <Row xs={1} md={columnsPerRow}>
+                        {items.map((e) => {
+                          let image_url = `${base_url}/images/${e.item_pic}`;
+                          let status = "";
+                          if (parseInt(e.itemapproved) === 0) {
+                            status = "Pending";
+                          } else {
+                            status = "Approved";
+                          }
+
+                          let date = Date.parse(e.item_created);
+
+                          return (
+                            <div className={styles.itemCard}>
+                              <div style={{ marginTop: "2rem" }}></div>
+                              <PostItemCard
+                                price={e.item_price}
+                                itemName={e.item_name}
+                                description={e.item_desc}
+                                categoryName={e.category_name}
+                                date={date}
+                                approved={status}
+                                image={image_url}
+                              />
+                            </div>
+                          );
+                        })}
+                      </Row>
+                    </Container>
                   </Row>
-                  
                 </Tab.Pane>
 
                 {/* Message Page  */}
@@ -266,7 +234,6 @@ const MyPageComponent = () => {
 
                     <Col lg={9}>
                       <Row>
-
                         <Col></Col>
                         <Col></Col>
                         <Col></Col>
@@ -275,7 +242,7 @@ const MyPageComponent = () => {
                             value="Sort By"
                             style={{
                               marginLeft: "0.5rem",
-                              marginTop: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             <Dropdown.Toggle
@@ -295,7 +262,7 @@ const MyPageComponent = () => {
                           <Button
                             style={{
                               marginTop: "0.5rem",
-                              marginLeft: "0.5rem",
+                              marginLeft: "0.5rem"
                             }}
                           >
                             Apply
@@ -304,7 +271,6 @@ const MyPageComponent = () => {
                       </Row>
                     </Col>
                   </Row>
-
 
                   {/* Message Info fetching Area */}
                   <Row>

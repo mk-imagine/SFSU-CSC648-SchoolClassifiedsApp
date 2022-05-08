@@ -57,7 +57,7 @@ const Message = () => {
     var data1 = {
       itemId: item_details.item_id,
       senderId: user_id_of_loggedin_person,
-      recipientId: 1,
+      recipientId: item_details.sellerid,
       meet_time: "null",
       location: "null",
       contactInfo: contact,

@@ -1,5 +1,5 @@
 // HEADER:Create A Post Code
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -12,6 +12,7 @@ import {
 import styles from "./index.module.css";
 import image from "../../images/image.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Load Post Item Page Component
@@ -20,18 +21,34 @@ import axios from "axios";
 const ItemPost = () => {
   const [itemname, setItemname] = React.useState("");
   const [price, setPrice] = React.useState("");
-  const [category, setCategory] = React.useState("");
+  const [categories, setCategories] = React.useState([]);
   const [course, setCourse] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [uploaded_pic, setUploadedPic] = useState();
+  const [imageToShow, setImageToShow] = useState(image);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("Select Category");
+  const [toggleCourse, setToggleCourse] = useState(false);
 
+  const navigate = useNavigate();
   const userInformation = localStorage.getItem("user_login_information");
-  console.log("user informatioin in item post bar", userInformation);
+
+  const json_user = JSON.parse(userInformation);
+  // console.log("user informatioin in item post bar", userInformation);
+
+  const base_url = "http://localhost:3100/api";
 
   const handlePhotoUpload = (event) => {
     setUploadedPic(event.target.files[0]);
-    console.log(event.target.files[0]);
+
+    if (event.target.files.length !== 0) {
+      setImageToShow(URL.createObjectURL(event.target.files[0]));
+    }
   };
+
+  useEffect(() => {
+    fetchCategories();
+  }, [categories]);
 
   const handleSubmit = () => {
     //checking if user is logged in
@@ -51,6 +68,23 @@ const ItemPost = () => {
     }
   };
 
+  const fetchCategories = () => {
+    axios.get(`${base_url}/categories`).then((res) => {
+      setCategories(res.data);
+    });
+  };
+
+  const dropDownChange = (e) => {
+    console.log("selected category: ", e);
+    setSelectedCategoryId(e);
+
+    if (e === "3") {
+      setToggleCourse(true);
+    } else {
+      setToggleCourse(false);
+    }
+  };
+
   const uploadItem = () => {
     const formData = new FormData();
 
@@ -59,7 +93,8 @@ const ItemPost = () => {
     formData.append("name", itemname);
     formData.append("description", description);
     formData.append("course", course);
-    formData.append("category", 1);
+    formData.append("category", selectedCategoryId);
+    formData.append("sellerId", parseInt(json_user.user_id));
 
     const config = {
       headers: {
@@ -67,12 +102,16 @@ const ItemPost = () => {
       }
     };
 
+    console.log("Before axios");
     axios
       .post("http://localhost:3100/api/post/post", formData, config)
       .then((response) => {
         console.log(response.data);
 
-        alert("Succesfully uploaded image");
+        alert(
+          "Your post has been uploaded. It will take upto 24 hours for the post to be reviewed and approved."
+        );
+        navigate("/");
       })
       .catch((error) => {
         alert(error);
@@ -83,10 +122,11 @@ const ItemPost = () => {
   const clearFields = () => {
     setItemname("");
     setPrice("");
-    setCategory("");
     setCourse("");
     setDescription("");
-    console.log("Cancel Button Clik");
+    setSelectedCategoryId(null);
+    setSelectedCategory("Select Category");
+    console.log("Cancel Button Clicked");
   };
 
   return (
@@ -140,7 +180,7 @@ const ItemPost = () => {
                 <Col>
                   <Row className="align-items-center">
                     <ButtonGroup justified>
-                      <Dropdown className={styles.dropdown}>
+                      {/* <Dropdown className={styles.dropdown}>
                         <Dropdown.Toggle className={styles.dropdown}>
                           Category
                         </Dropdown.Toggle>
@@ -148,25 +188,57 @@ const ItemPost = () => {
                         <Dropdown.Menu style={{ width: "94%" }}>
                           <Dropdown.Item> Item1</Dropdown.Item>
                         </Dropdown.Menu>
+                      </Dropdown> */}
+
+                      <Dropdown
+                        onSelect={dropDownChange}
+                        value={selectedCategory}
+                        id={styles.dropdownMenu}
+                      >
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                          {selectedCategory}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          {categories.map((e) => {
+                            if (e.category_name !== "All Items") {
+                              return (
+                                <Dropdown.Item
+                                  eventKey={e.category_id}
+                                  onClick={() => {
+                                    setSelectedCategory(e.category_name);
+                                  }}
+                                >
+                                  {e.category_name}
+                                </Dropdown.Item>
+                              );
+                            }
+                          })}
+                        </Dropdown.Menu>
                       </Dropdown>
                     </ButtonGroup>
                   </Row>
                 </Col>
-                <div style={{ marginTop: "1.5rem" }}></div>
-                <Row className="align-items-center"></Row>
-                <Col lg={3}>
-                  <div className={styles.subtitle}>Course Number:*</div>
-                </Col>
-                <Col>
-                  <input
-                    className={styles.input}
-                    type="text"
-                    name="coursenumber"
-                    placeholder="e.g.CSC648"
-                    value={course}
-                    onChange={(e) => setCourse(e.target.value)}
-                  />
-                </Col>
+
+                {toggleCourse ? (
+                  <div>
+                    <div style={{ marginTop: "1.5rem" }}></div>
+                    <Row className="align-items-center"></Row>
+                    <Col lg={3}>
+                      <div className={styles.subtitle}>Course Number:*</div>
+                    </Col>
+                    <Col>
+                      <input
+                        className={styles.input}
+                        type="text"
+                        name="coursenumber"
+                        placeholder="e.g.CSC648"
+                        value={course}
+                        onChange={(e) => setCourse(e.target.value)}
+                      />
+                    </Col>
+                  </div>
+                ) : null}
 
                 <div style={{ marginTop: "1.5rem" }}></div>
                 <Row className="align-items-center"></Row>
@@ -214,7 +286,11 @@ const ItemPost = () => {
               </Row>
 
               <Row>
-                <img src={image} alt="postimage" className={styles.image}></img>
+                <img
+                  src={imageToShow}
+                  alt="postimage"
+                  className={styles.image}
+                ></img>
               </Row>
               <Row>
                 <Col>
