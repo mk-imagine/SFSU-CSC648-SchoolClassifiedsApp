@@ -59,7 +59,6 @@ router.post("/post", upload.single("image"), (req, res) => {
     price,
     name,
     description,
-    course,
     picture
   )
     // Check if any fields are null
