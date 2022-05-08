@@ -48,10 +48,10 @@ LoginModel.getUser = (userId) => {
         .catch((err) => Promise.reject(err));
 };
 
-LoginModel.resetPassword = (username, email, newPassword) =>{
+LoginModel.resetPassword = (email, newPassword) =>{
     let userid;
-    let baseSQL = `select user_id from csc648.user where user_username = ? and user_email = ?;`;
-    return db.execute(baseSQL, [username, email])
+    let baseSQL = `select user_id from csc648.user where user_email = ?;`;
+    return db.execute(baseSQL, [email])
     .then(([results, fields]) => {
         console.log(results);
         if(results[0].user_id > 0){
@@ -70,21 +70,21 @@ LoginModel.resetPassword = (username, email, newPassword) =>{
     }).catch((err) => Promise.reject(err));
 };
 
-LoginModel.changeUsername = (newUsername, email) => {
-    let baseSQL = `update csc648.user set user_username = ? where user_email = ?;`;
-    return db.execute(baseSQL, [newUsername, email])
-    .then(([results, fields]) => {
-        //console.log(fields);
-        let baseSQL2 = `select user_id from csc648.user where user_username = ? and user_email = ?;`;
-        return db.execute(baseSQL2, [newUsername, email])
-    }).then(([results, fields]) => {
-        console.log(results[0]);
-        if(results[0].user_id > 0){
-            return Promise.resolve(results[0].user_id);
-        }else{
-            return Promise.resolve(-1);
-        }
-    }).catch((err) => Promise.reject(err));
-}
+// LoginModel.changeUsername = (newUsername, email) => {
+//     let baseSQL = `update csc648.user set user_username = ? where user_email = ?;`;
+//     return db.execute(baseSQL, [newUsername, email])
+//     .then(([results, fields]) => {
+//         //console.log(fields);
+//         let baseSQL2 = `select user_id from csc648.user where user_username = ? and user_email = ?;`;
+//         return db.execute(baseSQL2, [newUsername, email])
+//     }).then(([results, fields]) => {
+//         console.log(results[0]);
+//         if(results[0].user_id > 0){
+//             return Promise.resolve(results[0].user_id);
+//         }else{
+//             return Promise.resolve(-1);
+//         }
+//     }).catch((err) => Promise.reject(err));
+// }
 
 module.exports = LoginModel;

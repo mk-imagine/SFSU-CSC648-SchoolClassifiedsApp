@@ -74,25 +74,68 @@ ItemsModel.categorySearch = (category) => {
  * @param {*} searchWord 
  * @returns Items that match search term
  */
-ItemsModel.itemSearch = (searchWord, orderby, ascdesc) => {
+ItemsModel.itemSearch = (searchWord, orderby, direction) => {
     if (orderby == "price") {
-        let baseSQL = `select * from csc648.item
-                    where item_name like ? or item_desc like ?
-                    ORDER BY item.item_price ?;`;
-        return db.execute(baseSQL, [searchWord, ascdesc])
-        .then(([results, fields]) => {
-            return Promise.resolve(results);
-        })
-        .catch((err) => Promise.reject(err));
-    } else if (orderby == "date") {
-        let baseSQL = `select * from csc648.item
-                    where item_name like ? or item_desc like ?
-                    ORDER BY item.item_created ?;`;
-        return db.execute(baseSQL, [searchWord, ascdesc])
-        .then(([results, fields]) => {
-            return Promise.resolve(results);
-        })
+        if (direction.toLowerCase() == "asc") {
+            let baseSQL = `select * from csc648.item
+                    where (item_name like ? or item_desc like ?) AND item_approved = 1
+                    ORDER BY item_price ASC;`;
+            const result = db.execute(baseSQL, [searchWord, searchWord])
+            console.log(result);
+            return db.execute(baseSQL, [searchWord, searchWord])
+                .then(([results, fields]) => {
+                    return Promise.resolve(results);
+                })
+                .catch((err) => {
+                    Promise.reject(err)}
+                );
+        }
+        if (direction.toLowerCase() == "desc") {
+            let baseSQL = `select * from csc648.item
+                    where (item_name like ? or item_desc like ?) AND item_approved = 1
+                    ORDER BY item_price DESC;`;
+            const result = db.execute(baseSQL, [searchWord, searchWord])
+            console.log(result);
+            return db.execute(baseSQL, [searchWord, searchWord])
+                .then(([results, fields]) => {
+                    return Promise.resolve(results);
+                })
+                .catch((err) => {
+                    Promise.reject(err)}
+                );
+        }
     }
+    if (orderby == "date") {
+        if (direction.toLowerCase() == "asc") {
+            let baseSQL = `select * from csc648.item
+                    where (item_name like ? or item_desc like ?) AND item_approved = 1
+                    ORDER BY item_created ASC;`;
+            const result = db.execute(baseSQL, [searchWord, searchWord])
+            console.log(result);
+            return db.execute(baseSQL, [searchWord, searchWord])
+                .then(([results, fields]) => {
+                    return Promise.resolve(results);
+                })
+                .catch((err) => {
+                    Promise.reject(err)}
+                );
+        }
+        if (direction.toLowerCase() == "desc") {
+            let baseSQL = `select * from csc648.item
+                    where (item_name like ? or item_desc like ?) AND item_approved = 1
+                    ORDER BY item_created DESC;`;
+            const result = db.execute(baseSQL, [searchWord, searchWord])
+            console.log(result);
+            return db.execute(baseSQL, [searchWord, searchWord])
+                .then(([results, fields]) => {
+                    return Promise.resolve(results);
+                })
+                .catch((err) => {
+                    Promise.reject(err)}
+                );
+        }
+    }
+    
 }
 
 /**

@@ -82,6 +82,7 @@ router.get("/searchcategory/:searchCategory", async (req, res, next) => {
 router.get("/searchitems/:searchWord/:order/:direction", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
+    console.log(req.params.order, req.params.direction);
     const results = await ItemsModel.itemSearch(searchWord, req.params.order, req.params.direction); // filter: date, price; direction: asc, desc
     if (results && results.length) {
       res.send(results);

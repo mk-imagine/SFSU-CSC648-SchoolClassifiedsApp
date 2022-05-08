@@ -121,42 +121,39 @@ router.get("/getUser/:userId", async (req, res, next) => {
 });
 
 router.post("/resetPassword", (req, res) => {
+  // let username = req.body.username;
   let email = req.body.email;
   let username = email;
   let password = req.body.password;
-  console.log(
-    "username: " + username + " email: " + email + " password: " + password
-  );
-  UserModel.resetPassword(username, email, password)
-    .then((result) => {
-      console.log(result);
-      if (result != -1) {
-        res.send({ status: 200 });
-      } else {
-        res.send({ status: 500 });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  console.log("email: "+email+" password: "+password);
+  UserModel.resetPassword(email, password)
+  .then((result) => {
+    console.log(result);
+    if(result != -1){
+      res.send({status: 200});
+    }else{
+      res.send({status: 500});
+    }
+  }).catch((err) => {
+    console.log(err);
+  })
 });
 
-router.post("/changeUsername", (req, res) => {
-  let email = req.body.email;
-  let username = req.body.username;
-  console.log("email: " + email + " username: " + username);
-  UserModel.changeUsername(username, email)
-    .then((result) => {
-      console.log(result);
-      if (result > 0) {
-        res.send({ status: 200 });
-      } else {
-        res.send({ status: 500 });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+// router.post("/changeUsername", (req, res) => {
+//   let email = req.body.email;
+//   let username = req.body.username;
+//   console.log("email: "+ email+" username: "+username);
+//   UserModel.changeUsername(username, email)
+//   .then((result) => {
+//     console.log(result);
+//     if(result > 0){
+//       res.send({status:200});
+//     }else{
+//       res.send({status:500});
+//     }
+//   }).catch((err) => {
+//     console.log(err);
+//   })
+// });
 
 module.exports = router;
