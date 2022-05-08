@@ -79,7 +79,7 @@ router.get("/searchcategory/:searchCategory", async (req, res, next) => {
 /**
  * Keyword Search Router
  */
-router.get("/searchitems/:searchWord/:filter/:direction", async (req, res, next) => {
+router.get("/searchitems/:searchWord/:order/:direction", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
     console.log(req.params.order, req.params.direction);
