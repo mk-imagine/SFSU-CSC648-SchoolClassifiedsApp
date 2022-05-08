@@ -1,5 +1,5 @@
 // HEADER:Create A Post Code
-import React from "react";
+import React, { useState } from "react";
 import {
   Row,
   Col,
@@ -23,44 +23,61 @@ const ItemPost = () => {
   const [category, setCategory] = React.useState("");
   const [course, setCourse] = React.useState("");
   const [description, setDescription] = React.useState("");
+  const [uploaded_pic, setUploadedPic] = useState();
 
   const userInformation = localStorage.getItem("user_login_information");
   console.log("user informatioin in item post bar", userInformation);
 
+  const handlePhotoUpload = (event) => {
+    setUploadedPic(event.target.files[0]);
+    console.log(event.target.files[0]);
+  };
+
   const handleSubmit = () => {
     //checking if user is logged in
     if (userInformation) {
-      //user is logged in
-      var data1 = {
-        name: itemname,
-        price: price,
-        descrition: description,
-        course: course,
-        category: category //not sure how to set category on the form
-        //not sure about images
-      };
-      var config = {
-        method: "post",
-        // url: "/api/post/post", // FOR DEPLOYMENT
-        url: "http://localhost:3100/api/post/post",
-        headers: {
-          "Content-Type": "application/json" //can't be application/json
-        },
-        data: data1
-      };
-      axios(config)
-        .then((response) => {
-          window.location.href = response.data;
-          //console.log(JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (userInformation !== "loggedOut") {
+        //user is logged in
+        console.log("we upload image and item here");
+        uploadItem();
+      } else {
+        alert("Please login to publish an item");
+        window.open("/login", "_blank");
+      }
     } else {
       //user is not logged in
       alert("Please login to publish an item");
       window.open("/login", "_blank");
     }
+  };
+
+  const uploadItem = () => {
+    const formData = new FormData();
+
+    formData.append("image", uploaded_pic);
+    formData.append("price", price);
+    formData.append("name", itemname);
+    formData.append("description", description);
+    formData.append("course", course);
+    formData.append("category", 1);
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+
+    axios
+      .post("http://localhost:3100/api/post/post", formData, config)
+      .then((response) => {
+        console.log(response.data);
+
+        alert("Succesfully uploaded image");
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
   };
 
   const clearFields = () => {
@@ -157,7 +174,11 @@ const ItemPost = () => {
                   <Form.Label>Upload Image:*</Form.Label>
                 </Col>
                 <Col>
-                  <Form.Control type="file" />
+                  <Form.Control
+                    onChange={handlePhotoUpload}
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png"
+                  />
                 </Col>
 
                 <div style={{ marginTop: "1.5rem" }}></div>

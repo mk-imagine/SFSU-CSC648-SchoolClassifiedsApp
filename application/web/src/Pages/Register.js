@@ -14,13 +14,18 @@ const RegisterPage = () => {
 
   useEffect(() => {
     if (userInformation) {
-      setLoggedIn(true);
+      if (userInformation !== "loggedOut") {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
     } else {
       setLoggedIn(false);
     }
   }, [userInformation]);
 
   if (isLoggedIn) {
+    console.log("Can't enter register page");
     return <Navigate to="/" replace />;
   }
   return (

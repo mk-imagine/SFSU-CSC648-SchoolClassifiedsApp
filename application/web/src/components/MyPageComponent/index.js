@@ -8,9 +8,20 @@
 // Jiasheng
 import React from "react";
 import Tab from "react-bootstrap/Tab";
-import { Col, Container, Row, Button, Dropdown } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Button,
+  Dropdown,
+  Card,
+  ListGroup,
+} from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import styles from "./index.module.css";
+import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+
+// import postHistoryItemCard from "../PostHistoryItemCard";
 
 /**
  * Loads My Page component
@@ -36,6 +47,17 @@ const MyPageComponent = () => {
   console.log(JSON.stringify(userInformation));
 
   const user_email = userInformation.user_email;
+
+  const rows = [
+    { id: 1, col1: "Hello", col2: "World" },
+    { id: 2, col1: "DataGridPro", col2: "is Awesome" },
+    { id: 3, col1: "MUI", col2: "is Amazing" },
+  ];
+
+  const columns = [
+    { field: "col1", headerName: "Column 1", width: 150 },
+    { field: "col2", headerName: "Column 2", width: 150 },
+  ];
 
   return (
     // <div>
@@ -68,6 +90,7 @@ const MyPageComponent = () => {
     // </div>
 
     // Jiasheng
+
     <Container className={styles.Container}>
       <Row>
         <Col lg={2}>
@@ -206,82 +229,32 @@ const MyPageComponent = () => {
                   </Row>
 
                   <Row style={{ marginTop: "2rem" }}>
-                    <Col>
-                      <Row>
-                        <div className={styles.PostHistoryPageDisplayLabel}>
-                          Item Name
-                        </div>
-                      </Row>
-                      <Row>
-                        <div className={styles.PostFethcingItemName}>
-                          Rare Painting
-                        </div>
-                      </Row>
-                    </Col>
-                    <Col className={styles.time}>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Time
-                      </div>
-                      <div className={styles.PostFethcingTime}>4/17/2022</div>
-                    </Col>
-                    <Col className={styles.status}>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Status
-                      </div>
-                      <div className={styles.PostFethcingStatus}>Approve</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Explanation
-                      </div>
-                      <div className={styles.PostFethcingExplanation}>
-                        Item publicized
-                      </div>
-                    </Col>
-
-                    <Col>
-                      <Row>
-                        <Col></Col>
-                        <Col>
-                          <Button className={styles.DetailButton}>
-                            Details
-                          </Button>
-                        </Col>
-                        <Col></Col>
-                      </Row>
-                    </Col>
+                   
+                    <Card
+                      style={{ width: "18rem", heigh: "1rem", margin: "auto" }}
+                    >
+                      <Card.Img
+                        variant="top"
+                        src="holder.js/100px180?text=Image cap"
+                      />
+                      <Card.Body>
+                        <Card.Title>Item Name</Card.Title>
+                        <Card.Text>
+                          Description: Some quick example text to build on the
+                          card title and make up the bulk of the card's content.
+                        </Card.Text>
+                      </Card.Body>
+                      <ListGroup variant="flush">
+                        <ListGroup.Item>Pice:$30</ListGroup.Item>
+                        <ListGroup.Item>Category: Books</ListGroup.Item>
+                        <ListGroup.Item>Course Number: CSC648</ListGroup.Item>
+                        <ListGroup.Item>5/7/2022</ListGroup.Item>
+                        <ListGroup.Item>Approved</ListGroup.Item>
+                        <ListGroup.Item>Item publicized</ListGroup.Item>
+                      </ListGroup>
+                    </Card>
                   </Row>
-
-                  {/* Post Info fetching Area */}
-                  {/* <Row>
-                    <Col>
-                      <div className={styles.PostFethcingItemName}>
-                        Rare Painting
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostFethcingTime}>4/17/2022</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostFethcingStatus}>Approve</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostFethcingExplanation}>
-                        Item publicized
-                      </div>
-                    </Col>
-                    <Col>
-                      <Row>
-                        <Col></Col>
-                        <Col>
-                          <Button className={styles.DetailButton}>
-                            Details
-                          </Button>
-                        </Col>
-                        <Col></Col>
-                      </Row>
-                    </Col>
-                  </Row> */}
+                  
                 </Tab.Pane>
 
                 {/* Message Page  */}
@@ -293,24 +266,7 @@ const MyPageComponent = () => {
 
                     <Col lg={9}>
                       <Row>
-                        {/* <Col>
-                          <Dropdown
-                            value="Location"
-                            style={{ marginLeft: "18rem", marginTop: "0.5rem" }}
-                          >
-                            <Dropdown.Toggle
-                              variant="success"
-                              id="dropdown-basic"
-                            >
-                              Locations
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                              <Dropdown.Item eventKey="" onClick="">
-                                HSS
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </Col> */}
+
                         <Col></Col>
                         <Col></Col>
                         <Col></Col>
@@ -349,57 +305,14 @@ const MyPageComponent = () => {
                     </Col>
                   </Row>
 
-                  <Row style={{ marginTop: "2rem" }}>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>Date</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>
-                        Username
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>Item</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>
-                        Message
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>
-                        Contact
-                      </div>
-                    </Col>
-                  </Row>
 
                   {/* Message Info fetching Area */}
                   <Row>
-                    <Col>
-                      <div className={styles.MessageFethcingUsername}>
-                        4/27/2022
+                    <Row style={{ marginTop: "2rem", background: "white" }}>
+                      <div style={{ height: 300, width: "100%" }}>
+                        <DataGrid rows={rows} columns={columns} />
                       </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingUsername}>
-                        Jiasheng Li
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingLocation}>
-                        Rare Painting
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingMessage}>
-                        Is your item still available?
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingContact}>
-                        415-706-3270
-                      </div>
-                    </Col>
+                    </Row>
                   </Row>
                 </Tab.Pane>
 
