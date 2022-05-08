@@ -58,15 +58,31 @@ ItemsModel.categoryAndItemSearch = (category, searchWord) => {
  * @param {*} category 
  * @returns Items that match category
  */
-ItemsModel.categorySearch = (category) => {
-    let baseSQL = `select * from csc648.item
-                    left join csc648.category on item.item_category = category.category_id
-                    where category.category_name like ?;`
-    return db.execute(baseSQL, [category])
+ItemsModel.categorySearch = (category, orderby, direction) => {
+    if( orderby == "price") {
+        let baseSQL = `select * from csc648.item
+                        left join csc648.category on item.item_category = category.category_id
+                        WHERE category.category_name like ?
+                        ORDER BY item_price ${direction};`;
+        return db.execute(baseSQL, [category, direction])
         .then(([results, fields]) => {
-            return Promise.resolve(results);
+        return Promise.resolve(results);
         })
         .catch((err) => Promise.reject(err));
+    }
+    if(orderby == "date") {
+        let baseSQL = `select * from csc648.item
+                        left join csc648.category on item.item_category = category.category_id
+                        WHERE category.category_name like ?
+                        ORDER BY item_created ${direction};`;
+        return db.execute(baseSQL, [category, direction])
+        .then(([results, fields]) => {
+        return Promise.resolve(results);
+        })
+        .catch((err) => Promise.reject(err));
+    }
+    
+
 }
 
 /**

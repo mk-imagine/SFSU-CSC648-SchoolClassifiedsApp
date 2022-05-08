@@ -62,10 +62,10 @@ router.get("/itemwithcategory/:searchWord/:categoryWord", async (req, res, next)
 /**
  * Category Search Router
  */
-router.get("/searchcategory/:searchCategory", async (req, res, next) => {
+router.get("/searchcategory/:searchCategory/:order/:direction", async (req, res, next) => {
   try {
     const category = "%" + req.params.searchCategory + "%";
-    const results = await ItemsModel.categorySearch(category);
+    const results = await ItemsModel.categorySearch(category, req.params.order, req.params.direction);
     if (results && results.length) {
       res.send(results);
     } else {
