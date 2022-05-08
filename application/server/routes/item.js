@@ -79,10 +79,10 @@ router.get("/searchcategory/:searchCategory", async (req, res, next) => {
 /**
  * Keyword Search Router
  */
-router.get("/searchitems/:searchWord", async (req, res, next) => {
+router.get("/searchitems/:searchWord/:filter/:direction", async (req, res, next) => {
   try {
     const searchWord = "%" + req.params.searchWord + "%";
-    const results = await ItemsModel.itemSearch(searchWord);
+    const results = await ItemsModel.itemSearch(searchWord, req.params.filter, req.params.direction); // filter: date, price; direction: asc, desc
     if (results && results.length) {
       res.send(results);
     } else {
