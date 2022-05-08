@@ -44,7 +44,7 @@ const ItemCard = (props) => {
             component="img"
             height="400"
             image={props.image}
-            alt="green iguana"
+            alt="image here"
           />
         </div>
         <CardContent>

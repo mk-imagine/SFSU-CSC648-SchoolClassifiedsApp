@@ -14,6 +14,7 @@ import styles from "./index.module.css";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import PostItemCard from "../PostHistoryItemCard";
 import axios from "axios";
+import SentMessages from "../SentMessages";
 
 // import postHistoryItemCard from "../PostHistoryItemCard";
 
@@ -24,6 +25,10 @@ import axios from "axios";
 const MyPageComponent = () => {
   const [items, setItems] = useState([]);
   const [userItems, setUserItems] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
   const columnsPerRow = 3;
   const base_url = "http://localhost:3100/api";
@@ -35,6 +40,7 @@ const MyPageComponent = () => {
 
   useEffect(() => {
     getUserItems();
+    getUserInfo();
   }, []);
 
   const getUserItems = () => {
@@ -42,20 +48,21 @@ const MyPageComponent = () => {
       console.log(res.data);
       setItems(res.data);
     });
-
-    console.log("user items:", items);
   };
 
-  const rows = [
-    { id: 1, col1: "Hello", col2: "World" },
-    { id: 2, col1: "DataGridPro", col2: "is Awesome" },
-    { id: 3, col1: "MUI", col2: "is Amazing" }
-  ];
+  const getUserInfo = () => {
+    axios
+      .get(`${base_url}/login/getUser/${user_in_json.user_id}`)
+      .then((res) => {
+        // setUserInfo(res.data);
+        // console.log(userInfo);
+        setFirstName(res.data[0].user_fname);
+        setLastName(res.data[0].user_lname);
+        setEmail(res.data[0].user_email);
+      });
 
-  const columns = [
-    { field: "col1", headerName: "Column 1", width: 150 },
-    { field: "col2", headerName: "Column 2", width: 150 }
-  ];
+    console.log("user info", userInfo);
+  };
 
   return (
     <Container className={styles.Container}>
@@ -274,13 +281,14 @@ const MyPageComponent = () => {
                   </Row>
 
                   {/* Message Info fetching Area */}
-                  <Row>
+                  {/* <Row>
                     <Row style={{ marginTop: "2rem", background: "white" }}>
                       <div style={{ height: 300, width: "100%" }}>
                         <DataGrid rows={rows} columns={columns} />
                       </div>
                     </Row>
-                  </Row>
+                  </Row> */}
+                  <SentMessages />
                 </Tab.Pane>
 
                 {/* Account Details Display */}
@@ -296,7 +304,7 @@ const MyPageComponent = () => {
                       <div className={styles.UsernameLable}>First name:</div>
                     </Col>
                     <Col lg={2}>
-                      <div className={styles.UsernameFetch}>Jiasheng</div>
+                      <div className={styles.UsernameFetch}>{firstName}</div>
                     </Col>
                   </Row>
                   <Row>
@@ -304,7 +312,7 @@ const MyPageComponent = () => {
                       <div className={styles.UsernameLable}>Last name:</div>
                     </Col>
                     <Col lg={2}>
-                      <div className={styles.UsernameFetch}> Li</div>
+                      <div className={styles.UsernameFetch}> {lastName}</div>
                     </Col>
                   </Row>
 
@@ -313,7 +321,7 @@ const MyPageComponent = () => {
                       <div className={styles.EmailLable}>Email:</div>
                     </Col>
                     <Col lg={2}>
-                      <div className={styles.EmailFecth}>{user_email}</div>
+                      <div className={styles.EmailFecth}>{email}</div>
                     </Col>
                   </Row>
 

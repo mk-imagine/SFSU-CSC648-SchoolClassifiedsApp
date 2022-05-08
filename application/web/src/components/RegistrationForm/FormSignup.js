@@ -44,141 +44,127 @@ const FormSignup = () => {
       })
       .catch((error) => {
         console.log(error);
+        alert(error);
       });
   };
 
   return (
     <Container>
       <div className={styles.registerComponent}>
-      <Row>
-        <Col></Col>
-        <Col md="auto">
-          <div className={styles.title}>Register </div>
-        </Col>
-        <Col></Col>
-      </Row>
-      <Row>
-        <Col></Col>
+        <Row>
+          <Col></Col>
+          <Col md="auto">
+            <div className={styles.title}>Register </div>
+          </Col>
+          <Col></Col>
+        </Row>
+        <Row>
+          <Col></Col>
 
-        <Col lg={7}>
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <Row>
-              <div className={styles.formInputs}>
-                <label className={styles.formLabel}>First Name*:</label>
-                <input
-                  className={styles.formInput}
-                  type="text"
-                  name="firstname"
-                  placeholder="Enter your first name"
-                  value={firstname}
-                  onChange={(e) => setFirstname(e.target.value)}
-                />
-              </div>
-            </Row>
-
-            <Row>
-              <div className={styles.formInputs}>
-                <label className={styles.formLabel}>Last Name*:</label>
-                <input
-                  className={styles.formInput}
-                  type="text"
-                  name="lastname"
-                  placeholder="Enter your last name"
-                  value={lastname}
-                  onChange={(e) => setLastname(e.target.value)}
-                />
-              </div>
-            </Row>
-
-            <Row>
-              <div className={styles.formInputs}>
-                <label className={styles.formLabel}>Email*:</label>
-                <input
-                  className={styles.formInput}
-                  type="email"
-                  name="email"
-                  placeholder="Enter your SFSU email"
-                  value={email}
-                  onChange={(e) => setSemail(e.target.value)}
-                />
-              </div>
-            </Row>
-
-            <Row>
-              <div className={styles.formInputs}>
-                <label className={styles.formLabel}>Password*:</label>
-                <input
-                  className={styles.formInput}
-                  type="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-            </Row>
-
-            <Row>
-              <div className={styles.formInputs}>
-                <label className={styles.formLabel}>Confirm Password*:</label>
-                <input
-                  className={styles.formInput}
-                  type="password"
-                  name="password2"
-                  placeholder="Confirm your password"
-                  value={password2}
-                  onChange={(e) => setPassword2(e.target.value)}
-                />
-              </div>
-            </Row>
-            <Col lg={8}>
+          <Col lg={7}>
+            <form className={styles.form} onSubmit={handleSubmit}>
               <Row>
-                <Col>
-                  <p>* - mandatory fields</p>
-                </Col>
+                <div className={styles.formInputs}>
+                  <label className={styles.formLabel}>First Name*:</label>
+                  <input
+                    className={styles.formInput}
+                    type="text"
+                    name="firstname"
+                    placeholder="Enter your first name"
+                    value={firstname}
+                    onChange={(e) => setFirstname(e.target.value)}
+                  />
+                </div>
               </Row>
-            </Col>
-            <Row>
-              <div class={styles.termPrivacyCheck}>
-                
-                <label style={{ marginLeft: "0.5rem" }}>
-                  I acknowledge that I agree to the{" "}
-                  <a href="#!" class="text-body">
-                    <u>Term of Use</u>
-                  </a>{" "}
-                  and have read the{" "}
-                  <a href="#!" class="text-body">
-                    <u>Privacy Policy</u>
-                  </a>
-                  <input type="checkbox" style={{marginLeft:"1rem"}}value="" required />
-                </label>
-              </div>
-            </Row>
 
-            <Row>
-              <Col></Col>
-              <Col>
-                <button
-                  className={styles.formInputBtn}
-                  onClick={handleSubmit}
-                  type="button"
-                >
-                  Register
-                </button>
+              <Row>
+                <div className={styles.formInputs}>
+                  <label className={styles.formLabel}>Last Name*:</label>
+                  <input
+                    className={styles.formInput}
+                    type="text"
+                    name="lastname"
+                    placeholder="Enter your last name"
+                    value={lastname}
+                    onChange={(e) => setLastname(e.target.value)}
+                  />
+                </div>
+              </Row>
+
+              <Row>
+                <div className={styles.formInputs}>
+                  <label className={styles.formLabel}>Email*:</label>
+                  <input
+                    className={styles.formInput}
+                    type="email"
+                    name="email"
+                    placeholder="Enter your SFSU email"
+                    value={email}
+                    onChange={(e) => setSemail(e.target.value)}
+                  />
+                </div>
+              </Row>
+
+              <Row>
+                <div className={styles.formInputs}>
+                  <label className={styles.formLabel}>Password*:</label>
+                  <input
+                    className={styles.formInput}
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </Row>
+
+              <Row>
+                <div className={styles.formInputs}>
+                  <label className={styles.formLabel}>Confirm Password*:</label>
+                  <input
+                    className={styles.formInput}
+                    type="password"
+                    name="password2"
+                    placeholder="Confirm your password"
+                    value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}
+                  />
+                </div>
+              </Row>
+              <Col lg={8}>
+                <Row>
+                  <Col>
+                    <p>* - mandatory fields</p>
+                  </Col>
+                </Row>
               </Col>
+              <Row></Row>
 
-              <Col></Col>
-            </Row>
+              <Row>
+                <Col></Col>
+                <Col>
+                  <button
+                    className={styles.formInputBtn}
+                    onClick={handleSubmit}
+                    type="button"
+                  >
+                    Register
+                  </button>
+                </Col>
 
-            <Row>
-              <span className={styles.formInputLogin}>
-                Already have an account? <a href="/login">Login</a>
-              </span>
-            </Row>
-          </form>
-        </Col>
-        <Col></Col>
-      </Row>
+                <Col></Col>
+              </Row>
+
+              <Row>
+                <span className={styles.formInputLogin}>
+                  Already have an account? <a href="/login">Login</a>
+                </span>
+              </Row>
+            </form>
+          </Col>
+          <Col></Col>
+        </Row>
       </div>
     </Container>
   );
