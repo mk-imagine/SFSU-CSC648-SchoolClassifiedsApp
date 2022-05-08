@@ -75,14 +75,24 @@ ItemsModel.categorySearch = (category) => {
  * @returns Items that match search term
  */
 ItemsModel.itemSearch = (searchWord, orderby, ascdesc) => {
-    let baseSQL = `select * from csc648.item
+    if (orderby == "price") {
+        let baseSQL = `select * from csc648.item
                     where item_name like ? or item_desc like ?
-                    ORDER BY ? ?;`;
-    return db.execute(baseSQL, [searchWord, searchWord])
+                    ORDER BY item.item_price ?;`;
+        return db.execute(baseSQL, [searchWord, ascdesc])
         .then(([results, fields]) => {
             return Promise.resolve(results);
         })
         .catch((err) => Promise.reject(err));
+    } else if (orderby == "date") {
+        let baseSQL = `select * from csc648.item
+                    where item_name like ? or item_desc like ?
+                    ORDER BY item.item_created ?;`;
+        return db.execute(baseSQL, [searchWord, ascdesc])
+        .then(([results, fields]) => {
+            return Promise.resolve(results);
+        })
+    }
 }
 
 /**
