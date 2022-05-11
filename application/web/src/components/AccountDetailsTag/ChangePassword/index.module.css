@@ -26,6 +26,7 @@
   margin-bottom: 0.5rem;
   text-align: left;
 }
+
 .formInputComponent {
   margin-bottom: 1.2rem;
 }
@@ -64,10 +65,86 @@
 
 .formInputBtn:hover {
   cursor: pointer;
-  /* background: linear-gradient(
-    90deg,
-    rgb(1, 167, 250) 50%,
-    rgb(7, 155, 240) 100%
-  ) !important;
-  transition: all 0.4s ease-out; */
 }
+
+@media only screen and (max-width: 1200px){
+  .formLable {
+    font-size: 0.9rem;
+  }
+
+  .formInputBtn {
+    width: 120% !important;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .formLable {
+    font-size: 1rem;
+  }
+
+  .formInputBtn {
+    width: 30% !important;
+    margin-left: 15rem !important;
+  }
+}
+
+@media only screen and (max-width: 768px){
+
+  .formInputBtn {
+    margin-left: 10rem !important;
+  }
+}
+
+@media only screen and (max-width: 535px){
+
+  .formInputBtn {
+    width: 35% !important;
+    margin-left: 10rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 491px){
+
+  .formInputBtn {
+    margin-left: 8rem !important;
+  }
+}
+
+@media only screen and (max-width: 471px){
+
+  .formInputBtn {
+    width: 40% !important;
+    margin-left: 7rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 431px){
+
+  .formInput {
+    margin-top: 1rem !important;
+    width: 100%;
+    float:left;
+  }
+}
+
+
+@media only screen and (max-width: 423px){
+  .formInputBtn {
+    width: 45% !important;
+    margin-left: 6rem !important;
+  }
+}
+
+@media only screen and (max-width: 386px){
+  .formInputBtn {
+    width: 100% !important;
+    margin-left: 0rem !important;
+  }
+}
+
+
+
+
+

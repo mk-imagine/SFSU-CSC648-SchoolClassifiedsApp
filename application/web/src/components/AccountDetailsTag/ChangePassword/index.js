@@ -69,7 +69,6 @@ const ChangePassword = () => {
       <Row>
         <h3 className={styles.Title}>Change Password</h3>
       </Row>
-
       <Row>
         <Col></Col>
         <Col lg={5}>
