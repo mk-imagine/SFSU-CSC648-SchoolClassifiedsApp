@@ -22,16 +22,17 @@ router.post('/create', (req, res, next) => {
             if (wasSuccessful != -1) {
                 successPrint(`Message was created for ${senderId}`);
                 res.json({
-                    code: 1,
-                    status: "success - message created",
-                    recipient: recipientId,
-                    message: message
+                    status: 1,
+                    message: "success - message created",
+                    recipient_userID: recipientId,
+                    user_message: message
                 })
             } else {
                 errorPrint("Message was not created");
                 res.json({
-                    code: -1,
-                    status: "danger - message was not created",
+                    status: -1,
+                    message: "danger - message was not created",
+                    //redirect_url: "http://localhost:3000/" or back to message?
                 })
             }
         })
