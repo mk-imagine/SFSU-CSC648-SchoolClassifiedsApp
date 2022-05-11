@@ -152,6 +152,7 @@ const ItemPost = () => {
     setDescription("");
     setSelectedCategoryId(null);
     setSelectedCategory("Select Category");
+    setImageToShow(image);
     console.log("Cancel Button Clicked");
   };
 
