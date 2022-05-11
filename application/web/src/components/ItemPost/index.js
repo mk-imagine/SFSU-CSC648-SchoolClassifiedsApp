@@ -257,13 +257,13 @@ const ItemPost = () => {
                 {toggleCourse ? (
                   <div>
                     <div style={{ marginTop: "1.5rem" }}></div>
-                    <Row className="align-items-center"></Row>
+                    <Row className="align-items-center">
                     <Col lg={3}>
                       <div className={styles.subtitle}>Course Number:*</div>
                     </Col>
                     <Col>
                       <input
-                        className={styles.input}
+                        className={styles.courseNumInput}
                         type="text"
                         name="coursenumber"
                         placeholder="e.g.CSC648"
@@ -272,6 +272,8 @@ const ItemPost = () => {
                         onChange={(e) => setCourse(e.target.value)}
                       />
                     </Col>
+                    </Row>
+
                   </div>
                 ) : null}
 
