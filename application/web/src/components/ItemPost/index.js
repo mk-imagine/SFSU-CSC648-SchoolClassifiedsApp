@@ -33,7 +33,11 @@ const ItemPost = () => {
   const navigate = useNavigate();
   const userInformation = localStorage.getItem("user_login_information");
 
-  const json_user = JSON.parse(userInformation);
+  const json_user = {};
+  if (userInformation != "loggedOut") {
+    const json_user = JSON.parse(userInformation);
+  }
+
   // console.log("user informatioin in item post bar", userInformation);
 
   const base_url = "http://localhost:3100/api";
@@ -53,6 +57,7 @@ const ItemPost = () => {
   const handleSubmit = () => {
     //checking if user is logged in
 
+    console.log("Inside handle submit");
     if (userInformation) {
       if (userInformation !== "loggedOut") {
         //user is logged in
@@ -215,16 +220,6 @@ const ItemPost = () => {
                 <Col>
                   <Row className="align-items-center">
                     <ButtonGroup justified>
-                      {/* <Dropdown className={styles.dropdown}>
-                        <Dropdown.Toggle className={styles.dropdown}>
-                          Category
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu style={{ width: "94%" }}>
-                          <Dropdown.Item> Item1</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown> */}
-
                       <Dropdown
                         onSelect={dropDownChange}
                         value={selectedCategory}
@@ -259,22 +254,21 @@ const ItemPost = () => {
                   <div>
                     <div style={{ marginTop: "1.5rem" }}></div>
                     <Row className="align-items-center">
-                    <Col lg={3}>
-                      <div className={styles.subtitle}>Course Number:*</div>
-                    </Col>
-                    <Col>
-                      <input
-                        className={styles.courseNumInput}
-                        type="text"
-                        name="coursenumber"
-                        placeholder="e.g.CSC648"
-                        required
-                        value={course}
-                        onChange={(e) => setCourse(e.target.value)}
-                      />
-                    </Col>
+                      <Col lg={3}>
+                        <div className={styles.subtitle}>Course Number:*</div>
+                      </Col>
+                      <Col>
+                        <input
+                          className={styles.courseNumInput}
+                          type="text"
+                          name="coursenumber"
+                          placeholder="e.g.CSC648"
+                          required
+                          value={course}
+                          onChange={(e) => setCourse(e.target.value)}
+                        />
+                      </Col>
                     </Row>
-
                   </div>
                 ) : null}
 

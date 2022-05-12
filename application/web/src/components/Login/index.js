@@ -51,6 +51,7 @@ const Login = ({ setToken }) => {
       })
       .catch((error) => {
         console.log("what is the error?: " + error);
+        alert("Incorrect login information");
       });
   };
 

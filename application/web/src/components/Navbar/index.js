@@ -108,10 +108,12 @@ const Navbar = (props) => {
           " search term: ",
           searchTerm
         );
-        axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
-          setItems(res.data);
-          setNumberOfItems(res.data.length);
-        });
+        axios
+          .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
       } else if (
         category_id !== 0 &&
         searchTerm === "" &&
@@ -120,10 +122,12 @@ const Navbar = (props) => {
         // we return items according to categorys
         console.log("In two");
         setToggle(true);
-        axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
-          setItems(res.data);
-          setNumberOfItems(res.data.length);
-        });
+        axios
+          .get(`${base_url}/searchcategory/${category_name}/date/desc`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
       } else if (
         category_id !== 0 &&
         searchTerm !== "" &&
@@ -133,7 +137,9 @@ const Navbar = (props) => {
         console.log("In three and category id is ", category_id);
         setToggle(true);
         axios
-          .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+          .get(
+            `${base_url}/itemwithcategory/${searchTerm}/${category_name}/date/desc`
+          )
           .then((res) => {
             setItems(res.data);
             setNumberOfItems(res.data.length);
