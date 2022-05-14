@@ -16,7 +16,6 @@ export default function validate(values) {
       const atLeastOneUppercase = new RegExp("^(?=.*?[A-Z]).+$");
       const atLeastOneDigit = new RegExp("^(?=.*?[0-9]).+$");
       // const atLeastOneSpecial = new RegExp("^(?=.*?[#?!@$%^&*-]).+$");
-
       const atLeastOneSpecial = new RegExp("^(?=.*?[/*-+!@#$^&]).+$");
      
 
