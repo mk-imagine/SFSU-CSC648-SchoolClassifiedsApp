@@ -56,7 +56,7 @@ const Navbar = (props) => {
   }, [userInformation]);
 
   const getAllItems = () => {
-    axios.get(`${base_url}/items`).then((res) => {
+    axios.get(`${base_url}/items/date/desc`).then((res) => {
       setItems(res.data);
       setNumberOfTotalItems(res.data.length);
     });
@@ -154,7 +154,7 @@ const Navbar = (props) => {
           category_name
         );
         setToggle(false);
-        axios.get(`${base_url}/items`).then((res) => {
+        axios.get(`${base_url}/items/date/desc`).then((res) => {
           setItems(res.data);
           setNumberOfItems(res.data.length);
         });
