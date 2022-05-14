@@ -1,20 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./index.module.css";
 import useChangePasswordForm from "./useChangePasswordForm";
 import changePasswordValidate from "./ChangePasswordValidate";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
+  const [email, setEmail] = useState("");
+
   const { handleChange, handleRecover, values, errors } = useChangePasswordForm(
     changePasswordValidate
   );
+
+  const navigate = useNavigate();
+
+  const base_url = "http://localhost:3100/api";
+  const userInformation = localStorage.getItem("user_login_information");
+  const user_in_json = JSON.parse(userInformation);
+
+  const resetPassword = () => {
+    //TODO: Works only first time, not second time
+    console.log(values.newPassword);
+    console.log(values.comfirmNewPassword);
+
+    axios
+      .get(`${base_url}/login/getUser/${user_in_json.user_id}`)
+      .then((res) => {
+        // setUserInfo(res.data);
+        // console.log(userInfo);
+
+        setEmail(res.data[0].user_email);
+
+        var data1 = {
+          email: email,
+          password: values.comfirmNewPassword
+        };
+        var config = {
+          method: "post",
+          // url: "/api/login/login",  // FOR DEPLOYMENT
+          url: "http://localhost:3100/api/login/resetPassword",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          data: data1
+        };
+
+        axios(config)
+          .then((response) => {
+            console.log("What is the response?: ", response.data);
+
+            if (response.data.status === 200) {
+              alert("Your password has been reset.");
+              navigate("/");
+            } else {
+              alert("Error in resetting password");
+            }
+          })
+          .catch((error) => {
+            console.log("what is the error?: " + error);
+            alert("Error in resetting password");
+          });
+      });
+  };
 
   return (
     <Container>
       <Row>
         <h3 className={styles.Title}>Change Password</h3>
       </Row>
-
       <Row>
         <Col></Col>
         <Col lg={5}>
@@ -53,12 +107,10 @@ const ChangePassword = () => {
             </Row>
             <Row>
               <div className={styles.formInputComponent}>
-                <label className={styles.formLable}>
-                  Create new password*:
-                </label>
+                <label className={styles.formLable}>New password*:</label>
                 <input
                   className={styles.formInput}
-                  type="text"
+                  type="password"
                   name="newPassword"
                   placeholder="Enter your new password"
                   value={values.newPassword}
@@ -76,7 +128,7 @@ const ChangePassword = () => {
                 </label>
                 <input
                   className={styles.formInput}
-                  type="text"
+                  type="password"
                   name="comfirmNewPassword"
                   placeholder="Confirm your new password"
                   value={values.comfirmNewPassword}
@@ -91,7 +143,11 @@ const ChangePassword = () => {
             <Row>
               <Col></Col>
               <Col lg={5}>
-                <Button className={styles.formInputBtn} type="submit">
+                <Button
+                  className={styles.formInputBtn}
+                  type="submit"
+                  onClick={resetPassword}
+                >
                   Reset Password
                 </Button>
               </Col>

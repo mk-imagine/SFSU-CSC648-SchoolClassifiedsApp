@@ -1,6 +1,12 @@
+.registerComponent{
+  width: 80% !important;
+  margin: auto !important;
+
+}
+
+
 .formInputs {
   margin-bottom: 1rem;
-  /* width: 80%; */
 }
 
 .title {
@@ -10,15 +16,11 @@
 .formInputs p {
   font-size: 1rem;
   color: #f10c0c;
-  /* margin-left: 50%; */
 }
 
 .formLabel {
-  /* display: inline-block; */
   font-size: 1rem;
-  /* margin-bottom: 6px; */
   color: rgb(17, 17, 17);
-  /* margin-right: 0.5rem; */
   text-align: right;
 }
 
@@ -31,8 +33,6 @@
 
 .formInput {
   display: inline;
-  /* padding-left: 10px; */
-  /* outline: none; */
   border-radius: 6px;
   height: 35px;
   width: 100%;
@@ -41,11 +41,6 @@
   float: right;
 }
 
-/* .form-input::placeholder {
-    color: #595959;
-    font-size: 12px;
-  }
-   */
 
 .termPrivacyCheck {
   text-align: center;
@@ -54,16 +49,11 @@
 .formInputBtn {
   width: 100%;
   height: 50px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   border-radius: 10px;
   background: #5f27cd;
   color: white;
-
-  /* outline: none;
-  border: none;
-  color: #fff;
-  font-size: 1rem; */
 }
 
 .formInputBtn:hover {
@@ -72,7 +62,7 @@
 }
 
 .formInputLogin {
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: rgb(20, 19, 19);
   text-align: center;
 }
@@ -82,3 +72,27 @@
   color: #27cdff;
   font-weight: 600;
 }
+
+.showPasswordBtn {
+  width: 8rem !important;
+  height: 2rem !important;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #5f27cd;
+  color: white;
+  font-size: 0.8rem !important;
+  margin-left: 1rem !important;
+}
+
+
+
+
+@media only screen and (max-width: 768px){
+  .title{
+    text-align: center !important;
+  }
+}
+
+
+

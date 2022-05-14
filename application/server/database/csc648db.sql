@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_lname` VARCHAR(64) NULL,
   `user_email` VARCHAR(128) NULL,
   `user_registrationrecord` VARCHAR(16) NULL,
-  `user_password` VARCHAR(255) NULL,
+  `user_password` VARCHAR(64) NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_username_UNIQUE` (`user_username` ASC) VISIBLE,
   UNIQUE INDEX `user_email_UNIQUE` (`user_email` ASC) VISIBLE)
@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_golive_time` DATETIME NULL,
   `item_course` VARCHAR(45) NULL,
   `item_postexpires` DATETIME NULL,
+  `item_approved` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`item_id`),
   INDEX `category_fk_idx` (`item_category` ASC) VISIBLE,
   INDEX `seller_fk_idx` (`item_seller_id` ASC) VISIBLE,
@@ -74,26 +75,6 @@ CREATE TABLE IF NOT EXISTS `item` (
     ON UPDATE CASCADE,
   CONSTRAINT `item_seller_fk`
     FOREIGN KEY (`item_seller_id`)
-    REFERENCES `user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `session`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `sessions` ;
-
-CREATE TABLE IF NOT EXISTS `sessions` (
-  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `session_user` INT UNSIGNED NULL,
-  `expires` int unsigned NOT NULL,
-  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  PRIMARY KEY (`session_id`),
-  INDEX `user_FK_idx` (`session_user` ASC) VISIBLE,
-  CONSTRAINT `session_user_FK`
-    FOREIGN KEY (`session_user`)
     REFERENCES `user` (`user_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)

@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Container,
-  Button,
-  Dropdown,
-  ButtonGroup,
-  Form,
-} from "react-bootstrap";
+import { Row, Col, Container, Button, Form } from "react-bootstrap";
 import styles from "./index.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 /**
  * Load Message Send component
@@ -17,8 +10,10 @@ import { useLocation } from "react-router-dom";
  */
 const Message = () => {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const { item_details, image } = state;
   console.log("in message page:", item_details);
+
   const full_name = item_details.user_fname + " " + item_details.user_lname;
 
   //New Modification for clearing inputs after clicking Cancle button
@@ -28,7 +23,70 @@ const Message = () => {
   const clearFields = () => {
     setContact("");
     setMessage("");
-    console.log("Cancel Button Clik");
+    console.log("Cancel Button Clicked");
+  };
+
+  const sendMessage = () => {
+    const userInformation = localStorage.getItem("user_login_information");
+    console.log("user informatioin in message post", userInformation);
+    console.log("send message btn clicked");
+
+    if (userInformation) {
+      //user is logged in -> send the message
+      if (userInformation != "loggedOut") {
+        //send the message
+        console.log("sending message");
+        const info = localStorage.getItem("user_login_information");
+        const info_json = JSON.parse(info);
+        const user_id = info_json.user_id;
+        sendPostMessageRequest(user_id);
+      } else {
+        alert("Please login to send the message");
+        window.open("/login", "_blank");
+      }
+    } else {
+      alert("Please login to send the message");
+      window.open("/login", "_blank");
+    }
+  };
+
+  const sendPostMessageRequest = (user_id_of_loggedin_person) => {
+    //sending axios post message here
+
+    //TODO: Putting the seller ID.
+    var data1 = {
+      itemId: item_details.item_id,
+      senderId: user_id_of_loggedin_person,
+      recipientId: item_details.sellerid,
+      meet_time: "null",
+      location: "null",
+      contactInfo: contact,
+      message: message
+    };
+
+    var config = {
+      method: "post",
+      // url: "/api/login/login",  // FOR DEPLOYMENT
+      url: "http://localhost:3100/api/msg/create",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: data1
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log("Message sent ", response.data);
+        alert(
+          "Message sent Succesfully. Please Wait for upto 24 hours, for the seller to respond"
+        );
+        navigate("/");
+
+        //console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log("Error in sending message: " + error);
+      });
   };
 
   return (
@@ -63,46 +121,6 @@ const Message = () => {
                   <div className={styles.sellerNameFetch}>{full_name} </div>
                 </Col>
               </Row>
-
-              {/* <div style={{ marginTop: "1rem" }}></div> */}
-
-              {/* <Row className="align-items-center">
-                <Col lg={3}>
-                  <div className={styles.subtitle}>Meetup Schedule*:</div>
-                </Col>
-
-                <Col>
-                  <Row className="align-items-center">
-                    <ButtonGroup justified>
-                      <Dropdown style={{ width: "100%" }}>
-                        <Dropdown.Toggle className={styles.dropdown}>
-                          Date
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu style={{ width: "90%" }}>
-                          <Dropdown.Item> 4/15/2022</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </ButtonGroup>
-                  </Row>
-                </Col>
-
-                <Col>
-                  <Row className="align-items-center">
-                    <ButtonGroup justified>
-                      <Dropdown style={{ width: "100%" }}>
-                        <Dropdown.Toggle className={styles.dropdown}>
-                          Time
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu style={{ width: "90%" }}>
-                          <Dropdown.Item> 10:00 A.M.</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </ButtonGroup>
-                  </Row>
-                </Col>
-              </Row> */}
 
               <div style={{ marginTop: "2rem" }}></div>
 
@@ -148,23 +166,19 @@ const Message = () => {
               <Row>
                 <img src={image} alt="itemImage" className={styles.image}></img>
               </Row>
-              {/* <Row>
-                <Col> </Col>
-
-                <Col>
-                  <Button className={styles.button}>Send</Button>
-                </Col>
-
-                <Col> </Col>
-              </Row> */}
-              <Row style={{ marginTop: "1rem", marginLeft: "4rem" }}>
+              <Row
+                className={styles.button}
+                style={{ marginTop: "1rem", marginLeft: "4rem" }}
+              >
                 <Col>
                   <Button className={styles.cancelButton} onClick={clearFields}>
                     Cancel
                   </Button>
                 </Col>
                 <Col>
-                  <Button className={styles.sendButton}>Send</Button>
+                  <Button className={styles.sendButton} onClick={sendMessage}>
+                    Send
+                  </Button>
                 </Col>
               </Row>
             </Col>

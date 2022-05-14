@@ -50,14 +50,6 @@ VALUES
 ("Brown v. Board of Education", "A required book for HIST 471", 10.00, 'bvb.jpeg', 3, 8, 
 'thumbnail-bvb.jpeg', '2022-04-08 05:30:00', NULL, 'HIST 471', '2023-01-02 05:30:00');
 
-INSERT INTO session (session_id, session_user, session_expires, session_data)
-VALUES
-('1', 8, NULL, NULL),
-('2', 7, '2022-04-12 00:00:00', NULL),
-('3', 6, '2022-04-12 00:00:00', NULL),
-('45', 5, '2022-04-12 00:00:00', NULL),
-('5', 4, '2022-04-12 00:00:00', NULL);
-
 INSERT INTO message (msg_sender, msg_recipient, msg_meet_time, msg_location, msg_contactinfo, msg_body, msg_timestamp)
 VALUES
 (1, 2, '2022-04-12 10:00:00', 'Cesar Chavez BofA ATM', '415-555-1212', 'About painting', '2022-04-09 10:00:00'),

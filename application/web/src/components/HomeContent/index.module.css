@@ -1,12 +1,23 @@
-.greeting{
-    margin-top: 1rem;
-    margin-left: 8rem;
-    font-size: 2rem;
-    color: #5f27cd;
+.greeting {
+  margin-top: 1rem;
+  margin-left: 8rem;
+  font-size: 2rem;
+  color: #5f27cd;
 }
 
-.introduction{
-    margin-top: 1rem;
-    margin-left: 8rem;
-    font-size: 1.5rem;
+.introduction {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 1149px) {
+  .introduction {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 983px) {
+  .introduction {
+    font-size: 1rem;
+  }
 }

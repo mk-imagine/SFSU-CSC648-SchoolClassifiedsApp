@@ -6,48 +6,71 @@
 // import MyAccount from "../MyAccount";
 
 // Jiasheng
-import React from "react";
-import Tab from "react-bootstrap/Tab";
-import { Col, Container, Row, Button, Dropdown } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Button,
+  Dropdown,
+  Tag,
+  Tags
+} from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import styles from "./index.module.css";
+import PostItemCard from "../PostHistoryItemCard";
+import axios from "axios";
+import SentMessages from "../SentMessages";
+import ReceivedMessages from "../ReceivedMessage";
+
+// import postHistoryItemCard from "../PostHistoryItemCard";
 
 /**
  * Loads My Page component
  * @returns HTML of MyPage
  */
 const MyPageComponent = () => {
-  return (
-    // <div>
-    //   <div>
-    //     <div style={{ marginTop: "4rem" }}></div>
-    //     <Row>
-    //       <Col></Col>
-    //       <Col lg={11}>
-    //         <Paper elevation={3} style={{ height: "40rem" }}>
-    //           <Tabs
-    //             defaultActiveKey="profile"
-    //             id="uncontrolled-tab-example"
-    //             className="mb-3"
-    //           >
-    //             <Tab eventKey="messages" title="My Messages">
-    //               <MyMessages />
-    //             </Tab>
-    //             <Tab eventKey="profile" title="Sent Messages">
-    //               <SentMessages />
-    //             </Tab>
-    //             <Tab eventKey="contact" title="My Account">
-    //               <MyAccount />
-    //             </Tab>
-    //           </Tabs>
-    //         </Paper>
-    //       </Col>
-    //       <Col></Col>
-    //     </Row>
-    //   </div>
-    // </div>
+  const [items, setItems] = useState([]);
+  const [userItems, setUserItems] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
-    // Jiasheng
+  const columnsPerRow = 3;
+  const base_url = "http://localhost:3100/api";
+
+  const userInformation = localStorage.getItem("user_login_information");
+  const user_in_json = JSON.parse(userInformation);
+
+  useEffect(() => {
+    getUserItems();
+    getUserInfo();
+  }, []);
+
+  const getUserItems = () => {
+    axios.get(`${base_url}/sellerItems/${user_in_json.user_id}`).then((res) => {
+      console.log(res.data);
+      setItems(res.data);
+    });
+  };
+
+  const getUserInfo = () => {
+    axios
+      .get(`${base_url}/login/getUser/${user_in_json.user_id}`)
+      .then((res) => {
+        // setUserInfo(res.data);
+        // console.log(userInfo);
+        setFirstName(res.data[0].user_fname);
+        setLastName(res.data[0].user_lname);
+        setEmail(res.data[0].user_email);
+      });
+
+    console.log("user info", userInfo);
+  };
+
+  return (
     <Container className={styles.Container}>
       <Row>
         <Col lg={2}>
@@ -58,7 +81,7 @@ const MyPageComponent = () => {
       </Row>
 
       <Row style={{ marginTop: "2rem" }}>
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container id="left-tabs-example" defaultActiveKey="post-history">
           <Row>
             <Col lg={7}>
               <Row>
@@ -123,20 +146,15 @@ const MyPageComponent = () => {
               <Tab.Content>
                 {/* Post History Page  */}
                 <Tab.Pane eventKey="post-history">
-                  <Row>
-                    <Col>
-                      <div className={styles.CurrentPageTitle}>
-                        Post History
-                      </div>
-                    </Col>
+                  {/* <Row>
+                    <Col></Col>
 
                     <Col lg={9}>
                       <Row>
-                        <Col lg={1}></Col>
                         <Col>
                           <Dropdown
-                            value="Location"
-                            style={{ marginLeft: "18rem", marginTop: "0.5rem" }}
+                            value="Status"
+                            className={styles.statusDropdown}
                           >
                             <Dropdown.Toggle
                               variant="success"
@@ -151,12 +169,12 @@ const MyPageComponent = () => {
                             </Dropdown.Menu>
                           </Dropdown>
                         </Col>
+
                         <Col>
                           <Dropdown
                             value="Sort By"
                             style={{
-                              marginLeft: "0.5rem",
-                              marginTop: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             <Dropdown.Toggle
@@ -172,11 +190,11 @@ const MyPageComponent = () => {
                             </Dropdown.Menu>
                           </Dropdown>
                         </Col>
+
                         <Col>
                           <Button
                             style={{
-                              marginTop: "0.5rem",
-                              marginLeft: "0.5rem",
+                              marginTop: "0.5rem"
                             }}
                           >
                             Apply
@@ -184,180 +202,60 @@ const MyPageComponent = () => {
                         </Col>
                       </Row>
                     </Col>
-                  </Row>
+                  </Row> */}
 
                   <Row style={{ marginTop: "2rem" }}>
-                    <Col>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Item Name
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Time
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Status
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostHistoryPageDisplayLabel}>
-                        Explanation
-                      </div>
-                    </Col>
+                    <Container>
+                      <Row xs={1} md={columnsPerRow}>
+                        {items.map((e) => {
+                          let image_url = `${base_url}/images/${e.item_pic}`;
+                          let status = "";
+                          if (parseInt(e.itemapproved) === 0) {
+                            status = "Pending";
+                          } else {
+                            status = "Approved";
+                          }
 
-                    <Col></Col>
-                  </Row>
+                          const timestamp = new Date(e.item_created);
+                          const date = timestamp.toLocaleDateString();
 
-                  {/* Post Info fetching Area */}
-                  <Row>
-                    <Col>
-                      <div className={styles.PostFethcingItemName}>
-                        Rare Painting
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostFethcingTime}>4/17/2022</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostFethcingStatus}>Approve</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.PostFethcingExplanation}>
-                        Item publicized
-                      </div>
-                    </Col>
-                    <Col>
-                    <Row>
-                    <Col></Col>
-                      <Col>
-                        <Button className={styles.DetailButton}>Details</Button>
-                      </Col>
-                      <Col></Col>
-                    </Row>
-                    </Col>
+                          return (
+                            <div className={styles.itemCard}>
+                              <div style={{ marginTop: "2rem" }}></div>
+                              <PostItemCard
+                                price={e.item_price}
+                                itemName={e.item_name}
+                                description={e.item_desc}
+                                categoryName={e.category_name}
+                                date={date}
+                                approved={status}
+                                image={image_url}
+                              />
+                            </div>
+                          );
+                        })}
+                      </Row>
+                    </Container>
                   </Row>
                 </Tab.Pane>
 
                 {/* Message Page  */}
                 <Tab.Pane eventKey="message" style={{ marginLeft: "1rem" }}>
-                  <Row>
-                    <Col>
-                      <div className={styles.CurrentPageTitle}>Messages</div>
-                    </Col>
-
-                    <Col lg={9}>
-                      <Row>
-                        {/* <Col>
-                          <Dropdown
-                            value="Location"
-                            style={{ marginLeft: "18rem", marginTop: "0.5rem" }}
-                          >
-                            <Dropdown.Toggle
-                              variant="success"
-                              id="dropdown-basic"
-                            >
-                              Locations
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                              <Dropdown.Item eventKey="" onClick="">
-                                HSS
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </Col> */}
-                        <Col></Col>
-                        <Col></Col>
-                        <Col></Col>
-                        <Col>
-                          <Dropdown
-                            value="Sort By"
-                            style={{
-                              marginLeft: "0.5rem",
-                              marginTop: "0.5rem",
-                            }}
-                          >
-                            <Dropdown.Toggle
-                              variant="success"
-                              id="dropdown-basic"
-                            >
-                              Sort By Date
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                              <Dropdown.Item eventKey="" onClick="">
-                                Sort By Alphabets
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </Col>
-                        <Col>
-                          <Button
-                            style={{
-                              marginTop: "0.5rem",
-                              marginLeft: "0.5rem",
-                            }}
-                          >
-                            Apply
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-
-                  <Row style={{ marginTop: "2rem" }}>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>Date</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>
-                        Username
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>Item</div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>
-                        Message
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessagePageDisplayLabel}>
-                        Contact
-                      </div>
-                    </Col>
-                  </Row>
-
                   {/* Message Info fetching Area */}
-                  <Row>
-                    <Col>
-                      <div className={styles.MessageFethcingUsername}>
-                        4/27/2022
+                  <Tabs defaultActiveKey={1} id="noanim-tab-example">
+                    {/* Display Sent Message Tags */}
+                    <Tab eventKey={1} title="Message Inbox">
+                      <div style={{ overflow: "scroll", height: "30rem" }}>
+                        <ReceivedMessages />
                       </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingUsername}>
-                        Jiasheng Li
+                    </Tab>
+                    {/* Display Received Message Tags */}
+                    <Tab eventKey={2} title="Sent Message">
+                      <div style={{ overflow: "scroll", height: "30rem" }}>
+                        <SentMessages />
                       </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingLocation}>
-                        Rare Painting
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingMessage}>
-                        Is your item still available?
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className={styles.MessageFethcingContact}>
-                        415-706-3270
-                      </div>
-                    </Col>
-                  </Row>
+                    </Tab>
+                  </Tabs>
                 </Tab.Pane>
 
                 {/* Account Details Display */}
@@ -373,7 +271,7 @@ const MyPageComponent = () => {
                       <div className={styles.UsernameLable}>First name:</div>
                     </Col>
                     <Col lg={2}>
-                      <div className={styles.UsernameFetch}>Jiasheng</div>
+                      <div className={styles.UsernameFetch}>{firstName}</div>
                     </Col>
                   </Row>
                   <Row>
@@ -381,7 +279,7 @@ const MyPageComponent = () => {
                       <div className={styles.UsernameLable}>Last name:</div>
                     </Col>
                     <Col lg={2}>
-                      <div className={styles.UsernameFetch}> Li</div>
+                      <div className={styles.UsernameFetch}> {lastName}</div>
                     </Col>
                   </Row>
 
@@ -390,9 +288,7 @@ const MyPageComponent = () => {
                       <div className={styles.EmailLable}>Email:</div>
                     </Col>
                     <Col lg={2}>
-                      <div className={styles.EmailFecth}>
-                        jli29@mail.sfsu.edu
-                      </div>
+                      <div className={styles.EmailFecth}>{email}</div>
                     </Col>
                   </Row>
 
@@ -403,20 +299,6 @@ const MyPageComponent = () => {
                         <a
                           href="/changepassword"
                           style={{ marginLeft: "4rem" }}
-                        >
-                          Reset
-                        </a>
-                      </span>
-                    </Col>
-                  </Row>
-
-                  <Row style={{ marginTop: "1rem" }}>
-                    <Col>
-                      <span style={{ fontSize: "1.2rem" }}>
-                        Reset Username:{" "}
-                        <a
-                          href="/changeusername"
-                          style={{ marginLeft: "3.5rem" }}
                         >
                           Reset
                         </a>

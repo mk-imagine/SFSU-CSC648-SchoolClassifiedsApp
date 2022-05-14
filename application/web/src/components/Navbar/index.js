@@ -26,6 +26,8 @@ const Navbar = (props) => {
   const [numberOfTotalItems, setNumberOfTotalItems] = useState(0);
   // eslint-disable-next-line
   const [numberOfItems, setNumberOfItems] = useState(0);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  //const [userInformation, setUserInformation] = useState();
 
   //const { Provider, Consumer } = React.createContext({ items: [] });
 
@@ -33,13 +35,28 @@ const Navbar = (props) => {
   const base_url = "/api";
   // const base_url = "http://localhost:3100/api";
 
+  const userInformation = localStorage.getItem("user_login_information");
+  // let userJSON = JSON.parse(userInformation);
+  // console.log("JSON: ", userJSON);
+
   useEffect(() => {
     fetchCategories();
     getAllItems();
-  }, []);
+    if (userInformation) {
+      if (userInformation != "loggedOut") {
+        //user is logged in
+        console.log("i am logged in");
+        setUserLoggedIn(true);
+      }
+    } else {
+      //user is logged out
+      console.log("i am logged out");
+      setUserLoggedIn(false);
+    }
+  }, [userInformation]);
 
   const getAllItems = () => {
-    axios.get(`${base_url}/items`).then((res) => {
+    axios.get(`${base_url}/items/date/desc`).then((res) => {
       setItems(res.data);
       setNumberOfTotalItems(res.data.length);
     });
@@ -91,10 +108,12 @@ const Navbar = (props) => {
           " search term: ",
           searchTerm
         );
-        axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
-          setItems(res.data);
-          setNumberOfItems(res.data.length);
-        });
+        axios
+          .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
       } else if (
         category_id !== 0 &&
         searchTerm === "" &&
@@ -103,10 +122,12 @@ const Navbar = (props) => {
         // we return items according to categorys
         console.log("In two");
         setToggle(true);
-        axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
-          setItems(res.data);
-          setNumberOfItems(res.data.length);
-        });
+        axios
+          .get(`${base_url}/searchcategory/${category_name}/date/desc`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
       } else if (
         category_id !== 0 &&
         searchTerm !== "" &&
@@ -116,7 +137,9 @@ const Navbar = (props) => {
         console.log("In three and category id is ", category_id);
         setToggle(true);
         axios
-          .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+          .get(
+            `${base_url}/itemwithcategory/${searchTerm}/${category_name}/date/desc`
+          )
           .then((res) => {
             setItems(res.data);
             setNumberOfItems(res.data.length);
@@ -131,16 +154,12 @@ const Navbar = (props) => {
           category_name
         );
         setToggle(false);
-        axios.get(`${base_url}/items`).then((res) => {
+        axios.get(`${base_url}/items/date/desc`).then((res) => {
           setItems(res.data);
           setNumberOfItems(res.data.length);
         });
       }
     }
-  };
-
-  const OnLogin = () => {
-    navigate("/login");
   };
 
   const checkInputLength = () => {
@@ -151,13 +170,121 @@ const Navbar = (props) => {
     }
   };
 
+  const logout = () => {
+    var config = {
+      method: "post",
+      // url: "/api/login/login",  // FOR DEPLOYMENT
+      url: "http://localhost:3100/api/login/logout",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log("Logout Response", response.data);
+
+        localStorage.setItem("user_login_information", "loggedOut");
+        // setUserInformation("loggedOut");
+        setUserLoggedIn(false);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Error in logout: " + error);
+      });
+  };
+
+  const buttonsOnLogin = () => {
+    return (
+      <div className={styles.centerButtons}>
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/createpost");
+          }}
+        >
+          Post Items
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/myPage");
+          }}
+        >
+          My Page
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/about");
+          }}
+        >
+          About Us
+        </Button>
+
+        <Button className={styles.topButton} variant="primary" onClick={logout}>
+          Logout
+        </Button>
+      </div>
+    );
+  };
+
+  const buttonsOnLogout = () => {
+    return (
+      <div className={styles.centerButtons}>
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/createpost");
+          }}
+        >
+          Post Items
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Login
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Register
+        </Button>
+      </div>
+    );
+  };
+
   return (
     <div>
       <Row>
-        <div className={styles.subTitle}>
+        <div className={styles.subTitle} style={{ fontSize: "1rem" }}>
           SFSU Software Engineering Project CSC 648-848, Spring 2022. For
-          Demonstration Only
+          Demonstration Only.
+          <br />
+          <span style={{ fontSize: "1.5rem" }}>
+            A Market place that connects to people only associated with SFSU to
+            sell or purchase items
+          </span>{" "}
         </div>
+      </Row>
+      <Row>
+        <div className={styles.subTitle}></div>
       </Row>
       <div className={styles.container}>
         <div className={styles.centerMobileNav}>
@@ -239,44 +366,9 @@ const Navbar = (props) => {
             <Col md={12} sm={12} lg={4}>
               <Row>
                 <Col>
-                  <div className={styles.centerButtons}>
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={() => {
-                        navigate("/createpost");
-                      }}
-                    >
-                      Post Items
-                    </Button>
+                  {/* Things to do here wait */}
 
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={() => {
-                        navigate("/myPage");
-                      }}
-                    >
-                      My Page
-                    </Button>
-
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={OnLogin}
-                    >
-                      Login
-                    </Button>
-                    <Button
-                      className={styles.topButton}
-                      variant="primary"
-                      onClick={() => {
-                        navigate("/register");
-                      }}
-                    >
-                      Register
-                    </Button>
-                  </div>
+                  {userLoggedIn ? buttonsOnLogin() : buttonsOnLogout()}
                 </Col>
               </Row>
             </Col>
@@ -290,7 +382,8 @@ const Navbar = (props) => {
             value={{
               value: items,
               value2: numberOfItems,
-              value3: numberOfTotalItems
+              value3: numberOfTotalItems,
+              value4: searchInput
             }}
           >
             {props.children}
