@@ -173,8 +173,7 @@ const Navbar = (props) => {
   const logout = () => {
     var config = {
       method: "post",
-      // url: "/api/login/login",  // FOR DEPLOYMENT
-      url: "http://localhost:3100/api/login/logout",
+      url: `${base_url}/login/logout`,
       headers: {
         "Content-Type": "application/json"
       }
