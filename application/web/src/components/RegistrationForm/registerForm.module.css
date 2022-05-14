@@ -73,6 +73,18 @@
   font-weight: 600;
 }
 
+.showPasswordBtn {
+  width: 8rem !important;
+  height: 2rem !important;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #5f27cd;
+  color: white;
+  font-size: 0.8rem !important;
+  margin-left: 1rem !important;
+}
+
 
 
 

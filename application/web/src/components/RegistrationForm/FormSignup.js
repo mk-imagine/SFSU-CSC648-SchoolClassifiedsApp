@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 //import useRegisterForm from "./useRegisterForm";
-//import validate from "./validate";
+import validate from "./validate";
 import styles from "./registerForm.module.css";
 import axios from "axios";
 /**
@@ -15,37 +15,78 @@ const FormSignup = () => {
   const [lastname, setLastname] = React.useState("");
   const [password2, setPassword2] = React.useState("");
   const [email, setSemail] = React.useState("");
+  const [passwordShown, setPasswordShown] = React.useState(false);
+  // const [passwordShown2, setPasswordShown2] = React.useState(false);
+
   const username = email;
-  const handleSubmit = () => {
+
+  let errors = {
+    // firstname: ["Required"]
+  };
+
+  const togglePassword = (e) => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    e.preventDefault();
+    setPasswordShown(!passwordShown);
+  };
+
+  // const togglePassword2 = (e) => {
+  //   // When the handler is invoked
+  //   // inverse the boolean state of passwordShown
+  //   e.preventDefault();
+  //   setPasswordShown2(!passwordShown2);
+  // };
+
+  const handleSubmit = (e) => {
     console.log(username);
     console.log(password);
     var data1 = {
       username: username,
-      password: password,
       firstname: firstname,
       lastname: lastname,
+      email: email,
+      password: password,
       confirmPassword: password2,
-      email: email
     };
-    var config = {
-      method: "post",
-      // url: "/api/register/register",  // FOR DEPLOYMENT
-      url: "http://localhost:3100/api/register/register",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      data: data1
-    };
+    
+    console.log(password2);
 
-    axios(config)
-      .then((response) => {
-        window.location.href = response.data;
-        //console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-        alert(error);
-      });
+
+    errors = validate(data1);
+    console.log("errors..........: ", errors);
+    if ((errors.firstname).length >0 || (errors.lastname).length >0 && (errors.email).length >0 || (errors.password).length >0 
+        || (errors.confirmPassword).length >0) {
+      e.preventDefault();
+      console.log("here..........: ");
+      alert ( "First Name: " + errors.firstname + "\n\n" +
+              "Last Name: " + errors.lastname + "\n\n" +
+              "Eamil: " + errors.email + "\n\n" +
+              "Password: " + errors.password + "\n\n" +
+              "Comfirmed Password: " + errors.confirmPassword + "\n\n"
+              );
+    } else {
+      var config = {
+        method: "post",
+        // url: "/api/register/register",  // FOR DEPLOYMENT
+        url: "http://localhost:3100/api/register/register",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data1,
+      };
+
+      axios(config)
+        .then((response) => {
+          window.location.href = response.data;
+          //console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(error);
+        });
+    }
+    // console.log("errors FN: ", errors.firstname);
   };
 
   return (
@@ -62,7 +103,7 @@ const FormSignup = () => {
           <Col></Col>
 
           <Col lg={7}>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <Row>
                 <div className={styles.formInputs}>
                   <label className={styles.formLabel}>First Name*:</label>
@@ -74,6 +115,8 @@ const FormSignup = () => {
                     value={firstname}
                     onChange={(e) => setFirstname(e.target.value)}
                   />
+                  {errors.firstname &&
+                    errors.firstname.map((error) => <p>{error}</p>)}
                 </div>
               </Row>
 
@@ -110,7 +153,7 @@ const FormSignup = () => {
                   <label className={styles.formLabel}>Password*:</label>
                   <input
                     className={styles.formInput}
-                    type="password"
+                    type={passwordShown ? "text" : "password"}
                     name="password"
                     placeholder="Enter your password"
                     value={password}
@@ -118,13 +161,16 @@ const FormSignup = () => {
                   />
                 </div>
               </Row>
+              {/* <Row>
+              <button className={styles.showPasswordBtn} onClick={togglePassword} >Show Password</button>
+              </Row> */}
 
               <Row>
                 <div className={styles.formInputs}>
                   <label className={styles.formLabel}>Confirm Password*:</label>
                   <input
                     className={styles.formInput}
-                    type="password"
+                    type={passwordShown ? "text" : "password"}
                     name="password2"
                     placeholder="Confirm your password"
                     value={password2}
@@ -132,6 +178,11 @@ const FormSignup = () => {
                   />
                 </div>
               </Row>
+
+              <Row>
+              <button className={styles.showPasswordBtn} onClick={togglePassword} >Show Password</button>
+              </Row>
+
               <Col lg={8}>
                 <Row>
                   <Col>
