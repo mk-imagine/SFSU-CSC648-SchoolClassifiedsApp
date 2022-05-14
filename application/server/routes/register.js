@@ -88,15 +88,8 @@ router.post('/register', (req, res, next) => {
             console.log("what is the userID? " + userId);
             if (userId > 0) {
                 console.log('User successfuly created!');
-<<<<<<< HEAD
-                //res.redirect('http://localhost:3000/login');
-                //window.location.href = "/login";
-                // res.send("http://localhost:3000/login");
-                res.send("/login");
-=======
-                //res.send("/login"); // FOR DEPLOYMENT
-                res.send("http://localhost:3000/login");
->>>>>>> devm3-route-testing
+                res.send("/login"); // FOR DEPLOYMENT
+                // es.send("http://localhost:3000/login");
             } else {
                 // req.flash('success', 'User account has been made');
                 console.log("ERROR GOING INTO THE ELSE FOR USERID");
