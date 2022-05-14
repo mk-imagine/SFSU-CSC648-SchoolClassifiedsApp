@@ -49,23 +49,8 @@ const FormSignup = () => {
       password: password,
       confirmPassword: password2,
     };
-<<<<<<< HEAD
-    var data2 = JSON.stringify(data1);
-    console.log(data1);
-    console.log(data2);
-    var config = {
-      method: "post",
-      url: "/api/register/register",
-      // url: "http://localhost:3100/api/register/register",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data1,
-    };
-=======
     
     console.log(password2);
->>>>>>> devm3-route-testing
 
 
     errors = validate(data1);
@@ -83,8 +68,8 @@ const FormSignup = () => {
     } else {
       var config = {
         method: "post",
-        // url: "/api/register/register",  // FOR DEPLOYMENT
-        url: "http://localhost:3100/api/register/register",
+        url: "/api/register/register",  // FOR DEPLOYMENT
+        // url: "http://localhost:3100/api/register/register",
         headers: {
           "Content-Type": "application/json",
         },
