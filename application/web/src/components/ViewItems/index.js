@@ -46,7 +46,7 @@ export const ViewItems = (props) => {
     setDropdownName("Latest Items");
 
     axios
-      .get(`${base_url}/searchItems/${searchTerm}/date/desc`)
+      .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
       .then((res) => {
         setItems(res.data);
       })
@@ -59,7 +59,7 @@ export const ViewItems = (props) => {
     //get price high to low
     setDropdownName("Price: High to Low");
     axios
-      .get(`${base_url}/searchItems/${searchTerm}/price/desc`)
+      .get(`${base_url}/searchitems/${searchTerm}/price/desc`)
       .then((res) => {
         setItems(res.data);
       })
@@ -72,7 +72,7 @@ export const ViewItems = (props) => {
     //get low to high
     setDropdownName("Price: High to Low");
     axios
-      .get(`${base_url}/searchItems/${searchTerm}/price/asc`)
+      .get(`${base_url}/searchitems/${searchTerm}/price/asc`)
       .then((res) => {
         setItems(res.data);
       })
