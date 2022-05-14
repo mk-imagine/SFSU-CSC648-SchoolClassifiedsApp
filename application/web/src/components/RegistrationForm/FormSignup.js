@@ -16,7 +16,7 @@ const FormSignup = () => {
   const [password2, setPassword2] = React.useState("");
   const [email, setSemail] = React.useState("");
   const [passwordShown, setPasswordShown] = React.useState(false);
-  // const [passwordShown2, setPasswordShown2] = React.useState(false);
+
 
   const username = email;
 
@@ -30,13 +30,6 @@ const FormSignup = () => {
     e.preventDefault();
     setPasswordShown(!passwordShown);
   };
-
-  // const togglePassword2 = (e) => {
-  //   // When the handler is invoked
-  //   // inverse the boolean state of passwordShown
-  //   e.preventDefault();
-  //   setPasswordShown2(!passwordShown2);
-  // };
 
   const handleSubmit = (e) => {
     console.log(username);
@@ -86,7 +79,6 @@ const FormSignup = () => {
           alert(error);
         });
     }
-    // console.log("errors FN: ", errors.firstname);
   };
 
   return (
@@ -161,9 +153,6 @@ const FormSignup = () => {
                   />
                 </div>
               </Row>
-              {/* <Row>
-              <button className={styles.showPasswordBtn} onClick={togglePassword} >Show Password</button>
-              </Row> */}
 
               <Row>
                 <div className={styles.formInputs}>
