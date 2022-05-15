@@ -169,6 +169,19 @@ CREATE TABLE IF NOT EXISTS `itemmsgs` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `sessions`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sessions` ;
+
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `session_id` VARCHAR(128) NOT NULL,
+  `expires` INT UNSIGNED NULL,
+  `data` MEDIUMTEXT NULL,
+  PRIMARY KEY (`session_id`))
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

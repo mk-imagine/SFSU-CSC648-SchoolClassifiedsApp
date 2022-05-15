@@ -74,7 +74,7 @@ function containsNumber(pwd) {
 
 //used by passwordValid
 function containsSpecialChar(pwd) {
-    return pwd.search(/[/*\-+!@#$^&]/) != -1;
+    return pwd.search(/[*\-+!@#$^&]/) != -1;
 }
 
 module.exports = validator;

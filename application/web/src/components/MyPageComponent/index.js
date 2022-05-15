@@ -44,8 +44,6 @@ const MyPageComponent = () => {
   const userInformation = localStorage.getItem("user_login_information");
   const user_in_json = JSON.parse(userInformation);
 
-  const user_email = userInformation.user_email;
-
   useEffect(() => {
     getUserItems();
     getUserInfo();
@@ -148,7 +146,7 @@ const MyPageComponent = () => {
               <Tab.Content>
                 {/* Post History Page  */}
                 <Tab.Pane eventKey="post-history">
-                  <Row>
+                  {/* <Row>
                     <Col></Col>
 
                     <Col lg={9}>
@@ -204,7 +202,7 @@ const MyPageComponent = () => {
                         </Col>
                       </Row>
                     </Col>
-                  </Row>
+                  </Row> */}
 
                   <Row style={{ marginTop: "2rem" }}>
                     <Container>
@@ -243,63 +241,18 @@ const MyPageComponent = () => {
 
                 {/* Message Page  */}
                 <Tab.Pane eventKey="message" style={{ marginLeft: "1rem" }}>
-                  <Row>
-                    <Col>
-                      <div className={styles.CurrentPageTitle}>Messages</div>
-                    </Col>
-
-                    <Col lg={9}>
-                      <Row>
-                        <Col></Col>
-                        <Col></Col>
-                        <Col></Col>
-                        <Col>
-                          <Dropdown
-                            value="Sort By"
-                            style={{
-                              marginLeft: "0.5rem",
-                              marginTop: "0.5rem"
-                            }}
-                          >
-                            <Dropdown.Toggle
-                              variant="success"
-                              id="dropdown-basic"
-                            >
-                              Sort By Date
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                              <Dropdown.Item eventKey="" onClick="">
-                                Sort By Alphabets
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </Col>
-                        <Col>
-                          <Button
-                            style={{
-                              marginTop: "0.5rem",
-                              marginLeft: "0.5rem"
-                            }}
-                          >
-                            Apply
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-
                   {/* Message Info fetching Area */}
                   <Tabs defaultActiveKey={1} id="noanim-tab-example">
                     {/* Display Sent Message Tags */}
                     <Tab eventKey={1} title="Message Inbox">
                       <div style={{ overflow: "scroll", height: "30rem" }}>
-                        <SentMessages />
+                        <ReceivedMessages />
                       </div>
                     </Tab>
                     {/* Display Received Message Tags */}
                     <Tab eventKey={2} title="Sent Message">
                       <div style={{ overflow: "scroll", height: "30rem" }}>
-                        <ReceivedMessages />
+                        <SentMessages />
                       </div>
                     </Tab>
                   </Tabs>
@@ -346,20 +299,6 @@ const MyPageComponent = () => {
                         <a
                           href="/changepassword"
                           style={{ marginLeft: "4rem" }}
-                        >
-                          Reset
-                        </a>
-                      </span>
-                    </Col>
-                  </Row>
-
-                  <Row style={{ marginTop: "1rem" }}>
-                    <Col>
-                      <span style={{ fontSize: "1.2rem" }}>
-                        Reset Username:{" "}
-                        <a
-                          href="/changeusername"
-                          style={{ marginLeft: "3.5rem" }}
                         >
                           Reset
                         </a>

@@ -27,9 +27,7 @@ router.post("/login", (req, res, next) => {
   //console.log(req.body);
   let email = req.body.email;
   let password = req.body.password;
-  console.log(
-    "what is email : " + email + "what is password : " + password
-  );
+  console.log("what is email : " + email + "what is password : " + password);
 
   // Validator for form data
   Validator.emailValid(email)
@@ -125,6 +123,7 @@ router.get("/getUser/:userId", async (req, res, next) => {
 router.post("/resetPassword", (req, res) => {
   // let username = req.body.username;
   let email = req.body.email;
+  let username = email;
   let password = req.body.password;
   console.log("email: "+email+" password: "+password);
   UserModel.resetPassword(email, password)

@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const db = require("../config/db");
 
 /**
  * ItemsModel for Category and Item Database Queries
@@ -10,13 +10,14 @@ const ItemsModel = {};
  * @returns All Categories
  */
 ItemsModel.getCategories = () => {
-    let baseSQL = "SELECT category_name, category_id from csc648.category";
-    return db.execute(baseSQL)
-        .then(([results, fields]) => {
-            return Promise.resolve(results);
-        })
-        .catch((err) => Promise.reject(err));
-}
+  let baseSQL = "SELECT category_name, category_id from csc648.category";
+  return db
+    .execute(baseSQL)
+    .then(([results, fields]) => {
+      return Promise.resolve(results);
+    })
+    .catch((err) => Promise.reject(err));
+};
 
 /**
  * Retrieves all items
@@ -57,8 +58,8 @@ ItemsModel.getAllItems = (order, direction) => {
 
 /**
  * Retrieves items matching category and search term
- * @param {*} category 
- * @param {*} searchWord 
+ * @param {*} category
+ * @param {*} searchWord
  * @returns Items that match category and search term
  */
 ItemsModel.categoryAndItemSearch = (category, searchWord, order, direction) => {
@@ -84,7 +85,7 @@ ItemsModel.categoryAndItemSearch = (category, searchWord, order, direction) => {
 
 /**
  * Retrieves items matching category
- * @param {*} category 
+ * @param {*} category
  * @returns Items that match category
  */
 ItemsModel.categorySearch = (category, orderby, direction) => {
@@ -116,7 +117,7 @@ ItemsModel.categorySearch = (category, orderby, direction) => {
 
 /**
  * Retrieves items matching search term in all categories
- * @param {*} searchWord 
+ * @param {*} searchWord
  * @returns Items that match search term
  */
 ItemsModel.itemSearch = (searchWord, orderby, direction) => {
@@ -140,22 +141,23 @@ ItemsModel.itemSearch = (searchWord, orderby, direction) => {
 
 /**
  * Retrieves seller information matching itemId
- * @param {*} itemId 
+ * @param {*} itemId
  * @returns Seller data
  */
 ItemsModel.getItemsBySellerId = (sellerId) => {
-    let baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
+  let baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
     it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
     seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
     FROM csc648.item it
     INNER JOIN user seller ON seller.user_id = it.item_seller_id
     INNER JOIN category cat ON cat.category_id = it.item_category
     WHERE it.item_seller_id = ?;`;
-    return db.execute(baseSQL, [sellerId])
-        .then(([results, fields]) => {
-            return Promise.resolve(results);
-        })
-        .catch((err) => Promise.reject(err));
-}
+  return db
+    .execute(baseSQL, [sellerId])
+    .then(([results, fields]) => {
+      return Promise.resolve(results);
+    })
+    .catch((err) => Promise.reject(err));
+};
 
 module.exports = ItemsModel;

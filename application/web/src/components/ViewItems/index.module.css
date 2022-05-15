@@ -4,10 +4,11 @@
 
 .heading {
   font-size: 1.7rem;
-  margin-left: 7.5rem;
-  margin-top: 1rem;
 }
 
+.statusDropdown {
+  margin-top: 0.25rem;
+}
 /* Adjust itemCard to center for responsiveness */
 
 @media only screen and (max-width: 768px) {
@@ -27,7 +28,6 @@
     margin-left: 4.5rem !important;
   }
 }
-
 
 @media only screen and (max-width: 592px) {
   .itemCard {

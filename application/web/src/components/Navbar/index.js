@@ -27,6 +27,7 @@ const Navbar = (props) => {
   // eslint-disable-next-line
   const [numberOfItems, setNumberOfItems] = useState(0);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [caseName, setCase] = useState("1");
   //const [userInformation, setUserInformation] = useState();
 
   //const { Provider, Consumer } = React.createContext({ items: [] });
@@ -56,7 +57,7 @@ const Navbar = (props) => {
   }, [userInformation]);
 
   const getAllItems = () => {
-    axios.get(`${base_url}/items`).then((res) => {
+    axios.get(`${base_url}/items/date/desc`).then((res) => {
       setItems(res.data);
       setNumberOfTotalItems(res.data.length);
     });
@@ -108,10 +109,13 @@ const Navbar = (props) => {
           " search term: ",
           searchTerm
         );
-        axios.get(`${base_url}/searchitems/${searchTerm}`).then((res) => {
-          setItems(res.data);
-          setNumberOfItems(res.data.length);
-        });
+        setCase("2");
+        axios
+          .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
       } else if (
         category_id !== 0 &&
         searchTerm === "" &&
@@ -120,20 +124,25 @@ const Navbar = (props) => {
         // we return items according to categorys
         console.log("In two");
         setToggle(true);
-        axios.get(`${base_url}/searchcategory/${category_name}`).then((res) => {
-          setItems(res.data);
-          setNumberOfItems(res.data.length);
-        });
+        setCase("3");
+        axios
+          .get(`${base_url}/searchcategory/${category_name}/date/desc`)
+          .then((res) => {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          });
       } else if (
         category_id !== 0 &&
         searchTerm !== "" &&
         category_name !== "All Items"
       ) {
         //return items according to category and search term
-        console.log("In three and category id is ", category_id);
         setToggle(true);
+        setCase("4");
         axios
-          .get(`${base_url}/itemwithcategory/${searchTerm}/${category_name}`)
+          .get(
+            `${base_url}/itemwithcategory/${searchTerm}/${category_name}/date/desc`
+          )
           .then((res) => {
             setItems(res.data);
             setNumberOfItems(res.data.length);
@@ -148,7 +157,8 @@ const Navbar = (props) => {
           category_name
         );
         setToggle(false);
-        axios.get(`${base_url}/items`).then((res) => {
+        setCase("5");
+        axios.get(`${base_url}/items/date/desc`).then((res) => {
           setItems(res.data);
           setNumberOfItems(res.data.length);
         });
@@ -267,10 +277,18 @@ const Navbar = (props) => {
   return (
     <div>
       <Row>
-        <div className={styles.subTitle}>
+        <div className={styles.subTitle} style={{ fontSize: "1rem" }}>
           SFSU Software Engineering Project CSC 648-848, Spring 2022. For
-          Demonstration Only
+          Demonstration Only.
+          <br />
+          <span style={{ fontSize: "1.5rem" }}>
+            A Market place that connects to people only associated with SFSU to
+            sell or purchase items
+          </span>{" "}
         </div>
+      </Row>
+      <Row>
+        <div className={styles.subTitle}></div>
       </Row>
       <div className={styles.container}>
         <div className={styles.centerMobileNav}>
@@ -368,7 +386,10 @@ const Navbar = (props) => {
             value={{
               value: items,
               value2: numberOfItems,
-              value3: numberOfTotalItems
+              value3: numberOfTotalItems,
+              value4: searchInput,
+              value5: selectedCategory,
+              value6: caseName
             }}
           >
             {props.children}

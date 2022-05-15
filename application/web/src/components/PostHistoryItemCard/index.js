@@ -1,21 +1,52 @@
 import React from "react";
-import { Card, ListGroup } from "react-bootstrap";
+// import { Card, ListGroup } from "react-bootstrap";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 
 const PostHistoryItemCard = (props) => {
   return (
-    <Card style={{ width: "18rem", heigh: "1rem", margin: "auto" }}>
-      <Card.Img height="400" variant="top" src={props.image} />
-      <Card.Body>
-        <Card.Title>{props.itemName}</Card.Title>
-        <Card.Text>{props.description}</Card.Text>
-      </Card.Body>
-      <ListGroup variant="flush">
-        <ListGroup.Item>Price: ${props.price}</ListGroup.Item>
-        <ListGroup.Item>Category: {props.categoryName}</ListGroup.Item>
-        <ListGroup.Item>Date: {props.date}</ListGroup.Item>
-        <ListGroup.Item>Status: {props.approved}</ListGroup.Item>
-      </ListGroup>
-    </Card>
+    <div>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <div
+            style={{
+              display: "flex",
+              alignItem: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CardMedia
+              component="img"
+              height="400"
+              image={props.image}
+              alt="image here"
+            />
+          </div>
+
+          <CardContent>
+            <Typography variant="h5">{props.itemName}</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Price: ${props.price}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Category: {props.categoryName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Date: {props.date}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Description: {props.description}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Status: {props.approved}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </div>
   );
 };
 

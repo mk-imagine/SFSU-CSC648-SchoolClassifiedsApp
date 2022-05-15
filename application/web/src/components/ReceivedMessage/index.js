@@ -20,7 +20,7 @@ const ReceivedMessages = () => {
   const userId = user_in_json.user_id;
   const getReceivedMessages = () => {
     console.log("Testing by using user id 2");
-    axios.get(`${base_url}/msg/2/received`).then((res) => {
+    axios.get(`${base_url}/msg/${userId}/received`).then((res) => {
       setMessages(res.data);
       console.log("Received Messages: ", messages);
     });
