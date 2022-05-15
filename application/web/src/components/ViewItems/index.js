@@ -45,7 +45,7 @@ export const ViewItems = (props) => {
 
   const getLatestItems = () => {
     //get latest items
-    setDropdownName("Latest Items");
+    setDropdownName("Time: Newest to Oldest");
 
     if (caseId === "1" || caseId === "5") {
       axios
