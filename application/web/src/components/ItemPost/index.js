@@ -52,7 +52,7 @@ const ItemPost = () => {
 
   useEffect(() => {
     fetchCategories();
-  }, [categories]);
+  }, []);
 
   const handleSubmit = () => {
     //checking if user is logged in
