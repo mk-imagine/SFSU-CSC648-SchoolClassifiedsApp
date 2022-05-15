@@ -66,14 +66,14 @@ const Message = () => {
 
     var config = {
       method: "post",
-      // url: "/api/login/login",  // FOR DEPLOYMENT
-      url: "http://localhost:3100/api/msg/create",
+      url: "/api/msg/create",  // FOR DEPLOYMENT
+      // url: "http://localhost:3100/api/msg/create",
       headers: {
         "Content-Type": "application/json"
       },
       data: data1
     };
-
+    console.log(data1);
     axios(config)
       .then((response) => {
         console.log("Message sent ", response.data);
