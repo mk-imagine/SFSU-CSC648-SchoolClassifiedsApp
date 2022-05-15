@@ -52,7 +52,7 @@ const ItemPost = () => {
 
   useEffect(() => {
     fetchCategories();
-  }, [categories]);
+  }, []);
 
   const handleSubmit = () => {
     //checking if user is logged in
@@ -135,7 +135,7 @@ const ItemPost = () => {
 
     console.log("Before axios");
     axios
-      .post("http://localhost:3100/api/post/post", formData, config)
+      .post(`${base_url}/post/post`, formData, config)
       .then((response) => {
         console.log(response.data);
 

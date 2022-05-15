@@ -16,27 +16,29 @@ const FormSignup = () => {
   const [password2, setPassword2] = React.useState("");
   const [email, setSemail] = React.useState("");
   const [passwordShown, setPasswordShown] = React.useState(false);
-  // const [passwordShown2, setPasswordShown2] = React.useState(false);
+  const [passwordReqShow, setPasswordReqShow] = React.useState(false);
+
 
   const username = email;
 
   let errors = {
-    // firstname: ["Required"]
+    
   };
 
+  const handlePasswordInputFocus = () =>{
+       setPasswordReqShow(true);
+  };
+
+  const handlePasswordInputBlur = () =>{
+    setPasswordReqShow(false);
+};
+
   const togglePassword = (e) => {
-    // When the handler is invoked
+    // When togglePassword is invoked
     // inverse the boolean state of passwordShown
     e.preventDefault();
     setPasswordShown(!passwordShown);
   };
-
-  // const togglePassword2 = (e) => {
-  //   // When the handler is invoked
-  //   // inverse the boolean state of passwordShown
-  //   e.preventDefault();
-  //   setPasswordShown2(!passwordShown2);
-  // };
 
   const handleSubmit = (e) => {
     console.log(username);
@@ -50,19 +52,19 @@ const FormSignup = () => {
       confirmPassword: password2,
     };
     
-    console.log(password2);
-
-
+    
     errors = validate(data1);
     console.log("errors..........: ", errors);
-    if ((errors.firstname).length >0 || (errors.lastname).length >0 && (errors.email).length >0 || (errors.password).length >0 
+    
+    
+    if ((errors.firstname).length >0 || (errors.lastname).length >0 || (errors.email).length >0 || (errors.password).length >0 
         || (errors.confirmPassword).length >0) {
       e.preventDefault();
-      console.log("here..........: ");
+      let passwordValidatedMessage = errors.password.reduce((previousError, currentError) => previousError + "\n" + currentError);
       alert ( "First Name: " + errors.firstname + "\n\n" +
               "Last Name: " + errors.lastname + "\n\n" +
               "Eamil: " + errors.email + "\n\n" +
-              "Password: " + errors.password + "\n\n" +
+              "Password: " +"\n" + passwordValidatedMessage + "\n\n" +
               "Comfirmed Password: " + errors.confirmPassword + "\n\n"
               );
     } else {
@@ -86,7 +88,6 @@ const FormSignup = () => {
           alert(error);
         });
     }
-    // console.log("errors FN: ", errors.firstname);
   };
 
   return (
@@ -115,8 +116,6 @@ const FormSignup = () => {
                     value={firstname}
                     onChange={(e) => setFirstname(e.target.value)}
                   />
-                  {errors.firstname &&
-                    errors.firstname.map((error) => <p>{error}</p>)}
                 </div>
               </Row>
 
@@ -157,13 +156,20 @@ const FormSignup = () => {
                     name="password"
                     placeholder="Enter your password"
                     value={password}
+                    onFocus = {handlePasswordInputFocus}
+                    onBlur = {handlePasswordInputBlur}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+                
+                {passwordReqShow? <div style={{maginTop: "1rem", marginBottom: "1rem", color: "red"}}><Row><div>Password Requirements:</div></Row>
+                                       <Row><div>Must contain at least 8 characters</div></Row>
+                                       <Row><div>Must contain at least one lowercase character</div></Row>
+                                       <Row><div>Must contain at least at least one uppercase character</div></Row>
+                                       <Row><div>Must contain at least at least one digit</div></Row>
+                                       <Row> <div>Must contain at least at least one special character (/*-+!@#$^&)</div></Row>
+                                       </div> : null}
               </Row>
-              {/* <Row>
-              <button className={styles.showPasswordBtn} onClick={togglePassword} >Show Password</button>
-              </Row> */}
 
               <Row>
                 <div className={styles.formInputs}>
