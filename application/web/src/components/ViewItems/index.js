@@ -45,7 +45,7 @@ export const ViewItems = (props) => {
 
   const getLatestItems = () => {
     //get latest items
-    setDropdownName("Latest Items");
+    setDropdownName("Time: Newest to Oldest");
 
     if (caseId === "1" || caseId === "5") {
       axios
@@ -217,6 +217,7 @@ export const ViewItems = (props) => {
         <Row xs={1} md={columnsPerRow}>
           {items.map((e) => {
             let image_url = `${base_url}/images/${e.item_thumbnail}`;
+            const hr_img_url = `${base_url}/images/${e.item_pic}`;
             //console.log("image_url: ", image_url);
             return (
               <div className={styles.itemCard}>
@@ -227,6 +228,7 @@ export const ViewItems = (props) => {
                   description={e.item_desc}
                   price={e.item_price}
                   image={image_url}
+                  hr_image={hr_img_url}
                   item_details={e}
                 ></ItemCard>
               </div>
