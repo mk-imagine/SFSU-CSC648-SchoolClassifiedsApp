@@ -20,6 +20,8 @@ export const ViewItems = (props) => {
 
   const totolItems = props.totolItems;
   const searchTerm = props.searchTerm;
+  const category_name = props.category;
+  const caseId = props.caseId;
 
   //const navigate = useNavigate();
   const base_url = "/api";
@@ -45,41 +47,134 @@ export const ViewItems = (props) => {
     //get latest items
     setDropdownName("Latest Items");
 
-    axios
-      .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((e) => {
-        console.log("error: ", e);
-      });
+    if (caseId === "1" || caseId === "5") {
+      axios
+        .get(`${base_url}/items/date/desc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "2") {
+      axios
+        .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "3") {
+      axios
+        .get(`${base_url}/searchcategory/${category_name}/date/desc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "4") {
+      axios
+        .get(
+          `${base_url}/itemwithcategory/${searchTerm}/${category_name}/date/desc`
+        )
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    }
   };
 
   const getPriceHighToLow = () => {
     //get price high to low
     setDropdownName("Price: High to Low");
-    axios
-      .get(`${base_url}/searchitems/${searchTerm}/price/desc`)
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((e) => {
-        console.log("error: ", e);
-      });
+
+    if (caseId === "1" || caseId === "5") {
+      axios
+        .get(`${base_url}/items/price/desc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "2") {
+      axios
+        .get(`${base_url}/searchitems/${searchTerm}/price/desc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "3") {
+      axios
+        .get(`${base_url}/searchcategory/${category_name}/price/desc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "4") {
+      axios
+        .get(
+          `${base_url}/itemwithcategory/${searchTerm}/${category_name}/price/desc`
+        )
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    }
   };
 
   const getPriceLowToHigh = () => {
     //get low to high
-    setDropdownName("Price: High to Low");
-    axios
-      .get(`${base_url}/searchitems/${searchTerm}/price/asc`)
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((e) => {
-        console.log("inside axios");
-        console.log("error: ", e);
-      });
+    setDropdownName("Price: Low to High");
+    if (caseId === "1" || caseId === "5") {
+      axios
+        .get(`${base_url}/items/price/asc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "2") {
+      axios
+        .get(`${base_url}/searchitems/${searchTerm}/price/asc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "3") {
+      axios
+        .get(`${base_url}/searchcategory/${category_name}/price/asc`)
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    } else if (caseId === "4") {
+      axios
+        .get(
+          `${base_url}/itemwithcategory/${searchTerm}/${category_name}/price/asc`
+        )
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+        });
+    }
   };
 
   return (

@@ -34,7 +34,7 @@ export default function validate(values) {
         errors.email.push("SFSU email required");
       } else if (!/\S+@\S+\.\S+/.test(values.email)) {
         errors.email.push("Email address is invalid");
-      } else if (!values.email.endsWith("mail.sfsu.edu") && !values.email.endsWith("sfsu.edu")) {
+      } else if (!values.email.endsWith("sfsu.edu")) {
         errors.email.push("Your Email address is not the SFSU email") ;
       }
     
@@ -44,23 +44,23 @@ export default function validate(values) {
       } else {
     
         if(values.password.length<8){
-          errors.password.push("Min 8 characters ");
+          errors.password.push("Must contain at least 8 characters ");
         }
     
         if (!atLeastoneLowercase.test(values.password)) {
-          errors.password.push("Min 1 lowercase letter ");
+          errors.password.push("Must contain at least one lowercase character ");
         }
     
         if (!atLeastOneUppercase.test(values.password)) {
-          errors.password.push("Min 1 uppercase letter ");
+          errors.password.push("Must contain at least at least one uppercase character ");
         }
     
         if (!atLeastOneDigit.test(values.password)) {
-          errors.password.push("Min 1 digit ");
+          errors.password.push("Must contain at least at least one digit ");
         }
     
         if (!atLeastOneSpecial.test(values.password)) {
-          errors.password.push("Min 1 special character ");
+          errors.password.push("Must contain at least at least one special character (/*-+!@#$^&) ");
         }
       }
       
