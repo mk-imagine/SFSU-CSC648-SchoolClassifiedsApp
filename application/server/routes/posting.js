@@ -50,7 +50,8 @@ router.post("/post", upload.single("image"), (req, res) => {
   let picture = req.file.path;
   let picture2 = req.file.filename;
   let fileAsThumbNail = `thumb-${req.file.filename}`;
-  let thumbnail = req.file.destination + "/" + fileAsThumbNail;
+  let thumbnail = fileAsThumbNail;
+  let thumbnailpath= req.file.destination + "/" + fileAsThumbNail;
 
   // Validator for post form
   Validator.postNoNulls(category, sellerId, price, name, description, picture)
@@ -58,7 +59,12 @@ router.post("/post", upload.single("image"), (req, res) => {
     .then((notNull) => {
       console.log("in posting route after postnoNulls " + notNull);
       if (notNull) {
-        return sharp(picture).resize(200).toFile(thumbnail);
+        return sharp(picture)
+                  .resize(300, 300, {
+                    fit: 'contain',
+                    background: { r: 255, g: 255, b: 255, alpha: 0 }
+                  })
+                  .toFile(thumbnailpath);
       } else {
         throw new PostError("Missing a required form input", "/post", 200);
       }

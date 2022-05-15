@@ -216,7 +216,7 @@ export const ViewItems = (props) => {
         </Row>
         <Row xs={1} md={columnsPerRow}>
           {items.map((e) => {
-            let image_url = `${base_url}/images/${e.item_pic}`;
+            let image_url = `${base_url}/images/${e.item_thumbnail}`;
             //console.log("image_url: ", image_url);
             return (
               <div className={styles.itemCard}>
