@@ -33,9 +33,9 @@ const ItemPost = () => {
   const navigate = useNavigate();
   const userInformation = localStorage.getItem("user_login_information");
 
-  const json_user = {};
+  let json_user = {};
   if (userInformation != "loggedOut") {
-    const json_user = JSON.parse(userInformation);
+    json_user = JSON.parse(userInformation);
   }
 
   // console.log("user informatioin in item post bar", userInformation);
@@ -134,6 +134,7 @@ const ItemPost = () => {
     };
 
     console.log("Before axios");
+    console.log("sellerId....", json_user.user_id)
     axios
       .post(`${base_url}/post/post`, formData, config)
       .then((response) => {
@@ -206,7 +207,7 @@ const ItemPost = () => {
                     // onChange={(e) => setPrice(e.target.value)}
                     onChange={(e) =>
                       setPrice((v) =>
-                        e.target.validity.valid ? e.target.value : v
+                        e.target.validity.valid ? e.target.value : null
                       )
                     }
                   />
