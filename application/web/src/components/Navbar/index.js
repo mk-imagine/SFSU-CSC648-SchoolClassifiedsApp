@@ -27,6 +27,7 @@ const Navbar = (props) => {
   // eslint-disable-next-line
   const [numberOfItems, setNumberOfItems] = useState(0);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [caseName, setCase] = useState("1");
   //const [userInformation, setUserInformation] = useState();
 
   //const { Provider, Consumer } = React.createContext({ items: [] });
@@ -108,6 +109,7 @@ const Navbar = (props) => {
           " search term: ",
           searchTerm
         );
+        setCase("2");
         axios
           .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
           .then((res) => {
@@ -122,6 +124,7 @@ const Navbar = (props) => {
         // we return items according to categorys
         console.log("In two");
         setToggle(true);
+        setCase("3");
         axios
           .get(`${base_url}/searchcategory/${category_name}/date/desc`)
           .then((res) => {
@@ -134,8 +137,8 @@ const Navbar = (props) => {
         category_name !== "All Items"
       ) {
         //return items according to category and search term
-        console.log("In three and category id is ", category_id);
         setToggle(true);
+        setCase("4");
         axios
           .get(
             `${base_url}/itemwithcategory/${searchTerm}/${category_name}/date/desc`
@@ -154,6 +157,7 @@ const Navbar = (props) => {
           category_name
         );
         setToggle(false);
+        setCase("5");
         axios.get(`${base_url}/items/date/desc`).then((res) => {
           setItems(res.data);
           setNumberOfItems(res.data.length);
@@ -383,7 +387,9 @@ const Navbar = (props) => {
               value: items,
               value2: numberOfItems,
               value3: numberOfTotalItems,
-              value4: searchInput
+              value4: searchInput,
+              value5: selectedCategory,
+              value6: caseName
             }}
           >
             {props.children}

@@ -16,6 +16,8 @@ const HomeContent = () => {
               numberOfItems={value.value2}
               totolItems={value.value3}
               searchTerm={value.value4}
+              category={value.value5}
+              caseId={value.value6}
             />
           )}
         </myContext.Consumer>
