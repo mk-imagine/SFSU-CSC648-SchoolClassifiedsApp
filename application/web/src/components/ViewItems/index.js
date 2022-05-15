@@ -184,10 +184,10 @@ export const ViewItems = (props) => {
           <Col>
             {toggle ? (
               <div>
-                {numberOfItems} of {totolItems} items found
+                {numberOfItems} items found
               </div>
             ) : (
-              <div className={styles.heading}>Lastest items</div>
+              <div className={styles.heading}>All Items</div>
             )}
           </Col>
           <Col></Col>
