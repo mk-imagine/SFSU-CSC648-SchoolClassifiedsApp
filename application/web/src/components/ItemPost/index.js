@@ -207,7 +207,7 @@ const ItemPost = () => {
                     // onChange={(e) => setPrice(e.target.value)}
                     onChange={(e) =>
                       setPrice((v) =>
-                        e.target.validity.valid ? e.target.value : v
+                        e.target.validity.valid ? e.target.value : null
                       )
                     }
                   />
