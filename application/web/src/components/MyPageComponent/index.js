@@ -208,7 +208,7 @@ const MyPageComponent = () => {
                     <Container>
                       <Row xs={1} md={columnsPerRow}>
                         {items.map((e) => {
-                          let image_url = `${base_url}/images/${e.item_pic}`;
+                          let image_url = `${base_url}/images/${e.item_thumbnail}`;
                           let status = "";
                           if (parseInt(e.itemapproved) === 0) {
                             status = "Pending";
