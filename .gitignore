@@ -9,6 +9,9 @@ coverage
 markmacos
 db2.js
 
+# user images
+user_images
+
 # production
 build
 
