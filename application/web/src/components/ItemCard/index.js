@@ -20,13 +20,13 @@ const ItemCard = (props) => {
     console.log("message button clicked");
     console.log(props.item_details);
     navigate("/message", {
-      state: { item_details: props.item_details, image: props.image }
+      state: { item_details: props.item_details, image: props.hr_image }
     });
   };
 
   const goToItemDetailPage = () => {
     navigate("/item", {
-      state: { item_details: props.item_details, image: props.image }
+      state: { item_details: props.item_details, image: props.hr_image }
     });
   };
 
