@@ -1,0 +1,348 @@
+/* .Container {
+  margin-top: 1rem !important;
+  background-color: #d3eaf2 !important;
+  padding: 2rem !important;
+  border-radius: 1rem !important;
+}
+
+.PageTitle {
+  font-size: 2rem !important;
+}
+
+.CurrentPageTitle {
+  font-size: 1.5rem !important;
+}
+
+.PostFethcingItemName {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2.2rem !important;
+}
+
+.PostFethcingTime {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2.2rem !important;
+}
+
+.PostFethcingStatus {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2.2rem !important;
+}
+
+.PostFethcingExplanation {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2.2rem !important;
+}
+
+.DetailButton {
+  margin-left: 1.3rem !important;
+  margin-top: 0.7rem !important;
+  height: 70%;
+  font-size: 0.8rem !important;
+}
+
+.UsernameLable {
+  font-size: 1.2rem !important;
+  margin-top: 1rem;
+  text-align: right !important;
+}
+
+.UsernameFetch {
+  font-size: 1rem !important;
+  margin-top: 1.2rem;
+  text-align: left !important;
+  text-decoration: underline;
+}
+
+.EmailLable {
+  font-size: 1.2rem !important;
+  margin-top: 1rem;
+  text-align: right !important;
+}
+
+.EmailFecth {
+  font-size: 1rem !important;
+  margin-top: 1.2rem;
+  text-align: left !important;
+  text-decoration: underline;
+}
+
+.PostHistoryPageDisplayLabel {
+  text-align: center;
+}
+
+.MessagePageDisplayLabel {
+  text-align: center;
+}
+
+.MessageFethcingUsername {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2.2rem !important;
+}
+
+.MessageFethcingLocation {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+}
+
+.MessageFethcingMessage {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+}
+
+.MessageFethcingContact {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+} */
+
+/* Jiasheng */
+.Container {
+  margin-top: 1rem !important;
+  background-color: #d3eaf2 !important;
+  padding: 2rem !important;
+  border-radius: 1rem !important;
+}
+
+.PageTitle {
+  font-size: 2rem !important;
+}
+
+.CurrentPageTitle {
+  font-size: 1.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.PostFethcingItemName {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 90%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 1rem !important;
+}
+
+.PostFethcingTime {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 80%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+}
+
+.PostFethcingStatus {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 80%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+}
+
+.PostFethcingExplanation {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 90%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 1.4rem !important;
+}
+
+.DetailButton {
+  /* margin-left: 1.4rem !important; */
+  margin-top: 1.6rem !important;
+  height: 60%;
+  font-size: 1rem !important;
+  /* align-items: center !important; */
+}
+
+.UsernameLable {
+  font-size: 1.2rem !important;
+  margin-top: 1rem;
+  text-align: left !important;
+}
+
+.UsernameFetch {
+  font-size: 1rem !important;
+  margin-top: 1.2rem;
+  text-align: left !important;
+  text-decoration: underline;
+}
+
+.EmailLable {
+  font-size: 1.2rem !important;
+  margin-top: 1rem;
+  text-align: left !important;
+}
+
+.EmailFecth {
+  font-size: 1rem !important;
+  margin-top: 1.2rem;
+  text-align: left !important;
+  text-decoration: underline;
+}
+
+.PostHistoryPageDisplayLabel {
+  text-align: center;
+  font-weight: bold;
+}
+
+.MessagePageDisplayLabel {
+  text-align: center;
+  font-weight: bold;
+}
+
+.MessageFethcingUsername {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2.2rem !important;
+}
+
+.MessageFethcingLocation {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+}
+
+.MessageFethcingMessage {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+}
+
+.MessageFethcingContact {
+  margin-top: 1rem !important;
+  color: black;
+  padding: 0.1rem;
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  align-items: center !important;
+  border-radius: 10px !important;
+  margin-left: 2rem !important;
+}
+
+.statusDropdown {
+  /* style={{ marginTop: "0.5rem", marginLeft:"28rem" }} */
+  margin-top: 0.5rem !important;
+  margin-left: 28rem !important;
+  margin-right: 1rem !important;
+}
+
+@media only screen and (max-width: 1400px) {
+  .statusDropdown {
+    margin-top: 0.5rem !important;
+    margin-left: 22rem !important;
+    margin-right: 1rem !important;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .statusDropdown {
+    margin-top: 0.5rem !important;
+    margin-left: 15rem !important;
+    margin-right: 1rem !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .statusDropdown {
+    margin-top: 0.5rem !important;
+    margin-left: 4rem !important;
+    margin-right: 1rem !important;
+  }
+}
+
+/* Fetching Items */
+
+@media only screen and (max-width: 1401px) {
+  .PostFethcingExplanation {
+    margin-left: 1.2rem !important;
+  }
+}
+

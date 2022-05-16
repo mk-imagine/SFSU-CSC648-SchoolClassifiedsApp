@@ -3,5 +3,28 @@
   font-weight: 600;
   font-size: 1.5rem;
   color: #5f27cd;
+  overflow: hidden ;
+  white-space: nowrap;
   /* color: #198754; */
+}
+
+.messageButton{
+  margin-bottom: 1rem;
+  background-color: #5f27cd !important;
+  width: 95%;
+  text-align: center;
+  border-color: #5f27cd !important ;
+}
+
+.buttonWrap{
+  margin: auto;
+  width: 80%;
+}
+
+.itemDescription{
+  text-overflow: ellipsis;
+  overflow: hidden ;
+  white-space: nowrap;
+  max-width: 300px;
+  
 }

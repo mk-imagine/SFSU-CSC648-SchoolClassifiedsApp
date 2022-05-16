@@ -1,0 +1,150 @@
+.Title {
+  text-align: center;
+  margin-top: 1rem !important;
+}
+
+.form {
+  margin-top: 1rem;
+  background-color: #d3eaf2 !important;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.form p {
+  color: red;
+  margin-left: 14.5rem !important;
+  position:relative;
+}
+
+.PasswordRequirement {
+  text-align: left;
+  margin-bottom: 1.2rem;
+}
+
+.Contents {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.formInputComponent {
+  margin-bottom: 1.2rem;
+}
+
+.formLable {
+  font-size: 1rem;
+  color: rgb(17, 17, 17);
+  text-align: right;
+}
+
+.formInput {
+  display: inline;
+  border-radius: 6px;
+  height: 35px;
+  width: 50%;
+  border-color: rgb(2, 2, 2);
+  text-align: left;
+  float: right;
+}
+
+.formInput::placeholder {
+  font-size: 0.8rem !important;
+}
+
+/* button */
+.formInputBtn {
+  width: 100% !important;
+  height: 70%;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  color: white;
+  background-color: #5f27cd !important;
+  border-color: #5f27cd !important ;
+}
+
+.formInputBtn:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px){
+  .formLable {
+    font-size: 0.9rem;
+  }
+
+  .formInputBtn {
+    width: 120% !important;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .formLable {
+    font-size: 1rem;
+  }
+
+  .formInputBtn {
+    width: 30% !important;
+    margin-left: 15rem !important;
+  }
+}
+
+@media only screen and (max-width: 768px){
+
+  .formInputBtn {
+    margin-left: 10rem !important;
+  }
+}
+
+@media only screen and (max-width: 535px){
+
+  .formInputBtn {
+    width: 35% !important;
+    margin-left: 10rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 491px){
+
+  .formInputBtn {
+    margin-left: 8rem !important;
+  }
+}
+
+@media only screen and (max-width: 471px){
+
+  .formInputBtn {
+    width: 40% !important;
+    margin-left: 7rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 431px){
+
+  .formInput {
+    margin-top: 1rem !important;
+    width: 100%;
+    float:left;
+  }
+}
+
+
+@media only screen and (max-width: 423px){
+  .formInputBtn {
+    width: 45% !important;
+    margin-left: 6rem !important;
+  }
+}
+
+@media only screen and (max-width: 386px){
+  .formInputBtn {
+    width: 100% !important;
+    margin-left: 0rem !important;
+  }
+}
+
+
+
+
+

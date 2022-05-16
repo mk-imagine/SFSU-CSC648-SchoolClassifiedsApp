@@ -5,7 +5,7 @@
  * emailExist is to select a user who has a certain email to see if that email is being used
  */
 var bcrypt = require("bcrypt");
-const db = require('../config/db2');
+const db = require('../config/db');
 
 const RegisterModel = {};
 
@@ -38,6 +38,7 @@ RegisterModel.usernameExist = (username) => {
     console.log("in the usernameexist. what is username? :" + username);
     return db.execute(`select user_id from csc648.user where user_username = ?`, [username])
         .then(([results, fields]) => {
+            console.log(results);
             if (results && results.length) {
                 return Promise.resolve(true);
             } else {

@@ -8,18 +8,25 @@
     /* margin:auto;
     width: 50%; */
     text-align: center;
-    border: 1px;
-    border-style: solid;
-   
-    
+    /* border: 1px;
+    border-style: solid;   */
 }
-.image{
-    width: auto;
-    height: 20rem;
-    margin-bottom: 1rem;
-  
+
+.form {
+    margin-top: 1rem;
+    background-color: #d3eaf2 !important;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+.image {
+height: 30rem !important;
+object-fit: contain;
+margin-top: 0.6rem !important;
+margin-left: -1rem !important;
 }
-.button{
+
+.Postbutton{
     margin-bottom: 1rem;
     width: 10rem !important;
     padding: 10px !important;
@@ -28,10 +35,18 @@
     border-color: #5f27cd !important ;
     
 }
+
+.CancelButton{
+    margin-bottom: 1rem;
+    width: 10rem !important;
+    padding: 10px !important;
+    font-size: 1.5rem !important;
+    background-color: rgb(189, 62, 62) !important;
+    border-color: red !important ;
+}
 .subtitle{
    font-size: 1rem;
    text-align: right;
-   
 
 }
 .input{
@@ -42,4 +57,13 @@
 }
 .dropdown{
     width: 100% !important;
+}
+
+
+
+.courseNumInput{
+    width: 100% ;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    float: left !important;
 }

@@ -7,9 +7,16 @@ package-lock.json
 # testing
 coverage
 markmacos
+db2.js
+
+# user images
+user_images
 
 # production
 build
+
+# vscode workspace settings
+.vscode/
 
 # misc
 .DS_Store

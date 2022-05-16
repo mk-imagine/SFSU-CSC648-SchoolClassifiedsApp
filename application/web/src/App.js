@@ -1,5 +1,11 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Login from "../src/components/Login";
 import Home from "./Pages/HomePage";
 import { Navbar } from "../src/components/Navbar";
 import Khushboo from "../src/components/About/People/Khushboo";
@@ -15,18 +21,30 @@ import MessagePostPage from "./Pages/MessagePost";
 import ItemDetailPage from "./Pages/ItemDetailPage";
 import CreatePostPage from "./Pages/CreatePostPage";
 import MyPage from "./Pages/MyPage";
-
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
+import ChangePasswordPage from "./Pages/ChangePasswordPage";
+import ChangeUsernamePage from "./Pages/ChangeUsernamePage";
+//import Footer from "./components/Footer";
+import AboutPage from "./Pages/AboutPage";
 /**
  * React Navbar Routes
- * 
+ *
  * @returns React routes for navbar
  */
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
   return (
     <Router>
       <Navbar>
         <Routes>
           <Route path="/" exact element={<Home />} />
+
+          <Route path="/login" exact element={<LoginPage />} />
+          <Route path="/register" exact element={<RegisterPage />} />
+          <Route path="/myPage" exact element={<MyPage />} />
+          <Route path="/about" exact element={<AboutPage />} />
+
           <Route path="/about/Mark" exact element={<Mark />} />
           <Route path="/about/khushboo" exact element={<Khushboo />} />
           <Route path="/about/Cody" exact element={<Cody />} />
@@ -34,15 +52,22 @@ function App() {
           <Route path="/about/Jesus" exact element={<Jesus />} />
           <Route path="/about/Jiasheng" exact element={<Jiasheng />} />
           <Route path="/about/Vivian" exact element={<Vivian />} />
-
-          <Route path="/register" exact element={<RegisterPage />} />
-          <Route path="/login" exact element={<LoginPage />} />
           <Route path="/message" exact element={<MessagePostPage />} />
           <Route path="/item" exact element={<ItemDetailPage />} />
           <Route path="/createpost" exact element={<CreatePostPage />} />
-          <Route path="/myPage" exact element={<MyPage />} />
 
-          {/* <Route path="*" element={NotFound} /> */}
+          <Route
+            path="/forgotpassword"
+            exact
+            element={<ForgotPasswordPage />}
+          />
+          <Route
+            path="/changepassword"
+            exact
+            element={<ChangePasswordPage />}
+          />
+
+          <Route path="*" element={<Home />} />
         </Routes>
       </Navbar>
     </Router>

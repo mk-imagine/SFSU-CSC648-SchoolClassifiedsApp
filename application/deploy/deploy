@@ -2,3 +2,4 @@
 sudo cp ~/csc648-03-sp22-team8/application/deploy/nginx.conf /etc/nginx/nginx.conf
 sudo cp -a ~/csc648-03-sp22-team8/application/web/build/. /var/www/html/
 sudo service nginx stop
+sudo killall nginx

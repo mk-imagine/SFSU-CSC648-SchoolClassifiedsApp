@@ -1,7 +1,3 @@
-/* .title{
-    text-align: center;
-} */
-
 .title {
   text-align: center;
   font-size: 1.5rem;
@@ -47,7 +43,7 @@
   margin-left: 2rem !important;
 }
 
-.button {
+.sendButton {
   /* margin-bottom: 1rem;
     width: 10rem !important;
     padding: 10px !important;
@@ -55,32 +51,21 @@
     background-color: #5f27cd !important;
     border-color: #5f27cd !important ; */
 
-  width: 100% !important;
-  height: 50px !important;
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
-  margin-left: 2rem !important;
-  border-radius: 10px !important;
-
-  background: linear-gradient(
-    90deg,
-    rgb(1, 167, 250) 50%,
-    rgb(7, 155, 240) 100%
-  ) !important;
-  outline: none !important;
-  border: none !important;
-  color: #fff !important;
-  font-size: 1rem !important;
+  margin-bottom: 1rem;
+  width: 10rem !important;
+  padding: 10px !important;
+  font-size: 1.5rem !important;
+  background-color: #5f27cd !important;
+  border-color: #5f27cd !important ;
 }
 
-.button:hover {
-  cursor: pointer !important;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 0%,
-    rgb(193, 126, 219) 100%
-  ) !important;
-  transition: all 0.4s ease-out !important;
+.cancelButton {
+  margin-bottom: 1rem;
+  width: 10rem !important;
+  padding: 10px !important;
+  font-size: 1.5rem !important;
+  background-color: rgb(189, 62, 62) !important;
+  border-color: rgb(189, 62, 62) !important ;
 }
 
 .subtitle {
@@ -110,4 +95,130 @@
     rgb(1, 167, 250) 50%,
     rgb(7, 155, 240) 100%
   ) !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .itemNameFetch {
+    margin-top: 1rem !important;
+  }
+  .sellerNameFetch {
+    margin-top: 1rem !important;
+  }
+  .input {
+    margin-top: 1rem !important;
+  }
+
+  .cancelButton {
+    width: 100% !important;
+  }
+
+  .sendButton {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cancelButton {
+    font-size: 1rem !important;
+    width: 80% !important;
+    margin-top: 2rem !important;
+  }
+
+  .sendButton {
+    font-size: 1rem !important;
+    width: 80% !important;
+    margin-top: 2rem !important;
+  }
+
+  .button {
+    width: 110% !important;
+    margin-top: -3rem !important;
+    margin-left: 1rem !important ;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .image {
+    margin-top: -2rem !important;
+  }
+}
+
+@media only screen and (max-width: 512px) {
+  .cancelButton {
+    width: 90% !important;
+  }
+
+  .sendButton {
+    width: 90% !important;
+  }
+
+  .button {
+    width: 80% !important;
+    margin-top: -7rem !important;
+    margin-left: 3rem !important ;
+  }
+}
+
+@media only screen and (max-width: 471px) {
+  .button {
+    margin-top: -6rem !important;
+  }
+}
+
+@media only screen and (max-width: 317px) {
+  .button {
+    margin-left: 2.5rem !important;
+  }
+
+  .image {
+    margin-left: 1rem !important;
+  }
+}
+
+@media only screen and (max-width: 281px) {
+  .itemNameFetch {
+    width: 100% !important;
+  }
+
+  .sellerNameFetch {
+    width: 100% !important;
+  }
+  .input {
+    width: 100% !important;
+    font-size: 0.8rem !important;
+  }
+
+  .image {
+    margin-top: -6rem !important;
+  }
+
+  .button {
+    margin-top: -8rem !important;
+  }
+}
+
+@media only screen and (max-width: 245px) {
+  .image {
+    margin-top: -8rem !important;
+  }
+
+  .button {
+    margin-top: -10rem !important;
+  }
+}
+
+@media only screen and (max-width: 245px) {
+  .button {
+    width: 110% !important;
+    margin-left: 1rem !important;
+  }
+}
+
+@media only screen and (max-width: 199px) {
+  .button {
+    width: 140% !important;
+    margin-left: 0rem !important;
+  }
 }

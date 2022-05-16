@@ -3,14 +3,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { CardActionArea } from "@mui/material";
 import styles from "./index.module.css";
-// import { Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 /**
  * Load Item Card Component
- * @param {*} props 
+ * @param {*} props
  * @returns HTML of Item Card Component
  */
 const ItemCard = (props) => {
@@ -20,48 +20,64 @@ const ItemCard = (props) => {
     console.log("message button clicked");
     console.log(props.item_details);
     navigate("/message", {
-      state: { item_details: props.item_details, image: props.image }
+      state: { item_details: props.item_details, image: props.hr_image }
     });
   };
 
   const goToItemDetailPage = () => {
     navigate("/item", {
-      state: { item_details: props.item_details, image: props.image }
+      state: { item_details: props.item_details, image: props.hr_image }
     });
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, boxShadow: 3 }}>
       <CardActionArea onClick={goToItemDetailPage}>
-        <div style={{display: "flex", alignItem: "center", justifyContent: "center"}}>
-        <CardMedia
-          component="img"
-          height = "400"
-          image={props.image}
-          alt="green iguana"
-        />
+        <div
+          style={{
+            display: "flex",
+            alignItem: "center",
+            justifyContent: "center"
+          }}
+        >
+          <CardMedia
+            style={{
+              display: "block",
+              maxWidth: "400px",
+              maxHeight: "400px",
+              width: "auto",
+              height: "auto"
+            }}
+            component="img"
+            image={props.image}
+            alt="image here"
+          />
         </div>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" noWrap="true" component="div">
             {props.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Price: {props.price}
             <br></br>
-            Description: {props.description}
+            <p className={styles.itemDescription}>
+              Description: {props.description}
+            </p>
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button onClick={goToMessagePage}>Message Seller</Button>
-      </CardActions>
+      <div className={styles.buttonWrap}>
+        <Button className={styles.messageButton} onClick={goToMessagePage}>
+          Message Seller
+        </Button>
+      </div>
     </Card>
   );
 };
 
 /**
  * Load Category Card Component
- * @param {*} props 
+ * @param {*} props
  * @returns HTML of Category Card Component
  */
 export const ItemTopCategoryCard = (props) => {

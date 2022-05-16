@@ -23,14 +23,15 @@ router.get("/", (req, res) => {
  * Registration Route
  */
 router.post('/register', (req, res, next) => {
-
+    /* console.log(req);
+    console.log(req.body); */
     let firstname = req.body.firstname;
     let lastname = req.body.lastname;
     let username = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
     let confirmPassword = req.body.confirmPassword;
-    console.log(req.body);
+    //console.log(req.body);
     
     // Validator for form
     Validator.usernameValid(username)
@@ -39,20 +40,23 @@ router.post('/register', (req, res, next) => {
             if (usernameOK) {
                 return Validator.emailValid(email);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR USERNAMEOK");
                 throw new UserError("Enter a valid username", "/register", 200);
             }
         }).then((emailOK) => {
             console.log("is emailok?: " + emailOK);
             if (emailOK) {
-                return Validator.passwordValid(password);
+                return UserModel.usernameExist(username);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR EMAILOK");
                 throw new UserError("Enter a valid SFSU email", "/register", 200);
             }
-        }).then((passwordOK) => {
+        })/* .then((passwordOK) => {
             console.log("is passwordok?: " + passwordOK);
             if (passwordOK) {
                 return Validator.cpasswordValid(password, confirmPassword);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR PASSWORDOK");
                 throw new UserError("Enter a valid password", "/register", 200);
             }
         }).then((bothPasswordsOK) => {
@@ -60,11 +64,13 @@ router.post('/register', (req, res, next) => {
             if (bothPasswordsOK) {
                 return UserModel.usernameExist(username);
             } else {
+                console.log("ERROR GOING INTO THE ELSE FOR BOTHPASSWORDOK");
                 throw new UserError("Your passwords don't match", "/register", 200);
             }
-        }).then((usernameExists) => {
+        }) */.then((usernameExists) => {
             console.log("does theusername exist? " + usernameExists);
             if (usernameExists) {
+                console.log("ERROR GOING INTO THE IF FOR USERNAMeEXISTS");
                 throw new UserError("This username already exists", "/register", 200);
             } else {
                 return UserModel.emailExist(email);
@@ -72,6 +78,7 @@ router.post('/register', (req, res, next) => {
         }).then((emailExists) => {
             console.log("does the email exist? " + emailExists);
             if (emailExists) {
+                console.log("ERROR GOING INTO THE IF FOR EMAILEXISTS");
                 throw new UserError("This email already exists", "/register", 200);
             } else {
                 console.log("what is password? " + password);
@@ -81,10 +88,12 @@ router.post('/register', (req, res, next) => {
             console.log("what is the userID? " + userId);
             if (userId > 0) {
                 console.log('User successfuly created!');
-                res.redirect('/login');
+                res.send("/login"); // FOR DEPLOYMENT
+                // es.send("http://localhost:3000/login");
             } else {
                 // req.flash('success', 'User account has been made');
-                throw new UserError("User could not be created", "/register", 200);
+                console.log("ERROR GOING INTO THE ELSE FOR USERID");
+                throw new UserError("User could not be created", "/api/register/register", 200);
             }
         })
         .catch((err) => {
@@ -93,11 +102,24 @@ router.post('/register', (req, res, next) => {
                 errorPrinter.errorPrint(err.getMessage());
                 // req.flash('error', err.getMessage());//get error message from object
                 res.status(err.getStatus());
-                res.redirect(err.getRedirectURL());
+                res.redirect(err.getRedirectURL('/api/register/register'));
             } else {
                 next(err);
             }
         });
 });
+
+router.get("/emailexists/:email", async (req, res, next) => {
+    try {
+      const results = await UserModel.emailExist(req.params.email);
+      if (results) {
+        res.send("1");
+      } else {
+        res.send("0");
+      }
+    } catch {
+      next(err);
+    }
+  });
 
 module.exports = router;

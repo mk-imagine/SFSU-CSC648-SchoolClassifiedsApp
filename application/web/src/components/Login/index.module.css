@@ -1,14 +1,15 @@
+/* LOG IN PAGE STYLLYING */
 .formInputs {
   margin-bottom: 1rem;
-  /* width: 80%; */
+}
+
+.title{
+  font-size: 2rem;
 }
 
 .formLabel {
-  /* display: inline-block; */
   font-size: 1.3rem;
-  /* margin-bottom: 6px; */
   color: rgb(0, 0, 0);
-  /* margin-right: 0.5rem; */
   text-align: left;
 }
 
@@ -21,8 +22,6 @@
 
 .formInput {
   display: inline;
-  /* padding-left: 10px; */
-  /* outline: none; */
   border-radius: 6px;
   height: 35px;
   width: 68%;
@@ -31,11 +30,6 @@
   float: right;
 }
 
-/* .form-input::placeholder {
-      color: #595959;
-      font-size: 12px;
-    }
-     */
 
 /* button */
 .formInputBtn {
@@ -44,11 +38,8 @@
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 0%,
-    rgb(193, 126, 219) 100%
-  );
+  background: #5f27cd;
+  color: white;
   outline: none;
   border: none;
   color: #fff;
@@ -57,15 +48,11 @@
 
 .formInputBtn:hover {
   cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    rgb(82, 36, 127) 50%,
-    rgb(255, 207, 1) 100%
-  );
   transition: all 0.4s ease-out;
 }
 
 .formInputLogin {
+  cursor: pointer;
   font-size: 0.8rem;
   color: rgb(20, 19, 19);
   text-align: center;
@@ -76,3 +63,155 @@
   color: #27cdff;
   font-weight: 600;
 }
+
+.subtitle2{
+  text-align: center;
+}
+
+
+
+
+@media only screen and (max-width: 1400px) {
+  .loginForm{
+    width: 110% !important;
+    margin-left: -2rem !important;
+    
+  }
+
+}
+
+@media only screen and (max-width: 1150px) {
+  .centerNav {
+    width: 90%;
+  }
+    .topButton {
+      width: 4.2rem;
+      font-size: 0.8rem !important;
+      text-align: center !important;
+    }
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .loginForm{
+    width: 130% !important;
+    margin-left: -8rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 992px) {
+  .loginForm{
+    width: 60% !important;
+    margin-left: 9rem !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title{
+    /* width: 400% !important; */
+    text-align: center !important;
+  }
+  .loginForm{
+    width: 80% !important;
+    margin-left: 3.5rem !important;
+  }
+}
+
+@media only screen and (max-width: 466px) {
+
+  .loginForm{
+    width: 90% !important;
+    margin-left: 1.5rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 466px) {
+
+  .loginForm{
+    width: 90% !important;
+    margin-left: 1.5rem !important;
+  }
+}
+
+@media only screen and (max-width: 388px) {
+
+  .loginForm{
+    width: 100% !important;
+    margin-left: 0rem !important;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 371px) {
+  .title{
+    font-size: 1.8rem !important;
+  }
+
+  .formLabel{
+    font-size: 1rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 349px) {
+  .formInputBtn{
+    width: 130% !important;
+  }
+}
+
+@media only screen and (max-width: 306px) {
+  .formInput{
+    margin-right: 0rem!important;
+    margin-top: 1rem !important;
+    width: 100%;
+  }
+
+  .formInputBtn{
+    width: 200% !important;
+    margin-left: -1.5rem !important;
+  }
+  .subtitle2{
+    /* width: 500% !important; */
+    text-align: center !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+
+
+@media only screen and (max-width: 278px) {
+  
+  .formInputBtn{
+    width: 300% !important;
+    margin-left: -2rem !important;
+  }
+
+}
+
+
+@media only screen and (max-width: 200px) {
+  
+  .formInputBtn{
+    width: 400% !important;
+    margin-left: -2rem !important;
+  }
+
+}
+
+
+@media only screen and (max-width: 170px) {
+  
+  .formInputBtn{
+    width: 600% !important;
+    margin-left: -1.5rem !important;
+  }
+
+}
+
+
+
+

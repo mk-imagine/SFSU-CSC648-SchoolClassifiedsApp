@@ -1,6 +1,4 @@
 const express = require("express");
-const mysql = require("mysql2");
-// var cookieParser = require('cookie-parser');
 var itemapi = require("./routes/item");
 const imagerouter = require("./routes/image");
 const postingrouter = require('./routes/posting');
@@ -13,7 +11,6 @@ var mysqlSession = require('express-mysql-session')(sessions);
 
 const app = express();
 
-
 const flash = require("express-flash");
 
 /**
@@ -23,7 +20,7 @@ var mysqlSessionStore = new mysqlSession(
     {
         /*using default options*/
     },
-    require('./config/db2')
+    require('./config/db')
 );
 
 /**
@@ -48,7 +45,7 @@ app.use(express.json());
  * Track login state in sessions
  */
 app.use((req, res, next) => {
-    console.log(req.session);
+    //console.log(req.session);
     if(req.session.username) {
         res.locals.logged = true;
     }
