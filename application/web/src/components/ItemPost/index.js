@@ -32,15 +32,14 @@ const ItemPost = () => {
 
   const navigate = useNavigate();
   const userInformation = localStorage.getItem("user_login_information");
-
   let json_user = {};
   if (userInformation != "loggedOut") {
     json_user = JSON.parse(userInformation);
   }
 
   // console.log("user informatioin in item post bar", userInformation);
-
-  const base_url = "http://localhost:3100/api";
+  const base_url = "/api";
+  // const base_url = "http://localhost:3100/api";
 
   const handlePhotoUpload = (event) => {
     setUploadedPic(event.target.files[0]);

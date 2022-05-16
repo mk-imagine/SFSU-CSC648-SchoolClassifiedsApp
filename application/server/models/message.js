@@ -17,6 +17,8 @@ const MessageModel = {};
  * @returns True if insert successful
  */
 MessageModel.create = async (itemId, senderId, recipientId, meet_time, location, contactInfo, message) => {
+    console.log(`InsideModel:\nItemId: ${itemId}\nSenderId: ${senderId}\nRecipientId: ${recipientId}\n
+    Location: ${location}\nContactInfo: ${contactInfo}\nMessage: ${message}`);
     const insertMsgSQL = `INSERT INTO csc648.message (msg_sender, msg_recipient, msg_location, msg_contactinfo, 
         msg_body, msg_timestamp) VALUES (?, ?, ?, ?, ?, NOW());`;
     const msgData = [senderId, recipientId, location, contactInfo, message];
@@ -29,6 +31,7 @@ MessageModel.create = async (itemId, senderId, recipientId, meet_time, location,
         await con.execute(insertMsgSQL, msgData);
         await con.execute(insertItemMsgsSQL, itemMsgsData);
         await con.commit();
+        console.log("Inserts Successful");
     } catch (err) {
         console.log(err);
         if (con) {

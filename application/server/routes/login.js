@@ -122,11 +122,10 @@ router.get("/getUser/:userId", async (req, res, next) => {
 
 router.post("/resetPassword", (req, res) => {
   // let username = req.body.username;
-  let email = req.body.email;
-  let username = email;
+  let userId = req.body.userId;
   let password = req.body.password;
-  console.log("email: "+email+" password: "+password);
-  UserModel.resetPassword(email, password)
+  console.log("userid: "+userId+" password: "+password);
+  UserModel.resetPassword(userId, password)
   .then((result) => {
     console.log(result);
     if(result != -1){

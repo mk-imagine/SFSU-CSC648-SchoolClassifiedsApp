@@ -24,9 +24,9 @@ export const ViewItems = (props) => {
   const caseId = props.caseId;
 
   //const navigate = useNavigate();
-  // const base_url = "/api"; // FOR DEPLOYMENT
-  const base_url = "http://localhost:3100/api";
-
+  const base_url = "/api";
+  // const base_url = "http://localhost:3100/api";
+  // eslint-disable-next-line
   useEffect(() => {
     setItems(props.items);
     setTotalNumberOfItems(props.numberOfItems);
@@ -221,10 +221,7 @@ export const ViewItems = (props) => {
             //console.log("image_url: ", image_url);
             return (
               <div className={styles.itemCard}>
-                <div style={{ 
-                  marginTop: "2rem",
-                  textOverflow: "ellipsis"
-                }}></div>
+                <div style={{ marginTop: "2rem" }}></div>
                 <ItemCard
                   style={{ marginBottom: "4rem" }}
                   title={e.item_name}

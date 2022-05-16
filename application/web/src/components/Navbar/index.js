@@ -33,8 +33,8 @@ const Navbar = (props) => {
   //const { Provider, Consumer } = React.createContext({ items: [] });
 
   const navigate = useNavigate();
-  // const base_url = "/api"; // FOR DEPLOYMENT
-  const base_url = "http://localhost:3100/api";
+  const base_url = "/api";
+  // const base_url = "http://localhost:3100/api";
 
   const userInformation = localStorage.getItem("user_login_information");
   // let userJSON = JSON.parse(userInformation);
@@ -177,8 +177,7 @@ const Navbar = (props) => {
   const logout = () => {
     var config = {
       method: "post",
-      // url: "/api/login/login",  // FOR DEPLOYMENT
-      url: "http://localhost:3100/api/login/logout",
+      url: `${base_url}/login/logout`,
       headers: {
         "Content-Type": "application/json"
       }

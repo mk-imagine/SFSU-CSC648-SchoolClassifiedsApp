@@ -8,8 +8,8 @@ import { Table } from "react-bootstrap";
  */
 const ReceivedMessages = () => {
   const [messages, setMessages] = useState([]);
-  // const base_url = "/api"; // FOR DEPLOYMENT
-  const base_url = "http://localhost:3100/api";
+  const base_url = "/api"; // FOR DEPLOYMENT
+  // const base_url = "http://localhost:3100/api";
   const userInformation = localStorage.getItem("user_login_information");
   const user_in_json = JSON.parse(userInformation);
 
@@ -19,7 +19,7 @@ const ReceivedMessages = () => {
 
   const userId = user_in_json.user_id;
   const getReceivedMessages = () => {
-    console.log("Testing by using user id 2");
+    console.log(`Getting received messages for user_id: ${userId}`);
     axios.get(`${base_url}/msg/${userId}/received`).then((res) => {
       setMessages(res.data);
       console.log("Received Messages: ", messages);
