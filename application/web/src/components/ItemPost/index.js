@@ -38,8 +38,8 @@ const ItemPost = () => {
   }
 
   // console.log("user informatioin in item post bar", userInformation);
-  const base_url = "/api";
-  // const base_url = "http://localhost:3100/api";
+  // const base_url = "/api";
+  const base_url = "http://localhost:3100/api";
 
   const handlePhotoUpload = (event) => {
     setUploadedPic(event.target.files[0]);

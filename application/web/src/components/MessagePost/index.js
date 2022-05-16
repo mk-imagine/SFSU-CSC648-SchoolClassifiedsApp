@@ -66,8 +66,8 @@ const Message = () => {
 
     var config = {
       method: "post",
-      url: "/api/msg/create",  // FOR DEPLOYMENT
-      // url: "http://localhost:3100/api/msg/create",
+      // url: "/api/msg/create",  // FOR DEPLOYMENT
+      url: "http://localhost:3100/api/msg/create",
       headers: {
         "Content-Type": "application/json"
       },

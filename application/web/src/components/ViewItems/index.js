@@ -24,8 +24,8 @@ export const ViewItems = (props) => {
   const caseId = props.caseId;
 
   //const navigate = useNavigate();
-  const base_url = "/api";
-  // const base_url = "http://localhost:3100/api";
+  // const base_url = "/api";
+  const base_url = "http://localhost:3100/api";
   // eslint-disable-next-line
   useEffect(() => {
     setItems(props.items);
