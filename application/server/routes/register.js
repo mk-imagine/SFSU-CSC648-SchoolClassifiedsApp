@@ -109,4 +109,17 @@ router.post('/register', (req, res, next) => {
         });
 });
 
+router.get("/emailexists/:email", async (req, res, next) => {
+    try {
+      const results = await UserModel.emailExist(req.params.email);
+      if (results) {
+        res.send("1");
+      } else {
+        res.send("0");
+      }
+    } catch {
+      next(err);
+    }
+  });
+
 module.exports = router;
