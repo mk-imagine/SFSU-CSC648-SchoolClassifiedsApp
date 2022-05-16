@@ -50,9 +50,11 @@ LoginModel.getUser = (userId) => {
 
 LoginModel.resetPassword = (userId, newPassword) =>{
     let baseSQL = `update csc648.user set user_password = ? where user_id = ?;`;
+    console.log("UserId: ", userId, "Password: ", newPassword)
     const hashedPassword = bcrypt.hash(newPassword,0);
+    console.log("HashedPassword: ", hashedPassword);
     return db.execute(baseSQL, [hashedPassword, userId])
-            .then((res) => {
+            .then(() => {
             //console.log("after runing the update of rest password: "+results[0]);
             return Promise.resolve(userId);
             })
