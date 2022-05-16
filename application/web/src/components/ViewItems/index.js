@@ -14,7 +14,7 @@ export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [numberOfItems, setTotalNumberOfItems] = useState("");
-  const [dropdownName, setDropdownName] = useState("Sort By:");
+  const [dropdownName, setDropdownName] = useState("Time: Newest to Oldest");
 
   const columnsPerRow = 3;
 
