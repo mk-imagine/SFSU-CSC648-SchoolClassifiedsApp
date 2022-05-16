@@ -33,9 +33,9 @@ const SentMessages = () => {
             <thead>
               <tr>
                 <th>Item Name</th>
-                <th>Reciever Name</th>
+                <th>Receiver Name</th>
                 <th>Message</th>
-                <th>Reciever Email</th>
+                <th>Receiver Email</th>
                 <th>Contact Info</th>
               </tr>
             </thead>

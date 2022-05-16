@@ -19,8 +19,14 @@ const PostHistoryItemCard = (props) => {
             }}
           >
             <CardMedia
+              style={{
+                display: "block",
+                maxWidth: "400px",
+                maxHeight: "400px",
+                width: "auto",
+                height: "auto"
+              }}
               component="img"
-              height="400"
               image={props.image}
               alt="image here"
             />

@@ -78,7 +78,7 @@ const Message = () => {
       .then((response) => {
         console.log("Message sent ", response.data);
         alert(
-          "Message sent Succesfully. Please Wait for upto 24 hours, for the seller to respond"
+          "Message sent Succesfully. Please Wait for the seller to respond."
         );
         navigate("/");
 
