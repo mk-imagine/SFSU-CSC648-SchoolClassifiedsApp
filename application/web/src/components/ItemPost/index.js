@@ -141,7 +141,7 @@ const ItemPost = () => {
         console.log(response.data);
 
         alert(
-          "Your post has been uploaded. It will take upto 24 hours for the post to be reviewed and approved."
+          "Your post has been uploaded. It will take up to 24 hours for the post to be reviewed and approved."
         );
         navigate("/");
       })
