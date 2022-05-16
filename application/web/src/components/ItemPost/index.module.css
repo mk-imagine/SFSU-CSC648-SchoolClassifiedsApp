@@ -19,12 +19,13 @@
     border-radius: 1rem;
   }
 
-.image{
-    width: auto;
-    height: 20rem;
-    margin-bottom: 1rem;
-  
+.image {
+height: 30rem !important;
+object-fit: contain;
+margin-top: 0.6rem !important;
+margin-left: -1rem !important;
 }
+
 .Postbutton{
     margin-bottom: 1rem;
     width: 10rem !important;
