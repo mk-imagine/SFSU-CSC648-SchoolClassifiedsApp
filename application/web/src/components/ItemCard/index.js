@@ -54,7 +54,7 @@ const ItemCard = (props) => {
           />
         </div>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" noWrap="true" component="div">
             {props.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">

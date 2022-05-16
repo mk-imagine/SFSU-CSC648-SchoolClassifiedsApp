@@ -221,10 +221,7 @@ export const ViewItems = (props) => {
             //console.log("image_url: ", image_url);
             return (
               <div className={styles.itemCard}>
-                <div style={{ 
-                  marginTop: "2rem",
-                  textOverflow: "ellipsis"
-                }}></div>
+                <div style={{ marginTop: "2rem" }}></div>
                 <ItemCard
                   style={{ marginBottom: "4rem" }}
                   title={e.item_name}
