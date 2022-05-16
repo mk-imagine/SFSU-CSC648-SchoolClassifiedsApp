@@ -89,7 +89,7 @@ const FormSignup = () => {
         })
         .catch((error) => {
           console.log(error);
-          alert(error);
+          alert("The email address has been registered");
         });
     }
   };
