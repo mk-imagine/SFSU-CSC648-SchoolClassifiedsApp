@@ -59,8 +59,12 @@ const FormSignup = () => {
     
     if ((errors.firstname).length >0 || (errors.lastname).length >0 || (errors.email).length >0 || (errors.password).length >0 
         || (errors.confirmPassword).length >0) {
+          let passwordValidatedMessage ="";
       e.preventDefault();
-      let passwordValidatedMessage = errors.password.reduce((previousError, currentError) => previousError + "\n" + currentError);
+      if((errors.password).length > 0){
+        passwordValidatedMessage = errors.password.reduce((previousError, currentError) => previousError + "\n" + currentError);
+      }
+     
       alert ( "First Name: " + errors.firstname + "\n\n" +
               "Last Name: " + errors.lastname + "\n\n" +
               "Eamil: " + errors.email + "\n\n" +
