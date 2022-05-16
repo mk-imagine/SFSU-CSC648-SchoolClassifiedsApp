@@ -60,9 +60,9 @@ router.post("/post", upload.single("image"), (req, res) => {
       console.log("in posting route after postnoNulls " + notNull);
       if (notNull) {
         return sharp(picture)
-                  .resize(300, 300, {
+                  .resize(325, 325, {
                     fit: 'contain',
-                    background: { r: 255, g: 255, b: 255, alpha: 0 }
+                    background: { r: 255, g: 255, b: 255, alpha: 1 }
                   })
                   .toFile(thumbnailpath);
       } else {
