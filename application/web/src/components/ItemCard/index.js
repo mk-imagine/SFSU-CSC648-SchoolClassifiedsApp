@@ -31,7 +31,7 @@ const ItemCard = (props) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, boxShadow: 3 }}>
       <CardActionArea onClick={goToItemDetailPage}>
         <div
           style={{
