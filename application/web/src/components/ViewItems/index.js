@@ -202,7 +202,7 @@ export const ViewItems = (props) => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item eventKey="" onClick={getLatestItems}>
-                  Latest Items
+                  Time: Newest to Oldest
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="" onClick={getPriceHighToLow}>
                   Price: High to Low
