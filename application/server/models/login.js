@@ -48,26 +48,15 @@ LoginModel.getUser = (userId) => {
         .catch((err) => Promise.reject(err));
 };
 
-LoginModel.resetPassword = (email, newPassword) =>{
-    let userid;
-    let baseSQL = `select user_id from csc648.user where user_email = ?;`;
-    return db.execute(baseSQL, [email])
-    .then(([results, fields]) => {
-        console.log(results);
-        if(results[0].user_id > 0){
-            userid = results[0].user_id;
-            return bcrypt.hash(newPassword,0);
-        }else{
-            return Promise.resolve(-1);
-        }
-    }).then((hashedPassword) => {
-        let baseSQL2 = `update csc648.user set user_password = ? where user_id = ?;`;
-        return db.execute(baseSQL2, [hashedPassword, userid]);
-    })
-    .then(([results,fields]) => {
-        //console.log("after runing the update of rest password: "+results[0]);
-        return Promise.resolve(userid);
-    }).catch((err) => Promise.reject(err));
+LoginModel.resetPassword = (userId, newPassword) =>{
+    let baseSQL = `update csc648.user set user_password = ? where user_id = ?;`;
+    const hashedPassword = bcrypt.hash(newPassword,0);
+    return db.execute(baseSQL, [hashedPassword, userId])
+            .then((res) => {
+            //console.log("after runing the update of rest password: "+results[0]);
+            return Promise.resolve(userId);
+            })
+            .catch((err) => Promise.reject(err));
 };
 
 // LoginModel.changeUsername = (newUsername, email) => {

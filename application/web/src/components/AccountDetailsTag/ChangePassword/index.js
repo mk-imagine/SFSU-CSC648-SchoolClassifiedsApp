@@ -19,49 +19,74 @@ const ChangePassword = () => {
   const userInformation = localStorage.getItem("user_login_information");
   const user_in_json = JSON.parse(userInformation);
 
-  const resetPassword = () => {
+  console.log(values.newPassword);
+  console.log(values.comfirmNewPassword);
+
+  const resetPassword = async () => {
     //TODO: Works only first time, not second time
-    console.log(values.newPassword);
-    console.log(values.comfirmNewPassword);
+      var data1 = {
+        userId: user_in_json.user_id,
+        password: values.comfirmNewPassword
+      };
+      var config = {
+        method: "post",
+        // url: "/api/login/login",  // FOR DEPLOYMENT
+        url: `${base_url}/login/resetPassword`,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: data1
+      };
+    try {
+      const response = await axios(config);
+      if (response.data.status === 200) {
+        alert("Your password has been reset.");
+        navigate("/");
+      } else {
+        alert("Error in resetting password");
+      }
+    } catch (err) {
+      console.log("what is the error?: " + err);
+      alert("Error in resetting password");
+    }
 
-    axios
-      .get(`${base_url}/login/getUser/${user_in_json.user_id}`)
-      .then((res) => {
-        // setUserInfo(res.data);
-        // console.log(userInfo);
+    // axios
+    //   .get(`${base_url}/login/getUser/${user_in_json.user_id}`)
+    //   .then((res) => {
+    //     // setUserInfo(res.data);
+    //     // console.log(userInfo);
+    //     setEmail(res.data[0].user_email);
+    //   })
+    //   .then(() => {
+    //     var data1 = {
+    //       email: email,
+    //       password: values.comfirmNewPassword
+    //     };
+    //     var config = {
+    //       method: "post",
+    //       // url: "/api/login/login",  // FOR DEPLOYMENT
+    //       url: `${base_url}/login/resetPassword`,
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       data: data1
+    //     };
+    //     axios(config)
+    //       .then((response) => {
+    //         console.log("What is the response?: ", response.data);
 
-        setEmail(res.data[0].user_email);
-
-        var data1 = {
-          email: email,
-          password: values.comfirmNewPassword
-        };
-        var config = {
-          method: "post",
-          // url: "/api/login/login",  // FOR DEPLOYMENT
-          url: "http://localhost:3100/api/login/resetPassword",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          data: data1
-        };
-
-        axios(config)
-          .then((response) => {
-            console.log("What is the response?: ", response.data);
-
-            if (response.data.status === 200) {
-              alert("Your password has been reset.");
-              navigate("/");
-            } else {
-              alert("Error in resetting password");
-            }
-          })
-          .catch((error) => {
-            console.log("what is the error?: " + error);
-            alert("Error in resetting password");
-          });
-      });
+    //         if (response.data.status === 200) {
+    //           alert("Your password has been reset.");
+    //           navigate("/");
+    //         } else {
+    //           alert("Error in resetting password");
+    //         }
+    //       })
+    //       .catch((error) => {
+    //         console.log("what is the error?: " + error);
+    //         alert("Error in resetting password");
+    //       });
+    //   })
   };
 
   return (
