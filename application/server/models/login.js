@@ -48,34 +48,15 @@ LoginModel.getUser = (userId) => {
         .catch((err) => Promise.reject(err));
 };
 
-LoginModel.resetPassword = (userId, newPassword) =>{
+LoginModel.resetPassword = async (userId, newPassword) =>{
     let baseSQL = `update csc648.user set user_password = ? where user_id = ?;`;
     console.log("UserId: ", userId, "Password: ", newPassword)
-    const hashedPassword = bcrypt.hash(newPassword,0);
-    console.log("HashedPassword: ", hashedPassword);
+    const hashedPassword = await bcrypt.hash(newPassword,0);
     return db.execute(baseSQL, [hashedPassword, userId])
             .then(() => {
-            //console.log("after runing the update of rest password: "+results[0]);
             return Promise.resolve(userId);
             })
             .catch((err) => Promise.reject(err));
 };
-
-// LoginModel.changeUsername = (newUsername, email) => {
-//     let baseSQL = `update csc648.user set user_username = ? where user_email = ?;`;
-//     return db.execute(baseSQL, [newUsername, email])
-//     .then(([results, fields]) => {
-//         //console.log(fields);
-//         let baseSQL2 = `select user_id from csc648.user where user_username = ? and user_email = ?;`;
-//         return db.execute(baseSQL2, [newUsername, email])
-//     }).then(([results, fields]) => {
-//         console.log(results[0]);
-//         if(results[0].user_id > 0){
-//             return Promise.resolve(results[0].user_id);
-//         }else{
-//             return Promise.resolve(-1);
-//         }
-//     }).catch((err) => Promise.reject(err));
-// }
 
 module.exports = LoginModel;
