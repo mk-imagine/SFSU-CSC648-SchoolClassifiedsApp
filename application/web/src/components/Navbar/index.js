@@ -254,6 +254,16 @@ const Navbar = (props) => {
           className={styles.topButton}
           variant="primary"
           onClick={() => {
+            navigate("/about");
+          }}
+        >
+          About
+        </Button>
+
+        <Button
+          className={styles.topButton}
+          variant="primary"
+          onClick={() => {
             navigate("/login");
           }}
         >
