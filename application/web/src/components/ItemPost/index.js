@@ -91,7 +91,7 @@ const ItemPost = () => {
       return false;
     } else {
       if (selectedCategoryId === "3" && course === "") {
-        alert("Course cannot be empty.");
+        alert("Course Number cannot be empty.");
       } else {
         return true;
       }
@@ -308,7 +308,7 @@ const ItemPost = () => {
 
             <Col>
               <Row>
-                <Col lg={8}>
+                <Col lg={9}>
                   <Row>
                     <Col lg={5}>
                       <p>* - mandatory fields</p>
@@ -316,6 +316,9 @@ const ItemPost = () => {
                   </Row>
                   <Row>
                     <p>May take up to 24 hours for item post to be approved.</p>
+                  </Row>
+                  <Row>
+                    <p>The accepted maximum size of an upload image is 1MB.</p>
                   </Row>
                 </Col>
               </Row>
