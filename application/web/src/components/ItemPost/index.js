@@ -26,7 +26,7 @@ const ItemPost = () => {
   const [description, setDescription] = React.useState("");
   const [uploaded_pic, setUploadedPic] = useState();
   const [imageToShow, setImageToShow] = useState(image);
-  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("Select Category");
   const [toggleCourse, setToggleCourse] = useState(false);
 
@@ -208,7 +208,7 @@ const ItemPost = () => {
                     }}
                     onChange={(e) =>
                       setPrice((v) =>
-                        e.target.validity.valid ? e.target.value : null
+                        e.target.value
                       )
                     }
                   />
