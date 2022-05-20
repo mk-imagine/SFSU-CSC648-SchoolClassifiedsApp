@@ -6,10 +6,24 @@
   font-size: 1.7rem;
 }
 
+.searchResult{
+  font-size: 1.7rem;
+}
+
 .statusDropdown {
   margin-top: 0.25rem;
 }
 /* Adjust itemCard to center for responsiveness */
+
+@media only screen and (max-width: 992px) {
+  .heading {
+    width: 200% !important;
+  }
+
+  .searchResult{
+    width: 300% !important
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .itemCard {
@@ -53,8 +67,24 @@
   }
 }
 
-@media only screen and (max-width: 476px) {
+@media only screen and (max-width: 491px) {
   .itemCard {
-    margin-left: 0rem !important;
+    margin-left: 0.5rem !important;
   }
 }
+
+
+
+@media only screen and (max-width: 477px) {
+  .heading {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .searchResult{
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+

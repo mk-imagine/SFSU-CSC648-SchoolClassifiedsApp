@@ -12,16 +12,17 @@ import axios from "axios";
  */
 export const ViewItems = (props) => {
   const [items, setItems] = useState([]);
-  const [toggle, setToggle] = useState(false);
   const [numberOfItems, setTotalNumberOfItems] = useState("");
   const [dropdownName, setDropdownName] = useState("Time: Newest to Oldest");
+  const [heading, setHeading] = useState("All Items");
 
   const columnsPerRow = 3;
 
   const totolItems = props.totolItems;
   const searchTerm = props.searchTerm;
   const category_name = props.category;
-  const caseId = props.caseId;
+  let caseId = props.caseId;
+  const actualItemData = props.actualItemData;
 
   //const navigate = useNavigate();
   // const base_url = "/api";
@@ -29,17 +30,22 @@ export const ViewItems = (props) => {
   // eslint-disable-next-line
   useEffect(() => {
     setItems(props.items);
+
     setTotalNumberOfItems(props.numberOfItems);
     toggleFunction();
-  }, [props.items, props.numberOfItems]);
+  }, [props.items, props.numberOfItems, props.actualItemData, props.caseId]);
 
   const toggleFunction = () => {
-    console.log("Here");
-    if (items.length > 0 && items.length < parseInt(totolItems)) {
+    console.log("number of items", numberOfItems);
+
+    console.log("actual data length", actualItemData.length);
+    setHeading("All Items");
+    if (actualItemData.length === 0) {
+      console.log("inside if");
+      setHeading(`No items found. Have a look at our other items`);
+    } else if (items.length > 0 && items.length < parseInt(totolItems)) {
       console.log("Here");
-      setToggle(true);
-    } else {
-      setToggle(false);
+      setHeading(`${numberOfItems} items found`);
     }
   };
 
@@ -61,6 +67,11 @@ export const ViewItems = (props) => {
         .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
         .then((res) => {
           setItems(res.data);
+
+          if (res.data.length === 0) {
+            caseId = "5";
+            getLatestItems();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -70,6 +81,11 @@ export const ViewItems = (props) => {
         .get(`${base_url}/searchcategory/${category_name}/date/desc`)
         .then((res) => {
           setItems(res.data);
+
+          if (res.data.length === 0) {
+            caseId = "5";
+            getLatestItems();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -81,6 +97,10 @@ export const ViewItems = (props) => {
         )
         .then((res) => {
           setItems(res.data);
+          if (res.data.length === 0) {
+            caseId = "5";
+            getLatestItems();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -91,6 +111,7 @@ export const ViewItems = (props) => {
   const getPriceHighToLow = () => {
     //get price high to low
     setDropdownName("Price: High to Low");
+    console.log("case if here: ", caseId);
 
     if (caseId === "1" || caseId === "5") {
       axios
@@ -106,6 +127,10 @@ export const ViewItems = (props) => {
         .get(`${base_url}/searchitems/${searchTerm}/price/desc`)
         .then((res) => {
           setItems(res.data);
+          if (res.data.length === 0) {
+            caseId = "5";
+            getPriceHighToLow();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -115,6 +140,11 @@ export const ViewItems = (props) => {
         .get(`${base_url}/searchcategory/${category_name}/price/desc`)
         .then((res) => {
           setItems(res.data);
+          console.log("in case id 3 of price high to low");
+          if (res.data.length === 0) {
+            caseId = "5";
+            getPriceHighToLow();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -126,6 +156,10 @@ export const ViewItems = (props) => {
         )
         .then((res) => {
           setItems(res.data);
+          if (res.data.length === 0) {
+            caseId = "5";
+            getPriceHighToLow();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -150,6 +184,10 @@ export const ViewItems = (props) => {
         .get(`${base_url}/searchitems/${searchTerm}/price/asc`)
         .then((res) => {
           setItems(res.data);
+          if (res.data.length === 0) {
+            caseId = "5";
+            getPriceLowToHigh();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -159,6 +197,10 @@ export const ViewItems = (props) => {
         .get(`${base_url}/searchcategory/${category_name}/price/asc`)
         .then((res) => {
           setItems(res.data);
+          if (res.data.length === 0) {
+            caseId = "5";
+            getPriceLowToHigh();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -170,6 +212,10 @@ export const ViewItems = (props) => {
         )
         .then((res) => {
           setItems(res.data);
+          if (res.data.length === 0) {
+            caseId = "5";
+            getPriceLowToHigh();
+          }
         })
         .catch((e) => {
           console.log("error: ", e);
@@ -181,17 +227,9 @@ export const ViewItems = (props) => {
     <div>
       <Container>
         <Row style={{ marginTop: "2rem" }}>
-          <Col>
-            {toggle ? (
-              <div>
-                {numberOfItems} items found
-              </div>
-            ) : (
-              <div className={styles.heading}>All Items</div>
-            )}
+          <Col className={styles.headingCol}>
+            <div className={styles.searchResult}>{heading}</div>
           </Col>
-          <Col></Col>
-          <Col></Col>
           <Col></Col>
           <Col></Col>
 

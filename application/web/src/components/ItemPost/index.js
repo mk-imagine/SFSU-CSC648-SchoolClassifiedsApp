@@ -26,7 +26,7 @@ const ItemPost = () => {
   const [description, setDescription] = React.useState("");
   const [uploaded_pic, setUploadedPic] = useState();
   const [imageToShow, setImageToShow] = useState(image);
-  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("Select Category");
   const [toggleCourse, setToggleCourse] = useState(false);
 
@@ -91,7 +91,7 @@ const ItemPost = () => {
       return false;
     } else {
       if (selectedCategoryId === "3" && course === "") {
-        alert("Course cannot be empty.");
+        alert("Course Number cannot be empty.");
       } else {
         return true;
       }
@@ -132,8 +132,6 @@ const ItemPost = () => {
       }
     };
 
-    console.log("Before axios");
-    console.log("sellerId....", json_user.user_id)
     axios
       .post(`${base_url}/post/post`, formData, config)
       .then((response) => {
@@ -203,12 +201,12 @@ const ItemPost = () => {
                     required
                     placeholder="e.g.$25"
                     value={price}
-                    // onChange={(e) => setPrice(e.target.value)}
-                    onChange={(e) =>
-                      setPrice((v) =>
-                        e.target.validity.valid ? e.target.value : null
-                      )
-                    }
+                    onKeyPress={(event) => {
+                      if (!/[0-9]/.test(event.key)) {
+                        event.preventDefault();
+                      }
+                    }}
+                    onChange={(e) => setPrice(() => e.target.value)}
                   />
                 </Col>
               </Row>
@@ -306,7 +304,7 @@ const ItemPost = () => {
 
             <Col>
               <Row>
-                <Col lg={8}>
+                <Col lg={9}>
                   <Row>
                     <Col lg={5}>
                       <p>* - mandatory fields</p>
@@ -314,6 +312,9 @@ const ItemPost = () => {
                   </Row>
                   <Row>
                     <p>May take up to 24 hours for item post to be approved.</p>
+                  </Row>
+                  <Row>
+                    <p>The accepted maximum size of an upload image is 1MB.</p>
                   </Row>
                 </Col>
               </Row>

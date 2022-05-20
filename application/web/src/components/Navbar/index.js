@@ -28,6 +28,8 @@ const Navbar = (props) => {
   const [numberOfItems, setNumberOfItems] = useState(0);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [caseName, setCase] = useState("1");
+  const [allItemsArray, setAllItemsArray] = useState([]);
+  const [actualItemData, setActualItemData] = useState([]);
   //const [userInformation, setUserInformation] = useState();
 
   //const { Provider, Consumer } = React.createContext({ items: [] });
@@ -60,6 +62,9 @@ const Navbar = (props) => {
     axios.get(`${base_url}/items/date/desc`).then((res) => {
       setItems(res.data);
       setNumberOfTotalItems(res.data.length);
+      setAllItemsArray(res.data);
+      setActualItemData(res.data);
+      setCase("5");
     });
   };
 
@@ -113,8 +118,14 @@ const Navbar = (props) => {
         axios
           .get(`${base_url}/searchitems/${searchTerm}/date/desc`)
           .then((res) => {
-            setItems(res.data);
+            if (res.data.length === 0) {
+              setItems(allItemsArray);
+            } else {
+              setItems(res.data);
+            }
+
             setNumberOfItems(res.data.length);
+            setActualItemData(res.data);
           });
       } else if (
         category_id !== 0 &&
@@ -128,8 +139,13 @@ const Navbar = (props) => {
         axios
           .get(`${base_url}/searchcategory/${category_name}/date/desc`)
           .then((res) => {
-            setItems(res.data);
+            if (res.data.length === 0) {
+              setItems(allItemsArray);
+            } else {
+              setItems(res.data);
+            }
             setNumberOfItems(res.data.length);
+            setActualItemData(res.data);
           });
       } else if (
         category_id !== 0 &&
@@ -144,8 +160,13 @@ const Navbar = (props) => {
             `${base_url}/itemwithcategory/${searchTerm}/${category_name}/date/desc`
           )
           .then((res) => {
-            setItems(res.data);
+            if (res.data.length === 0) {
+              setItems(allItemsArray);
+            } else {
+              setItems(res.data);
+            }
             setNumberOfItems(res.data.length);
+            setActualItemData(res.data);
           });
       } else {
         console.log(
@@ -159,8 +180,14 @@ const Navbar = (props) => {
         setToggle(false);
         setCase("5");
         axios.get(`${base_url}/items/date/desc`).then((res) => {
-          setItems(res.data);
+          if (res.data.length === 0) {
+            setItems(allItemsArray);
+          } else {
+            setItems(res.data);
+            setNumberOfItems(res.data.length);
+          }
           setNumberOfItems(res.data.length);
+          setActualItemData(res.data);
         });
       }
     }
@@ -302,7 +329,7 @@ const Navbar = (props) => {
       <div className={styles.container}>
         <div className={styles.centerMobileNav}>
           <Row className="align-items-center">
-            <Col lg={2} md={12} sm={12}>
+            <Col lg={2} md={12} sm={12} className={styles.navTitle}>
               <div
                 className={styles.title}
                 onClick={() => {
@@ -314,7 +341,7 @@ const Navbar = (props) => {
               </div>
             </Col>
 
-            <Col lg={6} md={12} sm={12}>
+            <Col lg={6} md={12} sm={12} className={styles.searchBar}>
               <div className={styles.centerNav}>
                 <Row className={styles.top}>
                   <div>
@@ -376,7 +403,7 @@ const Navbar = (props) => {
                 </Row>
               </div>
             </Col>
-            <Col md={12} sm={12} lg={4}>
+            <Col md={12} sm={12} lg={4} className={styles.navbarButton}>
               <Row>
                 <Col>
                   {/* Things to do here wait */}
@@ -398,7 +425,8 @@ const Navbar = (props) => {
               value3: numberOfTotalItems,
               value4: searchInput,
               value5: selectedCategory,
-              value6: caseName
+              value6: caseName,
+              value7: actualItemData
             }}
           >
             {props.children}

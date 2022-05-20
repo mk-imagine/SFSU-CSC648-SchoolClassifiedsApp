@@ -7,11 +7,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
-  const [email, setEmail] = useState("");
-
-  const { handleChange, handleRecover, values, errors } = useChangePasswordForm(
-    changePasswordValidate
-  );
+  const [newPassword, setNewPassword] = React.useState("");
+  const [comfirmNewPassword, setComfirmNewPassword] = React.useState("");
+  let errors = {};
 
   const navigate = useNavigate();
   // const base_url = "/api";
@@ -19,74 +17,70 @@ const ChangePassword = () => {
   const userInformation = localStorage.getItem("user_login_information");
   const user_in_json = JSON.parse(userInformation);
 
-  console.log(values.newPassword);
-  console.log(values.comfirmNewPassword);
 
-  const resetPassword = async () => {
-    //TODO: Works only first time, not second time
+  const resetPassword = (e) => {
+    var dataPassword = {
+      newPassword: newPassword,
+      comfirmNewPassword: comfirmNewPassword,
+    };
+
+    errors = changePasswordValidate(dataPassword);
+    console.log("Error new password", errors.newPassword);
+    console.log("Error confirmed new password", errors.comfirmNewPassword);
+
+    if (errors.newPassword.length > 0 || errors.comfirmNewPassword.length > 0) {
+      let passwordValidatedMessage = "";
+      e.preventDefault();
+      if (errors.newPassword.length > 0) {
+        passwordValidatedMessage = errors.newPassword.reduce(
+          (previousError, currentError) => previousError + "\n" + currentError
+        );
+      }
+
+      alert(
+        "Password: \t" +
+          "\n" +
+          passwordValidatedMessage +
+          "\n\n" +
+          "Comfirmed Password: \t" +
+          errors.comfirmNewPassword +
+          "\n\n"
+      );
+    } else {
+      e.preventDefault();
+      console.log("Inside Else......................");
       var data1 = {
         userId: user_in_json.user_id,
-        password: values.comfirmNewPassword
+        password: comfirmNewPassword,
       };
       var config = {
-        method: "post",
-        // url: "/api/login/login",  // FOR DEPLOYMENT
-        url: `${base_url}/login/resetPassword`,
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        data: data1
       };
-    try {
-      const response = await axios(config);
-      if (response.data.status === 200) {
-        alert("Your password has been reset.");
-        navigate("/");
-      } else {
-        alert("Error in resetting password");
-      }
-    } catch (err) {
-      console.log("what is the error?: " + err);
-      alert("Error in resetting password");
+      console.log("comfirmNewPassword", comfirmNewPassword);
+
+      axios
+        .post(`${base_url}/login/resetPassword`, data1, config)
+        .then((response) => {
+          e.preventDefault();
+          if (response.data.status === 200) {
+            alert("Your password has been reset.");
+            navigate("/");
+          }else{
+            console.log(response.data);
+            alert(
+              "Error in resetting password."
+            );
+          }
+        })
+        .catch((error) => {
+          alert(error);
+          console.log(error);
+          e.preventDefault();
+        });
     }
 
-    // axios
-    //   .get(`${base_url}/login/getUser/${user_in_json.user_id}`)
-    //   .then((res) => {
-    //     // setUserInfo(res.data);
-    //     // console.log(userInfo);
-    //     setEmail(res.data[0].user_email);
-    //   })
-    //   .then(() => {
-    //     var data1 = {
-    //       email: email,
-    //       password: values.comfirmNewPassword
-    //     };
-    //     var config = {
-    //       method: "post",
-    //       // url: "/api/login/login",  // FOR DEPLOYMENT
-    //       url: `${base_url}/login/resetPassword`,
-    //       headers: {
-    //         "Content-Type": "application/json"
-    //       },
-    //       data: data1
-    //     };
-    //     axios(config)
-    //       .then((response) => {
-    //         console.log("What is the response?: ", response.data);
-
-    //         if (response.data.status === 200) {
-    //           alert("Your password has been reset.");
-    //           navigate("/");
-    //         } else {
-    //           alert("Error in resetting password");
-    //         }
-    //       })
-    //       .catch((error) => {
-    //         console.log("what is the error?: " + error);
-    //         alert("Error in resetting password");
-    //       });
-    //   })
   };
 
   return (
@@ -97,7 +91,7 @@ const ChangePassword = () => {
       <Row>
         <Col></Col>
         <Col lg={5}>
-          <Form className={styles.form} onSubmit={handleRecover}>
+          <Form className={styles.form} onSubmit={resetPassword}>
             <Row>
               <Row className={styles.PasswordRequirement}>
                 <div>
@@ -107,25 +101,28 @@ const ChangePassword = () => {
               <Row style={{ marginBottom: "1rem" }}>
                 <Row>
                   <div className={styles.Contents}>
-                    * is longer than 8 characters
+                    * Must contain at least 8 characters
                   </div>
                 </Row>
                 <Row>
                   <div className={styles.Contents}>
-                    * at least one uppercase letter
+                    * Must contain at least one lowercase character
                   </div>
                 </Row>
                 <Row>
                   <div className={styles.Contents}>
-                    * at least one lowercase letter
+                    * Must contain at least at least one uppercase character
                   </div>
                 </Row>
                 <Row>
-                  <div className={styles.Contents}>* at least one number</div>
+                  <div className={styles.Contents}>
+                    * Must contain at least at least one digit
+                  </div>
                 </Row>
                 <Row>
                   <div className={styles.Contents}>
-                    * at least one special character
+                    * Must contain at least at least one special character
+                    (/*-+!@#$^&)
                   </div>
                 </Row>
               </Row>
@@ -138,11 +135,9 @@ const ChangePassword = () => {
                   type="password"
                   name="newPassword"
                   placeholder="Enter your new password"
-                  value={values.newPassword}
-                  onChange={handleChange}
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
-                {errors.newPassword &&
-                  errors.newPassword.map((error) => <p>{error}</p>)}
               </div>
             </Row>
 
@@ -156,12 +151,9 @@ const ChangePassword = () => {
                   type="password"
                   name="comfirmNewPassword"
                   placeholder="Confirm your new password"
-                  value={values.comfirmNewPassword}
-                  onChange={handleChange}
+                  value={comfirmNewPassword}
+                  onChange={(e) => setComfirmNewPassword(e.target.value)}
                 />
-                {errors.comfirmNewPassword && (
-                  <p>{errors.comfirmNewPassword}</p>
-                )}
               </div>
             </Row>
 
@@ -171,7 +163,7 @@ const ChangePassword = () => {
                 <Button
                   className={styles.formInputBtn}
                   type="submit"
-                  onClick={resetPassword}
+                  onClick={(e) => resetPassword(e)}
                 >
                   Reset Password
                 </Button>
