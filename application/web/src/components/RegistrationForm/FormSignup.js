@@ -74,8 +74,8 @@ const FormSignup = () => {
     } else {
       var config = {
         method: "post",
-        // url: "/api/register/register",  // FOR DEPLOYMENT
-        url: "http://localhost:3100/api/register/register",
+        url: "/api/register/register",  // FOR DEPLOYMENT
+        // url: "http://localhost:3100/api/register/register",
         headers: {
           "Content-Type": "application/json",
         },

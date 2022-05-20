@@ -25,7 +25,7 @@ const Login = ({ setToken }) => {
     };
     var config = {
       method: "post",
-      // url: "/api/login/login",
+      url: "/api/login/login", // FOR DEPLOYMENT
       url: "http://localhost:3100/api/login/login",
       headers: {
         "Content-Type": "application/json"

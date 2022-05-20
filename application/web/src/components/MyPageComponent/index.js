@@ -39,8 +39,8 @@ const MyPageComponent = () => {
   const [email, setEmail] = useState("");
 
   const columnsPerRow = 3;
-  const base_url = "http://localhost:3100/api";
-  // const base_url = "/api"; // FOR DEPLOYMENT
+  // const base_url = "http://localhost:3100/api";
+  const base_url = "/api"; // FOR DEPLOYMENT
 
   const userInformation = localStorage.getItem("user_login_information");
   const user_in_json = JSON.parse(userInformation);

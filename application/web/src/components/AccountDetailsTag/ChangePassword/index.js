@@ -12,8 +12,8 @@ const ChangePassword = () => {
   let errors = {};
 
   const navigate = useNavigate();
-  // const base_url = "/api";
-  const base_url = "http://localhost:3100/api";
+  const base_url = "/api"; // FOR DEPLOYMENT
+  // const base_url = "http://localhost:3100/api";
   const userInformation = localStorage.getItem("user_login_information");
   const user_in_json = JSON.parse(userInformation);
 
