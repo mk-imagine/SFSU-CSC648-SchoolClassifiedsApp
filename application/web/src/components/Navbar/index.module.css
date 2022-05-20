@@ -6,6 +6,7 @@
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
+  text-align: right;
 }
 
 .container {
@@ -89,15 +90,48 @@
   }
 }
 
+@media only screen and (max-width: 1310px) {
+  .title {
+    /* width: 80% !important; */
+    text-align: right !important;
+    font-size: 1.8rem !important;
+  }
+  .navTitle{
+    width: 16% !important;
+  }
+}
+
 @media only screen and (max-width: 1306px) {
   .centerNav {
     width: 83%;
   }
 }
 
+@media only screen and (max-width: 1297px) {
+  .centerNav {
+    margin-left: 7rem !important;
+  }
+}
+
+
 @media only screen and (max-width: 1262px) {
   .centerNav {
     width: 86%;
+  }
+}
+
+@media only screen and (max-width: 1121px) {
+
+  .navTitle{
+    width: 14%!important;
+  }
+
+  .searchBar{
+    width: 52%!important;
+  }
+
+  .navbarButton{
+    width: 34%!important;
   }
 }
 
@@ -107,6 +141,32 @@
   }
 }
 
+@media only screen and (max-width: 1100px) {
+  .navTitle{
+    width: 40%!important;
+  }
+
+  .title{
+    text-align: right !important;
+  }
+
+  .centerNav {
+    margin-left: 4rem !important;
+  }
+
+  .searchBar{
+    width: 60%!important;
+  }
+
+  .navbarButton{
+    width: 50%!important;
+    margin-left: 22rem !important;
+    margin-top: 1rem  !important;
+  }
+}
+
+
+
 @media only screen and (max-width: 1070px) {
   .centerButtons {
     margin: auto;
@@ -114,10 +174,16 @@
   }
 }
 
+@media only screen and (max-width: 1041px) {
+  .navbarButton{
+    margin-left: 20rem !important;
+  }
+}
+
 @media only screen and (max-width: 1030px) {
-  .topButton {
-    margin-left: 3rem !important;
-    width: 5rem !important;
+  .navbarButton {
+    margin-left: 20rem !important;
+    /* width: 5rem !important; */
   }
 }
 
@@ -129,379 +195,264 @@
 
 /*MOBILE */
 
-@media only screen and (max-width: 990px) {
-  .centerMobileNav {
-    width: 50%;
-    margin: auto;
-  }
-  .title {
-    text-align: center;
-    font-size: 2rem;
-  }
-
-  .topButton {
-    width: 6rem;
-  }
-
-  .centerButtons {
-    margin: auto;
-    width: 90%;
+@media only screen and (max-width: 961px) {
+  .navTitle{
+    width: 35% !important;
   }
 }
 
-@media only screen and (max-width: 968px) {
-  .centerMobileNav {
-    width: 55%;
-    margin: auto;
-  }
-  .title {
-    text-align: center;
-  }
 
-  .topButton {
-    width: 6rem;
-  }
-
-  .centerButtons {
-    margin: auto;
-    width: 90%;
+@media only screen and (max-width: 971px) {
+  .navbarButton {
+    margin-left: 18rem !important;
   }
 }
 
-@media only screen and (max-width: 882px) {
-  .centerMobileNav {
-    margin: auto;
-    width: 100%;
-  }
 
-  .top {
-    margin: auto;
-    width: 80% !important;
-  }
-  .title {
-    text-align: center;
-  }
 
-  .topButton {
-    width: 6rem;
-  }
-
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 14rem;
-  }
-
-  .centerNav {
-    width: 90%;
-    margin: auto;
-    margin-left: 12rem;
+@media only screen and (max-width: 889px) {
+  .navbarButton {
+    margin-left: 16rem !important;
   }
 }
 
-@media only screen and (max-width: 882px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 10rem;
+@media only screen and (max-width: 876px) {
+  .navTitle{
+    width: 30% !important;
+  }
+  .searchBar{
+    width: 70% !important;
   }
 
-  .centerNav {
-    width: 90%;
-    margin: auto;
-    margin-left: 10rem;
-  }
+}
 
-  .subTitle {
-    font-size: 0.7rem;
-  }
-  .title {
-    font-size: 1rem;
+@media only screen and (max-width: 814px) {
+  .navbarButton {
+    margin-left: 14rem !important;
   }
 }
 
-@media only screen and (max-width: 716px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 9rem;
-  }
-
-  .centerNav {
-    width: 90%;
-    margin: auto;
-    margin-left: 7rem;
-  }
-
-  .subTitle {
-    font-size: 0.7rem;
-  }
-  .title {
-    font-size: 1rem;
+@media only screen and (max-width: 776px) {
+  .navbarButton {
+    margin-left: 12rem !important;
   }
 }
 
-@media only screen and (max-width: 706px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 9rem;
+@media only screen and (max-width: 752px) {
+  .navTitle{
+    width: 28% !important;
   }
-
-  .centerNav {
-    width: 100%;
-    margin: auto;
-    margin-left: 7rem;
+  .searchBar{
+    width: 72% !important;
   }
 }
 
-@media only screen and (max-width: 650px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 7rem;
+
+ 
+@media only screen and (max-width: 731px) {
+  .navTitle{
+    width: 100% !important;
   }
 
-  .centerNav {
-    width: 100%;
-    margin: auto;
-    margin-left: 5rem;
+  .title{
+    text-align: center !important;
+  }
+
+  .searchBar{
+    width: 100% !important;
+    margin-left: 6rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .navbarButton {
+    margin-left: 11rem !important;
+  }
+
+}
+
+@media only screen and (max-width: 700px) {
+  .searchBar{
+    margin-left: 5rem !important;
+  }
+  .navbarButton {
+    margin-left: 10rem !important;
+    width: 100% !important;
   }
 }
 
-@media only screen and (max-width: 636px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 6rem;
-  }
+@media only screen and (max-width: 664px) {
 
-  .centerNav {
-    width: 110%;
-    margin: auto;
-    margin-left: 5rem;
+  .searchBar{
+    margin-left: 4rem !important;
+  }
+  .navbarButton {
+    margin-left: 9rem !important;
+    
   }
 }
 
-@media only screen and (max-width: 590px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 4rem;
-  }
+@media only screen and (max-width: 624px) {
 
-  .centerNav {
-    width: 120%;
-    margin: auto;
-    margin-left: 3rem;
+  .searchBar{
+    margin-left: 2rem !important;
+  }
+  .navbarButton {
+    margin-left: 7rem !important;
+    
   }
 }
 
-@media only screen and (max-width: 544px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 2rem;
-  }
+@media only screen and (max-width: 594px) {
 
-  .centerNav {
-    width: 130%;
-    margin: auto;
-    margin-left: 1rem;
+  .searchBar{
+    margin-left: 1rem !important;
+  }
+  .navbarButton {
+    margin-left: 6.5rem !important;
+    
   }
 }
 
-@media only screen and (max-width: 499px) {
-  .centerButtons {
-    margin: auto;
-    width: 90%;
-    margin-left: 2rem;
-  }
+@media only screen and (max-width: 546px) {
 
-  .centerNav {
-    width: 130%;
-    margin: auto;
-    margin-left: 5rem;
+  .searchBar{
+    margin-left: 0rem !important;
   }
-
-  .searchBtnStyle {
-    width: 15rem !important;
-    margin-top: 0.7rem;
-  }
-
-  .searchContainer {
-    margin: auto;
-    width: 50%;
+  .navbarButton {
+    margin-left: 5rem !important;
+    
   }
 }
 
-@media only screen and (max-width: 493px) {
-  .centerButtons {
-    margin: auto;
-    width: 100%;
-    margin-left: 2rem;
+@media only screen and (max-width: 529px) {
+
+  .centerNav{
+    width: 100% !important;
+    margin-left: 3rem !important;
+  }
+  .navbarButton {
+    margin-left: 4rem !important;
+    
   }
 }
 
-@media only screen and (max-width: 443px) {
-  .centerButtons {
-    margin: auto;
-    width: 110%;
-    margin-left: 0rem;
-  }
+@media only screen and (max-width: 505px) {
 
-  .centerNav {
-    width: 130%;
-    margin: auto;
-    margin-left: 2rem;
+  .centerNav{
+    width: 100% !important;
+    margin-left: 2.5rem !important;
   }
+  /* .navbarButton {
+    margin-left: 4rem !important;
+    
+  } */
+}
 
-  .searchBtnStyle {
-    width: 15rem !important;
-    margin-top: 0.7rem;
+@media only screen and (max-width: 483px) {
+
+  .centerNav{
+    margin-left: 1.8rem !important;
   }
-
-  .searchContainer {
-    margin: auto;
-    width: 50%;
+  .navbarButton {
+    margin-left: 3rem !important;
+    
   }
 }
 
-@media only screen and (max-width: 414px) {
-  .centerButtons {
-    margin: auto;
-    width: 110%;
-    margin-left: 2rem;
-  }
+@media only screen and (max-width: 461px) {
 
-  .centerNav {
-    width: 130%;
-    margin: auto;
-    margin-left: 2rem;
+  .centerNav{
+    margin-left: 1rem !important;
   }
-
-  .searchBtnStyle {
-    width: 15rem !important;
-    margin-top: 0.7rem;
-  }
-
-  .searchContainer {
-    margin: auto;
-    width: 50%;
-  }
-  .topButton {
-    width: 5rem;
+  .navbarButton {
+    margin-left: 2rem !important;
+    
   }
 }
 
-@media only screen and (max-width: 390px) {
-  .centerButtons {
-    margin: auto;
-    width: 100%;
-    margin-left: 0rem;
-  }
+@media only screen and (max-width: 441px) {
 
-  .centerNav {
-    width: 150%;
-    margin: auto;
-    margin-left: 0rem;
+  .centerNav{
+    margin-left: 0.5rem !important;
   }
+}
 
-  .searchBtnStyle {
-    width: 15rem !important;
-    margin-top: 0.7rem;
-  }
+@media only screen and (max-width: 430px) {
 
-  .searchContainer {
-    margin: auto;
-    width: 50%;
+  .centerNav{
+    width: 200% !important;
+    margin-left: 0rem !important;
   }
+  .navbarButton {
+    margin-left: 1rem !important;
+    
+  }
+}
 
-  .topButton {
-    width: 5rem;
+@media only screen and (max-width: 416px) {
+
+  .centerNav{
+    width: 200% !important;
+    margin-left: -0.5rem !important;
   }
+  
+}
+
+@media only screen and (max-width: 396px) {
+  .centerNav{
+    width: 100% !important;
+    margin-left: 1rem !important;
+  }
+  .searchBtnStyle{
+    width: 200% !important;
+    margin-top: 1rem !important;
+    margin-left: 3rem !important;
+  }
+  .navbarButton {
+    margin-left: 0.5rem !important;
+  }  
 }
 
 @media only screen and (max-width: 385px) {
-  .centerButtons {
-    margin: auto;
-    width: 110%;
-    margin-left: 0rem;
-  }
-
-  .centerNav {
-    width: 160%;
-    margin: auto;
-    margin-left: 0rem;
-  }
-
-  .searchBtnStyle {
-    width: 15rem !important;
-    margin-top: 0.7rem;
-  }
-
-  .searchContainer {
-    margin: auto;
-    width: 50%;
-  }
-
-  .topButton {
-    width: 5rem;
+  .navbarButton {
+    margin-left: -0.5rem !important;
+  }  
+  .searchBtnStyle{
+    margin-left: 2.8rem !important;
   }
 }
 
-@media only screen and (max-width: 343px) {
-  .centerButtons {
-    margin: auto;
-    width: 110%;
-    margin-left: 0rem;
-  }
+@media only screen and (max-width: 377px) {
+  .navbarButton {
+    margin-left: -0.5rem !important;
+  }  
 
-  .centerNav {
-    width: 155%;
-    margin: auto;
-    margin-left: -1rem;
-  }
-
-  .searchBtnStyle {
-    width: 15rem !important;
-    margin-top: 0.7rem;
-  }
-
-  .searchContainer {
-    margin: auto;
-    width: 50%;
-  }
-
-  .topButton {
-    width: 4.2rem;
+  .searchBtnStyle{
+    width: 200% !important;
+    margin-top: 1rem !important;
+    margin-left: 2.5rem !important;
   }
 }
 
-@media only screen and (max-width: 323px) {
-  .centerButtons {
-    margin: auto;
-    width: 110%;
-    margin-left: 0rem;
-  }
+@media only screen and (max-width: 376px) {
+  .searchBar {
+    margin-left: -0.5rem !important;
+  }  
 
-  .centerNav {
-    width: 155%;
-    margin: auto;
-    margin-left: -1rem;
-  }
-
-  .searchBtnStyle {
-    width: 15rem !important;
-    margin-top: 0.7rem;
-  }
-
-  .searchContainer {
-    margin: auto;
-    width: 50%;
-  }
-
-  .topButton {
-    width: 4.2rem;
+  .searchBtnStyle{
+    margin-left: 3rem !important;
   }
 }
+
+
+@media only screen and (max-width: 360px) {
+  .searchBar{
+    margin-left: -1rem !important;
+  }
+
+  .navbarButton {
+    margin-left: -1rem !important;
+  }  
+}
+
+

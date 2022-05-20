@@ -302,7 +302,7 @@ const Navbar = (props) => {
       <div className={styles.container}>
         <div className={styles.centerMobileNav}>
           <Row className="align-items-center">
-            <Col lg={2} md={12} sm={12}>
+            <Col lg={2} md={12} sm={12} className={styles.navTitle}>
               <div
                 className={styles.title}
                 onClick={() => {
@@ -314,7 +314,7 @@ const Navbar = (props) => {
               </div>
             </Col>
 
-            <Col lg={6} md={12} sm={12}>
+            <Col lg={6} md={12} sm={12} className={styles.searchBar}>
               <div className={styles.centerNav}>
                 <Row className={styles.top}>
                   <div>
@@ -376,7 +376,7 @@ const Navbar = (props) => {
                 </Row>
               </div>
             </Col>
-            <Col md={12} sm={12} lg={4}>
+            <Col md={12} sm={12} lg={4} className={styles.navbarButton}>
               <Row>
                 <Col>
                   {/* Things to do here wait */}
