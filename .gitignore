@@ -39,6 +39,7 @@ Milestones/**/*.gz
 Milestones/**/*.bak
 Milestones/**/images
 Milestones/**/sections
+M5ReportTexFiles
 
 # logs
 *.log
