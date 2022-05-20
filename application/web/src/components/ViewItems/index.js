@@ -15,6 +15,7 @@ export const ViewItems = (props) => {
   const [toggle, setToggle] = useState(false);
   const [numberOfItems, setTotalNumberOfItems] = useState("");
   const [dropdownName, setDropdownName] = useState("Time: Newest to Oldest");
+  const [heading, setHeading] = useState("All Items");
 
   const columnsPerRow = 3;
 
@@ -22,6 +23,7 @@ export const ViewItems = (props) => {
   const searchTerm = props.searchTerm;
   const category_name = props.category;
   const caseId = props.caseId;
+  const actualItemData = props.actualItemData;
 
   //const navigate = useNavigate();
   // const base_url = "/api";
@@ -29,18 +31,37 @@ export const ViewItems = (props) => {
   // eslint-disable-next-line
   useEffect(() => {
     setItems(props.items);
+
     setTotalNumberOfItems(props.numberOfItems);
     toggleFunction();
-  }, [props.items, props.numberOfItems]);
+  }, [props.items, props.numberOfItems, props.actualItemData]);
 
   const toggleFunction = () => {
-    console.log("Here");
-    if (items.length > 0 && items.length < parseInt(totolItems)) {
+    console.log("number of items", numberOfItems);
+
+    // if (numberOfItems === "-1") {
+    //   setToggle(false);
+    //   setHeading(`No items found. Have a look at our other items`);
+    // } else if (items.length > 0 && items.length < parseInt(totolItems)) {
+    //   console.log("Here");
+    //   setToggle(true);
+    //   setHeading(`${numberOfItems} items found`);
+    // } else {
+    //   setToggle(false);
+    //   setHeading(`All Items`);
+    // }
+
+    console.log("actual data length", actualItemData.length);
+    setHeading("All Items");
+    if (actualItemData.length === 0) {
+      console.log("inside if");
+      setHeading(`No items found. Have a look at our other items`);
+    } else if (items.length > 0 && items.length < parseInt(totolItems)) {
       console.log("Here");
-      setToggle(true);
-    } else {
-      setToggle(false);
+      setHeading(`${numberOfItems} items found`);
     }
+
+    console.log("actual item data", actualItemData);
   };
 
   const getLatestItems = () => {
@@ -177,21 +198,22 @@ export const ViewItems = (props) => {
     }
   };
 
+  // {toggle ? (
+  //   <div className={styles.searchResult}>
+  //     {/* {numberOfItems} items found */}
+  //     {heading}
+  //   </div>
+  // ) : (
+  //   <div className={styles.heading}>{heading}</div>
+  // )}
+
   return (
     <div>
       <Container>
         <Row style={{ marginTop: "2rem" }}>
           <Col className={styles.headingCol}>
-            {toggle ? (
-              <div className={styles.searchResult}>
-                {numberOfItems} items found
-              </div>
-            ) : (
-              <div className={styles.heading}>All Items</div>
-            )}
+            <div className={styles.searchResult}>{heading}</div>
           </Col>
-          <Col></Col>
-          <Col></Col>
           <Col></Col>
           <Col></Col>
 
