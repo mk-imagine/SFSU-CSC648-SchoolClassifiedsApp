@@ -23,7 +23,9 @@ const ChangePassword = () => {
   console.log(values.comfirmNewPassword);
 
   const resetPassword = async () => {
-    //TODO: Works only first time, not second time
+    if (values.comfirmNewPassword === "") {
+      alert("Password cannot be blank.");
+    } else {
       var data1 = {
         userId: user_in_json.user_id,
         password: values.comfirmNewPassword
@@ -37,56 +39,19 @@ const ChangePassword = () => {
         },
         data: data1
       };
-    try {
-      const response = await axios(config);
-      if (response.data.status === 200) {
-        alert("Your password has been reset.");
-        navigate("/");
-      } else {
+      try {
+        const response = await axios(config);
+        if (response.data.status === 200) {
+          alert("Your password has been reset.");
+          navigate("/");
+        } else {
+          alert("Error in resetting password");
+        }
+      } catch (err) {
+        console.log("what is the error?: " + err);
         alert("Error in resetting password");
       }
-    } catch (err) {
-      console.log("what is the error?: " + err);
-      alert("Error in resetting password");
     }
-
-    // axios
-    //   .get(`${base_url}/login/getUser/${user_in_json.user_id}`)
-    //   .then((res) => {
-    //     // setUserInfo(res.data);
-    //     // console.log(userInfo);
-    //     setEmail(res.data[0].user_email);
-    //   })
-    //   .then(() => {
-    //     var data1 = {
-    //       email: email,
-    //       password: values.comfirmNewPassword
-    //     };
-    //     var config = {
-    //       method: "post",
-    //       // url: "/api/login/login",  // FOR DEPLOYMENT
-    //       url: `${base_url}/login/resetPassword`,
-    //       headers: {
-    //         "Content-Type": "application/json"
-    //       },
-    //       data: data1
-    //     };
-    //     axios(config)
-    //       .then((response) => {
-    //         console.log("What is the response?: ", response.data);
-
-    //         if (response.data.status === 200) {
-    //           alert("Your password has been reset.");
-    //           navigate("/");
-    //         } else {
-    //           alert("Error in resetting password");
-    //         }
-    //       })
-    //       .catch((error) => {
-    //         console.log("what is the error?: " + error);
-    //         alert("Error in resetting password");
-    //       });
-    //   })
   };
 
   return (

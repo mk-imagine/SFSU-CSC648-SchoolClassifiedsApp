@@ -132,8 +132,6 @@ const ItemPost = () => {
       }
     };
 
-    console.log("Before axios");
-    console.log("sellerId....", json_user.user_id)
     axios
       .post(`${base_url}/post/post`, formData, config)
       .then((response) => {
@@ -203,7 +201,11 @@ const ItemPost = () => {
                     required
                     placeholder="e.g.$25"
                     value={price}
-                    // onChange={(e) => setPrice(e.target.value)}
+                    onKeyPress={(event) => {
+                      if (!/[0-9]/.test(event.key)) {
+                        event.preventDefault();
+                      }
+                    }}
                     onChange={(e) =>
                       setPrice((v) =>
                         e.target.validity.valid ? e.target.value : null
