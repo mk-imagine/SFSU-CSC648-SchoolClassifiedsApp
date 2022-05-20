@@ -181,9 +181,9 @@ export const ViewItems = (props) => {
     <div>
       <Container>
         <Row style={{ marginTop: "2rem" }}>
-          <Col>
+          <Col className={styles.headingCol}>
             {toggle ? (
-              <div>
+              <div className={styles.searchResult}>
                 {numberOfItems} items found
               </div>
             ) : (
