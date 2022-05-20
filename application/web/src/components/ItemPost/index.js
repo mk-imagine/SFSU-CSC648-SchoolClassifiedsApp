@@ -206,11 +206,7 @@ const ItemPost = () => {
                         event.preventDefault();
                       }
                     }}
-                    onChange={(e) =>
-                      setPrice((v) =>
-                        e.target.value
-                      )
-                    }
+                    onChange={(e) => setPrice(() => e.target.value)}
                   />
                 </Col>
               </Row>

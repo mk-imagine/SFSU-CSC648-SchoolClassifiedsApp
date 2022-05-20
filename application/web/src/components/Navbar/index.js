@@ -64,6 +64,7 @@ const Navbar = (props) => {
       setNumberOfTotalItems(res.data.length);
       setAllItemsArray(res.data);
       setActualItemData(res.data);
+      setCase("5");
     });
   };
 
