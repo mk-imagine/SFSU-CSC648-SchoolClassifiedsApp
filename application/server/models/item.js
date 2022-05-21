@@ -37,7 +37,8 @@ ItemsModel.getAllItems = (order, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it 
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+        where it.item_approved = 1
         order by it.item_price ${direction};`;
     }
     if(order == 'date'){
@@ -46,7 +47,8 @@ ItemsModel.getAllItems = (order, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+        where it.item_approved = 1
         order by it.item_created ${direction};`;
     }
     return db.execute(baseSQL)
@@ -70,7 +72,8 @@ ItemsModel.categoryAndItemSearch = (category, searchWord, order, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it 
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+        where (it.item_name like ? or it.item_desc like ?) and category.category_name like ? and it.item_approved = 1
         order by item_price ${direction};`;
     }
     if(order == 'date'){
@@ -79,7 +82,8 @@ ItemsModel.categoryAndItemSearch = (category, searchWord, order, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it 
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+                    where (it.item_name like ? or it.item_desc like ?) and category.category_name like ? and it.item_approved = 1
                     order by item_created ${direction}`;
     }
     return db.execute(baseSQL, [searchWord, searchWord, category])
@@ -101,7 +105,8 @@ ItemsModel.categorySearch = (category, orderby, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it 
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+                        WHERE category.category_name like ? and it.item_approved = 1
                         ORDER BY item_price ${direction};`;
         return db.execute(baseSQL, [category])
         .then(([results, fields]) => {
@@ -115,7 +120,8 @@ ItemsModel.categorySearch = (category, orderby, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it 
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+                        WHERE category.category_name like ? and it.item_approved = 1
                         ORDER BY item_created ${direction};`;
         return db.execute(baseSQL, [category])
         .then(([results, fields]) => {
@@ -140,7 +146,8 @@ ItemsModel.itemSearch = (searchWord, orderby, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it 
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+        where (it.item_name like ? or it.item_desc like ?) AND it.item_approved = 1
         ORDER BY item_price ${direction};`;
     }
     if (orderby == "date") {
@@ -149,7 +156,8 @@ ItemsModel.itemSearch = (searchWord, orderby, direction) => {
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
         FROM csc648.item it 
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
-        INNER JOIN category cat ON cat.category_id = it.item_category where it.item_approved = 1
+        INNER JOIN category cat ON cat.category_id = it.item_category
+        where (it.item_name like ? or it.item_desc like ?) AND it.item_approved = 1
         ORDER BY item_created ${direction};`;       
     }
     return db.execute(baseSQL, [searchWord, searchWord])
