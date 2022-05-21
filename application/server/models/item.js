@@ -70,21 +70,21 @@ ItemsModel.categoryAndItemSearch = (category, searchWord, order, direction) => {
         baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
         it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
-        FROM csc648.item it 
+        FROM csc648.item it
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
         INNER JOIN category cat ON cat.category_id = it.item_category
-        where (it.item_name like ? or it.item_desc like ?) and category.category_name like ? and it.item_approved = 1
+        where (it.item_name like ? or it.item_desc like ?) and cat.category_name like ? and item_approved = 1
         order by item_price ${direction};`;
     }
     if(order == 'date'){
         baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
         it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
-        FROM csc648.item it 
+        FROM csc648.item it
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
         INNER JOIN category cat ON cat.category_id = it.item_category
-                    where (it.item_name like ? or it.item_desc like ?) and category.category_name like ? and it.item_approved = 1
-                    order by item_created ${direction}`;
+        where (it.item_name like ? or it.item_desc like ?) and cat.category_name like ? and item_approved = 1
+        order by item_created ${direction};`;
     }
     return db.execute(baseSQL, [searchWord, searchWord, category])
         .then(([results, fields]) => {
@@ -100,14 +100,14 @@ ItemsModel.categoryAndItemSearch = (category, searchWord, order, direction) => {
  */
 ItemsModel.categorySearch = (category, orderby, direction) => {
     if( orderby == "price") {
-        baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
+        let baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
         it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
-        FROM csc648.item it 
+        FROM csc648.item it
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
         INNER JOIN category cat ON cat.category_id = it.item_category
-                        WHERE category.category_name like ? and it.item_approved = 1
-                        ORDER BY item_price ${direction};`;
+        WHERE cat.category_name like ? and it.item_approved = 1
+        ORDER BY item_price ${direction};`;
         return db.execute(baseSQL, [category])
         .then(([results, fields]) => {
         return Promise.resolve(results);
@@ -115,14 +115,14 @@ ItemsModel.categorySearch = (category, orderby, direction) => {
         .catch((err) => Promise.reject(err));
     }
     if(orderby == "date") {
-        baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
+        let baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
         it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
-        FROM csc648.item it 
+        FROM csc648.item it
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
         INNER JOIN category cat ON cat.category_id = it.item_category
-                        WHERE category.category_name like ? and it.item_approved = 1
-                        ORDER BY item_created ${direction};`;
+        WHERE cat.category_name like ? and it.item_approved = 1
+        ORDER BY item_created ${direction};`;
         return db.execute(baseSQL, [category])
         .then(([results, fields]) => {
         return Promise.resolve(results);
@@ -144,20 +144,20 @@ ItemsModel.itemSearch = (searchWord, orderby, direction) => {
         baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
         it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
-        FROM csc648.item it 
+        FROM csc648.item it
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
         INNER JOIN category cat ON cat.category_id = it.item_category
-        where (it.item_name like ? or it.item_desc like ?) AND it.item_approved = 1
+        where (it.item_name like ? or it.item_desc like ?) AND item_approved = 1
         ORDER BY item_price ${direction};`;
     }
     if (orderby == "date") {
         baseSQL = `SELECT it.item_id, it.item_category, cat.category_name, it.item_name, it.item_desc, it.item_price, it.item_pic, 
         it.item_thumbnail, it.item_created, it.item_course, it.item_postexpires, seller.user_username,
         seller.user_fname, seller.user_lname, seller.user_id AS "sellerid", it.item_approved AS "itemapproved"
-        FROM csc648.item it 
+        FROM csc648.item it
         INNER JOIN user seller ON seller.user_id = it.item_seller_id 
         INNER JOIN category cat ON cat.category_id = it.item_category
-        where (it.item_name like ? or it.item_desc like ?) AND it.item_approved = 1
+        where (it.item_name like ? or it.item_desc like ?) AND item_approved = 1
         ORDER BY item_created ${direction};`;       
     }
     return db.execute(baseSQL, [searchWord, searchWord])
