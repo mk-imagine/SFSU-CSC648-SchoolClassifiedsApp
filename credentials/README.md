@@ -1,4 +1,6 @@
 # Credentials Folder
+---
+## ALL CREDENTIALS AND URLS/IP ADDRESSES IN THIS FOLDER ARE NO LONGER ACTIVE
 
 ## The purpose of this folder is to store all credentials needed to log into your server and databases. This is important for many reasons. But the two most important reasons is
     1. Grading, servers and databases will be logged into to check code and functionality of application. Not changes will be unless directed and coordinated with the team.
@@ -9,7 +11,6 @@
 
 1. Server URL or IP - 
 54.90.37.137 
-csc648.mskim.dev
 
 2. SSH username - 
 ubuntu
@@ -39,7 +40,6 @@ server/ - contains the express server boilerplate<br>
 web/ - contains the react frontend app
 
 To view the site:
-https://csc648.mskim.dev
 
 
 # Most important things to Remember
